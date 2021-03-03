@@ -30,6 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  nav:
+    threads: Threads
+    customers: Customers
+    hey: "Hey %{name}"
   login:
     heading: Sign in to your account
     button: Log in
@@ -38,3 +42,5 @@ en:
     heading: "Create your account"
     button: "Get started"
     min_password_length: "(%{min} characters minimum)"
+  dashboard:
+    heading: Dashboard
