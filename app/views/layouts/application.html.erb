@@ -8,19 +8,21 @@
     <%= render "shared/flash_alerts" %>
 
     <div class="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
-      <div class="py-4 flex justify-center items-center">
+      <div class="py-4 lg:py-8 flex justify-center items-center">
         <nav class="flex-1 flex items-center justify-start">
-          <%= link_to "Threads", root_path, class: "mr-3 text-lg text-gray-800 font-semibold" %>
-          <%= link_to "Customers", "#", class: "text-lg text-gray-500" %>
+          <%= link_to t("nav.threads"), root_path, class: "mr-2 xl:mr-3 text-lg text-gray-800 font-semibold bg-gray-100 py-2 px-4 rounded-full" %>
+          <%= link_to t("nav.customers"), "#", class: "text-lg text-gray-500 py-2 px-4 rounded-full hover:bg-gray-100" %>
         </nav>
         <%= link_to image_tag("logo.svg", alt: "Happi", class: "w-auto h-10"), root_path, class: "flex-shrink-0" %>
         <nav class="flex-1 flex items-center justify-end">
-          something...
-          <%= avatar_tag current_user %>
+          <span class="mr-3"><%= t("nav.hey", name: current_user.first_name) %></span>
+          <%= avatar_tag current_user, size: 40 %>
         </nav>
       </div>
 
-      <%= yield %>
+      <div class="shadow-max rounded-3xl p-10">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
