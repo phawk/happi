@@ -1,0 +1,27 @@
+.button {
+  @apply py-2 px-3 rounded-md bg-gray-200 text-gray-500 cursor-pointer font-semibold inline-flex items-center justify-center;
+
+  &:hover {
+    @apply bg-gray-300 text-gray-700;
+  }
+
+  &.-primary {
+    @apply bg-pink-600 text-white;
+
+    &:hover {
+      @apply bg-pink-500;
+    }
+  }
+
+  &.-danger {
+    @apply bg-red-500 text-white;
+
+    &:hover {
+      @apply bg-red-400;
+    }
+  }
+
+  &.-small {
+    @apply py-1 px-2 text-sm;
+  }
+}

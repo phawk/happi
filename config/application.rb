@@ -32,7 +32,29 @@ module Happi
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.skip_routes true
+      g.helper false
+      g.assets false
+      g.test_framework :rspec, fixture: false
+      g.helper_specs false
+      g.controller_specs false
+      g.system_tests false
+      g.view_specs false
+    end
+
+    config.to_prepare do
+      Devise::SessionsController.layout "auth"
+      # DeviseInvitable::RegistrationsController.layout "auth"
+      # Devise::InvitationsController.layout "auth"
+      Devise::RegistrationsController.layout "auth"
+      Devise::ConfirmationsController.layout "auth"
+      Devise::UnlocksController.layout "auth"
+      Devise::PasswordsController.layout "auth"
+      Devise::Mailer.layout "mailer"
+    end
+
+    # GZip all responses
+    config.middleware.use Rack::Deflater
   end
 end

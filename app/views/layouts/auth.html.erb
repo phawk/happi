@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render "layouts/partials/head" %>
+  </head>
+
+  <body>
+    <%= render "shared/flash_alerts" %>
+
+    <div class="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
+      <div class="py-4 flex justify-center items-center">
+        <%= link_to image_tag("logo.svg", alt: "Happi", class: "w-auto h-10 mt-8"), root_path, class: "flex-shrink-0" %>
+      </div>
+
+      <div class="mt-6 shadow-max rounded-3xl max-w-md mx-auto py-5 px-8">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

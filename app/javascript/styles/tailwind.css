@@ -1,0 +1,10 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "components/button";
+@import "components/styled-form";
+@import "components/turbo-progress-bar";
+@import "tailwindcss/utilities";
+
+body {
+  @apply font-inter text-gray-600;
+}

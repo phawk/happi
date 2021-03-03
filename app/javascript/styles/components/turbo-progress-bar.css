@@ -1,0 +1,4 @@
+.turbo-progress-bar {
+  height: 4px;
+  @apply bg-blue-400;
+}
