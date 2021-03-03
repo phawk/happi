@@ -1,0 +1,32 @@
+.styled-form {
+  label {
+    @apply block text-gray-700 font-medium text-base mb-1;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  input[type="time"],
+  input[type="url"],
+  input[type="date"] {
+    @apply appearance-none w-full px-3 py-2 leading-6 rounded-md bg-white border border-gray-200;
+  }
+
+  .hint {
+    @apply block mt-1 text-sm text-gray-500;
+  }
+
+  .form-checkbox {
+    @apply flex items-center;
+    input[type="checkbox"] {
+      @apply mr-3;
+    }
+
+    label {
+      @apply mb-0 font-normal text-gray-600;
+    }
+  }
+}

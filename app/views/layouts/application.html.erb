@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Happi</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render "layouts/partials/head" %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/flash_alerts" %>
+
+    <div class="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto">
+      <div class="py-4 flex justify-center items-center">
+        <nav class="flex-1 flex items-center justify-start">
+          <%= link_to "Threads", root_path, class: "mr-3 text-lg text-gray-800 font-semibold" %>
+          <%= link_to "Customers", "#", class: "text-lg text-gray-500" %>
+        </nav>
+        <%= link_to image_tag("logo.svg", alt: "Happi", class: "w-auto h-10"), root_path, class: "flex-shrink-0" %>
+        <nav class="flex-1 flex items-center justify-end">
+          something...
+          <%= avatar_tag current_user %>
+        </nav>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
