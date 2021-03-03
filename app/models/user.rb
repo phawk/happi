@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :teams
   belongs_to :team, optional: true
+
+  validates :first_name, :last_name, presence: true
 end

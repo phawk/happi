@@ -53,11 +53,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
 
-    create_table :team_users do |t|
+    create_table :teams_users do |t|
       t.references :team, foreign_key: true
       t.references :user, foreign_key: true
     end
 
-    add_index :team_users, [:team_id, :user_id], unique: true
+    add_index :teams_users, [:team_id, :user_id], unique: true
   end
 end

@@ -15,17 +15,17 @@ ActiveRecord::Schema.define(version: 2021_03_03_205633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "team_users", force: :cascade do |t|
-    t.bigint "team_id"
-    t.bigint "user_id"
-    t.index ["team_id", "user_id"], name: "index_team_users_on_team_id_and_user_id", unique: true
-    t.index ["team_id"], name: "index_team_users_on_team_id"
-    t.index ["user_id"], name: "index_team_users_on_user_id"
-  end
-
   create_table "teams", force: :cascade do |t|
     t.string "name", null: false
     t.string "plan", default: "basic", null: false
+  end
+
+  create_table "teams_users", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "user_id"
+    t.index ["team_id", "user_id"], name: "index_teams_users_on_team_id_and_user_id", unique: true
+    t.index ["team_id"], name: "index_teams_users_on_team_id"
+    t.index ["user_id"], name: "index_teams_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_205633) do
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
-  add_foreign_key "team_users", "teams"
-  add_foreign_key "team_users", "users"
+  add_foreign_key "teams_users", "teams"
+  add_foreign_key "teams_users", "users"
   add_foreign_key "users", "teams"
 end
