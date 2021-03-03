@@ -34,6 +34,10 @@ en:
     threads: Threads
     customers: Customers
     hey: "Hey %{name}"
+    logout: Logout
+    signed_in_as: "Signed in as"
+    edit_profile: Edit profile
+    support: Support
   login:
     heading: Sign in to your account
     button: Log in

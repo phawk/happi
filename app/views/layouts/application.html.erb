@@ -14,9 +14,29 @@
           <%= link_to t("nav.customers"), "#", class: "text-lg text-gray-500 py-2 px-4 rounded-full hover:bg-gray-100" %>
         </nav>
         <%= link_to image_tag("logo.svg", alt: "Happi", class: "w-auto h-10"), root_path, class: "flex-shrink-0" %>
-        <nav class="flex-1 flex items-center justify-end">
-          <span class="mr-3"><%= t("nav.hey", name: current_user.first_name) %></span>
-          <%= avatar_tag current_user, size: 40 %>
+        <nav class="relative flex-1 flex items-center justify-end" data-controller="toggle">
+          <button type="button" data-action="toggle#toggle" class="flex items-center">
+            <span class="mr-3"><%= t("nav.hey", name: current_user.first_name) %></span>
+            <%= avatar_tag current_user, size: 40 %>
+          </button>
+
+          <div data-toggle-target="toggleable" data-css-class="hidden" class="hidden origin-top-right absolute top-full right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100">
+            <div class="px-4 py-3">
+              <p class="text-sm">
+                <%= t("nav.signed_in_as") %>
+              </p>
+              <p class="text-sm font-medium text-gray-900 truncate">
+                <%= current_user.email %>
+              </p>
+            </div>
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"><%= t("nav.edit_profile") %></a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"><%= t("nav.support") %></a>
+            </div>
+            <div class="py-1">
+              <%= link_to t("nav.logout"), destroy_user_session_path, method: :delete, class: "block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900", role: "menuitem", data: { turbo: false } %>
+            </div>
+          </div>
         </nav>
       </div>
 
