@@ -6,18 +6,18 @@
   }
 
   &.-primary {
-    @apply bg-pink-600 text-white;
+    @apply bg-purple-600 text-white;
 
     &:hover {
-      @apply bg-pink-500;
+      @apply bg-purple-500;
     }
   }
 
   &.-danger {
-    @apply bg-red-500 text-white;
+    @apply bg-pink-500 text-white;
 
     &:hover {
-      @apply bg-red-400;
+      @apply bg-pink-400;
     }
   }
 

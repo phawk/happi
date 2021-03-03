@@ -1,25 +1,28 @@
-<h2>Log in</h2>
+<%= tag.h2 t("login.heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "styled-form" }) do |f| %>
+  <div class="mb-4">
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
+  <div class="mb-4">
+    <%= f.label :password %>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="mb-4 form-checkbox">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="mt-6 flex items-center">
+    <%= f.submit t("login.button"), class: "button -primary" %>
+    <%- if devise_mapping.recoverable? %>
+      <%= link_to t("login.forgot_password"), new_password_path(resource_name), class: "ml-4 text-sm text-gray-500 font-medium" %>
+    <% end %>
   </div>
 <% end %>
 

@@ -1,28 +1,40 @@
-<h2>Sign up</h2>
+<%= tag.h2 t("signup.heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "styled-form" }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="flex items-start">
+    <div class="mb-4 w-1/2 mr-2">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, autofocus: true %>
+    </div>
+
+    <div class="mb-4 w-1/2 ml-2">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="mb-4">
+    <%= f.label :email %>
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="mb-4">
     <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <span class="hint"><%= t("signup.min_password_length", min: @minimum_password_length) %></span>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="mb-4">
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="mt-6">
+    <%= f.submit t("signup.button"), class: "button -primary" %>
   </div>
 <% end %>
 
