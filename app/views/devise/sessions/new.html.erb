@@ -1,6 +1,6 @@
 <%= tag.h2 t("login.heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "styled-form" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "styled-form", data: { turbo: false } }) do |f| %>
   <div class="mb-4">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

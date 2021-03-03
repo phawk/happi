@@ -1,6 +1,6 @@
 <%= tag.h2 t("signup.heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "styled-form" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "styled-form", data: { turbo: false } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="flex items-start">
