@@ -42,5 +42,9 @@ en:
     heading: "Create your account"
     button: "Get started"
     min_password_length: "(%{min} characters minimum)"
+  passwords:
+    heading: "Forgot your password?"
+  change_password:
+    heading: Change your password
   dashboard:
     heading: Dashboard
