@@ -4,6 +4,8 @@
 @import "components/styled-form";
 @import "components/turbo-progress-bar";
 @import "tailwindcss/utilities";
+@import "trix/dist/trix";
+@import "components/actiontext";
 
 body {
   @apply font-inter text-gray-600;

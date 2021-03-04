@@ -56,6 +56,8 @@ en:
   message_threads:
     new_heading: New threads
     old_heading: Previously seen
+  message_form:
+    button: Send
   customers:
     heading: All customers
     add_new: Manually add
