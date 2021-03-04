@@ -50,8 +50,9 @@ en:
     heading: "Forgot your password?"
   change_password:
     heading: Change your password
-  dashboard:
-    heading: Dashboard
+  message_threads:
+    new_heading: New threads
+    old_heading: Previously seen
   new_team:
     heading: Set up your team
     button: Create team

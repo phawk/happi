@@ -1,4 +1,4 @@
-<%= tag.h1 t("dashboard.heading"), class: "text-3xl font-bold text-gray-900 mb-10" %>
+<%= tag.h1 t("message_threads.new_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 mb-8" %>
 
 <% @message_threads.each do |message_thread| %>
   <%= link_to message_thread_path(message_thread), class: "mb-4 flex items-center" do %>
@@ -26,3 +26,5 @@
     </div>
   <% end %>
 <% end %>
+
+<%= tag.h1 t("message_threads.old_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 mt-16 mb-8" %>
