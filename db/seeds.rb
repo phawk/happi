@@ -13,18 +13,24 @@ team = Team.first
 
 alfonso = Customer.where(
   team: team,
-  first_name: "alfonso",
-  last_name: "ayala",
   email: "casamiaus2020@gmail.com",
+).first_or_initialize
+
+alfonso.update!(
+  first_name: "Alfonso",
+  last_name: "Ayala",
   company: "Glide programer",
   country_code: "MX"
-).first_or_create!
+)
 
 alfonso_thread_1 = MessageThread.where(
   team: team,
   customer: alfonso,
+).first_or_initialize
+
+alfonso_thread_1.update!(
   subject: "Contact form submission"
-).first_or_create!
+)
 
 Message.where(
   message_thread: alfonso_thread_1,

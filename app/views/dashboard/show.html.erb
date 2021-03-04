@@ -1,1 +1,28 @@
 <%= tag.h1 t("dashboard.heading"), class: "text-3xl font-bold text-gray-900 mb-10" %>
+
+<% @message_threads.each do |message_thread| %>
+  <div class="mb-4 flex items-center">
+    <%= avatar_tag message_thread.customer, size: 50, extra_class: "mr-4 flex-shrink-0" %>
+    <div class=" flex-grow">
+      <h3 class="text-gray-800 text-xl font-semibold">
+        <%= message_thread.customer.name.full %>
+        <small class="ml-2 text-lg text-gray-600 font-normal">
+          <%= message_thread.customer.email %>
+        </small>
+      </h3>
+      <div class="flex items-center">
+        <span class="mr-3"><%= message_thread.subject %></span>
+        <%= render(BadgeComponent.new(style: :important)) do %>
+          <%= message_thread.status %>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex-shrink-0">
+      <% if message_thread.updated_at.today? %>
+        Today <%= message_thread.updated_at.strftime("%l:%M%P") %>
+      <% else %>
+        <%= message_thread.updated_at.strftime("%b %e %l:%M%P") %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
