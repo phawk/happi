@@ -3,3 +3,4 @@ pete:
   first_name: Pete
   last_name: Hawkins
   encrypted_password: <%= Devise::Encryptor.digest(User, 'hunter212') %>
+  team: payhere

@@ -1,7 +1,7 @@
 <%= tag.h1 t("dashboard.heading"), class: "text-3xl font-bold text-gray-900 mb-10" %>
 
 <% @message_threads.each do |message_thread| %>
-  <div class="mb-4 flex items-center">
+  <%= link_to message_thread_path(message_thread), class: "mb-4 flex items-center" do %>
     <%= avatar_tag message_thread.customer, size: 50, extra_class: "mr-4 flex-shrink-0" %>
     <div class=" flex-grow">
       <h3 class="text-gray-800 text-xl font-semibold">
@@ -24,5 +24,5 @@
         <%= message_thread.updated_at.strftime("%b %e %l:%M%P") %>
       <% end %>
     </div>
-  </div>
+  <% end %>
 <% end %>
