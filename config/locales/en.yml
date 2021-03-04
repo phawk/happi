@@ -55,3 +55,11 @@ en:
   new_team:
     heading: Set up your team
     button: Create team
+  edit_profile:
+    heading: Edit your profile
+    button: Save changes
+    cancel_button: Cancel
+    awaiting_confirmation: "Currently waiting confirmation for: %{email}"
+    change_password: Change password
+    leave_blank_to_ignore: Leave blank if you don't want to change it
+    confirm_changes: Confirm changes
