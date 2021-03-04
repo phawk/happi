@@ -19,7 +19,7 @@
 
   <div class="mb-4">
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email" %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <span class="hint"><%= t("edit_profile.awaiting_confirmation", email: resource.unconfirmed_email) %></span>
     <% end %>
