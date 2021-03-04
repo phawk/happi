@@ -10,10 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_205633) do
+ActiveRecord::Schema.define(version: 2021_03_04_082953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email", null: false
+    t.string "company"
+    t.string "phone"
+    t.string "country_code"
+    t.string "location"
+    t.datetime "last_contacted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email", "team_id"], name: "index_customers_on_email_and_team_id", unique: true
+    t.index ["email"], name: "index_customers_on_email"
+    t.index ["team_id"], name: "index_customers_on_team_id"
+  end
+
+  create_table "message_threads", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "team_id", null: false
+    t.string "subject", default: "", null: false
+    t.string "status", default: "open", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_message_threads_on_customer_id"
+    t.index ["team_id"], name: "index_message_threads_on_team_id"
+    t.index ["user_id"], name: "index_message_threads_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "message_thread_id", null: false
+    t.string "sender_type", null: false
+    t.bigint "sender_id", null: false
+    t.boolean "internal", default: false, null: false
+    t.text "body", default: "", null: false
+    t.text "raw", default: "", null: false
+    t.string "status", default: "pending", null: false
+    t.jsonb "metadata", default: {}, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_thread_id"], name: "index_messages_on_message_thread_id"
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +95,11 @@ ActiveRecord::Schema.define(version: 2021_03_03_205633) do
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
+  add_foreign_key "customers", "teams"
+  add_foreign_key "message_threads", "customers"
+  add_foreign_key "message_threads", "teams"
+  add_foreign_key "message_threads", "users"
+  add_foreign_key "messages", "message_threads"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
   add_foreign_key "users", "teams"
