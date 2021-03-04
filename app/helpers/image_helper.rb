@@ -1,6 +1,6 @@
 module ImageHelper
   def avatar_url(user, size: 32)
-    if user.try(:avatar)
+    if user.try(:avatar) &&  user.try(:avatar?)
       user.avatar.variant(resize_to_fill: [size, size])
     else
       name = [user.first_name, user.last_name].join("%20")

@@ -40,6 +40,7 @@ en:
     support: Support
   forms:
     optional: Optional
+    save: Save changes
   login:
     heading: Sign in to your account
     button: Log in
@@ -58,9 +59,11 @@ en:
   customers:
     heading: All customers
     add_new: Manually add
+    edit: Edit customer
   new_customer:
     heading: New customer
-    button: Save customer
+  edit_customer:
+    heading: "Edit %{name}"
   new_team:
     heading: Set up your team
     button: Create team
