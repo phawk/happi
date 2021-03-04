@@ -1,0 +1,5 @@
+<%= form_with(model: model, class: "styled-form") do |f| %>
+  <%= f.rich_text_area :content %>
+
+  <%= f.submit t("message_form.button"), class: "mt-3 button -primary" %>
+<% end %>

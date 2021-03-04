@@ -11,6 +11,8 @@
 user = User.first
 team = Team.first
 
+# Message.delete_all
+
 #
 # alfonso
 #
@@ -36,19 +38,19 @@ alfonso_thread_1.update!(
   subject: "Contact form submission"
 )
 
-Message.where(
+Message.create!(
   message_thread: alfonso_thread_1,
   sender: alfonso,
-  body: "Hi, I'm from Mexico, it also works with Mexican banks.?",
+  content: "Hi, I'm from Mexico, it also works with Mexican banks.?",
   status: "received"
-).first_or_create!
+)
 
-Message.where(
+Message.create!(
   message_thread: alfonso_thread_1,
   sender: user,
-  body: "Hi Alfonso,\n\nWe use Stripe to support card payments, I think they are still in beta in Mexico, if you have a Stripe account, you shouldn’t have any problems connecting it to Payhere.\n\nBest,\nPete",
+  content: "Hi Alfonso,<br /><br />We use Stripe to support card payments, I think they are still in beta in Mexico, if you have a Stripe account, you shouldn’t have any problems connecting it to Payhere.<br /><br />Best,<br />Pete",
   status: "sent"
-).first_or_create!
+)
 
 #
 #
@@ -75,9 +77,9 @@ josh_thread_1.update!(
   subject: "Add billing address to payment form"
 )
 
-Message.where(
+Message.create!(
   message_thread: josh_thread_1,
   sender: josh,
-  body: "Hi, I'm wondering if there's a way to add billing address fields to a payment form? Thanks!",
+  content: "Hi, I'm wondering if there's a way to add billing address fields to a payment form? Thanks!",
   status: "received"
-).first_or_create!
+)
