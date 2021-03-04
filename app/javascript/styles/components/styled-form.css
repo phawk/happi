@@ -17,6 +17,10 @@
     &:focus {
       @apply outline-none ring ring-purple-50 border-purple-500;
     }
+
+    &.rounded {
+      @apply rounded-full px-4;
+    }
   }
 
   .hint {

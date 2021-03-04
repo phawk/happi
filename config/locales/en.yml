@@ -53,6 +53,8 @@ en:
   message_threads:
     new_heading: New threads
     old_heading: Previously seen
+  customers:
+    heading: All customers
   new_team:
     heading: Set up your team
     button: Create team

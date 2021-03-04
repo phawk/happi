@@ -16,7 +16,7 @@
         <%= link_to image_tag("logo.svg", alt: "Happi", class: "w-auto h-10"), root_path, class: "flex-shrink-0" %>
         <nav class="relative flex-1 flex items-center justify-end" data-controller="toggle">
           <button type="button" data-action="toggle#toggle" class="flex items-center">
-            <span class="mr-3"><%= t("nav.hey", name: current_user.first_name) %></span>
+            <span class="mr-3"><%= t("nav.hey", name: current_user.name.familiar) %></span>
             <%= avatar_tag current_user, size: 40 %>
           </button>
 
