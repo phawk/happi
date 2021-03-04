@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def current_team
+    current_user.team
+  end
+  helper_method :current_team
+
   def ensure_team!
     unless current_user.team.present?
       redirect_to new_team_path
