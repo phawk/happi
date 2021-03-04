@@ -38,6 +38,8 @@ en:
     signed_in_as: "Signed in as"
     edit_profile: Edit profile
     support: Support
+  forms:
+    optional: Optional
   login:
     heading: Sign in to your account
     button: Log in
@@ -55,6 +57,10 @@ en:
     old_heading: Previously seen
   customers:
     heading: All customers
+    add_new: Manually add
+  new_customer:
+    heading: New customer
+    button: Save customer
   new_team:
     heading: Set up your team
     button: Create team
