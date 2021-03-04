@@ -30,7 +30,7 @@
               </p>
             </div>
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"><%= t("nav.edit_profile") %></a>
+              <%= link_to t("nav.edit_profile"), edit_user_registration_path, role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"><%= t("nav.support") %></a>
             </div>
             <div class="py-1">
