@@ -38,3 +38,10 @@ Message.where(
   body: "Hi, I'm from Mexico, it also works with Mexican banks.?",
   status: "received"
 ).first_or_create!
+
+Message.where(
+  message_thread: alfonso_thread_1,
+  sender: user,
+  body: "Hi Alfonso,\n\nWe use Stripe to support card payments, I think they are still in beta in Mexico, if you have a Stripe account, you shouldn’t have any problems connecting it to Payhere.\n\nBest,\nPete",
+  status: "sent"
+).first_or_create!
