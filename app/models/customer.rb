@@ -1,4 +1,6 @@
 class Customer < ApplicationRecord
+  include Colourable
+
   has_person_name
 
   belongs_to :team
