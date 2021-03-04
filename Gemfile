@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "devise"
 gem "view_component", require: "view_component/engine"
 gem "name_of_person"
+gem "chroma"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
