@@ -1,2 +1,8 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+<div class="flex items-start justify-between">
+  <%= tag.h1 t("customers.heading"), class: "uppercase tracking-wider font-semibold text-gray-500 mb-8" %>
+  <%= form_with(url: "/", class: "styled-form") do |f| %>
+    <%= f.search_field :query, placeholder: "Search customers", class: "rounded" %>
+  <% end %>
+</div>
+
+<%= render partial: "customers/link", collection: @customers, as: :customer, locals: { class: "mb-4" } %>

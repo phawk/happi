@@ -1,0 +1,7 @@
+<%= link_to customer, class: "flex items-center #{local_assigns.fetch(:class, "")}" do %>
+  <%= avatar_tag customer, size: 50, extra_class: "mr-4 flex-shrink-0" %>
+  <div class="flex-grow">
+    <h2 class="text-gray-800 text-xl font-semibold"><%= customer.name.full %></h2>
+    <span><%= customer.email %> </span>
+  </div>
+<% end %>
