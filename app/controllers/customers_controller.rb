@@ -1,11 +1,11 @@
 class CustomersController < ApplicationController
+  before_action :set_customer, only: %i[show edit update destroy]
+
   def index
     @customers = current_team.customers.order(:last_name)
   end
 
-  def show
-    @customer = current_team.customers.find(params[:id])
-  end
+  def show; end
 
   def new
     @customer = Customer.new
@@ -21,10 +21,23 @@ class CustomersController < ApplicationController
     end
   end
 
-  def edit
+  def edit; end
+
+  def update
+    if @customer.update(customer_params)
+      redirect_to @customer, notice: "Customer saved."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
+  def destroy; end
+
   private
+
+  def set_customer
+    @customer = current_team.customers.find(params[:id])
+  end
 
   def customer_params
     params.require(:customer).permit(
@@ -33,7 +46,8 @@ class CustomersController < ApplicationController
       :company,
       :phone,
       :country_code,
-      :location
+      :location,
+      :avatar
     )
   end
 end

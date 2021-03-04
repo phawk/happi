@@ -1,2 +1,5 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<div class="flex items-center mb-8">
+  <%= tag.h1 @customer.name.full, class: "uppercase tracking-wider font-semibold text-gray-500 flex-auto" %>
+
+  <%= link_to t("customers.edit"), edit_customer_path(@customer), class: "mr-3 flex-shrink-0 button -rounded" %>
+</div>

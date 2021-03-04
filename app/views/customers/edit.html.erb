@@ -1,2 +1,1 @@
-<h1>Customers#edit</h1>
-<p>Find me in app/views/customers/edit.html.erb</p>
+<%= render "form", customer: @customer, heading: t("edit_customer.heading", name: @customer.name.familiar) %>

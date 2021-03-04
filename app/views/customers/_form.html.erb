@@ -1,0 +1,56 @@
+<div class="mx-auto max-w-md">
+  <h1 class="mb-6 text-xl text-gray-800 font-semibold"><%= local_assigns.fetch(:heading) %></h1>
+
+  <%= form_with(model: customer, class: "styled-form") do |f| %>
+    <%= render "shared/form_errors", object: f.object %>
+
+    <div class="mb-6 flex items-center">
+      <% if customer.persisted? %>
+        <div class="mr-4 flex-shrink-0">
+          <%= avatar_tag customer, size: 60 %>
+        </div>
+      <% end %>
+      <div>
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar %>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "Jane Strange" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :email %>
+      <%= f.email_field :email, placeholder: "jane.strange@example.com" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :company %>
+      <%= f.text_field :company, placeholder: "ACME Corp" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+      <span class="hint"><%= t "forms.optional" %></span>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :country_code %>
+      <%= f.text_field :country_code %>
+      <span class="hint"><%= t "forms.optional" %></span>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+      <span class="hint"><%= t "forms.optional" %></span>
+    </div>
+
+    <div>
+      <%= f.submit t("forms.save"), class: "button -primary" %>
+    </div>
+  <% end %>
+</div>
