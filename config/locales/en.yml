@@ -52,3 +52,6 @@ en:
     heading: Change your password
   dashboard:
     heading: Dashboard
+  new_team:
+    heading: Set up your team
+    button: Create team
