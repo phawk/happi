@@ -4,7 +4,7 @@
   </div>
   <div class="mt-2 mx-3 flex items-center justify-between">
     <div class="flex items-center">
-      <%= avatar_tag @customer, size: 26, extra_class: "flex-shrink-0" %>
+      <%= avatar_tag message.sender, size: 26, extra_class: "flex-shrink-0" %>
       <span class="px-3 font-medium text-gray-800 <%= "bg-white" if message.customer? %>">
         <%= message.sender.name.familiar %>
       </span>
