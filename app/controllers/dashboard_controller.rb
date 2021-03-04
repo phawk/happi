@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
   def show
-    @message_threads = current_team.message_threads.includes(:customer, :messages)
+    redirect_to message_threads_path
   end
 end
