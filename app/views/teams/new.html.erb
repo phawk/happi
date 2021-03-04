@@ -1,0 +1,10 @@
+<%= tag.h2 t("new_team.heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
+
+<%= form_with(model: @team, class: "styled-form") do |f| %>
+  <%= render "shared/form_errors", object: f.object %>
+  <div class="mb-4">
+    <%= f.label :name, "Name of your Organisation" %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit t("new_team.button"), class: "button -primary w-full" %>
+<% end %>
