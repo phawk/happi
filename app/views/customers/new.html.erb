@@ -1,2 +1,45 @@
-<h1>Customers#new</h1>
-<p>Find me in app/views/customers/new.html.erb</p>
+
+<div class="mx-auto max-w-md">
+  <h1 class="mb-6 text-xl text-gray-800 font-semibold"><%= t "new_customer.heading" %></h1>
+
+  <%= form_with(model: @customer, class: "styled-form") do |f| %>
+    <%= render "shared/form_errors", object: f.object %>
+
+    <div class="mb-4">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "Jane Strange" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :email %>
+      <%= f.email_field :email, placeholder: "jane.strange@example.com" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :company %>
+      <%= f.text_field :company, placeholder: "ACME Corp" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+      <span class="hint"><%= t "forms.optional" %></span>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :country_code %>
+      <%= f.text_field :country_code %>
+      <span class="hint"><%= t "forms.optional" %></span>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+      <span class="hint"><%= t "forms.optional" %></span>
+    </div>
+
+    <div>
+      <%= f.submit t("new_customer.button"), class: "button -primary" %>
+    </div>
+  <% end %>
+</div>

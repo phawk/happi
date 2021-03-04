@@ -24,4 +24,8 @@
   &.-small {
     @apply py-1 px-2 text-sm;
   }
+
+  &.-rounded {
+    @apply rounded-full px-4;
+  }
 }
