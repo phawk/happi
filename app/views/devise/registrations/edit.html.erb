@@ -3,6 +3,20 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "styled-form", data: { turbo: false } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <div class="mb-6 flex items-center">
+    <div class="mr-4 flex-shrink-0">
+      <% if resource.avatar? %>
+        <%= image_tag resource.avatar.variant(resize_to_fill: [120, 120]), width: 60, height: 60, class: "rounded-full" %>
+      <% else %>
+        <%= avatar_tag resource, size: 60 %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
+    </div>
+  </div>
+
   <div class="mb-4">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
