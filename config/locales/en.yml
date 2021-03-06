@@ -80,3 +80,6 @@ en:
     change_password: Change password
     leave_blank_to_ignore: Leave blank if you don't want to change it
     confirm_changes: Confirm changes
+  team_mailer:
+    not_found:
+      subject: "Team doesn't exist"
