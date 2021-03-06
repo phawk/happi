@@ -1,4 +1,6 @@
 class ThreadsMailbox < ApplicationMailbox
+  MATCHER = %r{mail\+(.+)@in.happi.team}
+
   attr_reader :message_thread, :team
 
   before_processing :ensure_team!
@@ -8,16 +10,28 @@ class ThreadsMailbox < ApplicationMailbox
     message_thread.messages.create!(
       sender: customer,
       status: "received",
-      content: mail.body
+      content: email_content
     )
   end
 
   private
 
+  def email_content
+    # TODO: check for multipart and handle HTML/attachments
+    # mail.multipart?
+    mail.decoded
+  end
+
   def ensure_team!
-    # TODO, look this up based on incoming email address
-    # bounce_with Teams::BounceMailer.no_team(inbound_email, customer: customer)
-    @team = Team.first
+    # @team = Team.first
+
+    recipient = mail.recipients.find { |r| MATCHER.match?(r) }
+
+    Rails.logger.info("Looking for team with hash: #{recipient[MATCHER, 1]}")
+
+    @team = Team.find_by(mail_hash: recipient[MATCHER, 1])
+
+    bounce_with(TeamMailer.not_found(mail.from)) if @team.nil?
   end
 
   def assign_thread

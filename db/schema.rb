@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_100552) do
+ActiveRecord::Schema.define(version: 2021_03_06_170515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 2021_03_06_100552) do
   create_table "teams", force: :cascade do |t|
     t.string "name", null: false
     t.string "plan", default: "basic", null: false
+    t.string "mail_hash", default: "", null: false
+    t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
   end
 
   create_table "teams_users", force: :cascade do |t|
