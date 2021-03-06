@@ -31,6 +31,7 @@ gem "view_component", require: "view_component/engine"
 gem "name_of_person"
 gem "chroma"
 gem "aws-sdk-s3", require: false
+gem "postmark-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
