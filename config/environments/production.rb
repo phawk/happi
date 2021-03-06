@@ -121,12 +121,23 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
+  # URLs
+  routes.default_url_options = { host: "happi.team", protocol: "https" }
+  config.action_controller.default_url_options = {
+    host: "happi.team", protocol: "https"
+  }
+
   # Inbound address:
   # 5490fe38ad4a563e5c53521a19d906e7@inbound.postmarkapp.com
   config.action_mailbox.ingress = :postmark
 
+  # Mailers
+  config.action_mailer.default_url_options = { host: "happi.team", protocol: "https" }
+  config.action_mailer.asset_host = "https://happi.team"
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = {
     api_token: Rails.application.credentials.postmark_api_token
   }
+
+  config.hosts << "happi.team"
 end
