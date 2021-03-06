@@ -7,7 +7,7 @@ class Customer < ApplicationRecord
 
   belongs_to :team
   has_many :message_threads, dependent: :destroy
-  validates :first_name, :last_name, :email, presence: true
+  validates :first_name, :email, presence: true
 
   def avatar?
     avatar.attached?
