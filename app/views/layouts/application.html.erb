@@ -13,7 +13,7 @@
           <%= link_to t("nav.threads"), message_threads_path, class: "mr-2 xl:mr-3 py-2 px-4 rounded-full text-lg #{cp(message_threads_path) ? "text-gray-800 font-semibold bg-gray-100" : "text-gray-500 hover:bg-gray-100"}" %>
           <%= link_to t("nav.customers"), customers_path, class: "py-2 px-4 rounded-full text-lg #{cp(customers_path) ? "text-gray-800 font-semibold bg-gray-100" : "text-gray-500 hover:bg-gray-100"}" %>
         </nav>
-        <%= link_to image_tag("logo.svg", alt: "Happi", class: "w-auto h-10"), root_path, class: "flex-shrink-0" %>
+        <%= link_to image_tag("logo.svg", alt: "Happi", class: "w-auto h-10"), message_threads_path, class: "flex-shrink-0" %>
         <nav class="relative flex-1 flex items-center justify-end" data-controller="toggle">
           <button type="button" data-action="toggle#toggle" class="flex items-center">
             <span class="mr-3"><%= t("nav.hey", name: current_user.name.familiar) %></span>
