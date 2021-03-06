@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_team
 
   def ensure_team!
+    return unless user_signed_in?
+
     unless current_user.team.present?
       redirect_to new_team_path
     end
