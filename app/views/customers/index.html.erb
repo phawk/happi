@@ -4,7 +4,7 @@
   <%= link_to t("customers.add_new"), new_customer_path, class: "mr-3 flex-shrink-0 button -rounded" %>
 
   <%= form_with(url: "/", class: "styled-form") do |f| %>
-    <%= f.search_field :query, placeholder: "Search customers", class: "rounded" %>
+    <%= f.search_field :query, placeholder: t("customers.search"), class: "rounded" %>
   <% end %>
 </div>
 

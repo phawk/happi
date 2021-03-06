@@ -54,14 +54,17 @@ en:
   change_password:
     heading: Change your password
   message_threads:
-    new_heading: New threads
+    new_heading: Open threads
     old_heading: Previously seen
+    add_new: New thread
+    search: Search threads
   message_form:
     button: Send
   customers:
     heading: All customers
     add_new: Manually add
     edit: Edit customer
+    search: Search customers
   new_customer:
     heading: New customer
   edit_customer:
