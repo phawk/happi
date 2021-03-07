@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  authenticate :user, ->(u) { u.role?(:admin) } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
+
   resources :custom_email_addresses, only: %i[create destroy]
   resources :customers
   resources :message_threads, only: %i[index show update], path: "threads" do
