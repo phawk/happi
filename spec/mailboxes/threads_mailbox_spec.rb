@@ -20,11 +20,18 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       end
 
       context "and there is an open thread already" do
+        let(:thread) { message_threads(:payhere_alex_password_reset) }
+
+        before { thread.update!(status: "waiting") }
+
         it "adds new message to the thread" do
           perform_enqueued_jobs do
             expect do
               send_mail(to: "payhere@in.happi.team", from: "Alex Shaw <alex.shaw09@hotmail.com>")
             end.to change { message_threads(:payhere_alex_password_reset).messages.count }.by(1)
+            thread.reload
+
+            expect(thread.status).to eq("open")
           end
         end
       end
