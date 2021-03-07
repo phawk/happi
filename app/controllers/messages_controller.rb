@@ -8,9 +8,9 @@ class MessagesController < ApplicationController
   def create
     message = @message_thread.messages.create!(message_params)
 
-    @message_thread.update(status: "waiting")
 
     unless message.internal?
+      @message_thread.update(status: "waiting", user: current_user)
       CustomerMailer.new_reply(message).deliver_later
     end
 
