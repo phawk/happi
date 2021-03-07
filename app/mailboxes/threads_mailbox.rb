@@ -18,12 +18,7 @@ class ThreadsMailbox < ApplicationMailbox
   private
 
   def email_content
-    # TODO: check for multipart and handle HTML/attachments
-    if mail.multipart?
-      mail.parts[0].decoded
-    else
-      mail.decoded
-    end
+    MailBodyParser.new(mail).content
   end
 
   def ensure_team!
