@@ -15,10 +15,6 @@
     </div>
   </div>
   <div class="flex-shrink-0">
-    <% if message_thread.updated_at.today? %>
-      Today <%= message_thread.updated_at.strftime("%l:%M%P") %>
-    <% else %>
-      <%= message_thread.updated_at.strftime("%b %e %l:%M%P") %>
-    <% end %>
+    <%= datetime message_thread.updated_at %>
   </div>
 <% end %>

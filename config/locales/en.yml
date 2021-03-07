@@ -10,3 +10,7 @@ en:
   forms:
     optional: Optional
     save: Save changes
+  time:
+    formats:
+      default: "%b %e, %l:%M%P"
+      today: "Today %l:%M%P"

@@ -10,6 +10,7 @@
   </div>
   <div class="mt-6 md:mt-0 bg-gray-50 rounded-2xl p-5 lg:p-8">
     <%= form_with(model: @message_thread, class: "styled-form", data: { controller: "auto-submit" }) do |f| %>
+      <%= tag.h3 t(".thread_settings"), class: "text-lg font-semibold text-gray-700 mb-6" %>
       <div class="grid grid-cols-6 gap-4 items-center">
         <%= f.label :status, class: "col-span-2" %>
         <div class="col-span-4">
@@ -20,6 +21,20 @@
         <div class="col-span-4">
           <%= f.collection_select(:user_id, current_team.users, :id, :familiar_name, { include_blank: t(".unassigned") }, class: "rounded", data: { action: "change->auto-submit#submit" }) %>
         </div>
+      </div>
+
+      <div class="mt-6">
+        <%= tag.h4 t(".inbound_address"), class: "block text-gray-700 font-medium text-base mb-1" %>
+        <span class="block text-sm text-gray-600">
+          <%= @message_thread.reply_to_address %>
+        </span>
+      </div>
+
+      <div class="mt-4">
+        <%= tag.h4 t(".last_updated"), class: "block text-gray-700 font-medium text-base mb-1" %>
+        <span class="block text-sm text-gray-600">
+          <%= datetime @message_thread.updated_at %>
+        </span>
       </div>
     <% end %>
   </div>

@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def datetime(time)
+    l(time, format: time.today? ? :today : :default)
+  end
+
   def cp(path, exact: false)
     exact ? request.fullpath == path : request.fullpath.start_with?(path)
   end

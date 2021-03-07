@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
+  STATUS = %w[received pending delivered].freeze
+
   belongs_to :message_thread, touch: true
   belongs_to :sender, polymorphic: true
 
