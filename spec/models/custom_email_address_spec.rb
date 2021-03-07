@@ -12,6 +12,11 @@ RSpec.describe CustomEmailAddress, type: :model do
       expect(team.name).to eq("Payhere")
     end
 
+    it "ignores unconfirmed custom emails" do
+      team = CustomEmailAddress.matching_team_for(emails: ["unconfirmed@payhere.co"])
+      expect(team).to be_nil
+    end
+
     it "returns nil when team not found" do
       team = CustomEmailAddress.matching_team_for(emails: ["joe@invalid.org"])
       expect(team).to be_nil
