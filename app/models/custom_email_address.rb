@@ -5,6 +5,6 @@ class CustomEmailAddress < ApplicationRecord
   validates :email, email: true, presence: true
 
   def self.matching_team_for(emails:)
-    where(email: emails).first&.team
+    where(email: emails).where.not(confirmed_at: nil).first&.team
   end
 end
