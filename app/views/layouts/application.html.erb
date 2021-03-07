@@ -29,6 +29,12 @@
                 <%= current_user.email %>
               </p>
             </div>
+            <div class="px-4 py-3">
+              <div class="text-sm font-medium flex items-center justify-between">
+                <span class="text-gray-900 truncate flex-auto"><%= current_user.team.name %></span>
+                <%= link_to t(".switch_team"), teams_path, class: "text-purple-500 underline flex-shrink-0" %>
+              </div>
+            </div>
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
               <%= link_to t("nav.edit_profile"), edit_user_registration_path, role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
               <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem"><%= t("nav.support") %></a>
