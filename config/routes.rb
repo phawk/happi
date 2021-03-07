@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :custom_email_addresses, only: %i[create destroy]
   resources :customers
   resources :message_threads, only: %i[index show], path: "threads" do
     resources :messages, only: %i[new create]
