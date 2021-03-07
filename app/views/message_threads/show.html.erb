@@ -1,7 +1,21 @@
 <%= render "customers/link", customer: @customer %>
 
-<h1 class="text-2xl font-bold text-gray-900 mt-12"><%= @message_thread.subject %></h1>
+<div class="grid grid-cols-1 gap-6 lg:gap-10 md:grid-cols-3 mt-12">
+  <div class="md:col-span-2">
+    <h1 class="text-2xl font-bold text-gray-900"><%= @message_thread.subject %></h1>
 
-<%= render @messages %>
+    <%= render @messages %>
 
-<%= render "messages/form", model: [@message_thread, Message.new] %>
+    <%= render "messages/form", model: [@message_thread, Message.new] %>
+  </div>
+  <div class="mt-6 md:mt-0 bg-gray-50 rounded-2xl p-5 lg:p-8">
+    <%= form_with(model: @message_thread, class: "styled-form", data: { controller: "auto-submit" }) do |f| %>
+      <div class="grid grid-cols-6 gap-4 items-center">
+        <%= f.label :status, class: "col-span-2" %>
+        <div class="col-span-4">
+          <%= f.select :status, options_for_select(MessageThread::STATUS, selected: f.object.status), {}, class: "rounded", data: { action: "change->auto-submit#submit" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -12,7 +12,8 @@
   input[type="time"],
   input[type="url"],
   input[type="date"],
-  textarea {
+  textarea,
+  select {
     @apply appearance-none w-full px-3 py-2 leading-6 rounded-md bg-white border-2 border-gray-200;
 
     &:focus {

@@ -8,6 +8,9 @@ en:
       old_heading: Previously seen
       add_new: New thread
       search: Search threads
+    update:
+      success: Changes saved
+      failed: Failed to update
   messages:
     form:
       button: Send
