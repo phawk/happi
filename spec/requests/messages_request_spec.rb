@@ -22,6 +22,10 @@ RSpec.describe "Messages", type: :request do
       expect(message_thread.status).to eq("waiting")
     end
 
+    it "assigns current user to the thread" do
+      expect(message_thread.user).to eq(pete)
+    end
+
     it "sends an email" do
       expect(delivered_emails.size).to eq(1)
       expect(last_email.subject).to eq(message_thread.subject)
