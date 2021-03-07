@@ -8,31 +8,10 @@
   <% end %>
 </div>
 
-<% @message_threads.each do |message_thread| %>
-  <%= link_to message_thread_path(message_thread), class: "mb-4 flex items-center" do %>
-    <%= avatar_tag message_thread.customer, size: 50, extra_class: "mr-4 flex-shrink-0" %>
-    <div class=" flex-grow">
-      <h3 class="text-gray-800 text-xl font-semibold">
-        <%= message_thread.customer.name.full %>
-        <small class="ml-2 text-lg text-gray-600 font-normal">
-          <%= message_thread.customer.email %>
-        </small>
-      </h3>
-      <div class="flex items-center">
-        <span class="mr-3"><%= message_thread.subject %></span>
-        <%= render(BadgeComponent.new(style: :important)) do %>
-          <%= message_thread.status %>
-        <% end %>
-      </div>
-    </div>
-    <div class="flex-shrink-0">
-      <% if message_thread.updated_at.today? %>
-        Today <%= message_thread.updated_at.strftime("%l:%M%P") %>
-      <% else %>
-        <%= message_thread.updated_at.strftime("%b %e %l:%M%P") %>
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
+<%= render @open_message_threads %>
 
-<%= tag.h2 t(".old_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 mt-16 mb-8" %>
+<div class="bg-gray-50 p-5 lg:p-8 rounded-2xl mt-16">
+  <%= tag.h2 t(".old_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 mb-8" %>
+
+  <%= render @previous_message_threads %>
+</div>

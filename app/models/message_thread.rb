@@ -7,4 +7,9 @@ class MessageThread < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   scope :with_open_status, -> { where(status: "open") }
+  scope :without_open_status, -> { where.not(status: "open") }
+
+  def open?
+    status == "open"
+  end
 end
