@@ -14,7 +14,10 @@
       <% end %>
     </div>
   </div>
-  <div class="flex-shrink-0">
+  <div class="flex-shrink-0 flex items-center justify-end">
+    <% if message_thread.user_id.present? %>
+      <%= avatar_tag message_thread.user, size: 26, extra_class: "mr-3" %>
+    <% end %>
     <%= datetime message_thread.updated_at %>
   </div>
 <% end %>
