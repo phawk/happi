@@ -16,4 +16,9 @@ class MessageThread < ApplicationRecord
   def open?
     status == "open"
   end
+
+  def reply_to_address
+    return reply_to if reply_to.present?
+    team.default_mailbox
+  end
 end

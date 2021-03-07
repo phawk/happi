@@ -3,3 +3,4 @@ payhere_alex_password_reset:
   customer: payhere_alex
   subject: Help resetting my password
   status: open
+  reply_to: support@payhere.co

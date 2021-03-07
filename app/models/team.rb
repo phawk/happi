@@ -8,6 +8,10 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
 
+  def default_mailbox
+    "#{mail_hash}@in.happi.team"
+  end
+
   private
 
   def generated_mail_hash
