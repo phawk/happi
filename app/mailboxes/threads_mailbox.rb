@@ -27,8 +27,6 @@ class ThreadsMailbox < ApplicationMailbox
   end
 
   def ensure_team!
-    # @team = Team.first
-
     if recipient = mail.recipients.find { |r| MATCHER.match?(r) }
       Rails.logger.info("Looking for team with hash: #{recipient[MATCHER, 1]}")
 
@@ -44,7 +42,6 @@ class ThreadsMailbox < ApplicationMailbox
 
   def assign_thread
     # Lookup open threads by this email, if existing, return last one, else create new.
-    # mail.subject
     if customer.message_threads.with_open_status.any?
       @message_thread = customer.message_threads.with_open_status.first
     else
