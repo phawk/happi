@@ -1,7 +1,8 @@
 import ApplicationController from "./application_controller";
+import Rails from "@rails/ujs";
 
 export default class extends ApplicationController {
   submit() {
-    this.element.submit();
+    Rails.fire(this.element, "submit");
   }
 }
