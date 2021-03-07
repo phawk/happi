@@ -42,6 +42,7 @@ class ThreadsMailbox < ApplicationMailbox
     # Lookup open threads by this email, if existing, return last one, else create new.
     if customer.message_threads.with_open_status.any?
       @message_thread = customer.message_threads.with_open_status.first
+      @message_thread.update(status: "open")
     else
       @message_thread = customer.message_threads.create!(team: team, subject: mail.subject, reply_to: @reply_to, status: "open")
     end
