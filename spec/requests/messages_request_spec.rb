@@ -7,7 +7,9 @@ RSpec.describe "Messages", type: :request do
 
     before do
       sign_in(pete)
-      post message_thread_messages_path(message_thread), params: { message: { content: "Thanks for getting in touch!" } }
+      perform_enqueued_jobs do
+        post message_thread_messages_path(message_thread), params: { message: { content: "Thanks for getting in touch!" } }
+      end
       message_thread.reload
     end
 
@@ -20,6 +22,10 @@ RSpec.describe "Messages", type: :request do
       expect(message_thread.status).to eq("waiting")
     end
 
-    it "sends an email"
+    it "sends an email" do
+      expect(delivered_emails.size).to eq(1)
+      expect(last_email.subject).to eq(message_thread.subject)
+      expect(last_email.to.first).to eq(message_thread.customer.email)
+    end
   end
 end
