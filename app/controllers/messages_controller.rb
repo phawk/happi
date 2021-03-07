@@ -10,6 +10,10 @@ class MessagesController < ApplicationController
 
     @message_thread.update(status: "waiting")
 
+    unless message.internal?
+      CustomerMailer.new_reply(message).deliver_later
+    end
+
     # TODO turbo stream to insert the message
     redirect_to @message_thread, notice: "Message delivered"
   end
