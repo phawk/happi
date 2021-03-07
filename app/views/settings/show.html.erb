@@ -1,0 +1,13 @@
+<div class="max-w-md mx-auto">
+  <%= tag.h2 t(".heading", team_name: current_team.name), class: "mb-6 text-center text-xl md:text-2xl font-bold text-gray-900" %>
+
+  <div class="bg-gray-50 rounded-2xl p-6">
+    <%= tag.h3 t(".inbound_email"), class: "text-lg font-bold text-gray-800 mb-3" %>
+
+    <div class="flex">
+      <%= text_field_tag :inbox_email, "#{current_team.mail_hash}@in.happi.team", disabled: true, class: "bg-white text-gray-700 border-2 border-gray-200 w-full rounded-md" %>
+    </div>
+
+    <p class="mt-3 text-sm text-center"><%= t(".forward_instructions") %></p>
+  </div>
+</div>

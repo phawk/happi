@@ -32,6 +32,11 @@ en:
       organisation_name: Name of your Organisation
     change:
       switched_to: "Switched to %{name}"
+  settings:
+    show:
+      heading: "%{team_name} settings"
+      inbound_email: Mailbox address
+      forward_instructions: Forward any email address you want to appear in Happi to this mailbox address
   devise:
     sessions:
       new:

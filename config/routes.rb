@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :teams, only: %i[index new create] do
     post :change, on: :member
   end
+  resource :settings, only: %i[show update]
 
   root to: "dashboard#show"
 end

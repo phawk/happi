@@ -6,7 +6,7 @@ en:
     logout: Logout
     signed_in_as: "Signed in as"
     edit_profile: Edit profile
-    support: Support
+    settings: Settings
   forms:
     optional: Optional
     save: Save changes
