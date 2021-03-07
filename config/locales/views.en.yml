@@ -1,0 +1,52 @@
+en:
+  message_threads:
+    index:
+      new_heading: Open threads
+      old_heading: Previously seen
+      add_new: New thread
+      search: Search threads
+  messages:
+    form:
+      button: Send
+  customers:
+    index:
+      heading: All customers
+      add_new: Manually add
+      search: Search customers
+    show:
+      edit: Edit customer
+    edit:
+      heading: "Edit %{name}"
+    new:
+      heading: New customer
+  teams:
+    new:
+      heading: Set up your team
+      button: Create team
+      organisation_name: Name of your Organisation
+  devise:
+    sessions:
+      new:
+        heading: Sign in to your account
+        button: Log in
+        forgot_password: Forgot your password?
+    registrations:
+      new:
+        heading: "Create your account"
+        button: "Get started"
+        min_password_length: "(%{min} characters minimum)"
+      edit:
+        heading: Edit your profile
+        button: Save changes
+        cancel_button: Cancel
+        awaiting_confirmation: "Currently waiting confirmation for: %{email}"
+        change_password: Change password
+        leave_blank_to_ignore: Leave blank if you don't want to change it
+        confirm_changes: Confirm changes
+    passwords:
+      new:
+        heading: "Forgot your password?"
+        button: Send reset password email
+      edit:
+        heading: Change your password
+        button: Change my password
