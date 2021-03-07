@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  ROLES = %w[user admin superadmin].freeze
+
   include Colourable
 
   # Include default devise modules. Others available are:
@@ -14,8 +16,17 @@ class User < ApplicationRecord
   belongs_to :team, optional: true
 
   validates :first_name, :last_name, presence: true
+  validates :role, presence: true, inclusion: { in: ROLES }
 
   def avatar?
     avatar.attached?
+  end
+
+  def role?(base_role)
+    ROLES.index(base_role.to_s) <= ROLES.index(role)
+  end
+
+  def assignable_roles
+    ROLES[0..ROLES.index(role)]
   end
 end
