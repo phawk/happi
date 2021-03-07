@@ -8,6 +8,8 @@ class MessagesController < ApplicationController
   def create
     message = @message_thread.messages.create!(message_params)
 
+    @message_thread.update(status: "waiting")
+
     # TODO turbo stream to insert the message
     redirect_to @message_thread, notice: "Message delivered"
   end
