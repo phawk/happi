@@ -1,4 +1,4 @@
-<div class="my-8">
+<div class="mb-12 lg:mb-16">
   <div class="p-6 rounded-2xl <%= message.customer? ? "bg-white border-2 border-gray-20" : "bg-gray-50" %>">
     <%= message.content %>
   </div>
@@ -9,7 +9,7 @@
         <%= message.sender.name.familiar %>
       </span>
     </div>
-    <span class="flex items-center text-sm font-medium capitalize">
+    <span class="flex items-center text-sm font-medium capitalize text-gray-400">
       <% if message.customer? %>
         <svg class="h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />

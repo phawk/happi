@@ -18,7 +18,7 @@ en:
       failed: Failed to update
   messages:
     form:
-      button: Send
+      button: Send Reply
   customers:
     index:
       heading: All customers
