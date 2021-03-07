@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      message_thread:
+        user: "Assigned"

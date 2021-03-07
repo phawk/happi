@@ -18,6 +18,10 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :role, presence: true, inclusion: { in: ROLES }
 
+  def familiar_name
+    name.familiar
+  end
+
   def avatar?
     avatar.attached?
   end
