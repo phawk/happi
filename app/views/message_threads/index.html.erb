@@ -1,16 +1,20 @@
-<div class="flex items-center mb-8">
-  <%= tag.h1 t(".new_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 flex-auto" %>
+<% content_for(:container_padding, "nada") %>
 
-  <%= link_to t(".add_new"), "#", class: "mr-3 flex-shrink-0 button -rounded" %>
+<div class="p-5 sm:p-8 lg:p-10">
+  <div class="flex items-center mb-8">
+    <%= tag.h1 t(".new_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 flex-auto" %>
 
-  <%= form_with(url: "/", class: "styled-form") do |f| %>
-    <%= f.search_field :query, placeholder: t(".search"), class: "rounded" %>
-  <% end %>
+    <%= link_to t(".add_new"), "#", class: "mr-3 flex-shrink-0 button -rounded" %>
+
+    <%= form_with(url: "/", class: "styled-form") do |f| %>
+      <%= f.search_field :query, placeholder: t(".search"), class: "rounded" %>
+    <% end %>
+  </div>
+
+  <%= render @open_message_threads %>
 </div>
 
-<%= render @open_message_threads %>
-
-<div class="bg-gray-50 p-5 lg:p-8 rounded-2xl mt-16">
+<div class="bg-gray-50 rounded-b-3xl p-5 sm:p-8 lg:p-10">
   <%= tag.h2 t(".old_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 mb-8" %>
 
   <%= render @previous_message_threads %>
