@@ -1,10 +1,9 @@
-<h1>Team not found</h1>
+<h1>Team not found 😢</h1>
 
 <p>
-  Sorry, the team you just emailed doesn’t seem to have an account on happy.team.
+  Sorry, the team you just emailed doesn’t seem to have an account on Happi.
 </p>
 
-<p>
-  <%= link_to "Happi.team", root_url %><br />
-  The friendly way to engage with your customers.
-</p>
+<p><%= link_to 'Sign up to Happi', root_url, class: "f-fallback button button--primary" %></p>
+
+<%= render "shared/mailer_happi_sig" %>
