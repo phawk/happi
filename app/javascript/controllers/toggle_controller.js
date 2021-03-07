@@ -1,4 +1,5 @@
 import ApplicationController from "./application_controller";
+import { useClickOutside } from "stimulus-use";
 
 /*
  * Usage
@@ -20,6 +21,10 @@ import ApplicationController from "./application_controller";
 export default class extends ApplicationController {
   static targets = ["toggleable"];
 
+  connect() {
+    useClickOutside(this);
+  }
+
   toggle(e) {
     e.preventDefault();
 
@@ -32,5 +37,17 @@ export default class extends ApplicationController {
         target.classList.toggle(target.dataset.cssClass);
       }
     });
+  }
+
+  clickOutside(event) {
+    if (this.data.get("clickOutside") === "add") {
+      this.toggleableTargets.forEach((target) => {
+        target.classList.add(target.dataset.cssClass);
+      });
+    } else if (this.data.get("clickOutside") === "remove") {
+      this.toggleableTargets.forEach((target) => {
+        target.classList.remove(target.dataset.cssClass);
+      });
+    }
   }
 }
