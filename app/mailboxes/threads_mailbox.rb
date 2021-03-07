@@ -1,6 +1,4 @@
 class ThreadsMailbox < ApplicationMailbox
-  MATCHER = %r{mail\+(.+)@in.happi.team}
-
   attr_reader :message_thread, :team
 
   before_processing :ensure_team!
@@ -28,11 +26,11 @@ class ThreadsMailbox < ApplicationMailbox
   def ensure_team!
     # @team = Team.first
 
-    recipient = mail.recipients.find { |r| MATCHER.match?(r) }
+    recipient = mail.recipients.find { |r| matcher.match?(r) }
 
-    Rails.logger.info("Looking for team with hash: #{recipient[MATCHER, 1]}")
+    Rails.logger.info("Looking for team with hash: #{recipient[matcher, 1]}")
 
-    @team = Team.find_by(mail_hash: recipient[MATCHER, 1])
+    @team = Team.find_by(mail_hash: recipient[matcher, 1])
 
     bounce_with(TeamMailer.not_found(mail.from)) if @team.nil?
   end
@@ -66,5 +64,9 @@ class ThreadsMailbox < ApplicationMailbox
     mail.header["From"].value.sub(%r{\<[^>]+\>}, "").strip
   rescue
     ""
+  end
+
+  def matcher
+    ApplicationMailbox::THREADS_MATCHER
   end
 end
