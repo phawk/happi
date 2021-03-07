@@ -8,6 +8,7 @@ class MessageThread < ApplicationRecord
 
   scope :with_open_status, -> { where(status: "open") }
   scope :without_open_status, -> { where.not(status: "open") }
+  scope :most_recent, -> { order(updated_at: :desc) }
 
   def open?
     status == "open"

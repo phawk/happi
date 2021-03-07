@@ -1,8 +1,8 @@
 class MessageThreadsController < ApplicationController
   before_action :set_thread, only: %i[show update]
   def index
-    @open_message_threads = current_team.message_threads.with_open_status.includes(:customer, :messages)
-    @previous_message_threads = current_team.message_threads.without_open_status.includes(:customer, :messages).limit(50)
+    @open_message_threads = current_team.message_threads.with_open_status.includes(:customer, :messages).most_recent
+    @previous_message_threads = current_team.message_threads.without_open_status.includes(:customer, :messages).most_recent.limit(50)
   end
 
   def show
