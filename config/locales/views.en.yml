@@ -36,8 +36,19 @@ en:
     show:
       heading: "%{team_name} settings"
       inbound_email: Mailbox address
-      forward_instructions: Forward any email address you want to appear in Happi to this mailbox address
+      forward_instructions: Forward any email address you want to appear in Happi to this mailbox address.
       custom_emails: Custom email addresses
+      custom_email_setup: Add a custom email address and then set it up to forward all emails to the mailbox address above.
+  custom_email_addresses:
+    custom_email_address:
+      remove: "Remove"
+    create:
+      success: "%{email} added"
+    destroy:
+      removed: "%{email} removed"
+    form:
+      email_placeholder: support@yourdomain.com
+      button: Add
   devise:
     sessions:
       new:
