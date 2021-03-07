@@ -2,3 +2,4 @@ payhere_alex_password_reset:
   team: payhere
   customer: payhere_alex
   subject: Help resetting my password
+  status: open
