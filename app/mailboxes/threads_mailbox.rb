@@ -1,5 +1,6 @@
 class ThreadsMailbox < ApplicationMailbox
   MATCHER = %r{(.+)@in.happi.team}
+  FROM_EMAIL_MATCHER = %r{[^\s<]+\@[^\s>]+}
 
   attr_reader :message_thread, :team
 
@@ -38,7 +39,7 @@ class ThreadsMailbox < ApplicationMailbox
       @team = CustomEmailAddress.matching_team_for(emails: mail.recipients)
     end
 
-    bounce_with(TeamMailer.not_found(mail.from)) if @team.nil?
+    bounce_with(TeamMailer.not_found(from_email)) if @team.nil?
   end
 
   def assign_thread
@@ -56,7 +57,7 @@ class ThreadsMailbox < ApplicationMailbox
   end
 
   def lookup_customer
-    customer = Customer.where(team: team, email: mail.from).first_or_initialize
+    customer = Customer.where(team: team, email: from_email).first_or_initialize
 
     unless customer.persisted?
       customer.name = from_name.presence || "Unknown Sender"
@@ -66,8 +67,20 @@ class ThreadsMailbox < ApplicationMailbox
     customer
   end
 
+  def from_email
+    if mail.header["X-Original-From"]
+      mail.header["X-Original-From"].value[FROM_EMAIL_MATCHER, 0]
+    else
+      mail.from
+    end
+  end
+
   def from_name
-    mail.header["From"].value.sub(%r{\<[^>]+\>}, "").strip
+    if mail.header["X-Original-From"]
+      mail.header["X-Original-From"].value.sub(%r{\<[^>]+\>}, "").strip
+    else
+      mail.header["From"].value.sub(%r{\<[^>]+\>}, "").strip
+    end
   rescue
     ""
   end
