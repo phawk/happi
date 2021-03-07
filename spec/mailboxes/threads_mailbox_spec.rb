@@ -40,7 +40,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
           last_thread = MessageThread.last
 
           expect(last_thread.messages.count).to eq(1)
-          # expect(last_thread.reply_to).to eq("support@payhere.co")
+          expect(last_thread.reply_to).to eq("support@payhere.co")
         end
       end
     end

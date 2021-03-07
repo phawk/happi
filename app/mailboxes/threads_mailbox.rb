@@ -2,7 +2,7 @@ class ThreadsMailbox < ApplicationMailbox
   MATCHER = %r{(.+)@in.happi.team}
   FROM_EMAIL_MATCHER = %r{[^\s<]+\@[^\s>]+}
 
-  attr_reader :message_thread, :team
+  attr_reader :message_thread, :team, :reply_to
 
   before_processing :ensure_team!
   before_processing :assign_thread
@@ -29,7 +29,10 @@ class ThreadsMailbox < ApplicationMailbox
     else
       Rails.logger.info("Looking for team with custom inbound email: #{mail.recipients.to_sentence}")
 
-      @team = CustomEmailAddress.matching_team_for(emails: mail.recipients)
+      if custom_email = CustomEmailAddress.matching_emails(mail.recipients)
+        @team = custom_email.team
+        @reply_to = custom_email.email
+      end
     end
 
     bounce_with(TeamMailer.not_found(from_email)) if @team.nil?
@@ -40,7 +43,7 @@ class ThreadsMailbox < ApplicationMailbox
     if customer.message_threads.with_open_status.any?
       @message_thread = customer.message_threads.with_open_status.first
     else
-      @message_thread = customer.message_threads.create!(team: team, subject: mail.subject, status: "open")
+      @message_thread = customer.message_threads.create!(team: team, subject: mail.subject, reply_to: @reply_to, status: "open")
     end
   end
 

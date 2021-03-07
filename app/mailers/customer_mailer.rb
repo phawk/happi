@@ -6,6 +6,6 @@ class CustomerMailer < ApplicationMailer
     @message_thread = message.message_thread
     @customer = @message_thread.customer
 
-    mail to: @customer.email, subject: @message_thread.subject
+    mail to: @customer.email, reply_to: @message_thread.reply_to_address, subject: @message_thread.subject
   end
 end

@@ -25,7 +25,8 @@ RSpec.describe "Messages", type: :request do
     it "sends an email" do
       expect(delivered_emails.size).to eq(1)
       expect(last_email.subject).to eq(message_thread.subject)
-      expect(last_email.to.first).to eq(message_thread.customer.email)
+      expect(last_email.to).to eq([message_thread.customer.email])
+      expect(last_email.reply_to).to eq(["support@payhere.co"])
     end
   end
 end
