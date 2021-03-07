@@ -1,0 +1,4 @@
+en:
+  team_mailer:
+    not_found:
+      subject: "Team doesn't exist"

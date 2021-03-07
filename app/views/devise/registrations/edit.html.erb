@@ -1,4 +1,4 @@
-<%= tag.h2 t("edit_profile.heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
+<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "styled-form", data: { turbo: false } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -21,15 +21,15 @@
     <%= f.label :email %>
     <%= f.email_field :email, autocomplete: "email" %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <span class="hint"><%= t("edit_profile.awaiting_confirmation", email: resource.unconfirmed_email) %></span>
+      <span class="hint"><%= t(".awaiting_confirmation", email: resource.unconfirmed_email) %></span>
     <% end %>
   </div>
 
   <div class="bg-gray-50 p-5 rounded-2xl my-6">
     <h3 class="font-semibold text-gray-800 mb-3 text-lg leading-snug">
-      <%= t("edit_profile.change_password") %>
+      <%= t(".change_password") %>
       <small class="block mt-1 text-gray-600 font-normal">
-        <%= t("edit_profile.leave_blank_to_ignore") %>
+        <%= t(".leave_blank_to_ignore") %>
       </small>
     </h3>
     <div class="mb-4">
@@ -47,7 +47,7 @@
   </div>
 
   <h3 class="font-semibold text-gray-800 mb-3 text-lg leading-snug">
-    <%= t("edit_profile.confirm_changes") %>
+    <%= t(".confirm_changes") %>
   </h3>
   <div class="mb-4">
     <%= f.label :current_password %>
@@ -55,8 +55,8 @@
   </div>
 
   <div class="mt-6 flex items-center">
-    <%= f.submit t("edit_profile.button"), class: "button -primary" %>
-    <%= link_to t("edit_profile.cancel_button"), :back, class: "ml-4 text-gray-500 font-medium" %>
+    <%= f.submit t(".button"), class: "button -primary" %>
+    <%= link_to t(".cancel_button"), :back, class: "ml-4 text-gray-500 font-medium" %>
   </div>
 <% end %>
 <% if false %>
