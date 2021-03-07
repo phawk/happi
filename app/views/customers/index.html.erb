@@ -9,3 +9,7 @@
 </div>
 
 <%= render partial: "customers/link", collection: @customers, as: :customer, locals: { class: "mb-4" } %>
+
+<% if @customers.empty? %>
+  <%= render(EmptyMessageComponent.new(title: t(".no_customers"), body: t(".getting_started_guide_html"))) %>
+<% end %>

@@ -12,10 +12,16 @@
   </div>
 
   <%= render @open_message_threads %>
+
+  <% if @open_message_threads.empty? %>
+    <%= render(EmptyMessageComponent.new(title: t(".no_messages"), body: t(".getting_started_guide_html"))) %>
+  <% end %>
 </div>
 
+<% if @previous_message_threads.any? %>
 <div class="bg-gray-50 rounded-b-3xl p-5 sm:p-8 lg:p-10">
   <%= tag.h2 t(".old_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 mb-8" %>
 
   <%= render @previous_message_threads %>
 </div>
+<% end %>
