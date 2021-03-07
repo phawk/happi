@@ -8,6 +8,8 @@ en:
       old_heading: Previously seen
       add_new: New thread
       search: Search threads
+    show:
+      unassigned: Nobody
     update:
       success: Changes saved
       failed: Failed to update

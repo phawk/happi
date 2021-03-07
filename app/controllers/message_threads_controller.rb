@@ -26,6 +26,6 @@ class MessageThreadsController < ApplicationController
   end
 
   def update_params
-    params.require(:message_thread).permit(:status)
+    params.require(:message_thread).permit(:status, :user_id)
   end
 end
