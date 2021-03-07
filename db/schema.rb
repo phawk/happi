@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_170515) do
+ActiveRecord::Schema.define(version: 2021_03_07_112933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 2021_03_06_170515) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "custom_email_addresses", force: :cascade do |t|
+    t.string "email", null: false
+    t.bigint "team_id", null: false
+    t.bigint "user_id"
+    t.datetime "confirmed_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_custom_email_addresses_on_team_id"
+    t.index ["user_id"], name: "index_custom_email_addresses_on_user_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -146,6 +157,8 @@ ActiveRecord::Schema.define(version: 2021_03_06_170515) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "custom_email_addresses", "teams"
+  add_foreign_key "custom_email_addresses", "users"
   add_foreign_key "customers", "teams"
   add_foreign_key "message_threads", "customers"
   add_foreign_key "message_threads", "teams"
