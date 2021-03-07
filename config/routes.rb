@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :message_threads, only: %i[index show], path: "threads" do
     resources :messages, only: %i[new create]
   end
-  resources :teams, only: %i[new create]
+  resources :teams, only: %i[index new create] do
+    post :change, on: :member
+  end
 
   root to: "dashboard#show"
 end

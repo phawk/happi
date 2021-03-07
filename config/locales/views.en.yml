@@ -1,4 +1,7 @@
 en:
+  layouts:
+    application:
+      switch_team: change
   message_threads:
     index:
       new_heading: Open threads
@@ -20,10 +23,15 @@ en:
     new:
       heading: New customer
   teams:
+    index:
+      heading: Select team
+      create_new: Create a new team
     new:
       heading: Set up your team
       button: Create team
       organisation_name: Name of your Organisation
+    change:
+      switched_to: "Switched to %{name}"
   devise:
     sessions:
       new:

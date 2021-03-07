@@ -3,6 +3,16 @@ class TeamsController < ApplicationController
 
   layout "auth"
 
+  def index
+    @teams = current_user.teams
+  end
+
+  def change
+    team = current_user.teams.find(params[:id])
+    current_user.update(team: team)
+    redirect_to root_path, notice: t(".switched_to", name: team.name)
+  end
+
   def new
     @team = Team.new
   end
@@ -11,6 +21,7 @@ class TeamsController < ApplicationController
     @team = current_user.teams.new(team_params)
 
     if @team.save
+      current_user.teams << @team
       current_user.update(team: @team)
 
       redirect_to root_path
