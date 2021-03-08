@@ -13,8 +13,10 @@
 
   <%= render @open_message_threads %>
 
-  <% if @open_message_threads.empty? %>
+  <% if @open_message_threads.empty? && @previous_message_threads.empty? %>
     <%= render(EmptyMessageComponent.new(title: t(".no_messages"), body: t(".getting_started_guide_html"))) %>
+  <% elsif @open_message_threads.empty? %>
+    <%= render(EmptyMessageComponent.new(title: t(".no_open_threads"), body: t(".no_open_threads_message"))) %>
   <% end %>
 </div>
 
