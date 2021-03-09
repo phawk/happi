@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_170915) do
+ActiveRecord::Schema.define(version: 2021_03_09_190523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_03_07_170915) do
     t.datetime "confirmed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "from_name"
     t.index ["team_id"], name: "index_custom_email_addresses_on_team_id"
     t.index ["user_id"], name: "index_custom_email_addresses_on_user_id"
   end
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 2021_03_07_170915) do
     t.jsonb "metadata", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "from_address"
     t.index ["message_thread_id"], name: "index_messages_on_message_thread_id"
   end
 

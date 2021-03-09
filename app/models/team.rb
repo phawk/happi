@@ -12,6 +12,14 @@ class Team < ApplicationRecord
     "#{mail_hash}@in.happi.team"
   end
 
+  def emails_to_send_from
+    custom_email_addresses.confirmed.map(&:to_s) << default_from_address
+  end
+
+  def default_from_address
+    "#{name} <yo@happi.team>"
+  end
+
   private
 
   def generated_mail_hash

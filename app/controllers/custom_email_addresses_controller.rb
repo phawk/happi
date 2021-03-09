@@ -18,6 +18,6 @@ class CustomEmailAddressesController < ApplicationController
   private
 
   def custom_email_params
-    params.require(:custom_email_address).permit(:email)
+    params.require(:custom_email_address).permit(:email, :from_name)
   end
 end

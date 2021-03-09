@@ -1,4 +1,5 @@
 payhere_support:
+  from_name: Payhere Support
   email: support@payhere.co
   team: payhere
   confirmed_at: 2021-01-01

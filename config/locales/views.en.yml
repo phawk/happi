@@ -23,6 +23,7 @@ en:
   messages:
     form:
       button: Send Reply
+      send_from: Send from
   customers:
     index:
       heading: All customers
@@ -62,7 +63,8 @@ en:
       removed: "%{email} removed"
     form:
       email_placeholder: support@yourdomain.com
-      button: Add
+      from_placeholder: From name (optional)
+      button: Add custom email
   devise:
     sessions:
       new:
