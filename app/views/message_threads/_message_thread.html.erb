@@ -1,4 +1,4 @@
-<%= link_to message_thread_path(message_thread), class: "mb-4 flex items-center" do %>
+<%= link_to message_thread_path(message_thread), class: "mb-4 flex items-center", id: dom_id(message_thread) do %>
   <%= avatar_tag message_thread.customer, size: 50, extra_class: "mr-4 flex-shrink-0" %>
   <div class=" flex-grow">
     <h3 class="text-gray-800 text-xl font-semibold">

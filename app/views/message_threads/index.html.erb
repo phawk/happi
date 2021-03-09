@@ -11,7 +11,10 @@
     <% end %>
   </div>
 
-  <%= render @open_message_threads %>
+  <%= turbo_stream_from "team_#{current_team.id}_threads" %>
+  <div id="open_message_threads">
+    <%= render @open_message_threads %>
+  </div>
 
   <% if @open_message_threads.empty? && @previous_message_threads.empty? %>
     <%= render(EmptyMessageComponent.new(title: t(".no_messages"), body: t(".getting_started_guide_html"))) %>
