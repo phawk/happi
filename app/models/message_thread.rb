@@ -2,9 +2,9 @@ class MessageThread < ApplicationRecord
   STATUS = %w[open waiting closed]
   OPEN_STATUS = %w[open waiting]
 
-  after_create_commit { broadcast_prepend_to("team_#{team_id}_threads", target: "open_message_threads") }
-  after_update_commit { broadcast_replace_to("team_#{team_id}_threads") }
-  after_destroy_commit { broadcast_remove_to("team_#{team_id}_threads") }
+  after_create_commit { broadcast_prepend_to(turbo_channel, target: "open_message_threads") }
+  after_update_commit { broadcast_replace_to(turbo_channel) }
+  after_destroy_commit { broadcast_remove_to(turbo_channel) }
 
   belongs_to :customer
   belongs_to :team
@@ -24,5 +24,9 @@ class MessageThread < ApplicationRecord
   def reply_to_address
     return reply_to if reply_to.present?
     team.default_mailbox
+  end
+
+  def turbo_channel
+    "team_#{team_id}_threads"
   end
 end

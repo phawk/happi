@@ -4,7 +4,10 @@
   <div class="md:col-span-2">
     <h1 class="text-2xl font-bold text-gray-900 mb-8"><%= @message_thread.subject %></h1>
 
-    <%= render @messages %>
+    <%= turbo_stream_from "thread_#{@message_thread.id}_messages" %>
+    <div id="messages">
+      <%= render @messages %>
+    </div>
 
     <%= render "messages/form", model: [@message_thread, Message.new] %>
   </div>
