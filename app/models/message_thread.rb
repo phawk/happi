@@ -2,6 +2,10 @@ class MessageThread < ApplicationRecord
   STATUS = %w[open waiting closed]
   OPEN_STATUS = %w[open waiting]
 
+  after_create_commit { broadcast_prepend_to("team_#{team_id}_threads", target: "open_message_threads") }
+  after_update_commit { broadcast_replace_to("team_#{team_id}_threads") }
+  after_destroy_commit { broadcast_remove_to("team_#{team_id}_threads") }
+
   belongs_to :customer
   belongs_to :team
   belongs_to :user, optional: true
