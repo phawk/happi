@@ -1,6 +1,10 @@
 class Message < ApplicationRecord
   STATUS = %w[received pending delivered].freeze
 
+  after_create_commit { broadcast_append_to(turbo_channel, target: "messages") }
+  after_update_commit { broadcast_replace_to(turbo_channel) }
+  after_destroy_commit { broadcast_remove_to(turbo_channel) }
+
   belongs_to :message_thread, touch: true
   belongs_to :sender, polymorphic: true
 
@@ -12,5 +16,9 @@ class Message < ApplicationRecord
 
   def deliver_email_via
     from_address.presence || message_thread.team.default_from_address
+  end
+
+  def turbo_channel
+    "thread_#{message_thread_id}_messages"
   end
 end
