@@ -14,12 +14,12 @@
       <div class="grid grid-cols-6 gap-4 items-center">
         <%= f.label :status, class: "col-span-2" %>
         <div class="col-span-4">
-          <%= f.select :status, options_for_select(MessageThread::STATUS, selected: f.object.status), {}, class: "rounded", data: { action: "change->auto-submit#submit" } %>
+          <%= f.select :status, options_for_select(MessageThread::STATUS, selected: f.object.status), {}, class: "rounded w-full", data: { action: "change->auto-submit#submit" } %>
         </div>
 
         <%= f.label :user, class: "col-span-2" %>
         <div class="col-span-4">
-          <%= f.collection_select(:user_id, current_team.users, :id, :familiar_name, { include_blank: t(".unassigned") }, class: "rounded", data: { action: "change->auto-submit#submit" }) %>
+          <%= f.collection_select(:user_id, current_team.users, :id, :familiar_name, { include_blank: t(".unassigned") }, class: "rounded w-full", data: { action: "change->auto-submit#submit" }) %>
         </div>
       </div>
 
