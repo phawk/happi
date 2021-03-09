@@ -15,7 +15,6 @@ export default class extends ApplicationController {
   mutate(entries) {
     for (const mutation of entries) {
       if (mutation.type === "childList") {
-        console.log("A child node has been added or removed.");
         if (this.listTarget.children.length > 0) {
           // hide empty state
           this.emptyMessageTarget.classList.add(this.hideClass);
@@ -23,12 +22,6 @@ export default class extends ApplicationController {
           // show empty state
           this.emptyMessageTarget.classList.remove(this.hideClass);
         }
-      } else if (mutation.target === this.element) {
-        console.log("The root element of this controller was modified.");
-      } else if (mutation.type === "attributes") {
-        console.log(
-          "The " + mutation.attributeName + " attribute was modified."
-        );
       }
     }
   }
