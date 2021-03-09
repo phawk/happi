@@ -1,6 +1,7 @@
 <%= form_with(model: @custom_email_address, class: "mt-5 styled-form") do |f| %>
-  <div class="flex">
-    <%= f.email_field :email, placeholder: t(".email_placeholder"), class: "flex-grow mr-3" %>
-    <%= f.submit t(".button"), class: "button -primary flex-shrink-0" %>
+  <div class="flex flex-col">
+    <%= f.email_field :email, placeholder: t(".email_placeholder"), class: "mb-2" %>
+    <%= f.text_field :from_name, placeholder: t(".from_placeholder"), class: "mb-2" %>
+    <%= f.submit t(".button"), class: "button -primary" %>
   </div>
 <% end %>

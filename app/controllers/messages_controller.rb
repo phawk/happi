@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message)
-          .permit(:content, :internal)
+          .permit(:content, :from_address, :internal)
           .merge(sender: current_user)
   end
 

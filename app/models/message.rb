@@ -9,4 +9,8 @@ class Message < ApplicationRecord
   def customer?
     sender_type == "Customer"
   end
+
+  def deliver_email_via
+    from_address.presence || message_thread.team.default_from_address
+  end
 end
