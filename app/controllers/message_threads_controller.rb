@@ -1,5 +1,5 @@
 class MessageThreadsController < ApplicationController
-  before_action :set_thread, only: %i[show update]
+  before_action :set_thread, only: %i[show update destroy]
 
   def index
     @open_message_threads = current_team.message_threads.with_open_status.includes(:customer, :user, :messages).most_recent.to_a
@@ -36,6 +36,11 @@ class MessageThreadsController < ApplicationController
     else
       redirect_to @message_thread, alert: t(".failed")
     end
+  end
+
+  def destroy
+    @message_thread.archive!
+    redirect_to message_threads_path, notice: "Thread archived"
   end
 
   private
