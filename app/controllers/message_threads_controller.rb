@@ -11,6 +11,25 @@ class MessageThreadsController < ApplicationController
     @messages = @message_thread.messages.order(:created_at)
   end
 
+  def new
+    @customer = current_team.customers.find(params[:customer_id])
+    @message_thread = MessageThread.new
+  end
+
+  def create
+    @customer = current_team.customers.find(create_params[:customer_id])
+    @message_thread = current_team.message_threads.new(create_params.merge(user: current_user, status: "open"))
+
+    if @message_thread.save
+      redirect_to @message_thread
+    else
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @customer, alert: "Oops, we could not create your thread, try again" }
+      end
+    end
+  end
+
   def update
     if @message_thread.update(update_params)
       redirect_to @message_thread, notice: t(".success")
@@ -23,6 +42,10 @@ class MessageThreadsController < ApplicationController
 
   def set_thread
     @message_thread = current_team.message_threads.find(params[:id])
+  end
+
+  def create_params
+    params.require(:message_thread).permit(:customer_id, :subject)
   end
 
   def update_params

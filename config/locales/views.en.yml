@@ -20,6 +20,8 @@ en:
     update:
       success: Changes saved
       failed: Failed to update
+    form:
+      button: Start thread
   messages:
     form:
       button: Send Reply
