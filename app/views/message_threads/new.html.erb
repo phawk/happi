@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "modal" do %>
+  <%= render ModalComponent.new(title: "Start a thread", closeable: true, back_to: url_for(@customer)) do %>
+    <%= render partial: "form" %>
+  <% end %>
+<% end %>

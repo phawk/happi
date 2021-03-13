@@ -16,6 +16,7 @@ class MessageThread < ApplicationRecord
   scope :most_recent, -> { order(updated_at: :desc) }
 
   validates :status, presence: true, inclusion: { in: STATUS }
+  validates :subject, presence: true
 
   def open?
     status == "open"

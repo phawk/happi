@@ -4,7 +4,7 @@
   <div class="flex items-center mb-8">
     <%= tag.h1 t(".new_heading"), class: "uppercase tracking-wider font-semibold text-gray-500 flex-auto" %>
 
-    <%= link_to t(".add_new"), "#", class: "mr-3 flex-shrink-0 button -rounded" %>
+    <%#= link_to t(".add_new"), "#", class: "mr-3 flex-shrink-0 button -rounded" %>
 
     <%= form_with(url: "/", class: "styled-form") do |f| %>
       <%= f.search_field :query, placeholder: t(".search"), class: "rounded" %>

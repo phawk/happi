@@ -1,0 +1,25 @@
+<%= form_with(model: @message_thread, class: "styled-form", id: dom_id(@message_thread), data: { "turbo-frame" => "_top" }) do |f| %>
+  <%= render "shared/form_errors", object: f.object %>
+
+  <div class="mb-4">
+    <%= f.label :customer_id %>
+    <%= f.hidden_field :customer_id, value: @customer.id %>
+    <div class="flex items-center">
+      <%= avatar_tag @customer, size: 40, extra_class: "mr-3" %>
+      <div class="leading-none">
+        <span class="block font-medium text-gray-800"><%= @customer.name.full %></span>
+        <span class="text-sm"><%= @customer.email %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </div>
+
+  <div class="mt-6">
+    <%= f.submit t(".button"), class: "button -primary" %>
+    <%= link_to t(".cancel"), @customer, class: "button ml-3" %>
+  </div>
+<% end %>
