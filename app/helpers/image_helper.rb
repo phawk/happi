@@ -1,7 +1,8 @@
 module ImageHelper
   def avatar_url(user, size: 32)
     if user.try(:avatar) &&  user.try(:avatar?)
-      user.avatar.variant(resize_to_fill: [size, size])
+      double_size = size * 2
+      user.avatar.variant(resize_to_fill: [double_size, double_size])
     else
       name = [user.first_name, user.last_name].join("%20")
       background = user.try(:background_color).presence || "FFE299"

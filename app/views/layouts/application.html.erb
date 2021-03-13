@@ -49,6 +49,10 @@
       <div class="shadow-max rounded-3xl <%= content_for(:container_padding) ? content_for(:container_padding) : "p-5 sm:p-8 lg:p-10" %>">
         <%= yield %>
       </div>
+
+      <div class="my-6 text-center text-base text-gray-300">
+        &copy; Happi <%= Time.current.year %>
+      </div>
     </div>
   </body>
 </html>

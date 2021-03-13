@@ -33,6 +33,10 @@ en:
       getting_started_guide_html: 'Follow our <a href="#" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
     show:
       edit: Edit customer
+      threads: Threads
+      new_thread: New thread
+      no_threads: No threads
+      no_threads_message: You don’t have any previous messages with %{name}, why not say hello?
     edit:
       heading: "Edit %{name}"
     new:
