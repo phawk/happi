@@ -17,11 +17,15 @@ en:
       unassigned: Nobody
       inbound_address: "Receiving emails from"
       last_updated: "Last updated"
+      archive_button: "Archive this thread"
     update:
       success: Changes saved
       failed: Failed to update
+    new:
+      start_a_thread: "Start a thread"
     form:
       button: Start thread
+      cancel: Cancel
   messages:
     form:
       button: Send Reply

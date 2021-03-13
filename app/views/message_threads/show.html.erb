@@ -17,7 +17,7 @@
       <div class="grid grid-cols-6 gap-4 items-center">
         <%= f.label :status, class: "col-span-2" %>
         <div class="col-span-4">
-          <%= f.select :status, options_for_select(MessageThread::STATUS, selected: f.object.status), {}, class: "rounded w-full", data: { action: "change->auto-submit#submit" } %>
+          <%= f.select :status, options_for_select(MessageThread::ASSIGNABLE_STATUS, selected: f.object.status), {}, class: "rounded w-full", data: { action: "change->auto-submit#submit" } %>
         </div>
 
         <%= f.label :user, class: "col-span-2" %>
@@ -40,5 +40,15 @@
         </span>
       </div>
     <% end %>
+
+    <div class="mt-10 text-center">
+      <%= link_to message_thread_path(@message_thread), method: :delete, data: { confirm: "Are you sure? It will be permanently deleted after 7 days" }, class: "text-sm text-gray-600 underline inline-flex items-center" do %>
+        <svg class="h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+        </svg>
+
+        <%= t(".archive_button") %>
+      <% end %>
+    </div>
   </div>
 </div>
