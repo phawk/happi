@@ -5,7 +5,9 @@ class CustomersController < ApplicationController
     @customers = current_team.customers.order(:last_name)
   end
 
-  def show; end
+  def show
+    @message_threads = @customer.message_threads.includes(:customer, :user, :messages).most_recent.limit(50).to_a
+  end
 
   def new
     @customer = Customer.new
