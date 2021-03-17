@@ -35,6 +35,7 @@ gem "postmark-rails"
 gem "roadie-rails"
 gem "sidekiq"
 gem "email_reply_parser"
+gem "metamagic"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
