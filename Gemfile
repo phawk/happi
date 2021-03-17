@@ -34,6 +34,7 @@ gem "aws-sdk-s3", require: false
 gem "postmark-rails"
 gem "roadie-rails"
 gem "sidekiq"
+gem "email_reply_parser"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
