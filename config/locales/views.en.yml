@@ -4,6 +4,7 @@ en:
       switch_team: change
   message_threads:
     index:
+      page_title: Threads
       new_heading: Open threads
       old_heading: Previously seen
       add_new: New thread
@@ -78,11 +79,13 @@ en:
   devise:
     sessions:
       new:
+        page_title: Sign in
         heading: Sign in to your account
         button: Log in
         forgot_password: Forgot your password?
     registrations:
       new:
+        page_title: Create account
         heading: "Create your account"
         button: "Get started"
         min_password_length: "(%{min} characters minimum)"
