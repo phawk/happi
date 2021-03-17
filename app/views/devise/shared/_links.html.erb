@@ -1,23 +1,39 @@
 <div class="mt-6">
   <%- if controller_name != 'sessions' %>
-    Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %><br />
+    <div class="mb-2">
+      Already have an account? <%= link_to "Log in", new_session_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %>
+    </div>
   <% end %>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    Need an account? <%= link_to "Sign up", new_registration_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %><br />
+    <div class="mb-2">
+      Need an account? <%= link_to "Sign up", new_registration_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %>
+    </div>
+  <% end %>
+
+  <%- if controller_name == 'sessions' && devise_mapping.recoverable? %>
+    <div class="mb-2">
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %>
+    </div>
   <% end %>
 
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %><br />
+    <div class="mb-2">
+      <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %>
+    </div>
   <% end %>
 
   <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-    <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %><br />
+    <div class="mb-2">
+      <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "text-purple-600 underline hover:text-purple-800" %>
+    </div>
   <% end %>
 
   <%- if devise_mapping.omniauthable? %>
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+      <div class="mb-2">
+        <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %>
+      </div>
     <% end %>
   <% end %>
 </div>

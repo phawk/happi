@@ -1,6 +1,6 @@
 <% meta title: t(".heading") %>
 
-<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
+<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl lg:text-2xl font-bold text-gray-900" %>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "styled-form" }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -10,8 +10,8 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="mt-4">
-    <%= f.submit t(".button"), class: "button -primary w-full" %>
+  <div class="mt-4 mb-2">
+    <%= f.submit t(".button"), class: "button -primary -lg w-full" %>
   </div>
 <% end %>
 

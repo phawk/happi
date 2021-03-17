@@ -44,6 +44,10 @@
     @apply flex items-center;
     input[type="checkbox"] {
       @apply mr-3;
+
+      &:checked {
+        @apply bg-purple-500;
+      }
     }
 
     label {

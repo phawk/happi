@@ -28,4 +28,8 @@
   &.-rounded {
     @apply rounded-full px-4;
   }
+
+  &.-lg {
+    @apply text-lg;
+  }
 }
