@@ -1,10 +1,10 @@
-<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
+<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl lg:text-2xl font-bold text-gray-900" %>
 
 <%= form_with(model: @team, class: "styled-form") do |f| %>
   <%= render "shared/form_errors", object: f.object %>
-  <div class="mb-4">
+  <div class="mb-5">
     <%= f.label :name, t(".organisation_name") %>
     <%= f.text_field :name %>
   </div>
-  <%= f.submit t(".button"), class: "button -primary w-full" %>
+  <%= f.submit t(".button"), class: "mb-2 button -primary -lg w-full" %>
 <% end %>

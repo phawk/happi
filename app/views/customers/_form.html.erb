@@ -1,5 +1,5 @@
 <div class="mx-auto max-w-md">
-  <h1 class="mb-6 text-xl text-gray-800 font-semibold"><%= local_assigns.fetch(:heading) %></h1>
+  <h1 class="mb-6 text-xl lg:text-2xl text-gray-800 font-semibold"><%= local_assigns.fetch(:heading) %></h1>
 
   <%= form_with(model: customer, class: "styled-form") do |f| %>
     <%= render "shared/form_errors", object: f.object %>
@@ -50,7 +50,7 @@
     </div>
 
     <div>
-      <%= f.submit t("forms.save"), class: "button -primary" %>
+      <%= f.submit t("forms.save"), class: "button -primary -lg" %>
     </div>
   <% end %>
 </div>
