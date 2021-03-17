@@ -1,3 +1,4 @@
+<% meta title: @customer.name.familiar %>
 <% content_for(:container_padding, "nada") %>
 
 <div class="p-5 sm:p-8 lg:p-10">
@@ -8,7 +9,7 @@
   <div class="flex flex-col items-center mt-4 md:-mt-10">
     <%= avatar_tag @customer, size: 100, extra_class: "" %>
 
-    <%= tag.h1 @customer.name.full, class: "mt-4 mb-2 text-2xl lg:text-4xl font-semibold text-gray-900" %>
+    <%= tag.h1 @customer.name.full, class: "mt-4 mb-2 text-2xl lg:text-4xl font-semibold text-gray-900 w-full text-center" %>
     <div class="flex flex-wrap items-center justify-center">
       <span class="mx-3 my-1 flex items-center font-medium text-gray-500">
         <svg class="h-5 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
