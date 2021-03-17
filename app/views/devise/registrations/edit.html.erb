@@ -1,6 +1,6 @@
 <% meta title: t(".heading") %>
 
-<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
+<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl lg:text-2xl font-bold text-gray-900" %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "styled-form", data: { turbo: false } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -57,7 +57,7 @@
   </div>
 
   <div class="mt-6 flex items-center">
-    <%= f.submit t(".button"), class: "button -primary" %>
+    <%= f.submit t(".button"), class: "button -primary -lg" %>
     <%= link_to t(".cancel_button"), :back, class: "ml-4 text-gray-500 font-medium" %>
   </div>
 <% end %>

@@ -1,6 +1,9 @@
 <% meta title: t(".page_title") %>
 
-<%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl font-bold text-gray-900" %>
+<%= tag.h2 t(".heading"), class: "mb-1 text-center text-xl lg:text-2xl font-bold text-gray-900" %>
+<div class="mb-6 text-center">
+  <%= t(".already_have_account_html", link: link_to(t(".log_in"), new_session_path(resource_name), class: "text-purple-600 underline hover:text-purple-800")) %>
+</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "styled-form", data: { turbo: false } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -35,9 +38,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="mt-6">
-    <%= f.submit t(".button"), class: "button -primary" %>
+  <div class="mt-6 mb-2">
+    <%= f.submit t(".button"), class: "button -primary -lg w-full" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

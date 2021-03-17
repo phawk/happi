@@ -83,12 +83,17 @@ en:
         heading: Sign in to your account
         button: Log in
         forgot_password: Forgot your password?
+        need_an_account_html: Need an account? %{link}
+        sign_up: Sign up
+        forgot_password: "Forgot password?"
     registrations:
       new:
         page_title: Create account
         heading: "Create your account"
         button: "Get started"
         min_password_length: "(%{min} characters minimum)"
+        already_have_account_html: Already have an account? %{link}
+        log_in: Log in
       edit:
         heading: Edit your profile
         button: Save changes
