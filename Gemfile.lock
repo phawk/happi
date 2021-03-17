@@ -97,6 +97,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    email_reply_parser (0.5.10)
     erubi (1.10.0)
     ffi (1.14.2)
     globalid (0.4.2)
@@ -280,6 +281,7 @@ DEPENDENCIES
   byebug
   chroma
   devise
+  email_reply_parser
   image_processing (~> 1.2)
   letter_opener_web
   listen (~> 3.3)
