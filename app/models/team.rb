@@ -1,12 +1,17 @@
 class Team < ApplicationRecord
   before_create :generated_mail_hash
 
+  has_secure_token :invite_code
   has_and_belongs_to_many :users
   has_many :customers, dependent: :destroy
   has_many :message_threads, dependent: :destroy
   has_many :custom_email_addresses, dependent: :destroy
 
   validates :name, presence: true
+
+  def verified?
+    verified_at.present?
+  end
 
   def default_mailbox
     "#{mail_hash}@in.happi.team"

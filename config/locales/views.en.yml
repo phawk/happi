@@ -76,6 +76,12 @@ en:
       email_placeholder: support@yourdomain.com
       from_placeholder: From name (optional)
       button: Add custom email
+  shared:
+    account_not_verified:
+      not_verified_html: "You can’t send outbound emails until <strong>our team has verified your account</strong>."
+    pending_verification:
+      account_in_review: We are reviewing your account
+      before_you_can_send: Before you can send outbound emails we need to check your account. This helps us prevent spammers and ensure excellent delivery rates for everyone.
   devise:
     sessions:
       new:

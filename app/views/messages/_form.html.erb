@@ -2,11 +2,21 @@
   <%= f.rich_text_area :content %>
 
   <div class="flex items-center justify-between mt-4">
-    <%= f.submit t(".button"), class: "button -primary mr-3" %>
+    <% if current_team.verified? %>
+      <%= f.submit t(".button"), class: "button -primary mr-3" %>
+    <% else %>
+      <button type="button" class="button -primary opacity-25 cursor-not-allowed mr-3" disabled>
+        <%= t(".button") %>
+      </button>
+    <% end %>
 
     <div class="flex items-center">
       <span class="text-sm font-medium mr-3"><%= t(".send_from") %></span>
       <%= f.select :from_address, options_for_select(current_team.emails_to_send_from) %>
     </div>
   </div>
+
+  <% unless current_team.verified? %>
+    <%= render "shared/pending_verification" %>
+  <% end %>
 <% end %>
