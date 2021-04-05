@@ -1,5 +1,7 @@
 en:
   activerecord:
     attributes:
+      customer:
+        country_code: Country
       message_thread:
         user: "Assigned"
