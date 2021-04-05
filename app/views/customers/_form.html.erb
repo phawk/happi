@@ -39,7 +39,7 @@
 
     <div class="mb-4">
       <%= f.label :country_code %>
-      <%= f.text_field :country_code %>
+      <%= f.country_select :country_code, priority_countries: ["US", "CA", "GB", "IE"], include_blank: true %>
       <span class="hint"><%= t "forms.optional" %></span>
     </div>
 
