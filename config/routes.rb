@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     post :change, on: :member
   end
   resource :settings, only: %i[show update]
+  resources :team_invites, path: "join", only: %i[show create]
 
   root to: "dashboard#show"
 end

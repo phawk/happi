@@ -1,3 +1,5 @@
 payhere:
   name: Payhere
   mail_hash: "payhere"
+  invite_code: <%= SecureRandom.hex(8) %>
+  verified_at: 2021-04-03
