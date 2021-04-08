@@ -3,7 +3,12 @@
 <% if user_signed_in? %>
   <p class="mb-6 text-center"><%= t(".join_team") %></p>
 
-  <%= button_to t(".join_button"), join_team_path(code: params[:code]), method: :put, class: "button -primary -lg w-full" %>
+  <% if @team.users.exists?(current_user.id) %>
+    <%= button_to t(".already_joined"), "#", disabled: true, class: "button -lg w-full opacity-50 cursor-not-allowed" %>
+    <%= link_to t(".back_to_threads"), message_threads_path, class: "block text-sm mt-3 text-center underline" %>
+  <% else %>
+    <%= button_to t(".join_button"), join_team_path(code: params[:code]), method: :put, class: "button -primary -lg w-full" %>
+  <% end %>
 <% else %>
   <div class="mb-6 text-center">
     <%= t("devise.registrations.new.already_have_account_html", link: link_to(t("devise.registrations.new.log_in"), new_session_path(:user), class: "text-purple-600 underline hover:text-purple-800")) %>

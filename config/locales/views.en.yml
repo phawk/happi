@@ -87,6 +87,8 @@ en:
       button: Accept invite
       join_team: "Hit the button below to join the team, or ignore this page if you changed your mind."
       join_button: "Join team"
+      already_joined: "Already a member"
+      back_to_threads: "Back to threads"
   shared:
     account_not_verified:
       not_verified_html: "You can’t send outbound emails until <strong>our team has verified your account</strong>."
