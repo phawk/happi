@@ -21,8 +21,7 @@ class TeamsController < ApplicationController
     @team = current_user.teams.new(team_params)
 
     if @team.save
-      current_user.teams << @team
-      current_user.update(team: @team)
+      @team.add_user(current_user, set_active_team: true)
 
       redirect_to root_path
     else

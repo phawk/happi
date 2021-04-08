@@ -85,6 +85,8 @@ en:
     new:
       heading: "Join %{team_name}’s team"
       button: Accept invite
+      join_team: "Hit the button below to join the team, or ignore this page if you changed your mind."
+      join_button: "Join team"
   shared:
     account_not_verified:
       not_verified_html: "You can’t send outbound emails until <strong>our team has verified your account</strong>."

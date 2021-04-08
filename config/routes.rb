@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resource :settings, only: %i[show update]
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"
-  resources :team_invites, path: "join", only: %i[show create]
+  put "/join/:code", to: "team_invites#update"
 
   root to: "dashboard#show"
 end
