@@ -9,7 +9,7 @@
     <%= render @team_members %>
 
     <div class="flex">
-      <%= text_field_tag :inbox_email, team_invite_url(id: current_team.invite_code), disabled: true, class: "text-center bg-white text-gray-700 border-2 border-gray-200 w-full rounded-md" %>
+      <%= text_field_tag :inbox_email, join_team_url(code: current_team.invite_code), disabled: true, class: "text-center bg-white text-gray-700 border-2 border-gray-200 w-full rounded-md" %>
     </div>
 
     <p class="mt-3 text-sm text-center"><%= t(".invite_instructions") %></p>

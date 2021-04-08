@@ -82,7 +82,7 @@ en:
     user:
       remove: Remove
   team_invites:
-    show:
+    new:
       heading: "Join %{team_name}’s team"
       button: Accept invite
   shared:
