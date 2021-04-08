@@ -18,4 +18,14 @@ RSpec.feature "Joining teams" do
 
     expect(page).to have_content("signed up successfully")
   end
+
+  scenario "it prompts user to join the team if they are signed in" do
+    sign_in(users(:scott))
+
+    visit join_team_path(code: team.invite_code)
+
+    click_button "Join team"
+
+    expect(page).to have_content("You are now a member of Payhere")
+  end
 end

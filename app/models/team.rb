@@ -9,6 +9,13 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
 
+  def add_user(user, set_active_team: false)
+    users << user unless users.exists?(user.id)
+    if set_active_team
+      user.update(team: self)
+    end
+  end
+
   def verified?
     verified_at.present?
   end

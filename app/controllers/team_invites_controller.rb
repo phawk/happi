@@ -1,5 +1,5 @@
 class TeamInvitesController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, except: :update
   skip_before_action :ensure_team!
   before_action :set_team
   layout "auth"
@@ -12,13 +12,17 @@ class TeamInvitesController < ApplicationController
     @invite = User.new(create_params)
 
     if @invite.save
-      @team.users << @invite
-      @invite.update(team: @team)
+      @team.add_user(@invite, set_active_team: true)
       sign_in @invite
       redirect_to message_threads_path, notice: "You have signed up successfully!"
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def update
+    @team.add_user(current_user, set_active_team: true)
+    redirect_to message_threads_path, notice: "You are now a member of #{@team.name}"
   end
 
   private
