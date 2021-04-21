@@ -8,11 +8,13 @@ class ThreadsMailbox < ApplicationMailbox
   before_processing :assign_thread
 
   def process
-    message_thread.messages.create!(
+    message = message_thread.messages.create!(
       sender: customer,
       status: "received",
       content: email_content
     )
+
+    TeamMailer.new_message(message).deliver_later
   end
 
   private

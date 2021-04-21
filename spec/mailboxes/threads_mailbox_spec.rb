@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe ThreadsMailbox, type: :mailbox do
+  before do
+    teams(:payhere).users << users(:pete)
+  end
+
   context "successful delivery" do
     context "when happi email address is used" do
       context "and there is no open thread" do
@@ -15,6 +19,15 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
             expect(last_message.content.to_s).to include("What's the status?")
             expect(last_message.sender.email).to eq("jack@jackjohnson.net")
             expect(last_message.sender.name.full).to eq("Jack Johnson")
+          end
+        end
+
+        it "sends a notification to the team" do
+          perform_enqueued_jobs do
+            send_mail(to: "payhere@in.happi.team")
+
+            expect(last_email.subject).to eq("New message from Jack J.")
+            expect(last_email.to).to include("petey@hey.com")
           end
         end
       end
