@@ -48,7 +48,7 @@ RSpec.describe MailBodyParser, type: :model do
       BODY
     end
 
-    expect(MailBodyParser.new(mail.mail).content).to eq("What's the story?")
+    expect(MailBodyParser.new(mail.mail).content).to eq("<p>What's the story?</p>")
   end
 
   it "works for HTML only emails" do
@@ -63,5 +63,19 @@ RSpec.describe MailBodyParser, type: :model do
     end
 
     expect(MailBodyParser.new(mail.mail).content).to include("Please join us for a party at Bag End")
+  end
+
+  it "adds line breaks to plain text" do
+    mail = create_inbound_email_from_mail do |mail|
+      mail.to "David Heinemeier Hansson <david@loudthinking.com>"
+      mail.from "Bilbo Baggins <bilbo@bagend.com>"
+      mail.subject "Come down to the Shire!"
+
+      mail.html_part do |part|
+        part.body "Please join us for a party at\n\nBag End"
+      end
+    end
+
+    expect(MailBodyParser.new(mail.mail).content).to eq("<p>Please join us for a party at</p>\n\n<p>Bag End</p>")
   end
 end
