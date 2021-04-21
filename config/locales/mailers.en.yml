@@ -1,4 +1,9 @@
 en:
   team_mailer:
+    new_message:
+      heading: "Re: %{subject}"
+      subject: "New message from %{from_name}"
+      received_message_html: "You just received a message from <strong>%{name}</strong> (%{email})."
+      button: "View and reply"
     not_found:
       subject: "Team doesn't exist"
