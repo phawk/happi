@@ -66,7 +66,9 @@ class ThreadsMailbox < ApplicationMailbox
   end
 
   def from_email
-    if mail.header["X-Original-From"]
+    if mail.header["Reply-To"]
+      mail.header["Reply-To"].value[FROM_EMAIL_MATCHER, 0]
+    elsif mail.header["X-Original-From"]
       mail.header["X-Original-From"].value[FROM_EMAIL_MATCHER, 0]
     else
       mail.from
