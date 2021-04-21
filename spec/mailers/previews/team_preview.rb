@@ -1,7 +1,8 @@
-# Preview all emails at http://localhost:3000/rails/mailers/team
 class TeamPreview < ActionMailer::Preview
+  def new_message
+    TeamMailer.new_message(Message.first)
+  end
 
-  # Preview this email at http://localhost:3000/rails/mailers/team/not_found
   def not_found
     TeamMailer.not_found(Customer.first)
   end
