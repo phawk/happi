@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :teams
+    resources :users
+    resources :custom_email_addresses
+
+    root to: "teams#index"
+  end
+
   devise_for :users
 
   authenticate :user, ->(u) { u.role?(:admin) } do
