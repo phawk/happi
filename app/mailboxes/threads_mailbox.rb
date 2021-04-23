@@ -23,6 +23,17 @@ class ThreadsMailbox < ApplicationMailbox
     MailBodyParser.new(mail).content
   end
 
+  def attachments
+    # TODO - handle this
+    mail.attachments.map do |attachment|
+      {
+        filename: attachment.filename,
+        content_type: attachment.content_type,
+        data: attachment.decoded
+      }
+    end
+  end
+
   def ensure_team!
     if recipient = mail.recipients.find { |r| MATCHER.match?(r) }
       Rails.logger.info("Looking for team with hash: #{recipient[MATCHER, 1]}")
