@@ -78,4 +78,11 @@ RSpec.describe MailBodyParser, type: :model do
 
     expect(MailBodyParser.new(mail.mail).content).to eq("<p>Please join us for a party at</p>\n\n<p>Bag End</p>")
   end
+
+  it "works with attachments" do
+    raw = create_inbound_email_from_fixture("email_with_attachment", status: :processing)
+    text = MailBodyParser.new(raw.mail).content
+
+    expect(text).to include("Thanks for the quick reply.")
+  end
 end

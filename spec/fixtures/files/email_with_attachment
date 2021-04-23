@@ -1,0 +1,360 @@
+Return-Path: <support+bncBDZNTQGD2EEBB2FOQ6CAMGQEMC3YBOQ@payhere.co>
+Received: by p-pm-inbound01a-aws-euwest1a.inbound.postmarkapp.com (Postfix, from userid 996)
+	id 39C4B404DFA; Thu, 22 Apr 2021 20:07:06 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+	p-pm-inbound01a-aws-euwest1a
+X-Spam-Status: No
+X-Spam-Score: -0.3
+X-Spam-Tests: DKIM_SIGNED,DKIM_VALID,HTML_IMAGE_ONLY_28,HTML_MESSAGE,
+	MAILING_LIST_MULTI,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+Received-SPF: pass (payhere.co: Sender is authorized to use 'support+bncBDZNTQGD2EEBB2FOQ6CAMGQEMC3YBOQ@payhere.co' in 'mfrom' identity (mechanism 'include:aspmx.googlemail.com' matched)) receiver=p-pm-inbound01a-aws-euwest1a; identity=mailfrom; envelope-from="support+bncBDZNTQGD2EEBB2FOQ6CAMGQEMC3YBOQ@payhere.co"; helo=mail-lj1-f198.google.com; client-ip=209.85.208.198
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by p-pm-inbound01a-aws-euwest1a.inbound.postmarkapp.com (Postfix) with ESMTPS id CDDBF405092
+	for <6dc4cf317b6650a6@in.happi.team>; Thu, 22 Apr 2021 20:07:05 +0000 (UTC)
+Received: by mail-lj1-f198.google.com with SMTP id o4-20020a05651c0504b02900bef5ae012asf8166912ljp.23
+        for <6dc4cf317b6650a6@in.happi.team>; Thu, 22 Apr 2021 13:07:05 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1619122025; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=01q1MUGtoq28eiOeOCsdmWQR8vg/B45NF2sC60lFDF+W6LK7ECzmt5jloaxVZbB36D
+         X9VJ82PR7trOoBM+aN8ANKqs9PWIgHFfIwRh/CjuSjnbDDJJ1eCnH8A3pePfxQFOK8Nf
+         jj/8GL02s5qFrCnrXzlditpERdRhtuAiTjQUwLTynQCeCm+olXllWvq77TVBAHJc0V3z
+         /xsk8KS6ExjoWLL/ML9SkLoyyB+opc0V+zof94O/hR+c40HgqIZeQepI2pLSMjl0Sr2R
+         5dPFqb97cwW7uxBtOFqUp9Mnt73eOVuV8LyqAGD6ebQmeBsGf1wDKKtsE2DnDhViamry
+         Ltpg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:list-archive:list-help:list-post:list-id
+         :mailing-list:precedence:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:sender:dkim-signature;
+        bh=UjPvteAD258tl5QI5C31df9iTj9X3AvrPGOb51QlaE4=;
+        b=PTa8C7tWxdoKOa9yrNEAm9SckVHmUlvJmUJUf0/wgyQJgpXxQzPYWXPGJqOwXDtr1O
+         732eYzDmwFOSxr8M8zyRN31qR+ZYCYvUtxaUfkKwfKELz8tZ0qINVlQ8EQkfX1LicsUv
+         bXHTzEefqtUarFMzUI1pi/rm79nH4aN/UipjdvH+/rQpVXs1OPObqJP21kfjsZ8E6Xad
+         bncEnB5Dndlcd+jnxONEw2gGxXHGCrsWJihOlDSXOWzxAGMBoZ6KSzGyrD5R2lu3g4H0
+         FvSIWcgHgAfBv3jZRPR/RdRZ3E+ZX0JLckIbcHOhK7l+/qzqh45ts7AU+/vJAXCbNs0z
+         bIYg==
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@wossom-com.20150623.gappssmtp.com header.s=20150623 header.b=EtsAoAXY;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by domain of carles.montrull@wossom.com) smtp.mailfrom=carles.montrull@wossom.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=payhere.co; s=google;
+        h=sender:mime-version:references:in-reply-to:from:date:message-id
+         :subject:to:x-original-sender:x-original-authentication-results
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-unsubscribe;
+        bh=UjPvteAD258tl5QI5C31df9iTj9X3AvrPGOb51QlaE4=;
+        b=Wo2LOm08CYXph2xwZXOK/K8VZcL99ZPMBAeVxROw5n1dqkP1yAASKE6y43BXpKw8eM
+         G5cT58+KqzII24QH+BUhbPOgDQOp6WBauAq+k8mJIICLCeuXO9NUPQhKZ2pAHpFfFpcm
+         b5U0ICxsXI6FGtrZJYWFoenIuWoAYPOd0Ulaw5568dpRzrIJ0v2NK8bJVfgYU/IyBvKP
+         Tq5iNPouovE+o9L7q59gWLs9CinNRI7cVfOsHDGuBiEDI7h8VRjitfLM84YhJiYUqOQV
+         Jf6yqby9n/4N4HSLB0WrEwQa1NU9pDK4coSdXJtn5y37jnii2sl48UTR6CrkaVfWKUQ+
+         dc1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=sender:x-gm-message-state:mime-version:references:in-reply-to:from
+         :date:message-id:subject:to:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-unsubscribe;
+        bh=UjPvteAD258tl5QI5C31df9iTj9X3AvrPGOb51QlaE4=;
+        b=YpqFbk/+/JecR6xibJUUa7N/lLjqmzz4wi/u3+ZM6WO1HJcVni7rqwIZzF5oGJikhp
+         vNN1Xz0+IXVCpwCkP1G9/HvCjhous8dz0niHzNGxhMzoKl9N81bOsb9vnLd5NQEsdtl0
+         hSCB0b12PFmAzReRIBwU9EG8iK5EuT+ffEcT1kOT1L/CK+YEhL7bO3GdEH9oakA/Cjc8
+         hhlbq4mokTPPlxUw+BZL9h3SWJkoc81C0b2od7fIjfh22NHAbgwJCwbTP1h2a7mnP6Lj
+         sJ7eQQxJCt/THqHN8Lm8pBI0b6UNj2LgFeJ24jy7d0KhDcBlkaBAhPYv+nSp/EtX6lg7
+         5COQ==
+Sender: support@payhere.co
+X-Gm-Message-State: AOAM533zJOwLxOBhgIIqMLJ9HyMj2ZV7jhxqX7B6e55rAwbRjh1r98fF
+	uyW81G3ugMu2v3XjeMOW/D4r1Q==
+X-Google-Smtp-Source: ABdhPJzfZ9ePW6kuMNmaGhHeEkVe+1N4x4G92ROhaVmxVn370M3HACEhorSkqVA27j1S8TkaB4meDQ==
+X-Received: by 2002:a2e:6f15:: with SMTP id k21mr371237ljc.444.1619122025052;
+        Thu, 22 Apr 2021 13:07:05 -0700 (PDT)
+X-BeenThere: support@payhere.co
+Received: by 2002:a2e:5c07:: with SMTP id q7ls1679520ljb.11.gmail; Thu, 22 Apr
+ 2021 13:07:04 -0700 (PDT)
+X-Received: by 2002:a2e:9099:: with SMTP id l25mr386810ljg.206.1619122023980;
+        Thu, 22 Apr 2021 13:07:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1619122023; cv=none;
+        d=google.com; s=arc-20160816;
+        b=FUMKYUuv3aKXOtiUU2aURW/0cbBhTfFj0Vx5cXcHJjrdtaxoDSo4iLOaP5JYtpUy5x
+         BwsHr7GVhh5Y/wao9r5bZXHqI3eDVKjL6r02cNm6lq0VUkAdMmUW9K0t8WWYFLf1G5If
+         vmXjJRfz9LgP1jCB/7jV0O3oGNgU+N1Y8AoCtkRps8ZmDmJjpyHP9JoKvkgY3sBTVh9n
+         dj3nqvlLH1C8xUFtvmQZ5zVR5lBhY2W2GNNRFh+23KVoNoG84D6QpGBiIGDfzDLzPxlJ
+         FWlA9pNox1Q5I0BtWPOALldmuv7UZLiHdVDlY7xsiLTgJN5wamzoOQN59FMlvWZcFkp5
+         UYkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=UjPvteAD258tl5QI5C31df9iTj9X3AvrPGOb51QlaE4=;
+        b=aMvLz0mMOo2GIjfR/xEWsp71cVJaMEoSOBS1NzPvMGLLMVaxAQ0BuF0BMaptF864jy
+         /5CKpF/8UQTtFTMi6JqV/HpTyadxgEShqJTcdu0cPyy5DVem5k9jjiYDhXN9yW5g2mrI
+         dilGw9gvPf4jBabsQweiYH4pX9jfic1zarBo/w97lCz7xOfZV4Uv3kYoR3grMxzWh00/
+         L365zHJ9514oJUa7mJbamJ8hTdSVSj6uzLd9mrbkdkK5wjRuN/Tqhes2bUtDyLVcIwKe
+         BiB5W8m6EyGrYMLoutQuZ7J2P3W/ezV3gfsnOOcMVLqRhtE1mIALg746ZRqvOPmJsQZz
+         Cpqg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@wossom-com.20150623.gappssmtp.com header.s=20150623 header.b=EtsAoAXY;
+       spf=neutral (google.com: 209.85.220.41 is neither permitted nor denied by domain of carles.montrull@wossom.com) smtp.mailfrom=carles.montrull@wossom.com
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id j11sor1735270lfg.163.2021.04.22.13.07.03
+        for <support@payhere.co>
+        (Google Transport Security);
+        Thu, 22 Apr 2021 13:07:03 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.41 is neither permitted nor denied by domain of carles.montrull@wossom.com) client-ip=209.85.220.41;
+X-Received: by 2002:a05:6512:139e:: with SMTP id p30mr50322lfa.489.1619122023364;
+ Thu, 22 Apr 2021 13:07:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <6081d5df5f4c8_2d66e271e8372de@altlabs-shared-1.mail>
+In-Reply-To: <6081d5df5f4c8_2d66e271e8372de@altlabs-shared-1.mail>
+From: Carles Montrull <carles.montrull@wossom.com>
+Date: Thu, 22 Apr 2021 22:06:52 +0200
+Message-ID: <CABjMLy9haFhwWQT8WSPkyQeOTMnDksjpo06=ak=z4=OYWcgaGA@mail.gmail.com>
+Subject: Re: [Netlify] Form submission from contact form: Carles
+To: support@payhere.co
+Content-Type: multipart/mixed; boundary="0000000000000d2c0705c09539c7"
+X-Original-Sender: carles.montrull@wossom.com
+X-Original-Authentication-Results: mx.google.com;       dkim=pass
+ header.i=@wossom-com.20150623.gappssmtp.com header.s=20150623
+ header.b=EtsAoAXY;       spf=neutral (google.com: 209.85.220.41 is neither
+ permitted nor denied by domain of carles.montrull@wossom.com) smtp.mailfrom=carles.montrull@wossom.com
+Precedence: list
+Mailing-list: list support@payhere.co; contact support+owners@payhere.co
+List-ID: <support.payhere.co>
+X-Google-Group-Id: 399717134733
+List-Post: <https://groups.google.com/a/payhere.co/group/support/post>, <mailto:support@payhere.co>
+List-Help: <https://support.google.com/a/payhere.co/bin/topic.py?topic=25838>, <mailto:support+help@payhere.co>
+List-Archive: <https://groups.google.com/a/payhere.co/group/support/>
+List-Unsubscribe: <mailto:googlegroups-manage+399717134733+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/payhere.co/group/support/subscribe>
+
+--0000000000000d2c0705c09539c7
+Content-Type: multipart/alternative; boundary="0000000000000d2c0605c09539c5"
+
+--0000000000000d2c0605c09539c5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for the quick reply.
+
+The logo was a .svg file - attached below. Better .png format? I'm going to
+test with .png to see if it loads well.
+
+Anything that can help at your disposal.
+
+Thanks!!
+
+El jue, 22 abr 2021 a las 22:00, Payhere (<support@payhere.co>) escribi=C3=
+=B3:
+
+> Hi Carles,
+>
+> Sorry you ran into an issue! The problem with your storefront and payment
+> links not loading was due to the logo you uploaded. I'm not sure what was
+> wrong with it, if you could send it across to us that would greatly help =
+us
+> debug the problem.
+>
+> For now, I have removed this logo so the pages will load for you.
+>
+> Best,
+> Team Payhere
+>
+
+--0000000000000d2c0605c09539c5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks for the quick reply.<br><br>The logo was a .svg fil=
+e - attached below. Better .png format? I&#39;m going to test with .png to =
+see if it loads well.<br><br>Anything that can help at your disposal.<br><b=
+r>Thanks!!<br><img id=3D"snvTrackImg" src=3D"https://signaldmain.website/tr=
+ack/1619122011823.png?eId=3D-1212014602" width=3D"1" height=3D"1" alt=3D"">=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+El jue, 22 abr 2021 a las 22:00, Payhere (&lt;<a href=3D"mailto:support@pay=
+here.co">support@payhere.co</a>&gt;) escribi=C3=B3:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><u></u>
+
+ =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+   =20
+ =20
+  <div style=3D"height:100%;margin:0px;font-family:Inter,Helvetica,Arial,sa=
+ns-serif;background-color:rgb(255,255,255);color:rgb(81,84,94);width:100%">
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"widt=
+h:100%;margin:0px;padding:0px;background-color:rgb(255,255,255)">
+      <tbody><tr>
+        <td align=3D"center" style=3D"word-break:break-word;font-family:Int=
+er,Helvetica,Arial,sans-serif;font-size:18px">
+          <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"width:100%;margin:0px;padding:0px">
+           =20
+            <tbody><tr>
+              <td width=3D"700" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"word-break:break-word;font-family:Inter,Helvetica,Arial,sans-serif;font=
+-size:18px;width:100%;margin:0px;padding:0px">
+                <table class=3D"gmail-m_6262600958685915461email-body_inner=
+" align=3D"center" width=3D"700" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"max-width:700px;margin:0px auto;padding:0px;background-color:rgb(255,25=
+5,255)">
+                 =20
+                  <tbody><tr>
+                    <td class=3D"gmail-m_6262600958685915461content-cell" s=
+tyle=3D"word-break:break-word;font-family:Inter,Helvetica,Arial,sans-serif;=
+font-size:18px;padding:45px">
+                      <div>
+                        <div>
+  <div>Hi Carles,<br><br>Sorry you ran into an issue! The problem with your=
+ storefront and payment links not loading was due to the logo you uploaded.=
+ I&#39;m not sure what was wrong with it, if you could send it across to us=
+ that would greatly help us debug the problem.=C2=A0<br><br>For now, I have=
+ removed this logo so the pages will load for you.<br><br>Best,<br>Team Pay=
+here</div>
+</div>
+
+
+                      </div>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </td>
+            </tr>
+          </tbody></table>
+        </td>
+      </tr>
+    </tbody></table>
+  </div>
+
+</blockquote></div>
+
+--0000000000000d2c0605c09539c5--
+--0000000000000d2c0705c09539c7
+Content-Type: image/svg+xml; name="LogoNegro (5).svg"
+Content-Disposition: attachment; filename="LogoNegro (5).svg"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kntbfs4j0>
+X-Attachment-Id: f_kntbfs4j0
+
+PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMu
+b3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNzk4Ljc3IDEyNi41Ij48ZGVmcz48c3R5bGU+LmNs
+cy0xe2ZpbGw6IzFkMWQxZDt9LmNscy0ye2ZpbGw6I2ZmNmMyZjt9PC9zdHlsZT48L2RlZnM+PHRp
+dGxlPkxvZ29OZWdybzwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjkuOTMsMTI0LjIz
+YTExLjc4LDExLjc4LDAsMCwxLDcuMjItMjEuMzEsMTIuNTQsMTIuNTQsMCwwLDEsNy4zOCwyLjMy
+YzguOSw2LjQ0LDE4LjYzLDEwLjQxLDMwLjA1LDEwLjQxLDEwLjU4LDAsMTctNC4xMywxNy0xMC45
+MXYtLjM0YzAtNi40NC00LTkuNzQtMjMuNjctMTQuNy0yMy42Ny02LTM4Ljk1LTEyLjM5LTM4Ljk1
+LTM1LjM2VjU0YzAtMjEsMTcuMTMtMzQuODcsNDEuMTMtMzQuODcsMTQuMjcsMCwyNi43LDMuNjMs
+MzcuMjcsMTAuMjVBMTEuNTMsMTEuNTMsMCwwLDEsMTEzLDM5LjQ4LDExLjgxLDExLjgxLDAsMCwx
+LDEwMSw1MS4yMWExMi40OSwxMi40OSwwLDAsMS02LjU1LTEuODJjLTguNTctNS0xNi42Mi03Ljc2
+LTI0LjY5LTcuNzYtOS45LDAtMTUuMTEsNC40NS0xNS4xMSwxMC4wOFY1MmMwLDcuNiw1LDEwLjA4
+LDI1LjM2LDE1LjIsMjMuODMsNi4xMiwzNy4yNywxNC41NCwzNy4yNywzNC43di4zM2MwLDIzLTE3
+LjgsMzUuODYtNDMuMTQsMzUuODZBNzYuNjcsNzYuNjcsMCwwLDEsMjkuOTMsMTI0LjIzWiIgdHJh
+bnNmb3JtPSJ0cmFuc2xhdGUoLTIxLjU2IC0xNS4zOSkiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9
+Ik03NC4wOCwxNDEuNTdBODAuNyw4MC43LDAsMCwxLDI3Ljg5LDEyN2ExNS4yMSwxNS4yMSwwLDAs
+MSw5LjI2LTI3LjU2LDE2LDE2LDAsMCwxLDkuMzgsMi45NGM5LjEzLDYuNiwxOC4yOCw5Ljc5LDI4
+LjA1LDkuNzksMy4xNSwwLDEzLjQ2LS41NCwxMy40Ni03LjQ3LDAtNC0xLjQ2LTYuNzUtMjEtMTEu
+N0M0NC4yNSw4Ny4zMiwyNS40Miw4MC40NiwyNS40Miw1NC4zNWMwLTIyLjg5LDE4LjM1LTM4LjY0
+LDQ0LjYzLTM4LjY0LDE0LjU1LDAsMjcuNzIsMy42MywzOS4xNSwxMC43OWExNC44NCwxNC44NCww
+LDAsMSw3LjMzLDEzQTE1LjIxLDE1LjIxLDAsMCwxLDEwMSw1NC42NmExNi4xLDE2LjEsMCwwLDEt
+OC4zMi0yLjI5Yy04LjU5LTUtMTUuODctNy4yOS0yMi45Mi03LjI5UzU4LjEsNDcuNjksNTguMSw1
+MS43MWMwLDQuODcsMS44Niw2LjkzLDIyLjczLDEyLjE5czM5LjksMTMuNjEsMzkuOSwzOEMxMjAu
+NzMsMTI2LjE0LDEwMi40MiwxNDEuNTcsNzQuMDgsMTQxLjU3Wm0tMzYuOTMtMzUuMmE4LjM1LDgu
+MzUsMCwwLDAtNS4yMSwxNS4wNmgwYTczLjQ5LDczLjQ5LDAsMCwwLDQyLjExLDEzLjI0YzI0LjQ2
+LDAsMzkuNjUtMTIuNDIsMzkuNjUtMzIuNDEsMC0xNi43MS05LjM5LTI1LjIxLTM0LjY1LTMxLjdD
+NjAuMTksNjUuODEsNTEuMSw2Myw1MS4xLDUyYzAtNy4wNSw1Ljc2LTEzLjg0LDE4LjYxLTEzLjg0
+LDguMjQsMCwxNi44OSwyLjY5LDI2LjQ2LDguMjMsNi4xOCwzLjYsMTMuMzYtLjY0LDEzLjM2LTYu
+OTRhOC4wOCw4LjA4LDAsMCwwLTQtNy4xYy0xMC4zOS02LjUxLTIyLjMtOS43OC0zNS40OS05Ljc4
+QzQ3LjU0LDIyLjYsMzIuNDIsMzUuMjMsMzIuNDIsNTRjMCwxOS45MiwxMS4yLDI2LDM2LjMxLDMy
+LjM1Qzg2LjkzLDkxLDk1LDk0LjY1LDk1LDEwNC40MWMwLDcuMjgtNS4zOCwxNC42OS0yMC40Niwx
+NC42OS0xMS4zMiwwLTIxLjgzLTMuNjItMzIuMTItMTEuMDlBOS4xMiw5LjEyLDAsMCwwLDM3LjE1
+LDEwNi4zN1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMS41NiAtMTUuMzkpIi8+PHBhdGggY2xh
+c3M9ImNscy0xIiBkPSJNMTM1LDc5di0uMzJjMC0zMi44OCwyNS4xOC01OS44MSw2MS4yOC01OS44
+MSwxNy42MiwwLDI5LjU0LDQuNjIsMzkuMjgsMTEuNzNBMTIuNDYsMTIuNDYsMCwwLDEsMjI3Ljgz
+LDUzYTEzLjcsMTMuNywwLDAsMS03LjcxLTIuNDdjLTcuMjMtNS4yOS0xNC43Ny04LjI2LTI0LTgu
+MjYtMTkuOCwwLTM0LjA4LDE2LjE4LTM0LjA4LDM2di4zNEMxNjIsOTguNDYsMTc2LDExNSwxOTYu
+MSwxMTVjMTAuOTMsMCwxOC4xNC0zLjMsMjUuNTMtOS4wOGExMi4xNSwxMi4xNSwwLDAsMSw3Ljcy
+LTIuODEsMTIsMTIsMCwwLDEsMTIuMDksMTEuNzMsMTEuODksMTEuODksMCwwLDEtNC4zNyw5LjA5
+Yy0xMC41OCw5LjA4LTIzLDE0LjUzLTQxLjgsMTQuNTNDMTYwLjY4LDEzOC40NCwxMzUsMTEyLjE4
+LDEzNSw3OVoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMS41NiAtMTUuMzkpIi8+PHBhdGggY2xh
+c3M9ImNscy0xIiBkPSJNMTk1LjI3LDE0MS44OWMtMzUuNzYsMC02My43Ny0yNy42My02My43Ny02
+Mi45MnYtLjMzYzAtMzYuMDYsMjcuODUtNjMuMjUsNjQuNzgtNjMuMjUsMTYuNjIsMCwyOS43Niwz
+Ljk0LDQxLjM2LDEyLjRhMTUuODksMTUuODksMCwwLDEtOS44MSwyOC42OCwxNy4xMSwxNy4xMSww
+LDAsMS05LjU5LTNjLTcuMzctNS4zOC0xNC4xNC03LjcyLTIyLjE0LTcuNzItMTcuNDMsMC0zMC41
+OCwxNC0zMC41OCwzMi41NywwLDE5LjA5LDEzLjE1LDMzLjIzLDMwLjU4LDMzLjIzLDEwLjU1LDAs
+MTctMy4zNCwyMy4zNS04LjMzYTE1LjYyLDE1LjYyLDAsMCwxLDkuOS0zLjU2LDE1LjE0LDE1LjE0
+LDAsMCwxLDEwLDI2Ljg4QzIyNywxMzcuMTQsMjEzLjM4LDE0MS44OSwxOTUuMjcsMTQxLjg5Wm0x
+LTExOS42MmMtMzIuOTQsMC01Ny43OCwyNC4yMy01Ny43OCw1Ni4zN1Y3OWMwLDMxLjk0LDI0LjQx
+LDU2LDU2Ljc3LDU2LDE2LjMsMCwyOC40OC00LjIyLDM5LjUtMTMuNjhhOC4yOCw4LjI4LDAsMCww
+LTUuNDItMTQuNzksOC42Nyw4LjY3LDAsMCwwLTUuNDcsMmMtOSw3LTE3LDkuODktMjcuNzgsOS44
+OS0yMS40MiwwLTM3LjU4LTE3LjEtMzcuNTgtMzkuNzksMC0yMi40NiwxNi41MS0zOS43OSwzNy41
+OC0zOS43OSw5LjQ3LDAsMTcuNzcsMi44NCwyNi4xMSw4LjkzYTkuOTIsOS45MiwwLDAsMCw1LjYy
+LDEuOCw5LDksMCwwLDAsOS4yNy04Ljk0LDkuMjIsOS4yMiwwLDAsMC0zLjYzLTcuMzJDMjIzLjE0
+LDI1Ljc5LDIxMS4zMiwyMi4yNywxOTYuMjgsMjIuMjdaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgt
+MjEuNTYgLTE1LjM5KSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTQwMi40Nyw4Ni45VjMyLjUz
+YTEyLjkzLDEyLjkzLDAsMCwxLDI1Ljg1LDB2NTMuN2MwLDE4Ljg1LDkuNTcsMjguNTksMjUuMzUs
+MjguNTlTNDc5LDEwNS40LDQ3OSw4Ny4wNlYzMi41M2ExMi45MywxMi45MywwLDAsMSwyNS44NSww
+Vjg2LjA3YzAsMzUtMjAsNTIuMjEtNTEuNTQsNTIuMjFTNDAyLjQ3LDEyMC45NCw0MDIuNDcsODYu
+OVoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMS41NiAtMTUuMzkpIi8+PHBhdGggY2xhc3M9ImNs
+cy0xIiBkPSJNNDUzLjM0LDE0MS43M2MtMzQuNTUsMC01NC4zNy0yMC01NC4zNy01NC44M1YzMi41
+NGExNi40MywxNi40MywwLDAsMSwzMi44NSwwVjg2LjIzYzAsMTEuNDgsMy43OSwyNS4xNSwyMS44
+NSwyNS4xNXMyMS44Ni0xMy4yMywyMS44Ni0yNC4zMVYzMi41NGExNi40MywxNi40MywwLDAsMSwz
+Mi44NSwwVjg2LjA3QzUwOC4zOCwxMjEuNDQsNDg4LjMyLDE0MS43Myw0NTMuMzQsMTQxLjczWk00
+MTUuMzksMjMuMjZBOS4yNSw5LjI1LDAsMCwwLDQwNiwzMi41NFY4Ni45YzAsMzAuOTIsMTYuODIs
+NDcuOTQsNDcuMzcsNDcuOTQsMzEsMCw0OC0xNy4zMSw0OC00OC43N1YzMi41NGE5LjQzLDkuNDMs
+MCwwLDAtMTguODUsMFY4Ny4wN2MwLDE5LjgzLTEwLjUyLDMxLjItMjguODYsMzEuMnMtMjguODUt
+MTEuNjgtMjguODUtMzJWMzIuNTRBOS4yNSw5LjI1LDAsMCwwLDQxNS4zOSwyMy4yNloiIHRyYW5z
+Zm9ybT0idHJhbnNsYXRlKC0yMS41NiAtMTUuMzkpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJN
+NTY0LjgzLDQ0LjI3SDU0MGExMS43NCwxMS43NCwwLDEsMSwwLTIzLjQ3aDc1LjU0YTExLjc0LDEx
+Ljc0LDAsMSwxLDAsMjMuNDdINTkwLjY5djgwLjQ2YTEyLjkzLDEyLjkzLDAsMCwxLTI1Ljg2LDBa
+IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjEuNTYgLTE1LjM5KSIvPjxwYXRoIGNsYXNzPSJjbHMt
+MSIgZD0iTTU3Ny43NiwxNDAuOTFhMTYuMTMsMTYuMTMsMCwwLDEtMTYuNDMtMTYuMTd2LTc3SDU0
+MGExNS4xOCwxNS4xOCwwLDEsMSwwLTMwLjM1aDc1LjU0YTE1LjE4LDE1LjE4LDAsMSwxLDAsMzAu
+MzVINTk0LjE5djc3QTE2LjEzLDE2LjEzLDAsMCwxLDU3Ny43NiwxNDAuOTFaTTU0MCwyNC4yNWE4
+LjI5LDguMjksMCwxLDAsMCwxNi41OGgyOC4zNHY4My45MWE5LjQzLDkuNDMsMCwwLDAsMTguODYs
+MFY0MC44M2gyOC4zNGE4LjI5LDguMjksMCwxLDAsMC0xNi41OFoiIHRyYW5zZm9ybT0idHJhbnNs
+YXRlKC0yMS41NiAtMTUuMzkpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNjQ4LjQsMzIuNTNh
+MTIuOTMsMTIuOTMsMCwwLDEsMjUuODUsMHY5Mi4yYTEyLjkzLDEyLjkzLDAsMCwxLTI1Ljg1LDBa
+IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjEuNTYgLTE1LjM5KSIvPjxwYXRoIGNsYXNzPSJjbHMt
+MSIgZD0iTTY2MS4zMiwxNDAuOTFhMTYuMTMsMTYuMTMsMCwwLDEtMTYuNDItMTYuMTdWMzIuNTRh
+MTYuNDMsMTYuNDMsMCwwLDEsMzIuODUsMHY5Mi4yQTE2LjEzLDE2LjEzLDAsMCwxLDY2MS4zMiwx
+NDAuOTFabTAtMTE3LjY1YTkuMjQsOS4yNCwwLDAsMC05LjQyLDkuMjh2OTIuMmE5LjQzLDkuNDMs
+MCwwLDAsMTguODUsMFYzMi41NEE5LjI1LDkuMjUsMCwwLDAsNjYxLjMyLDIzLjI2WiIgdHJhbnNm
+b3JtPSJ0cmFuc2xhdGUoLTIxLjU2IC0xNS4zOSkiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik02
+OTkuMywzMi44N2ExMi43MywxMi43MywwLDAsMSwxMi45Mi0xMi43M2gyLjg2YTEzLjM0LDEzLjM0
+LDAsMCwxLDExLjc1LDYuNjFsMzEuMjMsNTAuMDYsMzEuNC01MC4yMkExMi43LDEyLjcsMCwwLDEs
+ODAxLDIwLjE0aDIuODZhMTIuNzQsMTIuNzQsMCwwLDEsMTIuOTMsMTIuNzN2OTEuODZhMTIuODUs
+MTIuODUsMCwwLDEtMjUuNywwVjY3LjA3bC0yMi42NywzNC4zNmMtMi42OCw0LTYsNi40NC0xMC43
+NCw2LjQ0cy04LjA2LTIuNDctMTAuNzUtNi40NEw3MjQuNjUsNjcuNTd2NTcuNWExMi41MiwxMi41
+MiwwLDAsMS0xMi43NiwxMi4zOSwxMi4zOCwxMi4zOCwwLDAsMS0xMi41OS0xMi4zOVoiIHRyYW5z
+Zm9ybT0idHJhbnNsYXRlKC0yMS41NiAtMTUuMzkpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJN
+ODAzLjksMTQwLjkxYTE2LjI0LDE2LjI0LDAsMCwxLTE2LjI3LTE2LjE3di00Nkw3NzEuNCwxMDMu
+M2MtMy42LDUuMzMtOC4xOSw4LTEzLjY4LDhzLTEwLjA2LTIuNjctMTMuNjYtOEw3MjguMTUsNzku
+MjF2NDUuODZhMTYuMDcsMTYuMDcsMCwwLDEtMTYuMjYsMTUuODQsMTUuOCwxNS44LDAsMCwxLTE2
+LjA5LTE1Ljg0VjMyLjg4QTE2LjEzLDE2LjEzLDAsMCwxLDcxMi4yMiwxNi43aDIuODZBMTYuODMs
+MTYuODMsMCwwLDEsNzI5LjgyLDI1bDI4LjI1LDQ1LjI4LDI4LjQxLTQ1LjQ1QTE2LjIzLDE2LjIz
+LDAsMCwxLDgwMSwxNi43aDIuODZhMTYuMTQsMTYuMTQsMCwwLDEsMTYuNDMsMTYuMTh2OTEuODZB
+MTYuMTMsMTYuMTMsMCwwLDEsODAzLjksMTQwLjkxWm0tOS4yNy04NS40NnY2OS4yOWE5LjM1LDku
+MzUsMCwwLDAsMTguNywwVjMyLjg4YTkuMjYsOS4yNiwwLDAsMC05LjQzLTkuMjlIODAxYTkuMTgs
+OS4xOCwwLDAsMC04LjYsNC44MWwtMzQuMzksNTVMNzIzLjg2LDI4LjU2YTkuODEsOS44MSwwLDAs
+MC04Ljc4LTVoLTIuODZhOS4yNiw5LjI2LDAsMCwwLTkuNDIsOS4yOXY5Mi4xOWE5LjE4LDkuMTgs
+MCwwLDAsMTguMzUsMFY1NS45M2wyOC43Niw0My42M2M0LjU3LDYuNzIsMTEuMDUsNi43NiwxNS42
+NCwwWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIxLjU2IC0xNS4zOSkiLz48cGF0aCBjbGFzcz0i
+Y2xzLTIiIGQ9Ik0zMTguNjEsMTYuNzFBNjIuNTksNjIuNTksMCwxLDAsMzgxLjIsNzkuMyw2Mi41
+OSw2Mi41OSwwLDAsMCwzMTguNjEsMTYuNzFabTI5LjU3LDcxLjE2YTEwLjQxLDEwLjQxLDAsMCwx
+LTMuNzEsNC41N2wtNS44NCw0LjEzTDMyMi40MSwxMDgsMzA2LjMsMTE5LjI4cy00LjI0LDIuNzct
+Ni4yNCwzLjc0YTEzLjU2LDEzLjU2LDAsMCwxLTQuNDIsMSwuNTYuNTYsMCwwLDEtLjUzLS44M2wu
+MzktLjc1LDE0Ljg5LTIxLjQ4czQuMTItNi4zNCw2LjE0LTkuODVTMzE1LjQ1LDg3LDMxNS40NSw4
+N0wyOTEuNSw4MGExNS4zNSwxNS4zNSwwLDAsMS0zLjA3LTEuMjljLTguMzEtOCwxLjY2LTE0LjQ2
+LDEuNjYtMTQuNDZsMTIuODYtOSw3LjU3LTUuMzEsNy00LjkxLDguNjItNnM2LjM1LTQuMzQsOC4w
+Ni01LjQ3YTIzLjM2LDIzLjM2LDAsMCwxLDMuMjYtMS42Ni42My42MywwLDAsMSwuODUuNzZjLS4w
+OC4yMy0uMTYuNDgtLjI0Ljc0YTM2LjczLDM2LjczLDAsMCwxLTMuODEsNy44OGwtMi4yNCwzLjUy
+LTYuODgsMTAuMTZzLTcsMTAuMTYtOC4yMSwxMiwxLjMzLDMuMTQsMS4zMywzLjE0bDIuNjguODIs
+MjEuNzQsNi4zNnM0LjgzLDEuMSw1LjkxLDUuODJBOCw4LDAsMCwxLDM0OC4xOCw4Ny44N1oiIHRy
+YW5zZm9ybT0idHJhbnNsYXRlKC0yMS41NiAtMTUuMzkpIi8+PC9zdmc+
+--0000000000000d2c0705c09539c7--

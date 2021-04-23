@@ -9,12 +9,6 @@ class MailBodyParser
   end
 
   def content
-    text_content = if mail.multipart?
-                     mail.parts.find { |part| part.text? }.decoded
-                   else
-                     mail.decoded
-                   end
-
     resp = EmailReplyParser.parse_reply(text_content)
 
     resp = simple_format(resp) unless has_html?(resp)
@@ -23,5 +17,18 @@ class MailBodyParser
 
   def has_html?(text)
     strip_tags(text) != text
+  end
+
+  def text_content
+    if mail.multipart?
+      parts = mail.parts
+
+      # Multipart emails with attachments have multipart as first part
+      parts = parts.first.parts if parts.first.multipart?
+
+      parts.find { |part| part.text? }&.decoded || parts.first.decoded
+    else
+      mail.decoded
+    end
   end
 end
