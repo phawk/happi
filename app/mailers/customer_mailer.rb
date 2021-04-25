@@ -4,6 +4,7 @@ class CustomerMailer < ApplicationMailer
   def new_reply(message)
     @message  = message
     @message_thread = message.message_thread
+    @team = @message_thread.team
     @customer = @message_thread.customer
 
     metadata["message_id"] = @message.id
