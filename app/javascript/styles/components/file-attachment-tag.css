@@ -1,0 +1,12 @@
+.file-attachment-tag {
+  display: inline-block;
+  padding: 8px;
+  max-width: 100%;
+  border: solid 1px #d7d7d7;
+  border-radius: 6px;
+  padding: 8px 12px !important;
+}
+
+.file-attachment-tag > .attachment__caption {
+  margin: 0 !important;
+}
