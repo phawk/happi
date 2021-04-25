@@ -1,0 +1,274 @@
+Return-Path: <support+bncBAABBAWMSSCAMGQEYQJKTCI@payhere.co>
+Received: by p-pm-inbound02a-aws-euwest1a.inbound.postmarkapp.com (Postfix, from userid 996)
+	id 65CE6404ECD; Sun, 25 Apr 2021 08:19:15 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+	p-pm-inbound02a-aws-euwest1a
+X-Spam-Status: No
+X-Spam-Score: -1.0
+X-Spam-Tests: DKIM_SIGNED,DKIM_VALID,HTML_MESSAGE,MAILING_LIST_MULTI,
+	RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+Received-SPF: pass (payhere.co: Sender is authorized to use 'support+bncBAABBAWMSSCAMGQEYQJKTCI@payhere.co' in 'mfrom' identity (mechanism 'include:aspmx.googlemail.com' matched)) receiver=p-pm-inbound02a-aws-euwest1a; identity=mailfrom; envelope-from="support+bncBAABBAWMSSCAMGQEYQJKTCI@payhere.co"; helo=mail-wr1-f69.google.com; client-ip=209.85.221.69
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by p-pm-inbound02a-aws-euwest1a.inbound.postmarkapp.com (Postfix) with ESMTPS id 21F2E404BBB
+	for <6dc4cf317b6650a6@in.happi.team>; Sun, 25 Apr 2021 08:19:15 +0000 (UTC)
+Received: by mail-wr1-f69.google.com with SMTP id 91-20020adf92e40000b029010470a9ebc4sf16144330wrn.14
+        for <6dc4cf317b6650a6@in.happi.team>; Sun, 25 Apr 2021 01:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=payhere.co; s=google;
+        h=sender:from:to:subject:thread-topic:thread-index:date:message-id
+         :references:in-reply-to:accept-language:content-language
+         :mime-version:x-original-sender:x-original-authentication-results
+         :precedence:mailing-list:list-id:list-post:list-help:list-archive
+         :list-unsubscribe;
+        bh=8yER78gNkDKQPTuTH82okqQkRLue3IWKkKeHKaKdzyQ=;
+        b=qJmyqzGp5w50OwDwKBGEPLwiKXk+v8BuPzcuDP0Ufl+q+GM8E0fxUHBkSPRR594VsB
+         5rr6A6QCfWcbacYMxJ/7emzAvxddzPvDgyojxHlbZSlkCq8NnB2Qr6fKFUEIGjf6864E
+         F0N5CgbdvMT8bznvhoO+NYDMIFFav/FVjmUfuN7tz6ezCEsDrjs0jVF0khcO3vTwbMyj
+         u8wqWVPPJBBKk3hD/J1L+0Dy4bTpw1n/gCngTg++qExxBrJKGtQ0VifyoawaSfjPRtTG
+         ZwnZYJ8QwW9ZZC8Tz2umbMK9fPsV02hB7Q3cRdRhzp5MF/lKdOAwyryenLgg18Q/UYTH
+         /GMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=sender:x-gm-message-state:from:to:subject:thread-topic:thread-index
+         :date:message-id:references:in-reply-to:accept-language
+         :content-language:mime-version:x-original-sender
+         :x-original-authentication-results:precedence:mailing-list:list-id
+         :x-spam-checked-in-group:list-post:list-help:list-archive
+         :list-unsubscribe;
+        bh=8yER78gNkDKQPTuTH82okqQkRLue3IWKkKeHKaKdzyQ=;
+        b=b1PNC8TLAIbMaI0o3ZND59Z3ZiE6LOd/ZvCfe1iyQ+Pw3XMmLr1tmjIpxb8THka/VD
+         Vx62keJoqxXCiOLUZZStRoeA9LMQRD+c8AiLvyTUi1JM7DSZnNW9tJfea1sekaHRyU5e
+         FBLK/WusPC/rkX7QAmQs2H9Hd9e7HrV4jXQhtahCEg140Dp/14wpqbXz4GaUoFhQlFAg
+         qZau2GzNXjkaZG8i1YZbO9IeM8fOIjUn68u08mDyxry9hOSbmp7QbO7mnp+od7em9cqf
+         80NBb/yMI5F+zwNMxJ0UbCxzepZc+FDMEmp+FCYjcdoCrHarpSkJJ/Sgd1uSdxBcuxo1
+         T97Q==
+Sender: support@payhere.co
+X-Gm-Message-State: AOAM533z/wqHdVGtMOtCOflWNmS/6Vzu8NNWhtLflCm7aL4B9+kuZqU7
+	UtZCfGW+rGZBtzZO0yFs0AI+Sg==
+X-Google-Smtp-Source: ABdhPJxaaLbhhzAmEHFi7kLVw+a8BEzc5DAQKqdKwavVMbgqFeaYFFI3MCkNK5k/OpFtNVRK/dhK9Q==
+X-Received: by 2002:a5d:4e81:: with SMTP id e1mr15665757wru.305.1619338754680;
+        Sun, 25 Apr 2021 01:19:14 -0700 (PDT)
+X-BeenThere: support@payhere.co
+Received: by 2002:a1c:49d4:: with SMTP id w203ls6104238wma.2.gmail; Sun, 25
+ Apr 2021 01:19:14 -0700 (PDT)
+X-Received: by 2002:a1c:6808:: with SMTP id d8mr13424251wmc.147.1619338753990;
+        Sun, 25 Apr 2021 01:19:13 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1619338753; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=mzQ9SjIjEu7Y5XEmsDJv2M+NgJiqx615jCD/foS2JJ5AeJlSSo+EQc9CsRZ6v3aUbe
+         Yu3saFkqg2Pk4+FLBAJHRDNSujNNgki9iHuhRM9MR7wYmipgCSeh07a/IvRnrsKX5U+J
+         yoEfKe7LgQJBXbjTf29VI2mAJopmzyFOS3uCMToKi9a1YKmgIBf9bcaC6S/XK5lD9Etj
+         tF1XuSISt2ohSeuuAPNj6KTg5u01XXgS0rJKYBP8bJPCUV5x52zgOyWdh2NPluDIdQJF
+         rA1n/ZeC7ZsLJy5zoejLGlFIPEqvrPda512kff8YNZRL6urIJyuDwM8PA62orFuxhLVo
+         /yIQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from;
+        bh=8yER78gNkDKQPTuTH82okqQkRLue3IWKkKeHKaKdzyQ=;
+        b=PMfqrKubWKVmsdbgsR3NT1TdIGhfEqnVCV/vtqftc13wLz1TuKgOisALifah50zFvr
+         v9aX54BNhu7MJMF8HmV1QwzPK/2PlO+Jz8qUKv1PmMBliBT3QrEkNthsVXbahYGcS0NB
+         /EVUaH0i8Xv8TyLt9kTJzWikmyU/WfeexDs3vqppvE3kIAtwO0e4F7amypWPxCVAuY1E
+         4aNyAwV+AdbwwvyHfZBtXD2rDYpsMwPG7P6p8uLCYZxyWcU7KwUAVlgv+BbHo00vK5R9
+         7JRnO9egUFAGpQqbHcAc5fmZ5BgveHOn4nXjBA+5uYkjvA1swavc6uZXy2q5fogaKoMz
+         ch+Q==
+ARC-Authentication-Results: i=2; mx.google.com;
+       arc=pass (i=1 spf=pass spfdomain=centrestagestrategy.com dkim=pass dkdomain=centrestagestrategy.com dmarc=pass fromdomain=centrestagestrategy.com);
+       spf=neutral (google.com: 40.107.11.90 is neither permitted nor denied by best guess record for domain of howard@centrestagestrategy.com) smtp.mailfrom=howard@centrestagestrategy.com;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=centrestagestrategy.com
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com (mail-eopbgr110090.outbound.protection.outlook.com. [40.107.11.90])
+        by mx.google.com with ESMTPS id l13si12321054wrt.345.2021.04.25.01.19.13
+        for <support@payhere.co>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 25 Apr 2021 01:19:13 -0700 (PDT)
+Received-SPF: neutral (google.com: 40.107.11.90 is neither permitted nor denied by best guess record for domain of howard@centrestagestrategy.com) client-ip=40.107.11.90;
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e9EkfxJRC7P/S9852FqZQ0Q3eZ5B29x74+5omxWH2BW8uwMXZYsDpQt74qqXKtbO6GMcQ9bkodIIVZjLKX2GNUFLImiH9Mz2yOXJsA2hojnygEqVdr/d1MBABYjD8OskS5sVojP/4kHL8L+uexdWgnusAativsiCddgGM955KIUTjyOVSG0Rsn5CvoZBXnFuoDn7MlGOSdbz4m4bYZI+Wee5JOIp/HKN5Unpnz2oOmYgYxVJUEZ9HzsTKYAwF0BYqtavmrueBj6nrBdrrayrjaIfSEdQgSCHivMPvV9MC4+HokzNc7RSOBOhc47tK8ZIJ7Hk4CYxqpbr7EDVArCMtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8yER78gNkDKQPTuTH82okqQkRLue3IWKkKeHKaKdzyQ=;
+ b=mkwJ8F+5AzWOZHnwxc8Vn6+7HVU0IUApmFz5zoJM56kP1U14A6TrbHOBkAPGUJx+U+fqDViPsSq8Ah/k0QB7k+89i0MM+r3fdr+x7Uo17H6jMkEvfnaIIUagca3dOkHJNIyjP7vCkw9/v2oUn1lNLR1532VepdhY2TD2TKxuy2a+ehNxNdLEoZsQ8a+47XmzjDdN7dj+YAcPjJX6aHmUl4bxv6aBJVAF2rixgiK9zWMkhQyJqMeAv4qyLauHqz09YDbD4j9WnDp621p7m3uCdJ9/+bq/6bSYhXj4IxDZ63WPzg3t/zQQtL2Gj202RPCCIt4wF7tOeua0Nw90bRv1Ig==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=centrestagestrategy.com; dmarc=pass action=none
+ header.from=centrestagestrategy.com; dkim=pass
+ header.d=centrestagestrategy.com; arc=none
+Received: from CWXP265MB1751.GBRP265.PROD.OUTLOOK.COM (2603:10a6:401:46::13)
+ by CWLP265MB3859.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:ef::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.25; Sun, 25 Apr
+ 2021 08:19:13 +0000
+Received: from CWXP265MB1751.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::c55e:94b6:ead7:1905]) by CWXP265MB1751.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::c55e:94b6:ead7:1905%3]) with mapi id 15.20.4042.027; Sun, 25 Apr 2021
+ 08:19:13 +0000
+From: Howard Whiteson <howard@centrestagestrategy.com>
+To: "support@payhere.co" <support@payhere.co>
+Subject: Re: Add images?
+Thread-Topic: Add images?
+Thread-Index: AQHXOaXO1ODwryC6okOamjzkg8bcJqrE5A1+
+Date: Sun, 25 Apr 2021 08:19:12 +0000
+Message-ID: <FC8E8311-F92F-4C79-83CD-EDC3F87545E5@centrestagestrategy.com>
+References: <60851c253ecb8_2efe4b889087438@altlabs-shared-1.mail>
+In-Reply-To: <60851c253ecb8_2efe4b889087438@altlabs-shared-1.mail>
+Accept-Language: en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [112.65.61.182]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a4556ad8-8d6f-47b9-3fc9-08d907c2cf36
+x-ms-traffictypediagnostic: CWLP265MB3859:
+x-microsoft-antispam-prvs: <CWLP265MB38599F8BBB177736ED64BC0DC6439@CWLP265MB3859.GBRP265.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:3826;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 6KPv1ITRJCgwWDug/H6nDn5AUMk6st8E3xBhqU0H1JWXVGwU3fSuYNQoXe2COrMzUmt/E6/39cv/l7vMmig5ebYeup/Qs4Fx31h9+wzfrodXReKaORya1k/RPPU6KB6KSRbHejmtV1UH4TvyZpYxs6K7oBPlitNiwks80tNglTtBfvaiQGftdCfnzyX+35ET54m9ynp6dBY1WZq1RNWHSXrHyqVRJc13mAsvK9B4qvAFUpUnYuGm9/Vp9se3LV0TDQXjnmTpv/AO+h5OLXPsSTw3KcJPqITxMiZkWnJ2FDETGdef58q2gKg0VuqzJkeyH94jwLYrxAizoVwrlDzE1dbUI7MhjPzw8UT0MMxQudQsgvHGeq6iuU3spV3F0kNYiWgFmfeMmLc3ykQu9ajj109bMsuQd0UWGBbLec4nZzF3JO1QDMan6S+AABcLMa5ke3u6OMC41TMBO1JSQ6GIz2PpNdbXz6EIbx7PXyQ/jB1RH/rfcxP/4ZJMYlY/aOQInjzWu/daCWnFwkZ3XQ8nudvIynCTT7mZpTn27xYt6rtqwbFQQDJss4RzIFYp7UUKe3WpYf43Yw4wm0pS3Q7VTNFt7Ceqq4WXnqKSxxaTL8o2iAbYk/aiV6xq5zcixoyXqNmQHkNcvEpGs0OEjeSSkw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP265MB1751.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(396003)(376002)(39830400003)(346002)(136003)(366004)(2616005)(83380400001)(478600001)(316002)(86362001)(5660300002)(6512007)(71200400001)(7116003)(6486002)(66946007)(66476007)(2906002)(64756008)(6916009)(38100700002)(3480700007)(6506007)(186003)(122000001)(53546011)(91956017)(33656002)(8936002)(26005)(558084003)(8676002)(76116006)(36756003)(66556008)(66446008)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?utf-8?B?MXo4V0M5NDBMQUp0L3dHSUtGRVF5K21lZW5DY0UzeDhYanBHY21QZVNZRkZN?=
+ =?utf-8?B?REtvbW9ta2Uvc1cvYTFkc2N5bHQwVy9La1hFZWpvM25rZjRqcXYycDFTQk1k?=
+ =?utf-8?B?Q293RU4wT3I4eURMZWtvQ3VNMHQycGxOdjJJRFJGNTBydCtKK25ua0FWKzh5?=
+ =?utf-8?B?MTlXQnluSEtJbDVTWkR1TlBEWVpPRVoxeENIWWZDWTlySzRUQXorQ0VvTHAz?=
+ =?utf-8?B?VWVEWmdhYjFxK3B0QWZqRWdDRWQ4WXhubllidTJ6YTRVMkhQb3pmZ0pYR00r?=
+ =?utf-8?B?dnZpM0hPMERpUkh1WnNVcGVrazNBWFlXaVpFSWN3MXVkak43ckJTQ0FGOUNw?=
+ =?utf-8?B?SUliWHkwVEtOM0NrRDVwcWJ1Ziszdmp2MU1TdWFBQ1k2UmpEK3BTTDVFaUo3?=
+ =?utf-8?B?ZDRFR1FySUJYWTVvdEs5b0hwZ1ZiQTVIOVdheEZqa1hjQi9EOGh6RDl1dHY2?=
+ =?utf-8?B?bzJISjN0UnlGMGY1aDduOTRqTnpkSzRFV09TSFdkTTRrWStpQW1SbTRhYTla?=
+ =?utf-8?B?alNjNDhvYVhsaTFieEZuNnd4S3o3RG40bkJGbU9kd1UzOUdzdVpteWpCQjk1?=
+ =?utf-8?B?ZHBVL1U0cWRtREZJTXduVnpkT2ZKNE5YajkyYkdEWnFVc21oWjI4QWdzWG1C?=
+ =?utf-8?B?K2MzYlZhc0Vqd2JPL1pZTjlEU0c1czlab3FMYTJhZy8rdG1Xb3k5bG1abWg4?=
+ =?utf-8?B?cmZHRXZDVGdJZVZCaitnaEdPWWp5ZEdzSTh0SkhOSHdYOUQ1c2FzblQ1QTI2?=
+ =?utf-8?B?dzVvalNlYkN5RVRiMFJudkZhTVpFVTFiNWJORzU5bjQ2S0RteVlOT1FiY3lK?=
+ =?utf-8?B?allGMXVVajFVN1lGSFUzWkNaNjA3V3k2R0FtT25HQTFDTEd2RjJ1SG1MYXpC?=
+ =?utf-8?B?a3R2aVhJcDZnUE1nVkNMcGJsZkNwU1ovN2UrYUd0bXE0YVFGUnl1TStKeGxB?=
+ =?utf-8?B?VFJLSm1IcFI2dFlSYnZqbmZDdU40UGpjc3ZwUHdzY0JYN3V3a0tRbk0vT2Zj?=
+ =?utf-8?B?T2hLeW9GTkVWbkQwOWJMaFlVSCs2SU1XTThkeTgvaWw0Vmwyc2EvNDl1V2JO?=
+ =?utf-8?B?VjZ4Y3ZsQmRIQ1JuZk5kd2VrNlhqM2ppVUJJZEZGNnNRWjEzaFR0QTVFQ2FE?=
+ =?utf-8?B?OCszM3QwUHg1TkNQTkFMUHpqdytmL2FGeUVHRDJlOUNFWG5lQjNqNzIrWXQz?=
+ =?utf-8?B?c3NueUVaNGk1cDFEMnF3WlhVRjBYSXZ0VjZXR2J0Yk4xcHp1a3pXemtBaU5H?=
+ =?utf-8?B?R0hFbEVNdXFGYkZiYUpkT2FaWkdKRFRDcWIxT3lpYnN1eStXYTFGMHhScFRD?=
+ =?utf-8?B?czZmOXlJYSt0SUdXMHJmVzdtMWUyNDdMd25wcDJZaEI4NWprYkpXMElIdWR3?=
+ =?utf-8?B?dnhGVzVPcHFiQU16Qmlaa0taMjQ1dmRQNXFJTzVUZWF0RkUvSU5wMjlkcWMy?=
+ =?utf-8?B?V3VuSFhmYWdQTjQ4YjZqNUFCMHFRbzVWM2N5WVVSTGZFdVV3R3poQmVkNDRv?=
+ =?utf-8?B?Z2FBQWF2RTBVRFJ6bHA1NmdDaGRVMUhVekFDTmJneXhRWTlUeUdjTG5NQ0FR?=
+ =?utf-8?B?Qkczc1JOaHJ1ZmRjb3lmaWpyRVM2ZHFtelFxUm9UNW9xQWRBTjZ4dGlKL3hM?=
+ =?utf-8?B?L1pYVnJhZUZYUzlmejNrdnUvRkw2MVE5QnRFRE50L28rYVZtVk11TVVBb1Vo?=
+ =?utf-8?B?dlN2RTh1MG9vNTJadUVkengwQW9INHNIbzZGeHNqcWVZMWpMOXdWc2xMOVVs?=
+ =?utf-8?Q?BOd/JA/hVZr7Di0Q3gdcdRoUB83Ndm3kHKJSVT4?=
+x-ms-exchange-transport-forked: True
+Content-Type: multipart/alternative;
+	boundary="_000_FC8E8311F92F4C7983CDEDC3F87545E5centrestagestrategycom_"
+MIME-Version: 1.0
+X-OriginatorOrg: centrestagestrategy.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB1751.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4556ad8-8d6f-47b9-3fc9-08d907c2cf36
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Apr 2021 08:19:13.0055
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9e715d3-7b67-43fa-92db-376a042710e4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rtSR99A0It5dJiU63nP0XrLt9nsX7JI6e7i4n8LNF/pUgvyL+dhEsQTDewEPVZhwxASWutK44/0UnJjG069yiy+CRjA7Km1v2tlM8qoN758=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB3859
+X-Original-Sender: howard@centrestagestrategy.com
+X-Original-Authentication-Results: mx.google.com;       arc=pass (i=1 spf=pass
+ spfdomain=centrestagestrategy.com dkim=pass dkdomain=centrestagestrategy.com
+ dmarc=pass fromdomain=centrestagestrategy.com);       spf=neutral
+ (google.com: 40.107.11.90 is neither permitted nor denied by best guess
+ record for domain of howard@centrestagestrategy.com) smtp.mailfrom=howard@centrestagestrategy.com;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=centrestagestrategy.com
+Precedence: list
+Mailing-list: list support@payhere.co; contact support+owners@payhere.co
+List-ID: <support.payhere.co>
+X-Google-Group-Id: 399717134733
+List-Post: <https://groups.google.com/a/payhere.co/group/support/post>, <mailto:support@payhere.co>
+List-Help: <https://support.google.com/a/payhere.co/bin/topic.py?topic=25838>, <mailto:support+help@payhere.co>
+List-Archive: <https://groups.google.com/a/payhere.co/group/support/>
+List-Unsubscribe: <mailto:googlegroups-manage+399717134733+unsubscribe@googlegroups.com>,
+ <https://groups.google.com/a/payhere.co/group/support/subscribe>
+
+--_000_FC8E8311F92F4C7983CDEDC3F87545E5centrestagestrategycom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+SGkNCg0KVGhhbmsgeW91LiBDYW4geW91IGtpbmRseSBwb2ludCBtZSB0byB5b3VyIHN0b3JlZnJv
+bnQ/DQoNCkhvd2FyZA0KDQpPbiAyNSBBcHIgMjAyMSwgYXQgMTU6MzcsIFBheWhlcmUgPHN1cHBv
+cnRAcGF5aGVyZS5jbz4gd3JvdGU6DQoNCu+7vw0KSGkgSG93YXJkLA0KDQpZZXMsIGluIGZhY3Qg
+b3VyIHN0b3JlZnJvbnQgZmVhdHVyZSBhbGxvd3MgeW91IHRvIGNyZWF0ZSBhIG1pbmkgbGFuZGlu
+ZyBwYWdlIHdpdGggeW91ciBwYXltZW50IGxpbmsgYnVpbHQgaW4uDQoNCkhvcGUgdGhhdCBoZWxw
+cyENClBheWhlcmUNCg==
+
+--_000_FC8E8311F92F4C7983CDEDC3F87545E5centrestagestrategycom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQpI
+aQ0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+VGhhbmsgeW91LiBDYW4geW91IGtpbmRseSBwb2lu
+dCBtZSB0byB5b3VyIHN0b3JlZnJvbnQ/PGJyPg0KPGJyPg0KPGRpdiBkaXI9Imx0ciI+SG93YXJk
+PC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQpPbiAyNSBBcHIgMjAyMSwgYXQgMTU6MzcsIFBh
+eWhlcmUgJmx0O3N1cHBvcnRAcGF5aGVyZS5jbyZndDsgd3JvdGU6PGJyPg0KPGJyPg0KPC9kaXY+
+DQo8ZGl2IGRpcj0ibHRyIj7vu78NCjxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0
+aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wIj4NCjxtZXRhIG5hbWU9IngtYXBwbGUt
+ZGlzYWJsZS1tZXNzYWdlLXJlZm9ybWF0dGluZyI+DQo8bWV0YSBuYW1lPSJjb2xvci1zY2hlbWUi
+IGNvbnRlbnQ9ImxpZ2h0IGRhcmsiPg0KPG1ldGEgbmFtZT0ic3VwcG9ydGVkLWNvbG9yLXNjaGVt
+ZXMiIGNvbnRlbnQ9ImxpZ2h0IGRhcmsiPg0KIDx0aXRsZT48L3RpdGxlPg0KPCEtLVtpZiBtc29d
+Pg0KICAgIDxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQogICAgICAuZi1mYWxsYmFjayAgew0KICAg
+ICAgICBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7DQogICAgICB9DQogICAgPC9zdHls
+ZT4NCiAgPCFbZW5kaWZdLS0+PHN0eWxlPkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG1heC13aWR0
+aDogNTAwcHgpIHsNCi5idXR0b257d2lkdGg6MTAwJSAhaW1wb3J0YW50O3RleHQtYWxpZ246Y2Vu
+dGVyICFpbXBvcnRhbnR9DQp9DQpAbWVkaWEgb25seSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDYw
+MHB4KSB7DQouZW1haWwtYm9keV9pbm5lcnt3aWR0aDoxMDAlICFpbXBvcnRhbnR9DQouY29udGVu
+dC1jZWxse3BhZGRpbmc6MjVweH0NCn0NCkBtZWRpYSAocHJlZmVycy1jb2xvci1zY2hlbWU6IGRh
+cmspIHsNCmJvZHl7YmFja2dyb3VuZC1jb2xvcjojMzMzMzMzICFpbXBvcnRhbnQ7Y29sb3I6I0ZG
+RiAhaW1wb3J0YW50fQ0KLmVtYWlsLWJvZHl7YmFja2dyb3VuZC1jb2xvcjojMzMzMzMzICFpbXBv
+cnRhbnQ7Y29sb3I6I0ZGRiAhaW1wb3J0YW50fQ0KLmVtYWlsLWJvZHlfaW5uZXJ7YmFja2dyb3Vu
+ZC1jb2xvcjojMzMzMzMzICFpbXBvcnRhbnQ7Y29sb3I6I0ZGRiAhaW1wb3J0YW50fQ0KLmVtYWls
+LWNvbnRlbnR7YmFja2dyb3VuZC1jb2xvcjojMzMzMzMzICFpbXBvcnRhbnQ7Y29sb3I6I0ZGRiAh
+aW1wb3J0YW50fQ0KLmVtYWlsLXdyYXBwZXJ7YmFja2dyb3VuZC1jb2xvcjojMzMzMzMzICFpbXBv
+cnRhbnQ7Y29sb3I6I0ZGRiAhaW1wb3J0YW50fQ0KLmVtYWlsLW1hc3RoZWFke2JhY2tncm91bmQt
+Y29sb3I6IzMzMzMzMyAhaW1wb3J0YW50O2NvbG9yOiNGRkYgIWltcG9ydGFudH0NCi5lbWFpbC1m
+b290ZXJ7YmFja2dyb3VuZC1jb2xvcjojMzMzMzMzICFpbXBvcnRhbnQ7Y29sb3I6I0ZGRiAhaW1w
+b3J0YW50fQ0KcHtjb2xvcjojRkZGICFpbXBvcnRhbnR9DQp1bHtjb2xvcjojRkZGICFpbXBvcnRh
+bnR9DQpvbHtjb2xvcjojRkZGICFpbXBvcnRhbnR9DQpibG9ja3F1b3Rle2NvbG9yOiNGRkYgIWlt
+cG9ydGFudH0NCmgxe2NvbG9yOiNGRkYgIWltcG9ydGFudH0NCmgye2NvbG9yOiNGRkYgIWltcG9y
+dGFudH0NCmgze2NvbG9yOiNGRkYgIWltcG9ydGFudH0NCnNwYW57Y29sb3I6I0ZGRiAhaW1wb3J0
+YW50fQ0KLnB1cmNoYXNlX2l0ZW17Y29sb3I6I0ZGRiAhaW1wb3J0YW50fQ0KLmF0dHJpYnV0ZXNf
+Y29udGVudHtiYWNrZ3JvdW5kLWNvbG9yOiMyMjIgIWltcG9ydGFudH0NCi5kaXNjb3VudHtiYWNr
+Z3JvdW5kLWNvbG9yOiMyMjIgIWltcG9ydGFudH0NCi5lbWFpbC1tYXN0aGVhZF9uYW1le3RleHQt
+c2hhZG93Om5vbmUgIWltcG9ydGFudH0NCn08L3N0eWxlPg0KPHRhYmxlIGNsYXNzPSJlbWFpbC13
+cmFwcGVyIiB3aWR0aD0iMTAwJSIgY2VsbHBhZGRpbmc9IjAiIGNlbGxzcGFjaW5nPSIwIiByb2xl
+PSJwcmVzZW50YXRpb24iIHN0eWxlPSJ3aWR0aDoxMDAlO21hcmdpbjowO3BhZGRpbmc6MDstcHJl
+bWFpbGVyLXdpZHRoOjEwMCU7LXByZW1haWxlci1jZWxscGFkZGluZzowOy1wcmVtYWlsZXItY2Vs
+bHNwYWNpbmc6MDtiYWNrZ3JvdW5kLWNvbG9yOiNGRkYiPg0KPHRib2R5Pg0KPHRyPg0KPHRkIGFs
+aWduPSJjZW50ZXIiIHN0eWxlPSJ3b3JkLWJyZWFrOmJyZWFrLXdvcmQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7SW50ZXImcXVvdDssIEhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWY7bGluZS1oZWlnaHQ6
+MS42O2ZvbnQtc2l6ZToxOHB4Ij4NCjx0YWJsZSBjbGFzcz0iZW1haWwtY29udGVudCIgd2lkdGg9
+IjEwMCUiIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMCIgcm9sZT0icHJlc2VudGF0aW9u
+IiBzdHlsZT0id2lkdGg6MTAwJTttYXJnaW46MDtwYWRkaW5nOjA7LXByZW1haWxlci13aWR0aDox
+MDAlOy1wcmVtYWlsZXItY2VsbHBhZGRpbmc6MDstcHJlbWFpbGVyLWNlbGxzcGFjaW5nOjAiPg0K
+PCEtLSBFbWFpbCBCb2R5IC0tPg0KPHRib2R5Pg0KPHRyPg0KPHRkIGNsYXNzPSJlbWFpbC1ib2R5
+IiB3aWR0aD0iNzAwIiBjZWxscGFkZGluZz0iMCIgY2VsbHNwYWNpbmc9IjAiIHN0eWxlPSJ3b3Jk
+LWJyZWFrOmJyZWFrLXdvcmQ7Zm9udC1mYW1pbHk6JnF1b3Q7SW50ZXImcXVvdDssIEhlbHZldGlj
+YSwgQXJpYWwsIHNhbnMtc2VyaWY7bGluZS1oZWlnaHQ6MS42O2ZvbnQtc2l6ZToxOHB4O3dpZHRo
+OjEwMCU7bWFyZ2luOjA7cGFkZGluZzowOy1wcmVtYWlsZXItd2lkdGg6MTAwJTstcHJlbWFpbGVy
+LWNlbGxwYWRkaW5nOjA7LXByZW1haWxlci1jZWxsc3BhY2luZzowIj4NCjx0YWJsZSBjbGFzcz0i
+ZW1haWwtYm9keV9pbm5lciIgYWxpZ249ImNlbnRlciIgd2lkdGg9IjcwMCIgY2VsbHBhZGRpbmc9
+IjAiIGNlbGxzcGFjaW5nPSIwIiByb2xlPSJwcmVzZW50YXRpb24iIHN0eWxlPSJtYXgtd2lkdGg6
+NzAwcHg7bWFyZ2luOjAgYXV0bztwYWRkaW5nOjA7LXByZW1haWxlci13aWR0aDo3MDBweDstcHJl
+bWFpbGVyLWNlbGxwYWRkaW5nOjA7LXByZW1haWxlci1jZWxsc3BhY2luZzowO2JhY2tncm91bmQt
+Y29sb3I6I0ZGRkZGRiI+DQo8IS0tIEJvZHkgY29udGVudCAtLT4NCjx0Ym9keT4NCjx0cj4NCjx0
+ZCBjbGFzcz0iY29udGVudC1jZWxsIiBzdHlsZT0id29yZC1icmVhazpicmVhay13b3JkO2ZvbnQt
+ZmFtaWx5OiZxdW90O0ludGVyJnF1b3Q7LCBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmO2xp
+bmUtaGVpZ2h0OjEuNjtmb250LXNpemU6MThweDtwYWRkaW5nOjQ1cHgiPg0KPGRpdiBjbGFzcz0i
+Zi1mYWxsYmFjayI+DQo8ZGl2IGNsYXNzPSJ0cml4LWNvbnRlbnQiPg0KPGRpdj5IaSBIb3dhcmQs
+PGJyPg0KPGJyPg0KWWVzLCBpbiBmYWN0IG91ciBzdG9yZWZyb250IGZlYXR1cmUgYWxsb3dzIHlv
+dSB0byBjcmVhdGUgYSBtaW5pIGxhbmRpbmcgcGFnZSB3aXRoIHlvdXIgcGF5bWVudCBsaW5rIGJ1
+aWx0IGluLjxicj4NCjxicj4NCkhvcGUgdGhhdCBoZWxwcyE8YnI+DQpQYXloZXJlPC9kaXY+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC90ZD4NCjwvdHI+DQo8L3Rib2R5Pg0KPC90YWJsZT4NCjwvdGQ+DQo8
+L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8L3RkPg0KPC90cj4NCjwvdGJvZHk+DQo8L3RhYmxl
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+
+--_000_FC8E8311F92F4C7983CDEDC3F87545E5centrestagestrategycom_--

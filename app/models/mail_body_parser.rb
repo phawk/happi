@@ -2,6 +2,7 @@ class MailBodyParser
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
 
+  attr_accessor :found_text_part
   attr_reader :mail
 
   def initialize(mail)
@@ -10,8 +11,7 @@ class MailBodyParser
 
   def content
     resp = EmailReplyParser.parse_reply(text_content)
-
-    resp = simple_format(resp) unless has_html?(resp)
+    resp = simple_format(resp) if found_text_part
     resp
   end
 
@@ -26,8 +26,14 @@ class MailBodyParser
       # Multipart emails with attachments have multipart as first part
       parts = parts.first.parts if parts.first.multipart?
 
-      parts.find { |part| part.text? }&.decoded || parts.first.decoded
+      if text_part = parts.find { |part| part.text? }
+        self.found_text_part = true
+        text_part.decoded
+      else
+        parts.first.decoded
+      end
     else
+      self.found_text_part = true
       mail.decoded
     end
   end

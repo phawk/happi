@@ -85,4 +85,13 @@ RSpec.describe MailBodyParser, type: :model do
 
     expect(text).to include("Thanks for the quick reply.")
   end
+
+  it "works with multipart html / plain text" do
+    raw = create_inbound_email_from_fixture("plain_text_email", status: :processing)
+    mail = raw.mail
+
+    text = MailBodyParser.new(raw.mail).content
+
+    expect(text).to include("<p>Hi</p>")
+  end
 end
