@@ -1,22 +1,24 @@
-<%= link_to message_thread_path(message_thread), class: "mb-4 flex items-center", id: dom_id(message_thread) do %>
-  <%= avatar_tag message_thread.customer, size: 50, extra_class: "mr-4 flex-shrink-0" %>
-  <div class=" flex-grow">
+<%= link_to message_thread_path(message_thread), class: "mb-8 sm:mb-4 flex flex-col sm:flex-row sm:items-center", id: dom_id(message_thread) do %>
+  <%= avatar_tag message_thread.customer, size: 50, extra_class: "h-10 w-10 mb-1 sm:mb-0 sm:mr-4 sm:h-12 sm:w-12 flex-shrink-0" %>
+  <div class="flex-grow">
     <h3 class="text-gray-800 text-xl font-semibold">
       <%= message_thread.customer.name.full %>
-      <small class="ml-2 text-lg text-gray-600 font-normal">
+      <small class="block sm:ml-2 sm:inline text-lg text-gray-600 font-normal">
         <%= message_thread.customer.email %>
       </small>
     </h3>
     <div class="flex items-center">
       <span class="mr-3"><%= message_thread.subject %></span>
-      <%= render(BadgeComponent.new(style: message_thread.open? ? :important : :normal)) do %>
-        <%= message_thread.status %>
-      <% end %>
+      <div class="hidden sm:block">
+        <%= render(BadgeComponent.new(style: message_thread.open? ? :important : :normal)) do %>
+          <%= message_thread.status %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="flex-shrink-0 flex items-center justify-end">
+  <div class="mt-1 sm:mt-0 flex-shrink-0 flex items-center sm:justify-end text-sm sm:text-base">
     <% if message_thread.user_id.present? %>
-      <%= avatar_tag message_thread.user, size: 26, extra_class: "mr-3" %>
+      <%= avatar_tag message_thread.user, size: 26, extra_class: "h-5 w-5 sm:h-6 sm:w-6 mr-3" %>
     <% end %>
     <%= datetime message_thread.updated_at %>
   </div>
