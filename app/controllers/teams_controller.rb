@@ -29,9 +29,22 @@ class TeamsController < ApplicationController
     end
   end
 
+  def logo_upload
+    if current_team.update(logo_upload_params)
+      redirect_to settings_path, notice: t(".logo_saved")
+    else
+      flash[:error] = t(".problem")
+      redirect_to settings_path
+    end
+  end
+
   private
 
   def team_params
     params.require(:team).permit(:name)
+  end
+
+  def logo_upload_params
+    params.require(:team).permit(:logo)
   end
 end

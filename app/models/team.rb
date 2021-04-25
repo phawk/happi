@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   before_create :generated_mail_hash
 
+  has_one_attached :logo
   has_secure_token :invite_code
   has_and_belongs_to_many :users
   has_many :customers, dependent: :destroy
@@ -30,6 +31,10 @@ class Team < ApplicationRecord
 
   def default_from_address
     "#{name} <yo@happi.team>"
+  end
+
+  def has_logo?
+    logo.attached?
   end
 
   private
