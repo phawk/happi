@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  STATUS = %w[received pending delivered].freeze
+  STATUS = %w[received pending delivered bounced].freeze
 
   after_create_commit { broadcast_append_to(turbo_channel, target: "messages") }
   after_update_commit { broadcast_replace_to(turbo_channel) }

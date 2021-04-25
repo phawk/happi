@@ -7,11 +7,18 @@ class Events::PostmarkWebhooksController < ApplicationController
       username == 'postmark' && password == 'h4pp1t1m35'
     end
 
+    message_id = params.dig("Metadata", "message_id")
+
     case params["RecordType"]
     when "Delivery"
-      if (message_id = params.dig("Metadata", "message_id"))
+      if message_id.present?
         message = Message.find(message_id)
         message.update(status: "delivered")
+      end
+    when "Bounce"
+      if message_id.present?
+        message = Message.find(message_id)
+        message.update(status: "bounced")
       end
     else
       puts "PostmarkWebhooksController: Unhandled type: #{params["RecordType"]}"
