@@ -8,7 +8,7 @@
     <% if caption = blob.try(:caption) %>
       <%= caption %>
     <% end %>
-    <span class="attachment__name"><%= link_to blob.filename, rails_blob_path(blob) %></span>
+    <span class="attachment__name"><%= link_to blob.filename, rails_blob_url(blob) %></span>
     <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
   </figcaption>
 </figure>
