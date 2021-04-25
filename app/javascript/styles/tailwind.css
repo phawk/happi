@@ -4,6 +4,7 @@
 @import "components/styled-form";
 @import "components/turbo-progress-bar";
 @import "components/trix-content";
+@import "components/file-attachment-tag";
 @import "tailwindcss/utilities";
 @import "trix/dist/trix";
 @import "components/actiontext";

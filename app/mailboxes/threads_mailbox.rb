@@ -11,13 +11,23 @@ class ThreadsMailbox < ApplicationMailbox
     message = message_thread.messages.create!(
       sender: customer,
       status: "received",
-      content: email_content
+      content: email_content_with_attachments
     )
 
     TeamMailer.new_message(message).deliver_later
   end
 
   private
+
+  def email_content_with_attachments
+    content = email_content
+
+    attachments.each do |attachment|
+      content += attachment
+    end
+
+    "<div>#{content}</div>"
+  end
 
   def email_content
     MailBodyParser.new(mail).content
@@ -26,11 +36,14 @@ class ThreadsMailbox < ApplicationMailbox
   def attachments
     # TODO - handle this
     mail.attachments.map do |attachment|
-      {
+      content_type = attachment.content_type.split(";").first
+      blob = ActiveStorage::Blob.create_after_upload!(
+        io: StringIO.new(attachment.body.to_s),
         filename: attachment.filename,
-        content_type: attachment.content_type,
-        data: attachment.decoded
-      }
+        content_type: content_type,
+      )
+
+      "<action-text-attachment sgid=\"#{blob.attachable_sgid}\" content-type=\"#{content_type}\" filename=\"#{attachment.filename}\"></action-text-attachment>".html_safe
     end
   end
 
