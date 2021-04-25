@@ -1,9 +1,9 @@
 <% meta title: t(".heading") %>
 
-<div class="flex items-center mb-8">
+<div class="flex flex-col sm:flex-row sm:items-center mb-8">
   <%= tag.h1 t(".heading"), class: "uppercase tracking-wider font-semibold text-gray-500 flex-auto" %>
 
-  <%= link_to t(".add_new"), new_customer_path, class: "mr-3 flex-shrink-0 button -rounded" %>
+  <%= link_to t(".add_new"), new_customer_path, class: "my-3 sm:my-0 sm:mr-3 flex-shrink-0 button -rounded" %>
 
   <%= form_with(url: "/", class: "styled-form") do |f| %>
     <%= f.search_field :query, placeholder: t(".search"), class: "rounded" %>
