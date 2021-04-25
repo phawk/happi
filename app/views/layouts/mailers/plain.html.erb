@@ -310,9 +310,11 @@
                           <%= image_tag @team.logo.variant(resize_to_fit: [160, 160]), class: "email-footer-logo" %>
                         <% end %>
 
-                        <div class="email-powered-by">
-                          <%= @team.name %> uses <a href="https://happi.team/?utm_source=powered_by&utm_medium=email&utm_campaign=<%= @team.name %>" target="_blank">happi.team</a> to talk to their customers.
-                        </div>
+                        <% unless @team.whitelabel? %>
+                          <div class="email-powered-by">
+                            <%= @team.name %> uses <a href="https://happi.team/?utm_source=powered_by&utm_medium=email&utm_campaign=<%= @team.name %>" target="_blank">happi.team</a> to talk to their customers.
+                          </div>
+                        <% end %>
                       </div>
                     </td>
                   </tr>

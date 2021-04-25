@@ -18,6 +18,7 @@ class TeamDashboard < Administrate::BaseDashboard
     mail_hash: Field::String,
     verified_at: Field::DateTime,
     invite_code: Field::String,
+    whitelabel: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -41,6 +42,7 @@ class TeamDashboard < Administrate::BaseDashboard
     mail_hash
     verified_at
     invite_code
+    whitelabel
     users
     custom_email_addresses
   ].freeze
@@ -54,6 +56,7 @@ class TeamDashboard < Administrate::BaseDashboard
     mail_hash
     verified_at
     invite_code
+    whitelabel
     users
   ].freeze
 
