@@ -1,0 +1,363 @@
+<!--
+  This example requires Tailwind CSS v2.0+
+
+  This example requires some changes to your config:
+
+  ```
+  // tailwind.config.js
+  const colors = require('tailwindcss/colors')
+
+  module.exports = {
+    // ...
+    theme: {
+      extend: {
+        colors: {
+          purple: colors.purple,
+        }
+      }
+    },
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ]
+  }
+  ```
+-->
+<div class="bg-white">
+  <main>
+    <!-- Hero section -->
+    <div class="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
+      <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
+        <div>
+          <div>
+            <%= image_tag "logo.svg", class: "h-11 w-auto", alt: "Happi" %>
+          </div>
+          <div class="mt-20">
+            <div>
+              <a href="#" class="inline-flex space-x-4">
+                <span class="rounded bg-purple-50 px-2.5 py-1 text-xs font-semibold text-purple-500 tracking-wide uppercase">
+                  What's new
+                </span>
+                <span class="inline-flex items-center text-sm font-medium text-purple-500 space-x-1">
+                  <span>Just shipped version 0.1.0</span>
+                  <!-- Heroicon name: solid/chevron-right -->
+                  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+            <div class="mt-6 sm:max-w-xl">
+              <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+                Better customer engagement for startups
+              </h1>
+              <p class="mt-6 text-xl text-gray-500">
+                Customer support should be about talking to people, not ticket numbers.
+              </p>
+            </div>
+            <form action="#" class="mt-12 sm:max-w-lg sm:w-full sm:flex">
+              <div class="min-w-0 flex-1">
+                <label for="hero_email" class="sr-only">Email address</label>
+                <input id="hero_email" type="email" class="block w-full border border-gray-300 rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-purple-500 focus:ring-purple-500" placeholder="Enter your email">
+              </div>
+              <div class="mt-4 sm:mt-0 sm:ml-3">
+                <button type="submit" class="block w-full rounded-md border border-transparent px-5 py-3 bg-purple-500 text-base font-medium text-white shadow hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:px-10">Join beta</button>
+              </div>
+            </form>
+            <% if false %>
+            <div class="mt-6">
+              <div class="inline-flex items-center divide-x divide-gray-300">
+                <div class="flex-shrink-0 flex pr-5">
+                  <!-- Heroicon name: solid/star -->
+                  <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <!-- Heroicon name: solid/star -->
+                  <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <!-- Heroicon name: solid/star -->
+                  <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <!-- Heroicon name: solid/star -->
+                  <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <!-- Heroicon name: solid/star -->
+                  <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                </div>
+                <div class="min-w-0 flex-1 pl-5 py-1 text-sm text-gray-500 sm:py-3"><span class="font-medium text-gray-900">Rated 5 stars</span> by our <span class="font-medium text-purple-500">beta users</span></div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="sm:mx-auto sm:max-w-3xl sm:px-6">
+        <div class="py-12 sm:relative sm:mt-12 sm:py-16 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+          <div class="hidden sm:block">
+            <div class="absolute inset-y-0 left-1/2 w-screen bg-gray-50 rounded-l-3xl lg:left-80 lg:right-0 lg:w-full"></div>
+            <svg class="absolute top-8 right-1/2 -mr-3 lg:m-0 lg:left-0" width="404" height="392" fill="none" viewBox="0 0 404 392">
+              <defs>
+                <pattern id="837c3e70-6c3a-44e6-8854-cc48c737b659" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                </pattern>
+              </defs>
+              <rect width="404" height="392" fill="url(#837c3e70-6c3a-44e6-8854-cc48c737b659)" />
+            </svg>
+          </div>
+          <div class="relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl sm:px-0 lg:max-w-none lg:h-full lg:pl-12">
+            <%# <img class="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none" src="https://tailwindui.com/img/component-images/task-app-rose.jpg" alt=""> %>
+            <%= image_tag "marketing/happi-dashboard.png", class: "w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none", alt: "Happi example dashboard" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial/stats section -->
+    <div class="relative mt-20">
+      <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
+        <div class="relative sm:py-16 lg:py-0">
+          <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
+            <div class="absolute inset-y-0 right-1/2 w-full bg-gray-50 rounded-r-3xl lg:right-72"></div>
+            <svg class="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12" width="404" height="392" fill="none" viewBox="0 0 404 392">
+              <defs>
+                <pattern id="02f20b47-fd69-4224-a62a-4c9de5c763f7" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                </pattern>
+              </defs>
+              <rect width="404" height="392" fill="url(#02f20b47-fd69-4224-a62a-4c9de5c763f7)" />
+            </svg>
+          </div>
+          <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0 lg:max-w-none lg:py-20">
+            <!-- Testimonial card-->
+            <div class="relative pt-64 pb-10 rounded-2xl shadow-xl overflow-hidden">
+              <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1440&h=1440&q=80&sat=-100" alt="">
+              <div class="absolute inset-0 bg-purple-500" style="mix-blend-mode: multiply;"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-purple-600 via-purple-600 opacity-90"></div>
+              <div class="relative px-8">
+                <div>
+                  <%= image_tag "marketing/payhere-icon-white.svg", alt: "Payhere payments", class: "h-12" %>
+                </div>
+                <blockquote class="mt-8">
+                  <div class="relative text-lg font-medium text-white md:flex-grow">
+                    <svg class="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-purple-400" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                      <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                    </svg>
+                    <p class="relative">
+                      Happi is really slick! Works great on mobile and is a much nicer way of engaging with customers compared to the enterprise tool we were using before.
+                    </p>
+                  </div>
+
+                  <footer class="mt-4">
+                    <p class="text-base font-semibold text-purple-200">Scott Wylie, Payhere</p>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
+          <!-- Content area -->
+          <div class="pt-12 sm:pt-16 lg:pt-20">
+            <h2 class="text-3xl text-gray-900 font-extrabold tracking-tight sm:text-4xl">
+              Why Happi?
+            </h2>
+            <div class="mt-6 text-gray-500 space-y-6">
+              <p class="text-lg">
+                We are here to empower your small startup team, bringing you a simple way to talk to your customers and prospects, without having to be online 24/7 to respond to live chat messages.
+              </p>
+              <p class="text-base leading-7">
+                Don’t get us wrong, tools like intercom are great, if you have the manpower to answer messages instantly, worldwide. When you offer live chat, you’ll soon realise that your customers expect live answers.
+              </p>
+              <p class="text-base leading-7">
+                Happi takes the good things about live chat and traditional ticket based email systems and combines them in an easy to use platform, that feels like having a conversation over DMs.
+              </p>
+              <p class="text-base leading-7">
+                We have designed Happi for small teams (1-5 people), which means the product is simple, easy to get started with and more affordable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="bg-white">
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+        <div class="pb-16 xl:flex xl:items-center xl:justify-between">
+          <div>
+            <h1 class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
+              <span class="text-gray-900">Early adopter </span>
+              <span class="text-purple-600">$250 per year</span>
+            </h1>
+            <p class="mt-5 text-xl text-gray-500">Get a lifetime discount by joining our beta today.</p>
+          </div>
+          <a href="#" class="mt-8 w-full bg-purple-600 border border-transparent px-5 py-3 inline-flex items-center justify-center text-base font-medium rounded-md text-white hover:bg-purple-700 sm:mt-10 sm:w-auto xl:mt-0">Join beta</a>
+        </div>
+        <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
+          <div>
+            <h2 class="text-base font-semibold text-purple-600 tracking-wide uppercase">Everything you need</h2>
+            <p class="mt-2 text-3xl font-extrabold text-gray-900">All-in-one platform</p>
+            <p class="mt-4 text-lg text-gray-500">We’re building the future of customer engagement, we invite you to come along for the journey and help shape the product.</p>
+          </div>
+          <div class="mt-4 sm:mt-8 md:mt-10 md:grid md:grid-cols-2 md:gap-x-8 xl:mt-0 xl:col-span-2">
+            <ul class="divide-y divide-gray-200">
+              <li class="py-4 flex md:py-0 md:pb-4">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Includes 3 team members</span>
+              </li>
+
+              <li class="py-4 flex">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Custom domain (support@myapp.com)</span>
+              </li>
+
+              <li class="py-4 flex">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Notifications on new threads / replies</span>
+              </li>
+
+              <li class="py-4 flex">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Attach files / receive attachments</span>
+              </li>
+
+              <li class="py-4 flex">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Customise email template with your logo</span>
+              </li>
+            </ul>
+            <ul class="border-t border-gray-200 divide-y divide-gray-200 md:border-t-0">
+              <li class="py-4 flex md:border-t-0 md:py-0 md:pb-4">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Canned responses help you save time</span>
+              </li>
+
+              <li class="py-4 flex">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Private messages between your team</span>
+              </li>
+
+              <li class="py-4 flex">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Support widget to embed in your app</span>
+              </li>
+
+              <li class="py-4 flex">
+                <!-- Heroicon name: outline/check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span class="ml-3 text-base text-gray-500">Spam protection</span>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA section -->
+    <div class="relative mt-24 sm:mt-32 sm:py-16">
+      <div aria-hidden="true" class="hidden sm:block">
+        <div class="absolute inset-y-0 left-0 w-1/2 bg-gray-50 rounded-r-3xl"></div>
+        <svg class="absolute top-8 left-1/2 -ml-3" width="404" height="392" fill="none" viewBox="0 0 404 392">
+          <defs>
+            <pattern id="8228f071-bcee-4ec8-905a-2a059a2cc4fb" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+            </pattern>
+          </defs>
+          <rect width="404" height="392" fill="url(#8228f071-bcee-4ec8-905a-2a059a2cc4fb)" />
+        </svg>
+      </div>
+      <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="relative rounded-2xl px-6 py-10 bg-purple-500 overflow-hidden shadow-xl sm:px-12 sm:py-20">
+          <div aria-hidden="true" class="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0">
+            <svg class="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1463 360">
+              <path class="text-purple-400 text-opacity-40" fill="currentColor" d="M-82.673 72l1761.849 472.086-134.327 501.315-1761.85-472.086z" />
+              <path class="text-purple-600 text-opacity-40" fill="currentColor" d="M-217.088 544.086L1544.761 72l134.327 501.316-1761.849 472.086z" />
+            </svg>
+          </div>
+          <div class="relative">
+            <div class="sm:text-center">
+              <h2 class="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
+                Want to join our beta?
+              </h2>
+              <p class="mt-6 mx-auto max-w-2xl text-lg text-purple-100">
+                We are currently running a limited beta, collecting feedback and making sure we have all the features you need.
+                Add your email below and we will reach out real soon to get your account set up.
+              </p>
+            </div>
+            <form action="#" class="mt-12 sm:mx-auto sm:max-w-lg sm:flex">
+              <div class="min-w-0 flex-1">
+                <label for="cta_email" class="sr-only">Email address</label>
+                <input id="cta_email" type="email" class="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-500" placeholder="Enter your email">
+              </div>
+              <div class="mt-4 sm:mt-0 sm:ml-3">
+                <button type="submit" class="block w-full rounded-md border border-transparent px-5 py-3 bg-gray-900 text-base font-medium text-white shadow hover:bg-black focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-purple-500 sm:px-10">Request account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer section -->
+  <footer class="mt-24 bg-gray-900 sm:mt-12">
+    <div class="mx-auto max-w-md py-12 px-4 overflow-hidden sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+      <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+        <div class="px-5 py-2">
+          <a href="#" class="text-base text-gray-400 hover:text-gray-300">
+            Terms of Service
+          </a>
+        </div>
+
+        <div class="px-5 py-2">
+          <a href="#" class="text-base text-gray-400 hover:text-gray-300">
+            Privacy Policy
+          </a>
+        </div>
+
+        <div class="px-5 py-2">
+          <a href="#" class="text-base text-gray-400 hover:text-gray-300">
+            Security
+          </a>
+        </div>
+      </nav>
+      <p class="mt-8 text-center text-base text-gray-400">
+        &copy; <%= Time.current.year %> Happi.team
+      </p>
+    </div>
+  </footer>
+</div>

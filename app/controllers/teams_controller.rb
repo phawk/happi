@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
   def change
     team = current_user.teams.find(params[:id])
     current_user.update(team: team)
-    redirect_to root_path, notice: t(".switched_to", name: team.name)
+    redirect_to dashboard_path, notice: t(".switched_to", name: team.name)
   end
 
   def new
@@ -23,7 +23,7 @@ class TeamsController < ApplicationController
     if @team.save
       @team.add_user(current_user, set_active_team: true)
 
-      redirect_to root_path
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
