@@ -9,7 +9,7 @@ module Admin
     before_action :authenticate_admin
 
     def authenticate_admin
-      redirect_to root_path, alert: "You are not an admin" unless current_user.role?(:admin)
+      redirect_to dashboard_path, alert: "You are not an admin" unless current_user.role?(:admin)
     end
 
     # Override this value to specify the number of elements to display at a time

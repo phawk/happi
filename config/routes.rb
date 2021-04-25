@@ -31,5 +31,7 @@ Rails.application.routes.draw do
   post "/join/:code", to: "team_invites#create"
   put "/join/:code", to: "team_invites#update"
 
-  root to: "dashboard#show"
+  get "/dashboard", to: "dashboard#show"
+
+  root to: "pages#home"
 end
