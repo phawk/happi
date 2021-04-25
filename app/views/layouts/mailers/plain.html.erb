@@ -19,7 +19,7 @@
     }
 
     a {
-      color: #8B5CF6;
+      color: #121212;
     }
 
     a img {
@@ -207,6 +207,30 @@
     .content-cell {
       padding: 45px;
     }
+
+    /* Footer ------------------------------ */
+
+    .email-footer {
+      padding-top: 30px;
+    }
+
+    .email-footer .email-footer-logo {
+      max-width: 100%;
+      max-height: 50px;
+    }
+
+    .email-powered-by {
+      margin-top: 30px;
+      border-top: solid 1px #efefef;
+      padding-top: 26px;
+      color: #9CA3AF;
+      font-size: 13px;
+    }
+
+    .email-powered-by > a {
+      color: #9CA3AF;
+    }
+
     /*Media Queries ------------------------------ */
 
     @media only screen and (max-width: 600px) {
@@ -279,6 +303,16 @@
                     <td class="content-cell">
                       <div class="f-fallback">
                         <%= yield %>
+                      </div>
+
+                      <div class="email-footer">
+                        <% if @team.has_logo? %>
+                          <%= image_tag @team.logo.variant(resize_to_fit: [160, 160]), class: "email-footer-logo" %>
+                        <% end %>
+
+                        <div class="email-powered-by">
+                          <%= @team.name %> uses <a href="https://happi.team/?utm_source=powered_by&utm_medium=email&utm_campaign=<%= @team.name %>" target="_blank">happi.team</a> to talk to their customers.
+                        </div>
                       </div>
                     </td>
                   </tr>
