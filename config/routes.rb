@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     root to: "teams#index"
   end
 
+  namespace :events do
+    post "/postmark", to: "postmark_webhooks#create"
+  end
+
   devise_for :users
 
   authenticate :user, ->(u) { u.role?(:admin) } do
