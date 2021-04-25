@@ -58,6 +58,9 @@ en:
       organisation_name: Name of your Organisation
     change:
       switched_to: "Switched to %{name}"
+    logo_upload:
+      logo_saved: "Logo saved"
+      problem: "A problem occurred, please try uploading again."
   settings:
     show:
       heading: "%{team_name} settings"
@@ -67,6 +70,9 @@ en:
       custom_email_setup: Add a custom email address and then set it up to forward all emails to the mailbox address above.
       team_members: Team members
       invite_instructions: Send the link above to your team members and they can sign up and join you on Happi.
+      upload_logo: Upload team logo
+      logo_instructions: Your logo will appear in emails sent to customers.
+      upload_logo_button: Upload
   custom_email_addresses:
     custom_email_address:
       remove: "Remove"
