@@ -3,10 +3,10 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6">
     <div class="flex justify-between items-center py-5 md:py-8 md:justify-start md:space-x-10">
       <div class="flex justify-start lg:w-0 lg:flex-1 pt-4">
-        <a href="#">
+        <%= link_to root_path do %>
           <span class="sr-only">Happi</span>
           <%= image_tag "logo.svg", alt: "Happi", class: "h-8 w-auto sm:h-10" %>
-        </a>
+        <% end %>
       </div>
       <div class="flex items-center justify-end md:flex-1 lg:w-0">
         <%#
