@@ -1,0 +1,25 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="relative bg-white border-b-2 border-gray-100 mb-5 md:mb-10">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="flex justify-between items-center py-5 md:py-8 md:justify-start md:space-x-10">
+      <div class="flex justify-start lg:w-0 lg:flex-1 pt-4">
+        <a href="#">
+          <span class="sr-only">Happi</span>
+          <%= image_tag "logo.svg", alt: "Happi", class: "h-8 w-auto sm:h-10" %>
+        </a>
+      </div>
+      <div class="flex items-center justify-end md:flex-1 lg:w-0">
+        <%#
+          <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+            Sign in
+          </a>
+        %>
+        <% if user_signed_in? %>
+          <%= link_to "Dashboard", dashboard_path, class: "ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-purple-500 hover:bg-purple-600" %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path, class: "ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-semibold text-white bg-purple-500 hover:bg-purple-600" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   put "/join/:code", to: "team_invites#update"
 
   get "/dashboard", to: "dashboard#show"
+  get "/terms", to: "pages#terms"
+  get "/privacy", to: "pages#privacy"
+  get "/security", to: "pages#security"
 
   root to: "pages#home"
 end
