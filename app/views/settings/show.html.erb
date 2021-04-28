@@ -19,7 +19,7 @@
     <%= tag.h3 t(".upload_logo"), class: "text-center text-lg font-bold text-gray-800 mb-3" %>
 
     <% if current_team.has_logo? %>
-      <%= image_tag current_team.logo.variant(resize_to_fit: [160, 160]), class: "block h-20 mx-auto mb-4" %>
+      <%= image_tag current_team.logo.variant(resize_to_fit: [800, 160]), class: "block h-12 mx-auto mb-4" %>
     <% end %>
 
     <%= form_with(model: current_team, url: logo_upload_team_path(current_team), method: :put, class: "styled-form") do |f| %>
