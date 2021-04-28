@@ -12,8 +12,6 @@ RSpec.feature "Signing up" do
       password_confirmation: "hunter212"
     )
 
-    check "user[terms_and_conditions]"
-
     click_button "Get started"
 
     expect(page).to have_content("Set up your team")

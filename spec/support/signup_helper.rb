@@ -5,7 +5,7 @@ module SignupHelper
     fill_in "user[email]", with: args[:email]
     fill_in "user[password]", with: args[:password]
     fill_in "user[password_confirmation]", with: args[:password]
-    # check "signup[terms_of_service]"
+    check "user[terms_and_conditions]"
   end
 end
 
