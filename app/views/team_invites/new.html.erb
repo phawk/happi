@@ -44,6 +44,17 @@
       <%= f.password_field :password_confirmation, autocomplete: "password-confirmation" %>
     </div>
 
+    <div class="mb-4">
+      <%= f.label :terms_and_conditions do %>
+        <div class="flex items-start">
+          <%= f.check_box :terms_and_conditions, class: "mt-0.5 mr-3 focus:ring-indigo-500 h-4 w-4 text-purple-600 border-gray-300 rounded" %>
+          <span class="font-normal text-gray-600 text-sm">
+            I have read and agreee to the <%= link_to "Terms and Conditions", terms_path, target: "_blank", class: "underline text-purple-500" %> and <%= link_to "Privacy Policy", privacy_path, target: "_blank", class: "underline text-purple-500" %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+
     <div class="mt-6 flex items-center">
       <%= f.submit t(".button"), class: "button -primary -lg w-full" %>
     </div>

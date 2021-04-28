@@ -37,7 +37,8 @@ class TeamInvitesController < ApplicationController
       :last_name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :terms_and_conditions
     )
   end
 end
