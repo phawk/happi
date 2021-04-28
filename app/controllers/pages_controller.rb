@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   layout "marketing"
 
   def home; end
+  def terms; end
+  def privacy; end
+  def security; end
 end
