@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   include Colourable
 
+  attr_accessor :terms_and_conditions
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :trackable,
@@ -17,6 +19,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
   validates :role, presence: true, inclusion: { in: ROLES }
+  validates :terms_and_conditions, acceptance: true, on: :create
 
   def familiar_name
     name.familiar
