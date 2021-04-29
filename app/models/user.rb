@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   ROLES = %w[user admin superadmin].freeze
+  ADMIN_ROLES = %w[admin superadmin].freeze
 
   include Colourable
 
@@ -20,6 +21,8 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :role, presence: true, inclusion: { in: ROLES }
   validates :terms_and_conditions, acceptance: true, on: :create
+
+  scope :admins, -> { where(role: ADMIN_ROLES) }
 
   def familiar_name
     name.familiar
