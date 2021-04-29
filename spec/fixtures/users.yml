@@ -4,6 +4,7 @@ pete:
   last_name: Hawkins
   encrypted_password: <%= Devise::Encryptor.digest(User, 'hunter212') %>
   team: payhere
+  role: superadmin
 scott:
   email: scott@payhere.co
   first_name: Scott
