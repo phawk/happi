@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :teams
     resources :users
     resources :custom_email_addresses
+    resources :beta_signups
 
     root to: "teams#index"
   end
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
   end
 
+  resources :beta_signups, only: :create
   resources :custom_email_addresses, only: %i[create destroy]
   resources :customers
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_125959) do
+ActiveRecord::Schema.define(version: 2021_04_29_153753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 2021_04_25_125959) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "beta_signups", force: :cascade do |t|
+    t.string "email", null: false
+    t.datetime "signed_up_at"
+    t.bigint "team_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_beta_signups_on_team_id"
   end
 
   create_table "custom_email_addresses", force: :cascade do |t|
