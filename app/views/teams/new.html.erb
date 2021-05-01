@@ -6,5 +6,13 @@
     <%= f.label :name, t(".organisation_name") %>
     <%= f.text_field :name %>
   </div>
+  <div class="mb-5">
+    <%= f.label :country_code %>
+    <%= f.country_select :country_code, {}, class: "w-full" %>
+  </div>
+  <div class="mb-5">
+    <%= f.label :time_zone %>
+    <%= f.time_zone_select :time_zone, nil, {}, class: "w-full" %>
+  </div>
   <%= f.submit t(".button"), class: "mb-2 button -primary -lg w-full" %>
 <% end %>

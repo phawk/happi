@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_153753) do
+ActiveRecord::Schema.define(version: 2021_05_01_111631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(version: 2021_04_29_153753) do
     t.datetime "verified_at"
     t.string "invite_code"
     t.boolean "whitelabel", default: false, null: false
+    t.string "time_zone", default: "Eastern Time (US & Canada)", null: false
+    t.string "country_code", default: "US", null: false
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
   end
