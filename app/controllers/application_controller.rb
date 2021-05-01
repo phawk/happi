@@ -2,8 +2,16 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :ensure_team!
+  around_action :set_time_zone, if: :current_user
 
   protected
+
+  def set_time_zone(&block)
+    if current_team.present?
+      time_zone = current_team.time_zone
+    end
+    Time.use_zone(time_zone, &block)
+  end
 
   def after_sign_in_path_for(_resource)
     dashboard_path
