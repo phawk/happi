@@ -52,10 +52,14 @@ en:
     index:
       heading: Select team
       create_new: Create a new team
+    form:
+      organisation_name: Name of your Organisation
     new:
       heading: Set up your team
       button: Create team
-      organisation_name: Name of your Organisation
+    edit:
+      heading: Edit team
+      button: Save changes
     change:
       switched_to: "Switched to %{name}"
     logo_upload:
