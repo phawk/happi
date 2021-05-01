@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   skip_before_action :ensure_team!
+  before_action :set_team, only: %i[edit update]
 
   layout "auth"
 
@@ -29,6 +30,17 @@ class TeamsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @team.update(team_params)
+      redirect_to dashboard_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def logo_upload
     if current_team.update(logo_upload_params)
       redirect_to settings_path, notice: t(".logo_saved")
@@ -40,8 +52,12 @@ class TeamsController < ApplicationController
 
   private
 
+  def set_team
+    @team = current_user.teams.find(params[:id])
+  end
+
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:team).permit(:name, :time_zone, :country_code)
   end
 
   def logo_upload_params

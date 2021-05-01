@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
     resources :messages, only: %i[new create]
   end
-  resources :teams, only: %i[index new create] do
+  resources :teams, only: %i[index new create edit update] do
     post :change, on: :member
     put :logo_upload, on: :member
   end
