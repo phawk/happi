@@ -1,6 +1,8 @@
 en:
   activerecord:
     attributes:
+      team:
+        country_code: Country
       customer:
         country_code: Country
       message_thread:
