@@ -51,19 +51,11 @@ RSpec.describe HappiMail::FromParser, type: :model do
   end
 
   it "gives preference to Reply-To" do
-    record = create_inbound_email_from_mail do |mail|
-      mail.to "Payhere <support@payhere.co>"
-      mail.from "Staff <staff@payhere.co>"
-      mail.subject "Come down to the Shire!"
-      mail.header["Reply-To"] = "John <john.smith@payhere.co>"
-      mail.text_part do |part|
-        part.body "Please join us for a party at Bag End"
-      end
-    end
+    record = create_inbound_email_from_fixture("netlify_form_email", status: :processing)
 
     parser = HappiMail::FromParser.new(record.mail)
 
-    expect(parser.email_address).to eq("john.smith@payhere.co")
-    expect(parser.name).to eq("John")
+    expect(parser.email_address).to eq("robertsonfreddie7@gmail.com")
+    expect(parser.name).to eq("Freddie Robertson")
   end
 end
