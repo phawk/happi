@@ -1,6 +1,13 @@
-<%= link_to customer, class: "flex items-center #{local_assigns.fetch(:class, "")}" do %>
+<%= link_to customer, class: "flex items-center relative #{local_assigns.fetch(:class, "")}" do %>
   <%= avatar_tag customer, size: 50, extra_class: "mr-4 flex-shrink-0" %>
-  <div class="flex-grow">
+  <% if customer.blocked? %>
+    <div class="bg-white p-0.5 rounded-full absolute -top-1 -left-1 text-pink-700">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+      </svg>
+    </div>
+  <% end %>
+  <div class="flex-grow <%= customer.blocked? ? "line-through" : ""  %>">
     <h2 class="text-gray-800 text-xl font-semibold"><%= customer.name.full %></h2>
     <span><%= customer.email %> </span>
   </div>
