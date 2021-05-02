@@ -66,37 +66,6 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       end
     end
 
-    context "when X-Original-From is set" do
-      it "Uses this over the original from" do
-        perform_enqueued_jobs do
-          send_mail(to: "support@payhere.co", from: "Payhere Support <support@payhere.co>", headers: {
-            "X-Original-From" => "Jeffry Jefferson <jeffry.jefferson@aol.com>",
-          })
-
-          last_message = Message.last
-
-          expect(last_message.sender.email).to eq("jeffry.jefferson@aol.com")
-          expect(last_message.sender.name.full).to eq("Jeffry Jefferson")
-        end
-      end
-    end
-
-    context "when Reply-To is set" do
-      it "Uses this over all other addresses" do
-        perform_enqueued_jobs do
-          send_mail(to: "support@payhere.co", from: "Payhere Support <support@payhere.co>", headers: {
-            "Reply-To" => "jeffry.jefferson@aol.com",
-            "X-Original-From" => "Netlify Form Submission <mail@netlify.com>",
-          })
-
-          last_message = Message.last
-
-          expect(last_message.sender.email).to eq("jeffry.jefferson@aol.com")
-          expect(last_message.sender.name.full).to eq("Netlify Form Submission")
-        end
-      end
-    end
-
     context "when the customer is marked as blocked" do
       before { customers(:payhere_alex).update(blocked: true) }
 
