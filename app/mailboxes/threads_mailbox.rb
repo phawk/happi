@@ -21,7 +21,7 @@ class ThreadsMailbox < ApplicationMailbox
   private
 
   def spam_score
-    mail.header["X-Spam-Score"]&.value&.to_f || 0.0
+    mail.header["X-Spam-Score"]&.value&.to_f
   end
 
   def email_content_with_attachments
