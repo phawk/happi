@@ -21,6 +21,7 @@ en:
       archive_button: "Archive this thread"
       merge_button: "Merge with previous thread"
       block_button: "Block this sender"
+      unblock_button: "Unblock this sender"
     update:
       success: Changes saved
       failed: Failed to update
