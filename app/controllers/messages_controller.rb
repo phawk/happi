@@ -20,6 +20,11 @@ class MessagesController < ApplicationController
     end
   end
 
+  def hovercard
+    @message = @message_thread.messages.find(params[:id])
+    render layout: false
+  end
+
   private
 
   def message_params

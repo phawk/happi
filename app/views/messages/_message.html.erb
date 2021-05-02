@@ -4,34 +4,19 @@
       <%= message.content %>
     </div>
   </div>
-  <div class="mt-2 mx-3 flex items-center justify-between">
+  <div class="mt-2 mx-3 flex items-center justify-between relative">
     <div class="flex items-center">
       <%= avatar_tag message.sender, size: 26, extra_class: "flex-shrink-0" %>
       <span class="px-3 font-medium text-gray-800 <%= "bg-white" if message.customer? %>">
         <%= message.sender.name.familiar %>
       </span>
     </div>
-    <span class="flex items-center text-sm font-medium capitalize text-gray-400" title="<%= message.status %>">
-      <% if message.customer? %>
-        <svg class="h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" role="img" aria-label="Received">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-        </svg>
-      <% else %>
-        <% case message.status %>
-        <% when "delivered" %>
-          <svg class="h-4 mr-1 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" role="img" aria-label="Delivered">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-        <% when "bounced" %>
-          <svg class="h-4 mr-1 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-          </svg>
-        <% else %>
-          <svg class="h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" role="img" aria-label="Pending delivery">
-            <path fill-rule="evenodd" d="M5.05 3.636a1 1 0 010 1.414 7 7 0 000 9.9 1 1 0 11-1.414 1.414 9 9 0 010-12.728 1 1 0 011.414 0zm9.9 0a1 1 0 011.414 0 9 9 0 010 12.728 1 1 0 11-1.414-1.414 7 7 0 000-9.9 1 1 0 010-1.414zM7.879 6.464a1 1 0 010 1.414 3 3 0 000 4.243 1 1 0 11-1.415 1.414 5 5 0 010-7.07 1 1 0 011.415 0zm4.242 0a1 1 0 011.415 0 5 5 0 010 7.072 1 1 0 01-1.415-1.415 3 3 0 000-4.242 1 1 0 010-1.415zM10 9a1 1 0 011 1v.01a1 1 0 11-2 0V10a1 1 0 011-1z" clip-rule="evenodd" />
-          </svg>
-        <% end %>
-      <% end %>
+    <span
+      class="flex items-center text-sm font-medium capitalize text-gray-400" title="<%= message.status %>"
+      data-controller="hovercard"
+      data-hovercard-url-value="<%= hovercard_message_thread_message_path(message.message_thread, message) %>"
+      data-action="mouseenter->hovercard#show mouseleave->hovercard#hide">
+      <%= render MessageStatusIconComponent.new(message: message) %>
       <%= datetime message.created_at %>
     </span>
   </div>

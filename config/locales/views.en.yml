@@ -37,6 +37,9 @@ en:
     form:
       button: Send Reply
       send_from: Send from
+    hovercard:
+      status: Status
+      spam_score: Spam score
   customers:
     index:
       heading: All customers
