@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
   has_many :message_threads, dependent: :destroy
   validates :first_name, :email, presence: true
 
+  scope :blocked, -> { where(blocked: true) }
+
   def avatar?
     avatar.attached?
   end
