@@ -8,7 +8,7 @@
       </span>
     </div>
 
-    <% if @message.customer? %>
+    <% if @message.spam_score.present? %>
       <span class="text-sm font-semibold text-gray-800"><%= t(".spam_score") %></span>
       <span class="text-xs">
         <% case @message.spam_score %>
