@@ -85,7 +85,7 @@ class ThreadsMailbox < ApplicationMailbox
     customer = Customer.where(team: team, email: from_email).first_or_initialize
 
     unless customer.persisted?
-      customer.name = from_name.presence || "Unknown Sender"
+      customer.name = from_name
       customer.save!
     end
 
