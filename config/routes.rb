@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   end
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
     post :merge_with_previous, on: :member
-    resources :messages, only: %i[new create]
+    resources :messages, only: %i[new create] do
+      get :hovercard, on: :member
+    end
   end
   resources :teams, only: %i[index new create edit update] do
     post :change, on: :member
