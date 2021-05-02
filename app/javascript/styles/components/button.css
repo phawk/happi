@@ -13,6 +13,14 @@
     }
   }
 
+  &.-outline {
+    @apply bg-white text-gray-400 ring-2 ring-gray-300 ring-inset;
+
+    &:hover {
+      @apply ring-gray-400 text-gray-500;
+    }
+  }
+
   &.-danger {
     @apply bg-pink-500 text-white;
 
