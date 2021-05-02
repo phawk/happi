@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[show edit update destroy]
+  before_action :set_customer, only: %i[show edit update destroy block unblock]
 
   def index
     @customers = current_team.customers.order(:last_name)
@@ -34,6 +34,16 @@ class CustomersController < ApplicationController
   end
 
   def destroy; end
+
+  def block
+    @customer.update(blocked: true)
+    redirect_to @customer, notice: "#{@customer.name.familiar} has been blocked"
+  end
+
+  def unblock
+    @customer.update(blocked: false)
+    redirect_to @customer, notice: "Now receiving messages from #{@customer.name.familiar}"
+  end
 
   private
 

@@ -20,7 +20,10 @@ Rails.application.routes.draw do
 
   resources :beta_signups, only: :create
   resources :custom_email_addresses, only: %i[create destroy]
-  resources :customers
+  resources :customers do
+    post "block", on: :member
+    post "unblock", on: :member
+  end
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
     post :merge_with_previous, on: :member
     resources :messages, only: %i[new create]

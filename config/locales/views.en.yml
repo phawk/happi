@@ -49,6 +49,9 @@ en:
       new_thread: New thread
       no_threads: No threads
       no_threads_message: You don’t have any previous messages with %{name}, why not say hello?
+      block: Block
+      unblock: Unblock
+      not_receiving_messages_from: You are not receiving messages from this person because they have been blocked.
     edit:
       heading: "Edit %{name}"
     new:
