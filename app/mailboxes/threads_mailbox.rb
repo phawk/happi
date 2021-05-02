@@ -11,13 +11,18 @@ class ThreadsMailbox < ApplicationMailbox
     message = message_thread.messages.create!(
       sender: customer,
       status: "received",
-      content: email_content_with_attachments
+      content: email_content_with_attachments,
+      spam_score: spam_score
     )
 
     TeamMailer.new_message(message).deliver_later unless customer.blocked?
   end
 
   private
+
+  def spam_score
+    mail.header["X-Spam-Score"]&.value&.to_f || 0.0
+  end
 
   def email_content_with_attachments
     content = email_content
