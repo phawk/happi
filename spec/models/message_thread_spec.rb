@@ -20,4 +20,24 @@ RSpec.describe MessageThread, type: :model do
       expect(thread.reply_to_address).to eq("payhere@in.happi.team")
     end
   end
+
+  describe "#previous_threads" do
+    let(:thread) { message_threads(:payhere_alex_password_reset) }
+
+    it "looks for previous threads from the same customer" do
+      expect(thread.previous_threads.count).to eq(1)
+      expect(thread.previous_threads.first.subject).to eq("Connected wrong stripe")
+    end
+  end
+
+  describe "#merge_with_previous!" do
+    let(:thread) { message_threads(:payhere_alex_password_reset) }
+
+    it "merges thread into the previous thread" do
+      expect do
+        previous_thread = thread.merge_with_previous!
+        expect(previous_thread.messages.count).to eq(3)
+      end.to change { MessageThread.count }.by(-1)
+    end
+  end
 end
