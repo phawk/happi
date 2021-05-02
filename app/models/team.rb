@@ -10,6 +10,10 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
 
+  def allowed_threads
+    message_threads.where.not(customer_id: customers.blocked.pluck(:id))
+  end
+
   def add_user(user, set_active_team: false)
     users << user unless users.exists?(user.id)
     if set_active_team
