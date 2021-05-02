@@ -95,6 +95,20 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
         end
       end
     end
+
+    context "when the customer is marked as blocked" do
+      before { customers(:payhere_alex).update(blocked: true) }
+
+      it "creates a message but doesn't send notification" do
+        perform_enqueued_jobs do
+          expect do
+            send_mail(to: "payhere@in.happi.team", from: "alex.shaw09@hotmail.com")
+          end.to change { Message.count }.by(1)
+
+          expect(delivered_emails.size).to eq(0)
+        end
+      end
+    end
   end
 
   context "when team not found" do

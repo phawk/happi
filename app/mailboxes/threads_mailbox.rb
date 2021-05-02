@@ -14,7 +14,7 @@ class ThreadsMailbox < ApplicationMailbox
       content: email_content_with_attachments
     )
 
-    TeamMailer.new_message(message).deliver_later
+    TeamMailer.new_message(message).deliver_later unless customer.blocked?
   end
 
   private
