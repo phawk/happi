@@ -37,4 +37,17 @@ class MessageThread < ApplicationRecord
   def archive!
     update(status: "archived")
   end
+
+  def previous_threads
+    MessageThread.without_archived \
+                 .where(
+                   "customer_id = :customer_id AND created_at < :created_at",
+                   customer_id: customer_id,
+                   created_at: created_at - 10.seconds
+                )
+  end
+
+  def previous_threads?
+    previous_threads.any?
+  end
 end
