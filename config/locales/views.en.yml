@@ -29,6 +29,9 @@ en:
     form:
       button: Start thread
       cancel: Cancel
+    merge_with_previous:
+      threads_merged: Threads merged
+      threads_not_merged: No previous threads found
   messages:
     form:
       button: Send Reply

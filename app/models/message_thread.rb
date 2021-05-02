@@ -45,9 +45,18 @@ class MessageThread < ApplicationRecord
                    customer_id: customer_id,
                    created_at: created_at - 10.seconds
                 )
+                .order(created_at: :desc)
   end
 
   def previous_threads?
     previous_threads.any?
+  end
+
+  def merge_with_previous!
+    previous_thread = previous_threads.first
+    return if previous_thread.nil?
+    messages.update_all(message_thread_id: previous_thread.id)
+    destroy
+    previous_thread
   end
 end

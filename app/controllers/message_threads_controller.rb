@@ -1,5 +1,5 @@
 class MessageThreadsController < ApplicationController
-  before_action :set_thread, only: %i[show update destroy]
+  before_action :set_thread, only: %i[show update destroy merge_with_previous]
 
   def index
     @open_message_threads = current_team.message_threads.with_open_status.includes(:customer, :user, :messages).most_recent.to_a
@@ -41,6 +41,16 @@ class MessageThreadsController < ApplicationController
   def destroy
     @message_thread.archive!
     redirect_to message_threads_path, notice: "Thread archived"
+  end
+
+  def merge_with_previous
+    previous = @message_thread.merge_with_previous!
+
+    if previous.present?
+      redirect_to previous, notice: t(".threads_merged")
+    else
+      redirect_to @message_thread, notice: t(".threads_not_merged")
+    end
   end
 
   private

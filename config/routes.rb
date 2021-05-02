@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :custom_email_addresses, only: %i[create destroy]
   resources :customers
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
+    post :merge_with_previous, on: :member
     resources :messages, only: %i[new create]
   end
   resources :teams, only: %i[index new create edit update] do

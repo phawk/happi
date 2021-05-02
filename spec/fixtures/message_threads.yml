@@ -4,3 +4,11 @@ payhere_alex_password_reset:
   subject: Help resetting my password
   status: open
   reply_to: support@payhere.co
+  created_at: 2021-04-21
+payhere_alex_stripe:
+  team: payhere
+  customer: payhere_alex
+  subject: Connected wrong stripe
+  status: closed
+  reply_to: support@payhere.co
+  created_at: 2021-04-19
