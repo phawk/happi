@@ -1,6 +1,5 @@
 class ThreadsMailbox < ApplicationMailbox
   MATCHER = %r{(.+)@in.happi.team}
-  FROM_EMAIL_MATCHER = %r{[^\s<]+\@[^\s>]+}
 
   attr_reader :message_thread, :team, :reply_to
 
@@ -35,11 +34,10 @@ class ThreadsMailbox < ApplicationMailbox
   end
 
   def email_content
-    MailBodyParser.new(mail).content
+    HappiMail::BodyParser.new(mail).content
   end
 
   def attachments
-    # TODO - handle this
     mail.attachments.map do |attachment|
       content_type = attachment.content_type.split(";").first
       blob = ActiveStorage::Blob.create_after_upload!(
@@ -95,22 +93,14 @@ class ThreadsMailbox < ApplicationMailbox
   end
 
   def from_email
-    if mail.header["Reply-To"]
-      mail.header["Reply-To"].value[FROM_EMAIL_MATCHER, 0]
-    elsif mail.header["X-Original-From"]
-      mail.header["X-Original-From"].value[FROM_EMAIL_MATCHER, 0]
-    else
-      mail.from
-    end
+    parsed_from.email_address
   end
 
   def from_name
-    if mail.header["X-Original-From"]
-      mail.header["X-Original-From"].value.sub(%r{\<[^>]+\>}, "").strip
-    else
-      mail.header["From"].value.sub(%r{\<[^>]+\>}, "").strip
-    end
-  rescue
-    ""
+    parsed_from.name
+  end
+
+  def parsed_from
+    @_parsed_from ||= HappiMail::FromParser.new(mail)
   end
 end
