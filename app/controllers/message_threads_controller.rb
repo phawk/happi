@@ -9,6 +9,7 @@ class MessageThreadsController < ApplicationController
   def show
     @customer = @message_thread.customer
     @messages = @message_thread.messages.order(:created_at)
+    @canned_responses = current_team.canned_responses.order(:created_at).to_a
   end
 
   def new
