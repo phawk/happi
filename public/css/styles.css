@@ -1,0 +1,46 @@
+body {
+  background-color: #fff;
+  color: #8F8F89;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 50px 30px;
+  line-height: 1.7;
+}
+
+p {
+  font-size: 19px;
+}
+
+.container {
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+.logo-box {
+  margin-bottom: 40px;
+}
+
+.logo-box img {
+  width: 120px;
+  margin-top: 4px;
+}
+
+div.dialog {
+  width: 95%;
+  max-width: 33em;
+  margin: 4em auto 0;
+}
+
+h1 {
+  color: #1D1D1B;
+  font-size: 36px;
+  line-height: 1.2em;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+@media only screen and (min-height: 600px) {
+  .container {
+    margin-top: 100px;
+  }
+}
