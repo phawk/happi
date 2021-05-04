@@ -1,0 +1,17 @@
+<% meta title: t("settings.heading", team_name: current_team.name) %>
+
+<%= tag.h2 t("settings.heading", team_name: current_team.name), class: "mb-6 text-left text-xl lg:text-2xl font-bold text-gray-900" %>
+
+<div class="flex flex-col md:flex-row md:items-start md:justify-between">
+  <%= render partial: "nav", locals: { page: :canned_responses } %>
+
+  <div class="w-full md:pl-10 lg:pl-16 xl:pl-20">
+    <%= tag.h3 t(".canned_responses"), class: "text-left text-lg font-bold text-gray-800 mb-3" %>
+
+    <p class="text-gray-500"><%= t(".intro") %></p>
+
+    <%= link_to t(".new_button"), new_canned_response_path, class: "mt-4 button -rounded -outline" %>
+
+    <%= render @canned_responses %>
+  </div>
+</div>

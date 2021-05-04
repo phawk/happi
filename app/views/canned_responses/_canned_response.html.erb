@@ -1,0 +1,15 @@
+<div class="my-10 pt-10 border-t border-gray-100">
+  <div class="md:flex md:items-start md:justify-between">
+    <h4 class="mb-4 font-semibold">
+      <%= canned_response.label %>
+    </h4>
+    <div class="text-sm">
+      <%= link_to t(".edit"), edit_canned_response_path(canned_response), class: "text-purple-600 hover:underline mr-3" %>
+      <%= link_to t(".delete"), canned_response_path(canned_response), method: :delete, class: "text-pink-700 hover:underline", data: { confirm: t(".confirm_delete") } %>
+    </div>
+  </div>
+
+  <div class="prose prose-sm">
+    <%= canned_response.content %>
+  </div>
+</div>

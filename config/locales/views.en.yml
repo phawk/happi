@@ -91,6 +91,27 @@ en:
     team:
       team_members: Team members
       invite_instructions: Send the link above to your team members and they can sign up and join you on Happi.
+    canned_responses:
+      canned_responses: Canned responses
+      intro: Create snippets for your most commonly asked questions to save time.
+      new_button: New canned response
+  canned_responses:
+    new:
+      heading: New canned response
+    create:
+      created_successfully: Canned response created
+    edit:
+      heading: Edit canned response
+    update:
+      updated_successfully: Canned response saved
+    destroy:
+      deleted_successfully: Canned response deleted
+    form:
+      button: Save changes
+    canned_response:
+      edit: Edit
+      delete: Delete
+      confirm_delete: "Are you sure? This cannot be undone"
   custom_email_addresses:
     custom_email_address:
       remove: "Remove"

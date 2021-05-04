@@ -9,4 +9,8 @@ class SettingsController < ApplicationController
   def team
     @team_members = current_team.users.to_a
   end
+
+  def canned_responses
+    @canned_responses = current_team.canned_responses.order(:created_at)
+  end
 end

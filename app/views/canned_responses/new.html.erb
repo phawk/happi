@@ -1,0 +1,13 @@
+<% meta title: t("settings.heading", team_name: current_team.name) %>
+
+<%= tag.h2 t("settings.heading", team_name: current_team.name), class: "mb-6 text-left text-xl lg:text-2xl font-bold text-gray-900" %>
+
+<div class="flex flex-col md:flex-row md:items-start md:justify-between">
+  <%= render partial: "settings/nav", locals: { page: :canned_responses } %>
+
+  <div class="w-full md:pl-10 lg:pl-16 xl:pl-20">
+    <%= tag.h3 t(".heading"), class: "text-left text-lg font-bold text-gray-800 mb-3" %>
+
+    <%= render "form" %>
+  </div>
+</div>
