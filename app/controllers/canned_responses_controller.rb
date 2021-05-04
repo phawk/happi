@@ -1,5 +1,6 @@
 class CannedResponsesController < ApplicationController
   before_action :set_canned_response, only: %i[edit update destroy]
+
   def new
     @canned_response = CannedResponse.new
   end

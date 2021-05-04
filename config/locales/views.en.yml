@@ -37,6 +37,7 @@ en:
     form:
       button: Send Reply
       send_from: Send from
+      canned_responses: Prefill with canned response...
     hovercard:
       status: Status
       spam_score: Spam score
