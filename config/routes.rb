@@ -34,7 +34,10 @@ Rails.application.routes.draw do
     post :change, on: :member
     put :logo_upload, on: :member
   end
-  resource :settings, only: %i[show update]
+  resource :settings, only: %i[show update] do
+    get :team
+    get :emails
+  end
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"
   put "/join/:code", to: "team_invites#update"
