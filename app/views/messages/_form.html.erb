@@ -21,7 +21,7 @@
       <span class="block text-gray-600 font-semibold mb-2"><%= t(".canned_responses") %></span>
       <div class="flex flex-wrap">
         <% @canned_responses.each do |canned| %>
-          <%= tag.button canned.label, type: "button", data: { html: canned.content.to_s, action: "click->message-composer#snippet" }, class: "mr-4 text-sm hover:underline text-gray-500 hover:text-gray-600" %>
+          <%= tag.button canned.label, type: "button", data: { html: canned.content.to_s, action: "click->message-composer#snippet" }, class: "mr-4 mb-2 text-sm hover:underline text-gray-500 hover:text-gray-600" %>
         <% end %>
       </div>
     </div>
