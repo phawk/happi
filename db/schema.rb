@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_130759) do
+ActiveRecord::Schema.define(version: 2021_05_04_154356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,14 @@ ActiveRecord::Schema.define(version: 2021_05_02_130759) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_beta_signups_on_team_id"
+  end
+
+  create_table "canned_responses", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.string "label", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_canned_responses_on_team_id"
   end
 
   create_table "custom_email_addresses", force: :cascade do |t|
@@ -177,6 +185,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_130759) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "canned_responses", "teams"
   add_foreign_key "custom_email_addresses", "teams"
   add_foreign_key "custom_email_addresses", "users"
   add_foreign_key "customers", "teams"

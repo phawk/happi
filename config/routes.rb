@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :beta_signups, only: :create
+  resources :canned_responses, only: %i[new create edit update destroy]
   resources :custom_email_addresses, only: %i[create destroy]
   resources :customers do
     post "block", on: :member
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   resource :settings, only: %i[show update] do
     get :team
     get :emails
+    get :canned_responses
   end
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"

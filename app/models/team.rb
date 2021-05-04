@@ -7,6 +7,7 @@ class Team < ApplicationRecord
   has_many :customers, dependent: :destroy
   has_many :message_threads, dependent: :destroy
   has_many :custom_email_addresses, dependent: :destroy
+  has_many :canned_responses, dependent: :destroy
 
   validates :name, presence: true
 
