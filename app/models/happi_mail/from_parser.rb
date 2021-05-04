@@ -18,7 +18,7 @@ module HappiMail
       if from_string.match?(EMBEDDED_EMAIL_MATCHER)
         from_string.sub(EMBEDDED_EMAIL_MATCHER, "").strip
       else
-        DEFAULT_FROM_NAME
+        attempt_name_from_body.presence || DEFAULT_FROM_NAME
       end
     rescue
       DEFAULT_FROM_NAME
@@ -34,6 +34,22 @@ module HappiMail
                         else
                           mail.header["From"].value
                         end
+    end
+
+    def attempt_name_from_body
+      text_content = BodyParser.new(mail).text_content
+      first_name = ""
+      last_name = ""
+
+      if first_matches = text_content.scan(%r{First name:[\s\n](\w+)})&.flatten
+        first_name = first_matches.first
+      end
+
+      if last_matches = text_content.scan(%r{Last name:[\s\n](\w+)})&.flatten
+        last_name = last_matches.first
+      end
+
+      "#{first_name} #{last_name}".strip
     end
   end
 end
