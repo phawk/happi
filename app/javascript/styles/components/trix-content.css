@@ -8,4 +8,8 @@
       margin-bottom: 0;
     }
   }
+  a {
+    text-decoration: underline;
+    color: #7C3AED;
+  }
 }
