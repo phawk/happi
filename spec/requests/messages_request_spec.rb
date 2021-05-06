@@ -1,36 +1,49 @@
 require "rails_helper"
 
 RSpec.describe "Messages", type: :request do
-  describe "#create" do
+  describe "POST /messages" do
     let(:pete) { users(:pete) }
     let(:message_thread) { message_threads(:payhere_alex_password_reset) }
 
-    before do
-      sign_in(pete)
-      perform_enqueued_jobs do
-        post message_thread_messages_path(message_thread), params: { message: { content: "Thanks for getting in touch!" } }
+    context "when params are valid" do
+      before do
+        sign_in(pete)
+        perform_enqueued_jobs do
+          post message_thread_messages_path(message_thread), params: { message: { content: "Thanks for getting in touch!" } }
+        end
+        message_thread.reload
       end
-      message_thread.reload
+
+      it "creates message" do
+        expect(Message.last.content.to_s).to include("Thanks for getting in touch!")
+        expect(Message.last.sender).to eq(pete)
+      end
+
+      it "sets thread to 'waiting'" do
+        expect(message_thread.status).to eq("waiting")
+      end
+
+      it "assigns current user to the thread" do
+        expect(message_thread.user).to eq(pete)
+      end
+
+      it "sends an email" do
+        expect(delivered_emails.size).to eq(1)
+        expect(last_email.subject).to eq(message_thread.subject)
+        expect(last_email.to).to eq([message_thread.customer.email])
+        expect(last_email.reply_to).to eq(["support@payhere.co"])
+      end
     end
 
-    it "creates message" do
-      expect(Message.last.content.to_s).to include("Thanks for getting in touch!")
-      expect(Message.last.sender).to eq(pete)
-    end
+    context "when params are invalid" do
+      it "returns an error" do
+        sign_in(pete)
+        post message_thread_messages_path(message_thread), params: { message: { content: "" } }
 
-    it "sets thread to 'waiting'" do
-      expect(message_thread.status).to eq("waiting")
-    end
-
-    it "assigns current user to the thread" do
-      expect(message_thread.user).to eq(pete)
-    end
-
-    it "sends an email" do
-      expect(delivered_emails.size).to eq(1)
-      expect(last_email.subject).to eq(message_thread.subject)
-      expect(last_email.to).to eq([message_thread.customer.email])
-      expect(last_email.reply_to).to eq(["support@payhere.co"])
+        expect(response).to redirect_to(message_thread_path(message_thread))
+        follow_redirect!
+        expect(response.body).to include("You must enter a message")
+      end
     end
   end
 end

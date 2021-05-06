@@ -10,8 +10,14 @@ class Message < ApplicationRecord
 
   has_rich_text :content
 
+  validates :content, presence: true, if: :user?
+
   def customer?
     sender_type == "Customer"
+  end
+
+  def user?
+    sender_type == "User"
   end
 
   def deliver_email_via

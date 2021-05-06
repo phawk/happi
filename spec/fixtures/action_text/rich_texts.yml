@@ -1,0 +1,14 @@
+payhere_alex_password_reset_msg_1_content:
+  record: payhere_alex_password_reset_msg_1 (Message)
+  name: content
+  body: <div>Hello, world.</div>
+
+payhere_alex_stripe_msg_1_content:
+  record: payhere_alex_stripe_msg_1 (Message)
+  name: content
+  body: <div>Hello, world.</div>
+
+payhere_alex_stripe_msg_2_content:
+  record: payhere_alex_stripe_msg_2 (Message)
+  name: content
+  body: <div>Hello, world.</div>
