@@ -6,9 +6,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-    if current_team.verified?
-      message = @message_thread.messages.create!(message_params)
+    unless current_team.verified?
+      return redirect_to @message_thread, alert: "Message not sent. Your account is in review."
+    end
 
+    message = @message_thread.messages.create(message_params)
+
+    if message.persisted?
       unless message.internal?
         @message_thread.update(status: "waiting", user: current_user)
         CustomerMailer.new_reply(message).deliver_later
@@ -16,7 +20,8 @@ class MessagesController < ApplicationController
 
       redirect_to @message_thread, notice: "Message delivered"
     else
-      redirect_to @message_thread, alert: "Message not sent. Your account is in review."
+      flash[:error] = "You must enter a message"
+      redirect_to @message_thread
     end
   end
 
