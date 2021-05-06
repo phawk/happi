@@ -10,6 +10,6 @@
   <%= @message.content %>
 </div>
 
-<p class="body-action"><%= link_to t(".button"), message_thread_url(@thread), class: "f-fallback button button--primary" %></p>
+<p class="body-action"><%= link_to t(".button"), view_message_url(@message), class: "f-fallback button button--primary" %></p>
 
 <%= render "shared/mailer_happi_sig" %>

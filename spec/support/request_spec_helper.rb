@@ -8,6 +8,7 @@ module RequestSpecHelper
 
   def sign_in(resource)
     login_as(resource, scope: warden_scope(resource))
+    resource
   end
 
   def sign_out(resource)
@@ -27,5 +28,5 @@ end
 
 RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
-  config.before(:each, type: :request) { host! "linkso.test" }
+  config.before(:each, type: :request) { host! "happi.test" }
 end

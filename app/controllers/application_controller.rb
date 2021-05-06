@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ActionView::RecordIdentifier # dom_id(record)
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :ensure_team!
