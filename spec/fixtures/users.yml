@@ -10,3 +10,4 @@ scott:
   first_name: Scott
   last_name: Wylie
   encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>
+  team: nine

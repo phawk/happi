@@ -3,3 +3,11 @@ payhere:
   mail_hash: "payhere"
   invite_code: <%= SecureRandom.hex(8) %>
   verified_at: 2021-04-03
+  users: pete
+
+nine:
+  name: Nine
+  mail_hash: "nine"
+  invite_code: <%= SecureRandom.hex(8) %>
+  verified_at: 2021-05-03
+  users: scott

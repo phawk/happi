@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"
   put "/join/:code", to: "team_invites#update"
+  get "/view_message/:id", to: "messages#view_message", as: :view_message
 
   get "/dashboard", to: "dashboard#show"
   get "/terms", to: "pages#terms"

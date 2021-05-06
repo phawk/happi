@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-  before_action :set_thread
+  before_action :set_thread, except: :view_message
+  skip_before_action :ensure_team!, only: :view_message
 
   def new
     @message = Message.new
@@ -28,6 +29,22 @@ class MessagesController < ApplicationController
   def hovercard
     @message = @message_thread.messages.find(params[:id])
     render layout: false
+  end
+
+  def view_message
+    message = Message.find(params[:id])
+    team = message.message_thread.team
+    if current_user.teams.exists?(team.id)
+      if current_user.team_id != team.id
+        current_user.update(team: team)
+        flash[:notice] = t(".switched_to", team: team.name)
+      end
+
+      redirect_to message_thread_url(message.message_thread, anchor: dom_id(message))
+    else
+      flash[:error] = t(".no_access")
+      redirect_to message_threads_path
+    end
   end
 
   private

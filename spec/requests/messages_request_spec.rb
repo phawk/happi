@@ -46,4 +46,35 @@ RSpec.describe "Messages", type: :request do
       end
     end
   end
+
+  describe "GET /view_message/:id" do
+    let(:message) { messages(:payhere_alex_stripe_msg_1) }
+
+    context "when user belongs to team" do
+      let!(:pete) { sign_in(users(:pete)) }
+
+      it "switches team and shows message" do
+        pete.update!(team: nil)
+
+        get view_message_path(message)
+
+        follow_redirect!
+
+        expect(response.body).to include("Switched to Payhere")
+        expect(response.body).to include(message.content.to_s)
+      end
+    end
+
+    context "when user doesn't belong to team" do
+      let!(:scott) { sign_in(users(:scott)) }
+
+      it "displays an error message" do
+        get view_message_path(message)
+
+        expect(response).to redirect_to(message_threads_path)
+        follow_redirect!
+        expect(response.body).to include("You don’t have access to this team")
+      end
+    end
+  end
 end

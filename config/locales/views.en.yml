@@ -41,6 +41,9 @@ en:
     hovercard:
       status: Status
       spam_score: Spam score
+    view_message:
+      switched_to: "Switched to %{team}"
+      no_access: "You don’t have access to this team"
   customers:
     index:
       heading: All customers
