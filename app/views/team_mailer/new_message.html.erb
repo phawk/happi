@@ -1,4 +1,6 @@
-<h1><%= t ".heading", subject: @thread.subject %></h1>
+<h1><%= t ".heading", team: @team.name %></h1>
+
+<h2><%= t ".subheading", subject: @thread.subject %></h2>
 
 <p>
   <%= t(".received_message_html", name: @message.sender.name.full, email: @message.sender.email) %>
