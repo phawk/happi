@@ -50,5 +50,15 @@ Rails.application.routes.draw do
   get "/privacy", to: "pages#privacy"
   get "/security", to: "pages#security"
 
+  namespace :documentation, path: "/docs" do
+    get "forwarding_mail", to: "general#forwarding_mail", as: :forwarding_mail
+    get "custom_email_address", to: "general#custom_email_address", as: :custom_email_address
+    get "contact_forms", to: "general#contact_forms", as: :contact_forms
+
+    get "widget/installation", to: "widget#installation", as: :widget_installation
+    get "widget/prefill_data", to: "widget#prefill_data", as: :widget_prefill_data
+    root to: "general#index"
+  end
+
   root to: "pages#home"
 end
