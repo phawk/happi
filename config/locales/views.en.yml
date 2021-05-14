@@ -12,7 +12,7 @@ en:
       no_open_threads: No open threads
       no_open_threads_message: You have dealt with all of your messages, good job!
       no_messages: You haven’t received any messages yet
-      getting_started_guide_html: 'Follow our <a href="#" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
+      getting_started_guide_html: 'Follow our <a href="/docs" target="_blank" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
     show:
       thread_settings: Thread settings
       unassigned: Nobody
@@ -50,7 +50,7 @@ en:
       add_new: Manually add
       search: Search customers
       no_customers: You don’t have any customers yet
-      getting_started_guide_html: 'Follow our <a href="#" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
+      getting_started_guide_html: 'Follow our <a href="/docs" target="_blank" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
     show:
       edit: Edit customer
       threads: Threads
