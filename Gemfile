@@ -39,6 +39,7 @@ gem "metamagic"
 gem "country_select"
 gem "administrate"
 gem "jwt"
+gem "rack-cors", require: "rack/cors"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
