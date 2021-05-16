@@ -5,6 +5,10 @@ module Api
     skip_before_action :ensure_team!
     before_action :current_team
 
+    rescue_from ApiErrors::BadRequest do |e|
+      render_error(e.message, status_code: :bad_request)
+    end
+
     private
 
     def current_team
@@ -27,6 +31,10 @@ module Api
         response = { error: message.to_s }
       end
       render json: response, status: status_code
+    end
+
+    def halt_bad_request!(message)
+      raise ApiErrors::BadRequest.new(message)
     end
   end
 end
