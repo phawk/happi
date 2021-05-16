@@ -1,4 +1,5 @@
 class Customer < ApplicationRecord
+  PUBLIC_FIELDS = %w[first_name last_name email company phone country_code location].freeze
   include Colourable
 
   has_person_name
@@ -7,11 +8,40 @@ class Customer < ApplicationRecord
 
   belongs_to :team
   has_many :message_threads, dependent: :destroy
-  validates :first_name, :email, presence: true
+  validates :first_name, presence: true
+  validates :email, presence: true, email: true
 
   scope :blocked, -> { where(blocked: true) }
 
+  def self.upsert_by_jwt(token, team)
+    payload =
+      JWT.decode(
+        token,
+        team.shared_secret,
+        true,
+        algorithm: "HS512"
+      )[
+        0
+      ]
+
+    existing = team.customers.find_by(email: payload["email"])
+
+    if existing
+      existing
+    else
+      team.customers.create!(payload.slice(*PUBLIC_FIELDS))
+    end
+  rescue JWT::DecodeError
+    nil
+  end
+
   def avatar?
     avatar.attached?
+  end
+
+  def as_jwt
+    payload = attributes.slice(*PUBLIC_FIELDS)
+
+    JWT.encode(payload, team.shared_secret, "HS512")
   end
 end

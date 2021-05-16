@@ -141,6 +141,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.5.1)
+    jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
@@ -342,6 +343,7 @@ DEPENDENCIES
   devise
   email_reply_parser
   image_processing (~> 1.2)
+  jwt
   letter_opener_web
   listen (~> 3.3)
   metamagic

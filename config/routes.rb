@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, format: :json do
-    scope path: "v1" do
+    scope path: ":team_publishable_key" do
       resources :customers, only: :create
       resources :messages, only: :create
     end
