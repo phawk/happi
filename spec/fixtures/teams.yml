@@ -1,13 +1,17 @@
 payhere:
   name: Payhere
   mail_hash: "payhere"
-  invite_code: <%= SecureRandom.hex(8) %>
+  invite_code: <%= SecureRandom.base58(24) %>
+  shared_secret: <%= SecureRandom.base58(24) %>
+  publishable_key: <%= SecureRandom.base58(24) %>
   verified_at: 2021-04-03
   users: pete
 
 nine:
   name: Nine
   mail_hash: "nine"
-  invite_code: <%= SecureRandom.hex(8) %>
+  invite_code: <%= SecureRandom.base58(24) %>
+  shared_secret: <%= SecureRandom.base58(24) %>
+  publishable_key: <%= SecureRandom.base58(24) %>
   verified_at: 2021-05-03
   users: scott
