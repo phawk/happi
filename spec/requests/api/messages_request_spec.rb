@@ -6,14 +6,18 @@ RSpec.describe Api::MessagesController, type: :request do
 
   describe "POST /api/:key/messages" do
     it "creates a new message when customer JWT is valid" do
-      expect do
-        post "/api/#{team.publishable_key}/messages", params: {
-          content: "Hello there, I need assistance please.",
-          customer_jwt: alex.as_jwt
-        }
-      end.to change { Message.count }.by(1)
+      perform_enqueued_jobs do
+        expect do
+          post "/api/#{team.publishable_key}/messages", params: {
+            content: "Hello there, I need assistance please.",
+            customer_jwt: alex.as_jwt
+          }
+        end.to change { Message.count }.by(1)
 
-      expect(response).to have_http_status(:no_content)
+        expect(response).to have_http_status(:no_content)
+
+        expect(delivered_emails.size).to eq(1)
+      end
     end
 
     it "returns an error when customer JWT is invalid" do

@@ -3,11 +3,13 @@ module Api
     def create
       halt_bad_request!("Invalid JWT for customer") if customer.nil?
 
-      message_thread.messages.create!(
+      message = message_thread.messages.create!(
         sender: customer,
         status: "received",
         content: params[:content]
       )
+
+      TeamMailer.new_message(message).deliver_later unless customer.blocked?
 
       head :no_content
     end
