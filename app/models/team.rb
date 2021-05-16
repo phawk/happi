@@ -3,6 +3,8 @@ class Team < ApplicationRecord
 
   has_one_attached :logo
   has_secure_token :invite_code
+  has_secure_token :publishable_key
+  has_secure_token :shared_secret
   has_and_belongs_to_many :users
   has_many :customers, dependent: :destroy
   has_many :message_threads, dependent: :destroy

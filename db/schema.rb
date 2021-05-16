@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_154356) do
+ActiveRecord::Schema.define(version: 2021_05_16_152411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,8 +148,12 @@ ActiveRecord::Schema.define(version: 2021_05_04_154356) do
     t.boolean "whitelabel", default: false, null: false
     t.string "time_zone", default: "Eastern Time (US & Canada)", null: false
     t.string "country_code", default: "US", null: false
+    t.string "shared_secret"
+    t.string "publishable_key"
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
+    t.index ["publishable_key"], name: "index_teams_on_publishable_key", unique: true
+    t.index ["shared_secret"], name: "index_teams_on_shared_secret", unique: true
   end
 
   create_table "teams_users", force: :cascade do |t|
