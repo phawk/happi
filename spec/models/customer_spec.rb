@@ -20,7 +20,14 @@ RSpec.describe Customer, type: :model do
       expect(cus.email).to eq("pedro@hey.com")
     end
 
-    it "updates customer when they already exist"
+    it "updates customer when they already exist" do
+      jwt = JWT.encode({ first_name: "Alexander", last_name: "Shaw", email: "alex.shaw09@hotmail.com" }, team.shared_secret, "HS512")
+
+      cus = Customer.upsert_by_jwt(jwt, team)
+
+      expect(cus.name.familiar).to eq("Alexander S.")
+      expect(cus.email).to eq("alex.shaw09@hotmail.com")
+    end
   end
 
   describe "#as_jwt" do

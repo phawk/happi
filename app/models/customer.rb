@@ -27,6 +27,7 @@ class Customer < ApplicationRecord
     existing = team.customers.find_by(email: payload["email"])
 
     if existing
+      existing.update(payload.slice(*PUBLIC_FIELDS))
       existing
     else
       team.customers.create!(payload.slice(*PUBLIC_FIELDS))
