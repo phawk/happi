@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     post "/postmark", to: "postmark_webhooks#create"
   end
 
+  namespace :api, format: :json do
+    scope path: "v1" do
+      resources :customers, only: :create
+      resources :messages, only: :create
+    end
+  end
+
   devise_for :users
 
   authenticate :user, ->(u) { u.role?(:admin) } do
