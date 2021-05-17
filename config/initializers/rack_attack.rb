@@ -8,7 +8,7 @@ Rack::Attack.safelist("allow webhooks") do |req|
   %w[/events/postmark].include?(req.path)
 end
 
-Rack::Attack.safelist("allow development") { |req| Rails.env.development? }
+# Rack::Attack.safelist("allow development") { |req| Rails.env.development? }
 
 # Limit data modification requests
 Rack::Attack.throttle("unsafe/req/ip", limit: 20, period: 60.seconds) do |req|
@@ -49,7 +49,8 @@ end
 
 ActiveSupport::Notifications.subscribe(
   "rack.attack"
-) do |name, start, finish, request_id, req|
+) do |name, start, finish, request_id, payload|
+  req = payload[:request]
   Rails.logger.info "Throttled #{
                       req.env["rack.attack.match_discriminator"]
                     } reason: #{req.env["rack.attack.matched"]}"
