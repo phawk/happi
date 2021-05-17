@@ -17,6 +17,10 @@ RSpec.describe Api::MessagesController, type: :request do
         expect(response).to have_http_status(:no_content)
 
         expect(delivered_emails.size).to eq(1)
+
+        last_message = Message.last
+
+        expect(last_message.channel).to eq("widget")
       end
     end
 

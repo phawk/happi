@@ -6,7 +6,8 @@ module Api
       message = message_thread.messages.create!(
         sender: customer,
         status: "received",
-        content: params[:content]
+        content: params[:content],
+        channel: "widget"
       )
 
       TeamMailer.new_message(message).deliver_later unless customer.blocked?
