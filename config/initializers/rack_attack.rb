@@ -11,7 +11,7 @@ end
 # Rack::Attack.safelist("allow development") { |req| Rails.env.development? }
 
 # Limit data modification requests
-Rack::Attack.throttle("unsafe/req/ip", limit: 20, period: 60.seconds) do |req|
+Rack::Attack.throttle("unsafe/req/ip", limit: 30, period: 60.seconds) do |req|
   req.ip unless req.get?
 end
 
@@ -24,7 +24,7 @@ Rack::Attack.throttle("authentication/ip", limit: 30, period: 1.hour) do |req|
   end
 end
 
-Rack::Attack.throttle("api/publishable_key", limit: 5, period: 60.seconds) do |req|
+Rack::Attack.throttle("api/publishable_key", limit: 20, period: 60.seconds) do |req|
   pub_key_matcher = %r{\A/api/([^/]+)/.+}
 
   # Limit by publishable_key
