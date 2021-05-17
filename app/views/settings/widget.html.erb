@@ -1,0 +1,29 @@
+<% meta title: t("settings.heading", team_name: current_team.name) %>
+
+<%= tag.h2 t("settings.heading", team_name: current_team.name), class: "mb-6 text-left text-xl lg:text-2xl font-bold text-gray-900" %>
+
+<div class="flex flex-col md:flex-row md:items-start md:justify-between">
+  <%= render partial: "nav", locals: { page: :widget } %>
+
+  <div class="w-full max-w-md mx-auto">
+    <div class="bg-gray-50 rounded-2xl p-6 mb-6">
+      <%= tag.h3 t(".heading"), class: "text-center text-lg font-bold text-gray-800 mb-3" %>
+
+      <div class="flex">
+        <%
+          support_script = <<~SCRPT
+            <script type="text/javascript" src="https://happi.team/widget/widget.js"></script>
+            <script type="text/javascript">
+              Happi.init({
+                publishableKey: "#{current_team.publishable_key}"
+              })
+            </script>
+          SCRPT
+        %>
+        <%= text_area :widget_code, nil, value: support_script, rows: 8, disabled: true, class: "bg-white text-gray-700 border-2 border-gray-200 w-full rounded-md" %>
+      </div>
+
+      <p class="mt-3 text-sm text-center"><%= t(".install_instructions_html") %></p>
+    </div>
+  </div>
+</div>
