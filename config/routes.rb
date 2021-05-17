@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     get :team
     get :emails
     get :canned_responses
+    get :widget
   end
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"

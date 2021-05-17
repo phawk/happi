@@ -99,6 +99,9 @@ en:
       canned_responses: Canned responses
       intro: Create snippets for your most commonly asked questions to save time.
       new_button: New canned response
+    widget:
+      heading: Install support widget
+      install_instructions_html: 'Add the code above to your website or web app to install the support widget. <a href="/docs/widget/installation" target="_blank" class="underline">More thorough docs</a> are available to allow prefilling customer data etc.'
   canned_responses:
     new:
       heading: New canned response

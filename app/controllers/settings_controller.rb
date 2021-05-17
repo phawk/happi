@@ -13,4 +13,6 @@ class SettingsController < ApplicationController
   def canned_responses
     @canned_responses = current_team.canned_responses.order(:created_at)
   end
+
+  def widget; end
 end
