@@ -57,9 +57,6 @@ module Happi
       Devise::Mailer.layout "mailer"
     end
 
-    # Rate limiting/throttling
-    config.middleware.use Rack::Attack
-
     # GZip all responses
     config.middleware.use Rack::Deflater
   end
