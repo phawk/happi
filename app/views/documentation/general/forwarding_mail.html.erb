@@ -1,5 +1,28 @@
 <%= content_for(:title, "Forwarding mail to Happi") %>
 
 <div class="prose">
-  <p>Umm?</p>
+  <p>At the moment we don’t have thorough docs available for any other email service than Google, we are working on this. If you use an alternate service reach out to <%= mail_to "support@in.happi.team" %> and we will be happy to assist you!</p>
+  <h3>Using Google Workspace (Google Apps)</h3>
+
+  <p>We advice you set up a Google Group for your support address, rather than a standalone mailbox.</p>
+
+  <h4>1. Create your group</h4>
+  <p>Log in to your <%= link_to "Google Workspace admin", "https://admin.google.com", target: "_blank" %> and select the <em>Groups</em> tab.</p>
+  <%= image_tag "docs/forwarding/1-dashboard.png", alt: "Google Workspace dashboard" %>
+  <p>Create a new group and fill out the details</p>
+  <%= image_tag "docs/forwarding/2-create-group.png", alt: "Create new group" %>
+  <%= image_tag "docs/forwarding/3-group-details.png", alt: "Group details" %>
+  <p>To allow emails from anybody, you need to click one additional box that allows <em>Publishing posts from external</em>. All other settings on this page should be left as is.</p>
+  <%= image_tag "docs/forwarding/4-group-permissions.png", alt: "Publish posts by external" %>
+  <p>Well done, your Group is now created and can start receiving emails. Next we’ll make sure these emails get forwarded to Happi...</p>
+
+  <h4>2. Add your Happi inbound address as a member to the group</h4>
+  <p>When you create your Happi account, you will be provided with a mailbox address, any emails that land in this mailbox will show up in Happi. You can find your mailbox address by clicking on your avatar in the top right of the screen, then <em>Settings</em>, then <em>Email addresses</em>.</p>
+  <%= image_tag "docs/forwarding/5-happi-mailbox.png", alt: "Happi mailbox address" %>
+  <p>Once you have your mailbox address to hand, it’s time to add it to your Google Group. Select <em>Members</em> from the groups home screen, then <em>Add members</em>, then paste in your Happi mailbox address and confirm.</p>
+  <%= image_tag "docs/forwarding/6-add-members.png", alt: "Google Group members" %>
+  <p>You should now see a group member listed with your Happi mailbox address.</p>
+
+  <h4>3. Test it out</h4>
+  <p>Once you have the google group set up and your Happi mailbox added as a member, it’s time to test it all works. Send an email to the custom address you set up and if the email doesn't appear inside your Happi account, make sure you completed all the steps above or reach out to <%= mail_to "support@in.happi.team" %> and we’ll be happy to help.</p>
 </div>

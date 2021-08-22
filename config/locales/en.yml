@@ -7,6 +7,7 @@ en:
     signed_in_as: "Signed in as"
     edit_profile: Edit profile
     settings: Settings
+    docs: Help docs
     admin: Admin
   forms:
     optional: Optional
