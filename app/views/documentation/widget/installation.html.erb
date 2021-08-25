@@ -1,8 +1,29 @@
 <%= content_for(:title, "Installing the widget") %>
 
 <div class="prose">
-  <p>Coming soon.</p>
   <p>You can embed the Happi widget into your website or web app to allow customers to reach out easily.</p>
 
   <%= image_tag "docs/widget/example.png", alt: "Happi embedable widget", class: "max-w-sm mx-auto" %>
+
+  <p>You can customise the colours and most of the text within the widget to your liking by passing in options.</p>
+
+  <h3>Using on any webpage</h3>
+
+  <p>Copy the support widget code from your <%= link_to "Widget settings", widget_settings_path, target: "_blank" %>, this is where you will find your publishable key. It should look like the snippet below:</p>
+
+  <pre><code class="text-white">
+&lt;script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js" type="text/javascript">&lt;/script>
+&lt;script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js" type="text/javascript">&lt;/script>
+&lt;script src="https://unpkg.com/happi-widget/dist/index.js" type="text/javascript">&lt;/script>
+&lt;script type="text/javascript">
+  Happi.init({
+    publishableKey: "my-publishable-key"
+  })
+&lt;/script>
+  </code></pre>
+
+  <p>That’s it, your widget is now installed and should automatically load on your site. If you have users who login to your website or app, you might want to <%= link_to "prefill their customer data", documentation_widget_prefill_data_path %> to save them time and avoid errors.</p>
+
+  <h3>Using with Gatsby/Next.js/React etc</h3>
+
 </div>
