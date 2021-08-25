@@ -1,0 +1,45 @@
+<%= content_for(:title, "Full configuration") %>
+
+<div class="prose">
+<p>A complete example of all configuration options is provided below with comments.</p>
+
+<pre><code>Happi.init({
+  <span class="text-gray-500">// Required config:</span>
+  <span class="text-gray-500">// Your publishable key as found on happi.team/settings/widget</span>
+  publishableKey: "my-publishable-key",
+  <br>
+  <span class="text-gray-500">// Optional config:</span>
+  <span class="text-gray-500">// Signed JWT identifier your customer to prefill their details</span>
+  customerData: "eyJbGci...",
+  <span class="text-gray-500">// Background colour for the support icon</span>
+  iconBg: "hotpink",
+  <span class="text-gray-500">// Text colour for the support icon</span>
+  iconTextColor: "white",
+  <span class="text-gray-500">// Text displayed beside the support icon</span>
+  iconText: "Support",
+  <span class="text-gray-500">// Main title displayed when widget is open</span>
+  headline: "Ask for help...",
+  <span class="text-gray-500">// Subheading displayed when widget is open</span>
+  subheading: "Our team usually reponds within 1-2 working days.",
+  <span class="text-gray-500">// Placeholder text in the main message input field</span>
+  messagePlaceholder: "Please help me with...",
+  <span class="text-gray-500">// Submit button text</span>
+  submitText: "Get in touch",
+  <span class="text-gray-500">// Form label for category dropdown</span>
+  categoryHeader: "Category",
+  <span class="text-gray-500">// List of categories for a dropdown above the message box</span>
+  categories: [
+    "Technical support",
+    "Pricing enquiry",
+    "Other"
+  ],
+  <span class="text-gray-500">// Various colour customisations, accepts browser colour names or hex colour codes</span>
+  styles: {
+    headerBgColor: "hotpink",
+    headerTextColor: "white",
+    buttonBgColor: "purple",
+    buttonTextColor: "#fff"
+  },
+})
+</pre></code>
+</div>

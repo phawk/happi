@@ -65,6 +65,7 @@ Rails.application.routes.draw do
 
     get "widget/installation", to: "widget#installation", as: :widget_installation
     get "widget/prefill_data", to: "widget#prefill_data", as: :widget_prefill_data
+    get "widget/configuration", to: "widget#configuration", as: :widget_configuration
     root to: "general#index"
   end
 

@@ -48,5 +48,11 @@
         Prefill user data
       </span>
     <% end %>
+
+    <%= link_to documentation_widget_configuration_path, class: cp(documentation_widget_configuration_path, exact: true) ? active_link_class : inactive_link_class do %>
+      <span class="truncate">
+        Full configuration
+      </span>
+    <% end %>
   </div>
 </div>
