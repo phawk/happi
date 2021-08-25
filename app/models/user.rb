@@ -39,4 +39,10 @@ class User < ApplicationRecord
   def assignable_roles
     ROLES[0..ROLES.index(role)]
   end
+
+  def as_customer_jwt
+    payload = attributes.slice("first_name", "last_name", "email")
+
+    JWT.encode(payload, Rails.application.credentials.happi_shared_secret, "HS512")
+  end
 end
