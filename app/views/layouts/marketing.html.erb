@@ -44,7 +44,7 @@
       Happi.init({
         publishableKey: "cDeEoaAhH9ujUdavnb78x2VL",
         <% if user_signed_in? %>
-        customerToken: "<%= current_user.as_customer_jwt %>",
+        customerData: "<%= current_user.as_customer_jwt %>",
         <% end %>
         subheading: "Our small team usually reponds the next working day.",
         messagePlaceholder: "",
