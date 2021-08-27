@@ -6,6 +6,8 @@
 
   <body>
     <%= render "shared/flash_alerts" %>
+    <%= render "layouts/partials/masquerade" %>
+
     <div class="bg-white">
       <%= yield(:header) if content_for(:header).present? %>
 

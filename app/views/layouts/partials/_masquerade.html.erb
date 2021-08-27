@@ -1,0 +1,7 @@
+<% if user_masquerade? %>
+  <div class="flex p-4 md:px-8 items-center bg-yellow-100 text-yellow-800">
+    <div class="container">
+      ⚠️ <strong>Admin</strong> masquerading as <%= current_user.email %>. <%= link_to "Reverse masquerade", back_masquerade_path(current_user), class: "text-blue-600 underline", data: { turbo: "false" } %>
+    </div>
+  </div>
+<% end %>
