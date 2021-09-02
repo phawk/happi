@@ -140,4 +140,5 @@ Rails.application.configure do
   }
 
   config.hosts << "happi.team"
+  config.hosts << "happi-live.herokuapp.com"
 end
