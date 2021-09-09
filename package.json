@@ -2,7 +2,7 @@
   "name": "happi",
   "private": true,
   "dependencies": {
-    "@hotwired/turbo-rails": "^7.0.0-beta.5",
+    "@hotwired/turbo-rails": "^7.0.0-rc.3",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.3",
     "@rails/activestorage": "^6.0.0",
