@@ -22,9 +22,14 @@ module Api
             { field: field, errors: error_messages }
           end
         full_errors = message.errors.full_messages
+        errors_object =
+        errors.inject({}) do |memo, err|
+          memo[err[:field]] = err[:errors].join(", ")
+          memo
+        end
         response = {
           error: "#{message.class.name.humanize} validation failed",
-          validation_errors: errors,
+          validation_errors: errors_object,
           full_errors: full_errors
         }
       else
