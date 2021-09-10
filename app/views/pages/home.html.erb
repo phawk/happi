@@ -42,7 +42,7 @@
             <%= f.email_field :email, placeholder: "Email address", class: "block w-full border border-gray-300 rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-purple-500 focus:ring-purple-500" %>
           </div>
           <div class="mt-4 sm:mt-0 sm:ml-3">
-            <%= f.submit "Join beta", class: "block w-full rounded-md border border-transparent px-5 py-3 bg-purple-500 text-base font-medium text-white shadow hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:px-10" %>
+            <%= f.submit "Get started", class: "block w-full rounded-md border border-transparent px-5 py-3 bg-purple-500 text-base font-medium text-white shadow hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:px-10" %>
           </div>
         <% end %>
         <p class="mt-3 md:mt-2 text-sm text-gray-400">We care about the protection of your data. Read our <%= link_to "Privacy Policy", privacy_path, class: "underline hover:text-gray-700", target: "_blank" %>.</p>
@@ -185,12 +185,12 @@
     <div class="pb-16 xl:flex xl:items-center xl:justify-between">
       <div>
         <h1 class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
-          <span class="text-gray-900">Early adopter </span>
-          <span class="text-purple-600">$250 per year</span>
+          <span class="text-gray-900">Just </span>
+          <span class="text-purple-600">£25 per month</span>
         </h1>
-        <p class="mt-5 text-xl text-gray-500">Get a lifetime discount by joining our beta today.</p>
+        <p class="mt-5 text-xl text-gray-500">Simple pricing with everything you need to get started.</p>
       </div>
-      <a href="#join-beta" class="mt-8 w-full bg-purple-600 border border-transparent px-5 py-3 inline-flex items-center justify-center text-base font-medium rounded-md text-white hover:bg-purple-700 sm:mt-10 sm:w-auto xl:mt-0">Join beta</a>
+      <a href="#join-beta" class="mt-8 w-full bg-purple-600 border border-transparent px-5 py-3 inline-flex items-center justify-center text-base font-medium rounded-md text-white hover:bg-purple-700 sm:mt-10 sm:w-auto xl:mt-0">Get started</a>
     </div>
     <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
       <div>
@@ -237,7 +237,7 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Customise email template with your logo</span>
+            <span class="ml-3 text-base text-gray-500">Customised email templates with your logo</span>
           </li>
         </ul>
         <ul class="border-t border-gray-200 divide-y divide-gray-200 md:border-t-0">
@@ -312,11 +312,11 @@
       <div class="relative">
         <div class="sm:text-center">
           <h2 class="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-            Want to join our beta?
+            Create your account
           </h2>
           <p class="mt-6 mx-auto max-w-2xl text-lg text-purple-100">
-            We are currently running a limited beta, collecting feedback and making sure we have all the features you need.
-            Add your email below and we will reach out real soon to get your account set up.
+            To help you get the most out of Happi, we are currently setting up accounts and custom emails for you.
+            Add your email below and we will reach out real soon to set you up.
           </p>
         </div>
         <%= form_with(model: BetaSignup.new, class: "mt-12 sm:mx-auto sm:max-w-lg sm:flex") do |f| %>
