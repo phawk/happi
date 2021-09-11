@@ -21,8 +21,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { masquerades: "admin/masquerades" }
 
-  authenticate :user, ->(u) { u.role?(:admin) } do
+  authenticated :user, ->(u) { u.role?(:admin) } do
     mount Sidekiq::Web => "/sidekiq"
+    mount Blazer::Engine, at: "blazer"
   end
 
   resources :beta_signups, only: :create
