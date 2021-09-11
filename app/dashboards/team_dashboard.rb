@@ -19,6 +19,8 @@ class TeamDashboard < Administrate::BaseDashboard
     verified_at: Field::DateTime,
     invite_code: Field::String,
     whitelabel: Field::Boolean,
+    available_seats: Field::Number,
+    messages_limit: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -45,6 +47,8 @@ class TeamDashboard < Administrate::BaseDashboard
     whitelabel
     users
     custom_email_addresses
+    available_seats
+    messages_limit
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -57,6 +61,8 @@ class TeamDashboard < Administrate::BaseDashboard
     verified_at
     invite_code
     whitelabel
+    available_seats
+    messages_limit
     users
   ].freeze
 
