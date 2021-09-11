@@ -5,6 +5,7 @@ payhere:
   shared_secret: <%= SecureRandom.base58(24) %>
   publishable_key: <%= SecureRandom.base58(24) %>
   verified_at: 2021-04-03
+  available_seats: 3
   users: pete
 
 nine:

@@ -31,4 +31,17 @@ RSpec.describe Team, type: :model do
       end
     end
   end
+
+  describe "#has_available_seat?" do
+    let(:team) { teams(:payhere) }
+
+    it "returns true when available_seats is greater than team members" do
+      expect(team.has_available_seat?).to be(true)
+    end
+
+    it "returns false when there are no available seats" do
+      team.update!(available_seats: 1)
+      expect(team.has_available_seat?).to be(false)
+    end
+  end
 end
