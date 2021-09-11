@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_135630) do
+ActiveRecord::Schema.define(version: 2021_09_11_194402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -249,6 +249,8 @@ ActiveRecord::Schema.define(version: 2021_09_11_135630) do
     t.string "country_code", default: "US", null: false
     t.string "shared_secret"
     t.string "publishable_key"
+    t.integer "available_seats", default: 3, null: false
+    t.integer "messages_limit", default: 3000, null: false
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
     t.index ["publishable_key"], name: "index_teams_on_publishable_key", unique: true

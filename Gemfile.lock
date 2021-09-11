@@ -323,6 +323,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    strong_migrations (0.7.8)
+      activerecord (>= 5)
     thor (1.1.0)
     tilt (2.0.10)
     turbo-rails (0.5.9)
@@ -389,6 +391,7 @@ DEPENDENCIES
   shoulda-matchers (~> 4.0)
   sidekiq
   spring
+  strong_migrations
   turbo-rails
   tzinfo-data
   view_component
