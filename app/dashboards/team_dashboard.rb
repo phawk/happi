@@ -15,7 +15,7 @@ class TeamDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     plan: Field::Select.with_options(
-      collection: Team::PLANS
+      collection: BillingPlan::PLANS
     ),
     mail_hash: Field::String,
     verified_at: Field::DateTime,

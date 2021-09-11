@@ -17,6 +17,7 @@ class SettingsController < ApplicationController
   def widget; end
 
   def billing
+    @plan = BillingPlan.new(name: current_team.plan)
     @seats_used = current_team.users.count
     @available_seats = current_team.available_seats
     @messages_used = current_team.messages_used_this_month

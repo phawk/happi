@@ -1,6 +1,4 @@
 class Team < ApplicationRecord
-  PLANS = %w[basic beta].freeze
-
   before_create :generated_mail_hash
 
   has_one_attached :logo
@@ -14,7 +12,7 @@ class Team < ApplicationRecord
   has_many :canned_responses, dependent: :destroy
 
   validates :name, presence: true
-  validates :plan, inclusion: { in: PLANS }
+  validates :plan, inclusion: { in: BillingPlan::PLANS }
 
   def allowed_threads
     message_threads.where.not(customer_id: customers.blocked.pluck(:id))
