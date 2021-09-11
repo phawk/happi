@@ -8,6 +8,11 @@ RSpec.describe Team, type: :model do
   it { is_expected.to have_many(:canned_responses) }
 
   it { is_expected.to validate_presence_of(:name) }
+  it do
+    is_expected.to validate_inclusion_of(:plan).in_array(
+      Team::PLANS
+    )
+  end
 
   describe "#emails_to_send_from" do
     let(:team) { teams(:payhere) }

@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
+  PLANS = %w[basic beta].freeze
+
   before_create :generated_mail_hash
 
   has_one_attached :logo
@@ -12,6 +14,7 @@ class Team < ApplicationRecord
   has_many :canned_responses, dependent: :destroy
 
   validates :name, presence: true
+  validates :plan, inclusion: { in: PLANS }
 
   def allowed_threads
     message_threads.where.not(customer_id: customers.blocked.pluck(:id))
@@ -46,6 +49,13 @@ class Team < ApplicationRecord
 
   def has_available_seat?
     users.count < available_seats
+  end
+
+  def messages_used_this_month
+    Message \
+      .where("created_at >= ?", Time.now.beginning_of_month)
+      .where(message_thread_id: message_threads.pluck(:id))
+      .count
   end
 
   private

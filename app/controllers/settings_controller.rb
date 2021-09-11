@@ -15,4 +15,11 @@ class SettingsController < ApplicationController
   end
 
   def widget; end
+
+  def billing
+    @seats_used = current_team.users.count
+    @available_seats = current_team.available_seats
+    @messages_used = current_team.messages_used_this_month
+    @messages_limit = current_team.messages_limit
+  end
 end
