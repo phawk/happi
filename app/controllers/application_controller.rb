@@ -6,8 +6,15 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :ensure_team!
   around_action :set_time_zone, if: :current_user
+  after_action :track_page_view
 
   protected
+
+  def track_page_view
+    return unless request.get?
+
+    ahoy.track "Page view", request.path_parameters.merge(url: request.fullpath)
+  end
 
   def set_time_zone(&block)
     if current_team.present?
