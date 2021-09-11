@@ -19,6 +19,9 @@ gem 'turbo-rails'
 gem 'redis', '~> 4.0'
 # Analytics and events
 gem 'ahoy_matey'
+# Business intelligence dashboards
+gem 'blazer'
+gem 'groupdate'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
