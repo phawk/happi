@@ -10,7 +10,7 @@ RSpec.describe Team, type: :model do
   it { is_expected.to validate_presence_of(:name) }
   it do
     is_expected.to validate_inclusion_of(:plan).in_array(
-      Team::PLANS
+      BillingPlan::PLANS
     )
   end
 
