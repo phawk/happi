@@ -1,7 +1,7 @@
 <%= content_for(:title, "Forwarding mail to Happi") %>
 
 <div class="prose">
-  <p>At the moment we don’t have thorough docs available for any other email service than Google, we are working on this. If you use an alternate service reach out to <%= mail_to "support@in.happi.team" %> and we will be happy to assist you!</p>
+  <p>At the moment we don’t have thorough docs available for any other email service than Google, we are working on this. If you use an alternate service reach out to <%= mail_to support_email_address %> and we will be happy to assist you!</p>
   <h3>Using Google Workspace (Google Apps)</h3>
 
   <p>We advice you set up a Google Group for your support address, rather than a standalone mailbox.</p>
@@ -24,5 +24,5 @@
   <p>You should now see a group member listed with your Happi mailbox address.</p>
 
   <h4>3. Test it out</h4>
-  <p>Once you have the google group set up and your Happi mailbox added as a member, it’s time to test it all works. Send an email to the custom address you set up and if the email doesn't appear inside your Happi account, make sure you completed all the steps above or reach out to <%= mail_to "support@in.happi.team" %> and we’ll be happy to help.</p>
+  <p>Once you have the google group set up and your Happi mailbox added as a member, it’s time to test it all works. Send an email to the custom address you set up and if the email doesn't appear inside your Happi account, make sure you completed all the steps above or reach out to <%= mail_to support_email_address %> and we’ll be happy to help.</p>
 </div>
