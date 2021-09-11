@@ -2,6 +2,7 @@ class TeamInvitesController < ApplicationController
   skip_before_action :authenticate_user!, except: :update
   skip_before_action :ensure_team!
   before_action :set_team
+  before_action :ensure_available_seat, only: %i[create update]
   layout "auth"
 
   def new
@@ -26,6 +27,13 @@ class TeamInvitesController < ApplicationController
   end
 
   private
+
+  def ensure_available_seat
+    unless @team.has_available_seat?
+      flash[:alert] = "Your team has no available seats, contact support to request more."
+      return redirect_to root_url
+    end
+  end
 
   def set_team
     @team = Team.find_by!(invite_code: params[:code])
