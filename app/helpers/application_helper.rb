@@ -14,4 +14,8 @@ module ApplicationHelper
       dom_id(records)
     end
   end
+
+  def support_email_address
+    "support@in.happi.team"
+  end
 end
