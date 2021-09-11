@@ -72,6 +72,10 @@ GEM
       momentjs-rails (~> 2.8)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
+    ahoy_matey (4.0.1)
+      activesupport (>= 5.2)
+      device_detector
+      safely_block (>= 0.2.1)
     aws-eventstream (1.1.0)
     aws-partitions (1.428.0)
     aws-sdk-core (3.112.0)
@@ -117,6 +121,7 @@ GEM
       addressable
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
+    device_detector (1.0.5)
     devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -129,6 +134,7 @@ GEM
       railties (>= 5.2.0)
     diff-lcs (1.4.4)
     email_reply_parser (0.5.10)
+    errbase (0.2.1)
     erubi (1.10.0)
     ffi (1.14.2)
     globalid (0.4.2)
@@ -280,6 +286,8 @@ GEM
     rspec-support (3.10.2)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
+    safely_block (0.3.0)
+      errbase (>= 0.1.1)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -344,6 +352,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
+  ahoy_matey
   aws-sdk-s3
   bootsnap (>= 1.4.4)
   byebug

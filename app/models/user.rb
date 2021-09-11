@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  has_many :visits, class_name: "Ahoy::Visit"
   has_and_belongs_to_many :teams
   belongs_to :team, optional: true
 
