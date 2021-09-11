@@ -92,9 +92,6 @@ en:
       forward_instructions: Forward any email address you want to appear in Happi to this mailbox address.
       custom_emails: Custom email addresses
       custom_email_setup: Add a custom email address and then set it up to forward all emails to the mailbox address above.
-    team:
-      team_members: Team members
-      invite_instructions: Send the link above to your team members and they can sign up and join you on Happi.
     canned_responses:
       canned_responses: Canned responses
       intro: Create snippets for your most commonly asked questions to save time.

@@ -44,6 +44,10 @@ class Team < ApplicationRecord
     logo.attached?
   end
 
+  def has_available_seat?
+    users.count < available_seats
+  end
+
   private
 
   def generated_mail_hash
