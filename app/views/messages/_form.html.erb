@@ -2,7 +2,7 @@
   <%= f.rich_text_area :content %>
 
   <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4">
-    <% if current_team.verified? %>
+    <% if current_team.verified? && !current_team.messages_limit_reached? %>
       <%= f.submit t(".button"), class: "button -primary sm:mr-3" %>
     <% else %>
       <button type="button" class="button -primary opacity-25 cursor-not-allowed sm:mr-3" disabled>
@@ -29,5 +29,8 @@
 
   <% unless current_team.verified? %>
     <%= render "shared/pending_verification" %>
+  <% end %>
+  <% if current_team.messages_limit_reached? %>
+    <%= render "shared/messages_limit_reached" %>
   <% end %>
 <% end %>

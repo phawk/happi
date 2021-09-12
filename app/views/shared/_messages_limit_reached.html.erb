@@ -1,0 +1,9 @@
+<div class="mt-4 bg-pink-500 text-white px-4 py-3 rounded-md">
+  <strong class="block mb-1">You have reached your monthly messages limit</strong>
+  <p class="text-sm">
+    You have used <%= current_team.messages_used_this_month %> out of your allowed <%= current_team.messages_limit %> messages this month. Message limits renew at the start of each month.
+  </p>
+  <p class="text-sm mt-2">
+    <%= mail_to support_email_address, "Contact support", class: "underline font-semibold" %> to upgrade your plan.
+  </p>
+</div>
