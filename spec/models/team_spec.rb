@@ -49,4 +49,13 @@ RSpec.describe Team, type: :model do
       expect(team.has_available_seat?).to be(false)
     end
   end
+
+  describe "#messages_limit_reached?" do
+    let(:team) { teams(:payhere) }
+
+    it "returns true when you have used all messages" do
+      team.update(messages_limit: 0)
+      expect(team.messages_limit_reached?).to be(true)
+    end
+  end
 end

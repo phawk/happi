@@ -56,6 +56,10 @@ class Team < ApplicationRecord
       .count
   end
 
+  def messages_limit_reached?
+    messages_used_this_month >= messages_limit
+  end
+
   private
 
   def generated_mail_hash
