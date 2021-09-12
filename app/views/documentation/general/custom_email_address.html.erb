@@ -1,7 +1,11 @@
 <%= content_for(:title, "Custom email addresses") %>
 
 <div class="prose">
-  <p>At the moment to prevent malicious users on our platform we will set up and approve your custom email address manually.</p>
-  <p>Once you have configured email forwarding into Happi and have tested that it works, email <%= mail_to support_email_address %> with your custom address and we can add this to your account so that all of your replies in Happi can be sent out using your own email address.</p>
+  <h3>Receiving messages from your domain</h3>
+  <p>To receive emails from your own custom email address, simply <%= link_to "add your custom email address", emails_settings_path, target: :_blank %> in settings and then <%= link_to "follow the instructions", documentation_forwarding_mail_path %> to forward emails from that address to your Happi mailbox.</p>
+
+  <h3>Sending messages from your domain</h3>
+  <p>At the moment, to prevent malicious users on our platform we will approve your custom email address manually.</p>
+  <p>Once you have added a custom address and configured email forwarding into Happi we will review your custom email settings and if applicable approve your domain for sending. Once this is done, your replies in Happi can be sent out using your own email address, before this point all emails sent out will come from Happi’s email address, with your team name set as the from name.</p>
   <p>To confirm you have access to this email address, you may receive an email from our email delivery partner, <strong>Postmark</strong> asking you to confirm your <em>Sender signature</em>, don’t worry this is normal and you should click the link in the confirmation email they send you.</p>
 </div>
