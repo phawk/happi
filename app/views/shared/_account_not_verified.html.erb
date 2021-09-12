@@ -1,5 +1,5 @@
 <% unless current_team.verified? %>
   <div class="fixed bottom-0 left-0 right-0 px-5 py-3 bg-purple-100 text-center text-purple-400">
-    <%= t(".not_verified_html") %>
+    You can’t send outbound emails until <strong>our team has verified your account</strong>.
   </div>
 <% end %>
