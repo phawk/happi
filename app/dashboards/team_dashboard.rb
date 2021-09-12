@@ -23,6 +23,7 @@ class TeamDashboard < Administrate::BaseDashboard
     whitelabel: Field::Boolean,
     available_seats: Field::Number,
     messages_limit: Field::Number,
+    messages_used_this_month: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -47,10 +48,11 @@ class TeamDashboard < Administrate::BaseDashboard
     verified_at
     invite_code
     whitelabel
+    available_seats
+    messages_used_this_month
+    messages_limit
     users
     custom_email_addresses
-    available_seats
-    messages_limit
   ].freeze
 
   # FORM_ATTRIBUTES
