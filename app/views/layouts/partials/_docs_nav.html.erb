@@ -11,22 +11,24 @@
       </span>
     <% end %>
 
-    <%= link_to documentation_forwarding_mail_path, class: cp(documentation_forwarding_mail_path, exact: true) ? active_link_class : inactive_link_class do %>
-      <span class="truncate">
-        Forwarding mail to Happi
-      </span>
-    <% end %>
-
     <%= link_to documentation_custom_email_address_path, class: cp(documentation_custom_email_address_path, exact: true) ? active_link_class : inactive_link_class do %>
       <span class="truncate">
         Custom email addresses
       </span>
     <% end %>
 
-    <%= link_to documentation_contact_forms_path, class: cp(documentation_contact_forms_path, exact: true) ? active_link_class : inactive_link_class do %>
+    <%= link_to documentation_forwarding_mail_path, class: cp(documentation_forwarding_mail_path, exact: true) ? active_link_class : inactive_link_class do %>
       <span class="truncate">
-        Contact forms
+        Forwarding mail to Happi
       </span>
+    <% end %>
+
+    <% if current_user&.role?(:admin) %>
+      <%= link_to documentation_contact_forms_path, class: cp(documentation_contact_forms_path, exact: true) ? active_link_class : inactive_link_class do %>
+        <span class="truncate">
+          Contact forms
+        </span>
+      <% end %>
     <% end %>
   </div>
 </div>
