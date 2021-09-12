@@ -1,3 +1,9 @@
+<% if @team.messages_limit_reached? %>
+  <div class="warning-block">
+    <strong>Warning!</strong> You have used all of your included messages this month &ndash; <%= link_to "more info", billing_settings_url %>.
+  </div>
+<% end %>
+
 <h1><%= t ".heading", team: @team.name %></h1>
 
 <h2><%= t ".subheading", subject: @thread.subject %></h2>
