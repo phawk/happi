@@ -11,10 +11,13 @@ RSpec.describe StripeWebhooks::SubscriptionUpdated do
         "customer.subscription.updated"
       )
     stripe_sub = event[:data][:object]
-    team.update!(stripe_subscription_id: stripe_sub.id)
+    stripe_sub[:metadata] = {
+      "happi_team_id" => team.id
+    }
 
     subject.call(event)
 
     expect(team.reload.subscription_status).to eq("active")
+    expect(team.reload.stripe_subscription_id).to eq(stripe_sub.id)
   end
 end
