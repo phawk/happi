@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   namespace :billing do
     resource :subscriptions, path: "subscription", only: %i[show create]
     get :success, to: "subscriptions#success"
+    post :manage, to: "subscriptions#manage"
   end
   resources :canned_responses, only: %i[new create edit update destroy]
   resources :custom_email_addresses, only: %i[create destroy]
