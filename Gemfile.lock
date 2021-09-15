@@ -125,6 +125,7 @@ GEM
     crass (1.0.6)
     css_parser (1.9.0)
       addressable
+    dante (0.2.0)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     device_detector (1.0.5)
@@ -205,6 +206,7 @@ GEM
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     msgpack (1.4.2)
+    multi_json (1.15.0)
     name_of_person (1.1.1)
       activesupport (>= 5.2.0)
     nio4r (2.5.5)
@@ -328,6 +330,13 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stripe (5.38.0)
+    stripe-ruby-mock (3.0.1)
+      dante (>= 0.2.0)
+      multi_json (~> 1.0)
+      stripe (> 5, < 6)
+    stripe_event (2.3.1)
+      activesupport (>= 3.1)
+      stripe (>= 2.8, < 6)
     strong_migrations (0.7.8)
       activerecord (>= 5)
     thor (1.1.0)
@@ -398,6 +407,8 @@ DEPENDENCIES
   sidekiq
   spring
   stripe (~> 5.38)
+  stripe-ruby-mock (~> 3.0.1)
+  stripe_event
   strong_migrations
   turbo-rails
   tzinfo-data
