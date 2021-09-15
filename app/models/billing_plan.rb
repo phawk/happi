@@ -40,7 +40,6 @@ class BillingPlan
         premium_support: false,
         live_stripe_price_id: "price_1JZwXvF0UsUPXe7UNwhTuAMw",
         test_stripe_price_id: "price_1JZyyPF0UsUPXe7U8XePod43",
-        payment_link: "https://buy.stripe.com/14k3cM1fCbrm4ve9AB",
       },
       basic: {
         id: "basic",
@@ -53,7 +52,6 @@ class BillingPlan
         premium_support: true,
         live_stripe_price_id: "price_1JZvyHF0UsUPXe7U6jDbjSMT",
         test_stripe_price_id: "price_1JZyzYF0UsUPXe7Ul2U3fW7N",
-        payment_link: "https://buy.stripe.com/cN228I5vSfHCd1KcMM",
       },
       business: {
         id: "business",
@@ -66,7 +64,6 @@ class BillingPlan
         premium_support: true,
         live_stripe_price_id: "price_1JZwYCF0UsUPXe7UqNfzclnX",
         test_stripe_price_id: "price_1JZyzmF0UsUPXe7UrJbBVrva",
-        payment_link: "https://buy.stripe.com/6oE9Ba7E09jee5O002",
       }
     }
   end
