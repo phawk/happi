@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   get "/view_message/:id", to: "messages#view_message", as: :view_message
 
   get "/dashboard", to: "dashboard#show"
+  get "/pricing", to: "pages#pricing"
   get "/terms", to: "pages#terms"
   get "/privacy", to: "pages#privacy"
   get "/security", to: "pages#security"

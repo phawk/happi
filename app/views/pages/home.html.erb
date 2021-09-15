@@ -36,16 +36,8 @@
             Customer support should be about talking to people, not ticket numbers.
           </p>
         </div>
-        <%= form_with(model: BetaSignup.new, class: "mt-12 sm:max-w-lg sm:w-full sm:flex") do |f| %>
-          <div class="min-w-0 flex-1">
-            <%= f.label :email, "Email address", class: "sr-only" %>
-            <%= f.email_field :email, placeholder: "Email address", class: "block w-full border border-gray-300 rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-purple-500 focus:ring-purple-500" %>
-          </div>
-          <div class="mt-4 sm:mt-0 sm:ml-3">
-            <%= f.submit "Get started", class: "block w-full rounded-md border border-transparent px-5 py-3 bg-purple-500 text-base font-medium text-white shadow hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:px-10" %>
-          </div>
-        <% end %>
-        <p class="mt-3 md:mt-2 text-sm text-gray-400">We care about the protection of your data. Read our <%= link_to "Privacy Policy", privacy_path, class: "underline hover:text-gray-700", target: "_blank" %>.</p>
+        <%= link_to "Create your account", pricing_path, class: "inline-flex mt-6 text-lg rounded-md border border-transparent px-5 py-3 bg-purple-500 text-base font-medium text-white shadow hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2" %>
+
         <% if false %>
         <div class="mt-6">
           <div class="inline-flex items-center divide-x divide-gray-300">
@@ -179,36 +171,18 @@
   </div>
 </div>
 
-<!-- Pricing -->
+<!-- Features -->
 <div class="bg-white">
   <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-    <div class="pb-16 xl:flex xl:items-center xl:justify-between">
-      <div>
-        <h1 class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
-          <span class="text-gray-900">Just </span>
-          <span class="text-purple-600">£25 per month</span>
-        </h1>
-        <p class="mt-5 text-xl text-gray-500">Simple pricing with everything you need to get started.</p>
-      </div>
-      <a href="#join-beta" class="mt-8 w-full bg-purple-600 border border-transparent px-5 py-3 inline-flex items-center justify-center text-base font-medium rounded-md text-white hover:bg-purple-700 sm:mt-10 sm:w-auto xl:mt-0">Get started</a>
-    </div>
-    <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
+    <div class="pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
       <div>
         <h2 class="text-base font-semibold text-purple-600 tracking-wide uppercase">Everything you need</h2>
         <p class="mt-2 text-3xl font-extrabold text-gray-900">All-in-one platform</p>
-        <p class="mt-4 text-lg text-gray-500">We’re building the future of customer engagement, we invite you to come along for the journey and help shape the product.</p>
+        <p class="mt-4 text-lg text-gray-500">We believe all pricing tiers should get the same great features, to help you better engage with your customers.</p>
       </div>
       <div class="mt-4 sm:mt-8 md:mt-10 md:grid md:grid-cols-2 md:gap-x-8 xl:mt-0 xl:col-span-2">
         <ul class="divide-y divide-gray-200">
           <li class="py-4 flex md:py-0 md:pb-4">
-            <!-- Heroicon name: outline/check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <span class="ml-3 text-base text-gray-500">Includes 3 team members</span>
-          </li>
-
-          <li class="py-4 flex">
             <!-- Heroicon name: outline/check -->
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -246,14 +220,6 @@
             <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="ml-3 text-base text-gray-500">Up to 3,000 emails sent per month</span>
-          </li>
-
-          <li class="py-4 flex">
-            <!-- Heroicon name: outline/check -->
-            <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
             <span class="ml-3 text-base text-gray-500">Canned responses help you save time</span>
           </li>
 
@@ -287,6 +253,10 @@
   </div>
 </div>
 
+<!-- Pricing -->
+<%= render partial: "pages/partials/pricing_table" %>
+
+<% if false %>
 <!-- CTA section -->
 <div class="relative mt-24 sm:mt-32 sm:py-16">
   <div aria-hidden="true" class="hidden sm:block">
@@ -333,3 +303,4 @@
     </div>
   </div>
 </div>
+<% end %>

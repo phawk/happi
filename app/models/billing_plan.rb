@@ -32,6 +32,7 @@ class BillingPlan
       individual: {
         id: "individual",
         display_name: "Individual",
+        description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 10,
         current_price: 10,
         available_seats: 1,
@@ -44,6 +45,7 @@ class BillingPlan
       basic: {
         id: "basic",
         display_name: "Basic",
+        description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 25,
         current_price: 25,
         available_seats: 3,
@@ -56,6 +58,7 @@ class BillingPlan
       business: {
         id: "business",
         display_name: "Business",
+        description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 100,
         current_price: 100,
         available_seats: 10,

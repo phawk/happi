@@ -1,0 +1,17 @@
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="max-w-7xl mx-auto py-16 px-4 bg-white sm:px-6 lg:px-8">
+  <h2 class="text-3xl font-extrabold text-gray-900 sm:text-5xl sm:leading-none sm:tracking-tight lg:text-6xl">
+    Choose your plan
+  </h2>
+  <div class="mt-6 flex items-center justify-start">
+    <%= image_tag "marketing/stripe-climate.png", alt: "Stripe Climate", class: "flex-shrink-0 mr-5 w-8 h-8" %>
+    <p class="text-base text-gray-500">
+      P.s. we donate 1% of our revenue to removing CO<sup>2</sup> from the atmosphere &ndash; <a href="https://climate.stripe.com/WaTmLB" target="_blank" class="underline">read more</a>
+    </p>
+  </div>
+
+  <!-- Tiers -->
+  <div class="mt-24 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">
+    <%= render partial: "pages/partials/price_block", collection: @plans, as: :plan %>
+  </div>
+</div>

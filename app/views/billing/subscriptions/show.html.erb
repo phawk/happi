@@ -36,7 +36,7 @@
                     <span class="text-4xl font-extrabold text-gray-900"><%= number_to_currency(plan.current_price, unit: "£", precision: 0) %></span>
                     <span class="text-base font-medium text-gray-500">/mo</span>
                   </p>
-                  <p class="mt-4 mb-16 text-sm text-gray-500">Billed monthly, no commitments, cancel anytime!</p>
+                  <p class="mt-4 mb-16 text-sm text-gray-500"><%= plan.description %></p>
                   <%= render partial: "billing/subscriptions/buy_button", locals: { plan: plan, class_name: "absolute bottom-0 flex-grow block w-full bg-gray-800 border border-gray-800 rounded-md 5 py-2 text-sm font-semibold text-white text-center hover:bg-gray-900 cursor-pointer" } %>
                 </div>
               </td>
