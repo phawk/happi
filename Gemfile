@@ -46,6 +46,7 @@ gem "rack-cors", require: "rack/cors"
 gem "rack-attack"
 gem "strong_migrations"
 gem "stripe", "~> 5.38"
+gem "stripe_event"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -72,6 +73,7 @@ end
 group :test do
   gem "shoulda-matchers", "~> 4.0", require: false
   gem "capybara"
+  gem "stripe-ruby-mock", "~> 3.0.1", require: "stripe_mock"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     mount Blazer::Engine, at: "blazer"
   end
 
+  # Stripe webhooks
+  mount StripeEvent::Engine, at: "/events/stripe"
+
   resources :beta_signups, only: :create
   namespace :billing do
     resource :subscriptions, path: "subscription", only: %i[show create]

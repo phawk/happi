@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
+  SUBSCRIPTION_STATES = %w[pending incomplete incomplete_expired trialing active past_due canceled unpaid].freeze
+
   before_create :generated_mail_hash
 
   has_one_attached :logo
@@ -13,6 +15,7 @@ class Team < ApplicationRecord
 
   validates :name, presence: true
   validates :plan, inclusion: { in: BillingPlan::PLANS }
+  validates :subscription_status, presence: true, inclusion: { in: SUBSCRIPTION_STATES }
 
   def allowed_threads
     message_threads.where.not(customer_id: customers.blocked.pluck(:id))

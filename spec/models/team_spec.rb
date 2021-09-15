@@ -13,6 +13,7 @@ RSpec.describe Team, type: :model do
       BillingPlan::PLANS
     )
   end
+  it { is_expected.to validate_inclusion_of(:subscription_status).in_array(Team::SUBSCRIPTION_STATES) }
 
   describe "#emails_to_send_from" do
     let(:team) { teams(:payhere) }

@@ -1,24 +1,20 @@
-# README
+# Happi.team
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+### Stripe webhooks locally
 
-* System dependencies
+Install the stripe cli and run `stripe login` first.
 
-* Configuration
+```sh
+$ stripe listen --forward-to localhost:3000/events/stripe --events customer.subscription.updated,customer.subscription.deleted
+```
 
-* Database creation
+After listening for webhooks, add the signing secret to the array in `config/initializers/stripe.rb`.
 
-* Database initialization
+## Deployments
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Happi is hosted on Heroku and uses Heroku Postgres as the primary data store. Deploys happen automatically when you push to the `main` branch.
