@@ -24,6 +24,8 @@ class TeamsController < ApplicationController
     if @team.save
       @team.add_user(current_user, set_active_team: true)
 
+      AdminMailer.notification("A new team needs reviewed", "#{@team.name} just signed up for Happi and needs reviewed.").deliver_later
+
       redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
