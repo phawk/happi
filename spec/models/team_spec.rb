@@ -66,4 +66,39 @@ RSpec.describe Team, type: :model do
       expect(team.subscription_status).to eq("pending")
     end
   end
+
+  describe "#subscription_active?" do
+    it "returns true when subscription is trialing, active or past_due" do
+      expect(Team.new(subscription_status: "trialing").subscription_active?).to be(true)
+      expect(Team.new(subscription_status: "active").subscription_active?).to be(true)
+      expect(Team.new(subscription_status: "past_due").subscription_active?).to be(true)
+    end
+
+    it "returns false otherwise" do
+      expect(Team.new(subscription_status: "pending").subscription_active?).to be(false)
+      expect(Team.new(subscription_status: "canceled").subscription_active?).to be(false)
+    end
+  end
+
+  describe "#can_send_messages?" do
+    it "can send messages when verified, has quota and subscription is active" do
+      team = Team.new(verified_at: 1.hour.ago, subscription_status: "active", messages_limit: 1_000)
+      expect(team.can_send_messages?).to be(true)
+    end
+
+    it "cannot send messages when limit reached" do
+      team = Team.new(verified_at: 1.hour.ago, subscription_status: "active", messages_limit: 0)
+      expect(team.can_send_messages?).to be(false)
+    end
+
+    it "cannot send messages when subscription inactive" do
+      team = Team.new(verified_at: 1.hour.ago, subscription_status: "canceled")
+      expect(team.can_send_messages?).to be(false)
+    end
+
+    it "cannot send messages when unverified" do
+      team = Team.new
+      expect(team.can_send_messages?).to be(false)
+    end
+  end
 end

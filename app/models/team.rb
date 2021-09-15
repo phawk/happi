@@ -1,5 +1,6 @@
 class Team < ApplicationRecord
   SUBSCRIPTION_STATES = %w[pending incomplete incomplete_expired trialing active past_due canceled unpaid].freeze
+  ACTIVE_SUBSCRIPTION_STATES = %w[trialing active past_due].freeze
 
   before_create :generated_mail_hash
 
@@ -70,6 +71,17 @@ class Team < ApplicationRecord
       available_seats: plan.available_seats,
       subscription_status: "pending",
     )
+  end
+
+  def can_send_messages?
+    return false unless verified?
+    return false unless subscription_active?
+    return false if messages_limit_reached?
+    true
+  end
+
+  def subscription_active?
+    subscription_status.in?(ACTIVE_SUBSCRIPTION_STATES)
   end
 
   private

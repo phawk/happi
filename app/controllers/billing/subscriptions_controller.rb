@@ -19,6 +19,15 @@ module Billing
       redirect_to checkout.url
     end
 
+    def manage
+      portal_url = BillingService.create_portal_link(
+        user: current_user,
+        team: current_team,
+        return_url: billing_settings_url
+      )
+      redirect_to portal_url
+    end
+
     def success
       render layout: "auth"
     end

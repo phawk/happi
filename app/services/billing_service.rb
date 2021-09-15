@@ -23,6 +23,17 @@ module BillingService
     checkout_session
   end
 
+  def create_portal_link(user:, team:, return_url:)
+    stripe_customer = upsert_stripe_customer(user: user, team: team)
+
+    portal = Stripe::BillingPortal::Session.create({
+      customer: stripe_customer.id,
+      return_url: return_url,
+    })
+
+    portal.url
+  end
+
   def upsert_stripe_customer(user:, team:)
     if team.stripe_customer_id.present?
       begin

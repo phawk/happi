@@ -7,43 +7,72 @@
 
   <div class="w-full max-w-md mx-auto">
     <div class="bg-gray-50 rounded-2xl p-6 mb-6">
-      <h3 class="text-lg font-medium text-gray-800 mb-3">
-        You’re on the <span class="font-extrabold"><%= @plan.display_name %></span> plan
-      </h3>
+      <% if current_team.subscription_active? %>
+        <h3 class="text-lg font-medium text-gray-800 mb-3">
+          You’re on the <span class="font-extrabold"><%= @plan.display_name %></span> plan
+        </h3>
 
-      <dl class="mt-6 space-y-4">
-        <div class="flex items-center justify-between">
-          <dt class="text-sm text-gray-600">
-            Team members
-          </dt>
-          <dd class="text-sm font-medium text-gray-900">
-            <%= @seats_used %> / <%= @available_seats %>
-          </dd>
-        </div>
-        <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
-          <dt class="text-sm text-gray-600">
-            Messages used this month
-          </dt>
-          <dd class="text-sm font-medium <%= @messages_used >= @messages_limit ? "text-pink-700" : "text-gray-900" %>">
-            <%= @messages_used %> / <%= @messages_limit %>
-          </dd>
-        </div>
-        <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
-          <dt class="text-base font-medium text-gray-900">
-            Monthly cost
-          </dt>
-          <dd class="text-base font-medium text-gray-900">
-            <% if @plan.has_discount? %>
-              <span class="text-gray-400 line-through">£<%= @plan.original_price %></span>
-            <% end %>
-            £<%= @plan.current_price %>
-          </dd>
-        </div>
-      </dl>
+        <dl class="mt-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <dt class="text-sm text-gray-600">
+              Team members
+            </dt>
+            <dd class="text-sm font-medium text-gray-900">
+              <%= @seats_used %> / <%= @available_seats %>
+            </dd>
+          </div>
+          <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
+            <dt class="text-sm text-gray-600">
+              Messages used this month
+            </dt>
+            <dd class="text-sm font-medium <%= @messages_used >= @messages_limit ? "text-pink-700" : "text-gray-900" %>">
+              <%= @messages_used %> / <%= @messages_limit %>
+            </dd>
+          </div>
+          <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
+            <dt class="text-base font-medium text-gray-900">
+              Monthly cost
+            </dt>
+            <dd class="text-base font-medium text-gray-900">
+              <% if @plan.has_discount? %>
+                <span class="text-gray-400 line-through">£<%= @plan.original_price %></span>
+              <% end %>
+              £<%= @plan.current_price %>
+            </dd>
+          </div>
+        </dl>
 
-      <div class="mt-6">
-        <%= mail_to support_email_address, "Upgrade my plan", class: "button -lg w-full" %>
-      </div>
+        <div class="mt-6">
+          <%= button_to "Manage subscription", billing_manage_path, method: :post, data: { turbo: false }, class: "button -primary -lg w-full" %>
+        </div>
+      <% else %>
+        <h3 class="text-lg font-medium text-gray-800 mb-3">
+          Your subscription is inactive
+        </h3>
+
+        <dl class="mt-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <dt class="text-sm text-gray-600">
+              Subscription
+            </dt>
+            <dd class="text-sm font-medium text-gray-900">
+              <%= current_team.subscription_status %>
+            </dd>
+          </div>
+          <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
+            <dt class="text-sm text-gray-600">
+              Messages used this month
+            </dt>
+            <dd class="text-sm font-medium <%= @messages_used >= @messages_limit ? "text-pink-700" : "text-gray-900" %>">
+              <%= @messages_used %> / <%= @messages_limit %>
+            </dd>
+          </div>
+        </dl>
+
+        <div class="mt-6">
+          <%= link_to "Choose plan", billing_subscriptions_path, class: "button -primary -lg w-full" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

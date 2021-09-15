@@ -7,11 +7,8 @@ class MessagesController < ApplicationController
   end
 
   def create
-    unless current_team.verified?
-      return redirect_to @message_thread, alert: "Message not sent. Your account is in review."
-    end
-    if current_team.messages_limit_reached?
-      return redirect_to @message_thread, alert: "Message limit reached."
+    unless current_team.can_send_messages?
+      return redirect_to @message_thread, alert: "Message failed to send"
     end
 
     message = @message_thread.messages.create(message_params)
