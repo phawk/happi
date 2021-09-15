@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Team, type: :model do
+  let(:team) { teams(:payhere) }
+
   it { is_expected.to have_and_belong_to_many(:users) }
   it { is_expected.to have_many(:customers) }
   it { is_expected.to have_many(:message_threads) }
@@ -16,8 +18,6 @@ RSpec.describe Team, type: :model do
   it { is_expected.to validate_inclusion_of(:subscription_status).in_array(Team::SUBSCRIPTION_STATES) }
 
   describe "#emails_to_send_from" do
-    let(:team) { teams(:payhere) }
-
     context "if no custom emails exist" do
       before { team.custom_email_addresses.destroy_all }
 
@@ -39,8 +39,6 @@ RSpec.describe Team, type: :model do
   end
 
   describe "#has_available_seat?" do
-    let(:team) { teams(:payhere) }
-
     it "returns true when available_seats is greater than team members" do
       expect(team.has_available_seat?).to be(true)
     end
@@ -52,11 +50,20 @@ RSpec.describe Team, type: :model do
   end
 
   describe "#messages_limit_reached?" do
-    let(:team) { teams(:payhere) }
-
     it "returns true when you have used all messages" do
       team.update(messages_limit: 0)
       expect(team.messages_limit_reached?).to be(true)
+    end
+  end
+
+  describe "#change_plan(plan)" do
+    it "sets plan name and limits" do
+      individual_plan = BillingPlan.new(name: "individual")
+      team.change_plan(individual_plan)
+      expect(team.plan).to eq("individual")
+      expect(team.available_seats).to eq(1)
+      expect(team.messages_limit).to eq(1_000)
+      expect(team.subscription_status).to eq("pending")
     end
   end
 end
