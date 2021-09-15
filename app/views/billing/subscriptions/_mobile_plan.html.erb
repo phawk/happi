@@ -6,7 +6,7 @@
       <span class="text-base font-medium text-gray-500">/mo</span>
     </p>
     <p class="mt-4 text-sm text-gray-500">Billed monthly, no commitments, cancel anytime!</p>
-    <%= link_to "Buy #{plan.display_name}", plan.payment_link, class: "mt-6 block border border-gray-800 rounded-md bg-gray-800 w-full py-2 text-sm font-semibold text-white text-center hover:bg-gray-900" %>
+    <%= render partial: "billing/subscriptions/buy_button", locals: { plan: plan, class_name: "mt-6 block border border-gray-800 rounded-md bg-gray-800 w-full py-2 text-sm font-semibold text-white text-center hover:bg-gray-900 cursor-pointer" } %>
   </div>
 
   <table class="w-full">

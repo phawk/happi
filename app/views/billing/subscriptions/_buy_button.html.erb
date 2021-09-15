@@ -1,0 +1,1 @@
+<%= button_to "Buy #{plan.display_name}", billing_subscriptions_path(plan: plan.id), method: :post, data: { turbo: false }, class: class_name %>
