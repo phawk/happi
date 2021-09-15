@@ -1,0 +1,63 @@
+<% highlight = plan.id == "basic" %>
+<div class="relative p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col">
+  <div class="flex-1">
+    <h3 class="text-xl font-semibold text-gray-900"><%= plan.display_name %></h3>
+    <% if highlight %>
+      <p class="absolute top-0 py-1.5 px-4 bg-purple-500 rounded-full text-xs font-semibold uppercase tracking-wide text-white transform -translate-y-1/2">Most popular</p>
+    <% end %>
+    <p class="mt-4 flex items-baseline text-gray-900">
+      <span class="text-5xl font-extrabold tracking-tight"><%= number_to_currency(plan.current_price, unit: "£", precision: 0) %></span>
+      <span class="ml-1 text-xl font-semibold">/month</span>
+    </p>
+    <p class="mt-6 text-gray-500"><%= plan.description %></p>
+
+    <!-- Feature list -->
+    <ul role="list" class="mt-6 space-y-6">
+      <li class="flex">
+        <!-- Heroicon name: outline/check -->
+        <svg class="flex-shrink-0 w-6 h-6 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="ml-3 text-gray-500">
+          <% if plan.available_seats > 1 %>
+            <span class="block text-gray-500">
+              Up to <%= plan.available_seats %> team members
+            </span>
+          <% else %>
+            <span class="block text-gray-500">
+              Single team member
+            </span>
+          <% end %>
+        </span>
+      </li>
+
+      <li class="flex">
+        <!-- Heroicon name: outline/check -->
+        <svg class="flex-shrink-0 w-6 h-6 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="ml-3 text-gray-500"><%= number_with_delimiter plan.messages_limit %> messages/mo</span>
+      </li>
+
+      <li class="flex">
+        <!-- Heroicon name: outline/check -->
+        <svg class="flex-shrink-0 w-6 h-6 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="ml-3 text-gray-500">All product features</span>
+      </li>
+
+      <li class="flex">
+        <% if plan.premium_support %>
+        <!-- Heroicon name: outline/check -->
+        <svg class="flex-shrink-0 w-6 h-6 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="ml-3 text-gray-500">Priority support</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <%= link_to "Get started", new_user_registration_path, class: "#{highlight ? "bg-purple-500 text-white hover:bg-purple-600" : "bg-purple-50 text-purple-700 hover:bg-purple-100"} mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium" %>
+</div>
