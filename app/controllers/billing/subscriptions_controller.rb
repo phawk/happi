@@ -1,8 +1,8 @@
 module Billing
-  class PlansController < ApplicationController
+  class SubscriptionsController < ApplicationController
     skip_before_action :authenticate_user!, only: :success
 
-    def index
+    def show
       @plans = BillingPlan.all
     end
 

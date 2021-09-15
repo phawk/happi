@@ -30,6 +30,7 @@ class BillingPlan
   def data
     {
       individual: {
+        id: "individual",
         display_name: "Individual",
         original_price: 10,
         current_price: 10,
@@ -40,6 +41,7 @@ class BillingPlan
         payment_link: "https://buy.stripe.com/14k3cM1fCbrm4ve9AB",
       },
       basic: {
+        id: "basic",
         display_name: "Basic",
         original_price: 25,
         current_price: 25,
@@ -50,6 +52,7 @@ class BillingPlan
         payment_link: "https://buy.stripe.com/cN228I5vSfHCd1KcMM",
       },
       business: {
+        id: "business",
         display_name: "Business",
         original_price: 100,
         current_price: 100,
