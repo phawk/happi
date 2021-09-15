@@ -10,7 +10,7 @@ module Billing
       plan = BillingPlan.new(name: params[:plan])
       current_team.change_plan(plan)
       checkout = BillingService.create_checkout(
-        plan_id: plan.test_stripe_price_id,
+        plan_id: billing_live? ? plan.live_stripe_price_id : plan.test_stripe_price_id,
         user: current_user,
         team: current_team,
         success_url: billing_success_url,
@@ -30,6 +30,12 @@ module Billing
 
     def success
       render layout: "auth"
+    end
+
+    private
+
+    def billing_live?
+      ENV["BILLING_MODE"] == "live"
     end
   end
 end
