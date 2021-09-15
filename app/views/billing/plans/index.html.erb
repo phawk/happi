@@ -1,0 +1,136 @@
+<h1 class="mt-4 mb-2 text-2xl lg:text-4xl font-semibold text-gray-900 w-full text-center">Select a plan that suits you&hellip;</h1>
+
+<div class="bg-white">
+  <div class="max-w-7xl mx-auto bg-white py-16 sm:py-24 sm:px-6 lg:px-8">
+    <!-- xs to lg -->
+    <div class="max-w-2xl mx-auto space-y-16 lg:hidden">
+      <%= render partial: "billing/plans/mobile_plan", collection: @plans, as: :plan %>
+    </div>
+
+    <!-- lg+ -->
+    <div class="hidden lg:block">
+      <table class="w-full h-px table-fixed">
+        <caption class="sr-only">
+          Pricing plan comparison
+        </caption>
+        <thead>
+          <tr>
+            <th class="pb-4 px-6 text-sm font-medium text-gray-900 text-left" scope="col">
+              <span class="sr-only">Feature by</span>
+              <span>Plans</span>
+            </th>
+
+            <% @plans.each do |plan| %>
+              <th class="w-1/4 pb-4 px-6 text-lg leading-6 font-medium text-gray-900 text-left" scope="col"><%= plan.display_name %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody class="border-t border-gray-200 divide-y divide-gray-200">
+          <tr>
+            <th class="py-8 px-6 text-sm font-medium text-gray-900 text-left align-top" scope="row">Pricing</th>
+
+            <% @plans.each do |plan| %>
+              <td class="h-full py-8 px-6 align-top">
+                <div class="relative h-full table">
+                  <p>
+                    <span class="text-4xl font-extrabold text-gray-900"><%= number_to_currency(plan.current_price, unit: "£", precision: 0) %></span>
+                    <span class="text-base font-medium text-gray-500">/mo</span>
+                  </p>
+                  <p class="mt-4 mb-16 text-sm text-gray-500">Billed monthly, no commitments, cancel anytime!</p>
+                  <%= link_to "Buy #{plan.display_name}", plan.payment_link, class: "absolute bottom-0 flex-grow block w-full bg-gray-800 border border-gray-800 rounded-md 5 py-2 text-sm font-semibold text-white text-center hover:bg-gray-900" %>
+                </div>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <th class="bg-gray-50 py-3 pl-6 text-sm font-medium text-gray-900 text-left" colspan="4" scope="colgroup">Features</th>
+          </tr>
+
+          <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">Custom domains</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <!-- Heroicon name: solid/check -->
+                <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Included in Plan</span>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">Team members</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <% if plan.available_seats > 1 %>
+                  <span class="block text-sm text-gray-700">
+                    Up to <%= plan.available_seats %> users
+                  </span>
+                <% else %>
+                  <!-- Heroicon name: solid/minus -->
+                  <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="sr-only">Not included in plan</span>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">Messages per month</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <span class="block text-sm text-gray-700">
+                  <%= number_with_delimiter plan.messages_limit %> /mo
+                </span>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <th class="bg-gray-50 py-3 pl-6 text-sm font-medium text-gray-900 text-left" colspan="4" scope="colgroup">Support</th>
+          </tr>
+
+          <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">Premium support</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <% if plan.premium_support %>
+                  <!-- Heroicon name: solid/check -->
+                  <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="sr-only">Included in plan</span>
+                <% else %>
+                  <!-- Heroicon name: solid/minus -->
+                  <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="sr-only">Not included in plan</span>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="border-t border-gray-200">
+            <th class="sr-only" scope="row">Choose your plan</th>
+
+            <% @plans.each do |plan| %>
+              <td class="pt-5 px-6">
+                <%= link_to "Buy #{plan.display_name}", plan.payment_link, class: "block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900" %>
+              </td>
+            <% end %>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

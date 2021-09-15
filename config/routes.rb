@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   end
 
   resources :beta_signups, only: :create
+  namespace :billing do
+    resources :plans, only: :index
+  end
   resources :canned_responses, only: %i[new create edit update destroy]
   resources :custom_email_addresses, only: %i[create destroy]
   resources :customers do
