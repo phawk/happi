@@ -16,9 +16,6 @@ RSpec.describe BillingPlan, type: :model do
 
   describe "#has_discount?" do
     it "returns true when the plan has a discount running" do
-      beta_plan = BillingPlan.new(name: "beta")
-      expect(beta_plan.has_discount?).to be(true)
-
       basic_plan = BillingPlan.new(name: "basic")
       expect(basic_plan.has_discount?).to be(false)
     end
