@@ -11,7 +11,7 @@ end
 StripeEvent.signing_secrets = [
   Rails.application.credentials.stripe[:test_webhooks_secret],
   Rails.application.credentials.stripe[:live_webhooks_secret],
-  "whsec_u47na4zSiA2MvWX7CuhxFwHduMgczqh7" # stripe-cli local
+  "whsec_ZzjKbxPTxLMqxdvuPVzbdgq9661etDS8" # stripe-cli local
 ]
 
 class EventFilter

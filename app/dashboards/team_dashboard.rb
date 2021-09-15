@@ -24,6 +24,11 @@ class TeamDashboard < Administrate::BaseDashboard
     available_seats: Field::Number,
     messages_limit: Field::Number,
     messages_used_this_month: Field::Number,
+    subscription_status: Field::Select.with_options(
+      collection: Team::SUBSCRIPTION_STATES
+    ),
+    stripe_customer_id: Field::String,
+    stripe_subscription_id: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -35,6 +40,7 @@ class TeamDashboard < Administrate::BaseDashboard
     id
     name
     plan
+    subscription_status
     verified_at
   ].freeze
 
@@ -44,6 +50,7 @@ class TeamDashboard < Administrate::BaseDashboard
     id
     name
     plan
+    subscription_status
     mail_hash
     verified_at
     invite_code
@@ -51,6 +58,8 @@ class TeamDashboard < Administrate::BaseDashboard
     available_seats
     messages_used_this_month
     messages_limit
+    stripe_customer_id
+    stripe_subscription_id
     users
     custom_email_addresses
   ].freeze
@@ -61,12 +70,15 @@ class TeamDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     name
     plan
+    subscription_status
     mail_hash
     verified_at
     invite_code
     whitelabel
     available_seats
     messages_limit
+    stripe_customer_id
+    stripe_subscription_id
     users
   ].freeze
 

@@ -11,7 +11,9 @@ RSpec.describe StripeWebhooks::SubscriptionDeleted do
         "customer.subscription.deleted"
       )
     stripe_sub = event[:data][:object]
-    team.update!(stripe_subscription_id: stripe_sub.id)
+    stripe_sub[:metadata] = {
+      "happi_team_id" => team.id
+    }
 
     subject.call(event)
 
