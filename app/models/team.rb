@@ -63,6 +63,15 @@ class Team < ApplicationRecord
     messages_used_this_month >= messages_limit
   end
 
+  def change_plan(plan)
+    update!(
+      plan: plan.id,
+      messages_limit: plan.messages_limit,
+      available_seats: plan.available_seats,
+      subscription_status: "pending",
+    )
+  end
+
   private
 
   def generated_mail_hash

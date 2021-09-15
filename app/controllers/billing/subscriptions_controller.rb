@@ -8,7 +8,7 @@ module Billing
 
     def create
       plan = BillingPlan.new(name: params[:plan])
-      current_team.update!(plan: plan.id, subscription_status: "pending")
+      current_team.change_plan(plan)
       checkout = BillingService.create_checkout(
         plan_id: plan.test_stripe_price_id,
         user: current_user,
