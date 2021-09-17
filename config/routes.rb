@@ -19,7 +19,10 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, controllers: { masquerades: "admin/masquerades" }
+  devise_for :users, controllers: {
+    registrations: "user_registrations",
+    masquerades: "admin/masquerades"
+  }
 
   authenticated :user, ->(u) { u.role?(:admin) } do
     mount Sidekiq::Web => "/sidekiq"

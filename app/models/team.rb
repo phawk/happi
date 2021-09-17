@@ -84,6 +84,11 @@ class Team < ApplicationRecord
     subscription_status.in?(ACTIVE_SUBSCRIPTION_STATES)
   end
 
+  def destroy
+    User.where(team_id: id).update_all(team_id: nil)
+    super
+  end
+
   private
 
   def generated_mail_hash

@@ -12,5 +12,8 @@
     <%= f.label :time_zone %>
     <%= f.time_zone_select :time_zone, nil, {}, class: "w-full" %>
   </div>
+  <% if session[:signup_plan].present? %>
+    <%= f.hidden_field :plan, value: session[:signup_plan] %>
+  <% end %>
   <%= f.submit button_text, class: "mb-2 button -primary -lg w-full" %>
 <% end %>

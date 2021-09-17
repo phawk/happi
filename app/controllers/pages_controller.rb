@@ -13,6 +13,6 @@ class PagesController < ApplicationController
   private
 
   def set_pricing_plans
-    @plans = BillingPlan.all
+    @plans = BillingPlan.visible
   end
 end
