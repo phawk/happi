@@ -43,7 +43,11 @@
         </dl>
 
         <div class="mt-6">
-          <%= button_to "Manage subscription", billing_manage_path, method: :post, data: { turbo: false }, class: "button -primary -lg w-full" %>
+          <% if @plan.current_price.zero? %>
+            <%= link_to "Upgrade plan", billing_subscriptions_path, class: "button -primary -lg w-full" %>
+          <% else %>
+            <%= button_to "Manage subscription", billing_manage_path, method: :post, data: { turbo: false }, class: "button -primary -lg w-full" %>
+          <% end %>
         </div>
       <% else %>
         <h3 class="text-lg font-medium text-gray-800 mb-3">

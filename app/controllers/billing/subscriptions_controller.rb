@@ -3,7 +3,7 @@ module Billing
     skip_before_action :authenticate_user!, only: :success
 
     def show
-      @plans = BillingPlan.all
+      @plans = BillingPlan.paid_plans
     end
 
     def create

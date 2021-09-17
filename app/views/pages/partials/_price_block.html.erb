@@ -1,4 +1,4 @@
-<% highlight = plan.id == "basic" %>
+<% highlight = plan.id == "individual" %>
 <div class="relative p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col">
   <div class="flex-1">
     <h3 class="text-xl font-semibold text-gray-900"><%= plan.display_name %></h3>
@@ -59,5 +59,5 @@
     </ul>
   </div>
 
-  <%= link_to "Get started", new_user_registration_path, class: "#{highlight ? "bg-purple-500 text-white hover:bg-purple-600" : "bg-purple-50 text-purple-700 hover:bg-purple-100"} mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium" %>
+  <%= link_to "Get started", new_user_registration_path(plan: plan.id), class: "#{highlight ? "bg-purple-500 text-white hover:bg-purple-600" : "bg-purple-50 text-purple-700 hover:bg-purple-100"} mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium" %>
 </div>

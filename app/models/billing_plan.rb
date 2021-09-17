@@ -1,10 +1,18 @@
 class BillingPlan
-  PLANS = %w[individual basic business].freeze
+  PLANS = %w[free individual basic business].freeze
 
   attr_reader :name
 
   def self.all
     PLANS.map { |plan| new(name: plan) }
+  end
+
+  def self.visible
+    all.select { |plan| plan.visible }
+  end
+
+  def self.paid_plans
+    all.select { |plan| plan.current_price > 0 }
   end
 
   def initialize(name:)
@@ -29,6 +37,21 @@ class BillingPlan
 
   def data
     {
+      free: {
+        id: "free",
+        display_name: "Free",
+        description: "Perfect for early-stage startups.",
+        original_price: 0,
+        current_price: 0,
+        available_seats: 1,
+        messages_limit: 100,
+        custom_email_addresses: 1,
+        premium_support: false,
+        live_stripe_price_id: nil,
+        test_stripe_price_id: nil,
+        visible: true,
+        initial_subscription_state: "trialing",
+      },
       individual: {
         id: "individual",
         display_name: "Individual",
@@ -41,6 +64,8 @@ class BillingPlan
         premium_support: false,
         live_stripe_price_id: "price_1JZwXvF0UsUPXe7UNwhTuAMw",
         test_stripe_price_id: "price_1JZyyPF0UsUPXe7U8XePod43",
+        visible: true,
+        initial_subscription_state: "pending",
       },
       basic: {
         id: "basic",
@@ -54,6 +79,8 @@ class BillingPlan
         premium_support: true,
         live_stripe_price_id: "price_1JZvyHF0UsUPXe7U6jDbjSMT",
         test_stripe_price_id: "price_1JZyzYF0UsUPXe7Ul2U3fW7N",
+        visible: true,
+        initial_subscription_state: "pending",
       },
       business: {
         id: "business",
@@ -67,6 +94,8 @@ class BillingPlan
         premium_support: true,
         live_stripe_price_id: "price_1JZwYCF0UsUPXe7UqNfzclnX",
         test_stripe_price_id: "price_1JZyzmF0UsUPXe7UrJbBVrva",
+        visible: false,
+        initial_subscription_state: "pending",
       }
     }
   end

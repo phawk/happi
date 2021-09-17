@@ -19,10 +19,17 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = current_user.teams.new(team_params)
+    @team = current_user.teams.new(
+      team_params.merge(
+        plan: plan_name,
+        subscription_status: subscription_status
+      )
+    )
 
     if @team.save
       @team.add_user(current_user, set_active_team: true)
+
+      session.delete(:signup_plan)
 
       AdminMailer.notification("A new team needs reviewed", "#{@team.name} just signed up for Happi and needs reviewed.").deliver_later
 
@@ -56,6 +63,14 @@ class TeamsController < ApplicationController
 
   def set_team
     @team = current_user.teams.find(params[:id])
+  end
+
+  def plan_name
+    params.dig(:team, :plan) || "free"
+  end
+
+  def subscription_status
+    BillingPlan.new(name: plan_name).initial_subscription_state
   end
 
   def team_params
