@@ -9,7 +9,7 @@
     <%= render "layouts/partials/masquerade" %>
 
     <div class="bg-white">
-      <%= yield(:header) if content_for(:header).present? %>
+      <%= render partial: "layouts/partials/marketing_header" %>
 
       <main>
         <%= yield %>
