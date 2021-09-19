@@ -65,6 +65,12 @@ RSpec.describe Team, type: :model do
       expect(team.messages_limit).to eq(1_000)
       expect(team.subscription_status).to eq("pending")
     end
+
+    it "sets subscription trialing if plan is free" do
+      free_plan = BillingPlan.new(name: "free")
+      team.change_plan(free_plan)
+      expect(team.subscription_status).to eq("trialing")
+    end
   end
 
   describe "#subscription_active?" do

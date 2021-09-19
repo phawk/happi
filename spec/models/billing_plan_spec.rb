@@ -20,4 +20,11 @@ RSpec.describe BillingPlan, type: :model do
       expect(basic_plan.has_discount?).to be(false)
     end
   end
+
+  describe "#select_option" do
+    it "returns an option for select dropdown" do
+      basic_plan = BillingPlan.new(name: "basic")
+      expect(basic_plan.select_option).to eq(["Basic (£25/mo)", "basic"])
+    end
+  end
 end

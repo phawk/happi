@@ -1,7 +1,9 @@
 module BillingService
   module_function
 
-  def create_checkout(plan_id:, user:, team:, success_url:, cancel_url:)
+  def create_checkout(plan:, user:, team:, success_url:, cancel_url:)
+    plan_id = plan.test_stripe_price_id
+    plan_id = plan.live_stripe_price_id if billing_live?
     stripe_customer = upsert_stripe_customer(user: user, team: team)
 
     checkout_session = Stripe::Checkout::Session.create({
@@ -55,5 +57,9 @@ module BillingService
     team.update(stripe_customer_id: cus.id)
 
     cus
+  end
+
+  def billing_live?
+    ENV["BILLING_MODE"] == "live"
   end
 end

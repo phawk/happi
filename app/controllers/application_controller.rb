@@ -40,6 +40,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def create_checkout(with_plan:)
+    BillingService.create_checkout(
+      plan: with_plan,
+      user: current_user,
+      team: current_team,
+      success_url: billing_success_url,
+      cancel_url: billing_subscriptions_url,
+    )
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name terms_and_conditions])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name avatar])

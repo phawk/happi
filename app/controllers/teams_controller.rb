@@ -20,10 +20,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = current_user.teams.new(
-      team_params.merge(
-        plan: plan_name,
-        subscription_status: subscription_status
-      )
+      team_params.merge(plan: plan_name)
     )
 
     if @team.save
@@ -33,7 +30,15 @@ class TeamsController < ApplicationController
 
       AdminMailer.notification("A new team needs reviewed", "#{@team.name} just signed up for Happi and needs reviewed.").deliver_later
 
-      redirect_to dashboard_path
+      billing_plan = BillingPlan.new(name: @team.plan)
+      @team.change_plan(billing_plan)
+
+      if billing_plan.current_price.zero?
+        redirect_to dashboard_path
+      else
+        checkout = create_checkout(with_plan: billing_plan)
+        redirect_to checkout.url
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -67,10 +72,6 @@ class TeamsController < ApplicationController
 
   def plan_name
     params.dig(:team, :plan) || "free"
-  end
-
-  def subscription_status
-    BillingPlan.new(name: plan_name).initial_subscription_state
   end
 
   def team_params
