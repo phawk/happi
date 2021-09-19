@@ -12,8 +12,15 @@
     <%= f.label :time_zone %>
     <%= f.time_zone_select :time_zone, nil, {}, class: "w-full" %>
   </div>
-  <% if session[:signup_plan].present? %>
-    <%= f.hidden_field :plan, value: session[:signup_plan] %>
+  <% if @team.new_record? %>
+    <% if session[:signup_plan].present? %>
+      <%= f.hidden_field :plan, value: session[:signup_plan] %>
+    <% else%>
+      <div class="mb-5">
+        <%= f.label :plan %>
+        <%= f.select :plan, options_for_select(BillingPlan.all.map(&:select_option)), {}, class: "w-full" %>
+      </div>
+    <% end %>
   <% end %>
   <%= f.submit button_text, class: "mb-2 button -primary -lg w-full" %>
 <% end %>

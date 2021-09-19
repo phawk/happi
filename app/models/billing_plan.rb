@@ -35,6 +35,13 @@ class BillingPlan
     end
   end
 
+  def select_option
+    [
+      "#{display_name} (£#{current_price}/mo)",
+      id
+    ]
+  end
+
   def data
     {
       free: {

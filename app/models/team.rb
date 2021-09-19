@@ -69,7 +69,7 @@ class Team < ApplicationRecord
       plan: plan.id,
       messages_limit: plan.messages_limit,
       available_seats: plan.available_seats,
-      subscription_status: "pending",
+      subscription_status: plan.initial_subscription_state,
     )
   end
 
