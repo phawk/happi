@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BadgeComponent < ViewComponent::Base
-  def initialize(style:)
+  def initialize(style: :normal)
     @style = style
   end
 
