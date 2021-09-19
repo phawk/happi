@@ -26,6 +26,41 @@
 
 <!-- Hero Features -->
 <div class="max-w-7xl mx-auto py-16 px-4 bg-white sm:px-6 lg:px-8">
+  <%= render FeatureBlockComponent.new(title: "Easy to use", align: :left) do |c| %>
+    <%= c.image do %>
+      <%= image_tag "marketing/features/easy.png", alt: "Happi is easy to use!" %>
+    <% end %>
+    <%= c.text do %>
+      <p class="lg:text-lg">The customer support space has normally been occupied with boring enterprisey tools, focussed on ticket numbers, the complex routing of requests to different teams. Happi is simple and feels like having a conversation over DMs.</p>
+    <% end %>
+  <% end %>
+
+  <%= render FeatureBlockComponent.new(title: "Less pressure than live chat", align: :right) do |c| %>
+    <%= c.image do %>
+      <%= image_tag "marketing/features/livechat.png", alt: "Live chat example" %>
+    <% end %>
+    <%= c.text do %>
+      <p class="lg:text-lg">You don’t want to put unfair expectations on your small team. As soon as customers see live chat, they expect someone to be waiting on the other side to answer them, all the time!</p>
+    <% end %>
+  <% end %>
+
+  <%= render FeatureBlockComponent.new(title: "Embed in your website", align: :left) do |c| %>
+    <%= c.image do %>
+      <%= image_tag "marketing/features/embed.png", alt: "Embed Happi into your website" %>
+    <% end %>
+    <%= c.text do %>
+      <p class="lg:text-lg">You can use Happi’s support widget to embed directly into your website or app, making it even easier for your customers to get in touch.</p>
+    <% end %>
+  <% end %>
+
+  <%= render FeatureBlockComponent.new(title: "All in one place", align: :right) do |c| %>
+    <%= c.image do %>
+      <%= image_tag "marketing/features/team.png", alt: "Happi allows multiple team members" %>
+    <% end %>
+    <%= c.text do %>
+      <p class="lg:text-lg">Every message from your customers is stored in a single, secure system. Any member of your team can see the full conversation history with customers and work together to provide exceptional customer support.</p>
+    <% end %>
+  <% end %>
 </div>
 
 <!-- Everything else -->
@@ -142,83 +177,36 @@
 </div>
 
 <!-- Testimonial/stats section -->
-<div class="relative mt-20">
-  <div class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
-    <div class="relative sm:py-16 lg:py-0">
-      <div aria-hidden="true" class="hidden sm:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-screen">
-        <div class="absolute inset-y-0 right-1/2 w-full bg-gray-50 rounded-r-3xl lg:right-72"></div>
-        <svg class="absolute top-8 left-1/2 -ml-3 lg:-right-8 lg:left-auto lg:top-12" width="404" height="392" fill="none" viewBox="0 0 404 392">
-          <defs>
-            <pattern id="02f20b47-fd69-4224-a62a-4c9de5c763f7" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="404" height="392" fill="url(#02f20b47-fd69-4224-a62a-4c9de5c763f7)" />
-        </svg>
-      </div>
-      <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0 lg:max-w-none lg:py-20">
-        <!-- Testimonial card-->
-        <div class="relative pt-64 pb-10 rounded-2xl shadow-xl overflow-hidden">
-          <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1440&h=1440&q=80&sat=-100" alt="">
-          <div class="absolute inset-0 bg-purple-500" style="mix-blend-mode: multiply;"></div>
-          <div class="absolute inset-0 bg-gradient-to-t from-purple-600 via-purple-600 opacity-90"></div>
-          <div class="relative px-8">
-            <div>
-              <%= image_tag "marketing/payhere-icon-white.svg", alt: "Payhere payments", class: "h-12" %>
+<!-- This example requires Tailwind CSS v2.0+ -->
+<section class="mt-8 py-12 bg-gray-50 overflow-hidden md:py-20 lg:py-24">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative">
+      <blockquote>
+        <div class="max-w-3xl mx-auto text-center text-2xl leading-9 font-medium text-gray-900">
+          <p>
+            &ldquo;Happi is really slick! Works great on mobile and is a much nicer way of engaging with customers compared to the enterprise tool we were using before.&rdquo;
+          </p>
+        </div>
+        <footer class="mt-8">
+          <div class="md:flex md:items-center md:justify-center">
+            <div class="md:flex-shrink-0">
+              <%= image_tag "marketing/payhere-icon-blue.svg", alt: "Payhere payments", class: "mx-auto h-10 w-10" %>
             </div>
-            <blockquote class="mt-8">
-              <div class="relative text-lg font-medium text-white md:flex-grow">
-                <svg class="absolute top-0 left-0 transform -translate-x-3 -translate-y-2 h-8 w-8 text-purple-400" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                </svg>
-                <p class="relative">
-                  Happi is really slick! Works great on mobile and is a much nicer way of engaging with customers compared to the enterprise tool we were using before.
-                </p>
-              </div>
+            <div class="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
+              <div class="text-base font-medium text-gray-900">Scott</div>
 
-              <footer class="mt-4">
-                <p class="text-base font-semibold text-purple-200">Scott Wylie, Payhere</p>
-              </footer>
-            </blockquote>
+              <svg class="hidden md:block mx-1 h-5 w-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M11 0h3L9 20H6l5-20z" />
+              </svg>
+
+              <div class="text-base font-medium text-gray-500">Payhere</div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="relative mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-0">
-      <!-- Content area -->
-      <div class="pt-12 sm:pt-16 lg:pt-20">
-        <h2 class="text-3xl text-gray-900 font-extrabold tracking-tight sm:text-4xl">
-          The Happi way&hellip;
-        </h2>
-        <div class="mt-6 text-gray-500 space-y-6 text-lg">
-          <p>
-            The customer support space has normally been occupied with boring enterprisey tools, focussed on ticket numbers, the complex routing of requests to different teams and not a whole lot of focus on people.
-          </p>
-          <p>
-            Live chat has disrupted the space, but brought with it a whole new host of challenges and expectations. Don’t get us wrong, tools like intercom are great, if you have the manpower to answer messages instantly, worldwide.
-          </p>
-
-          <p>
-            At Happi, we’re re-thinking customer engagement for small teams, combining the good bits of live chat with the tried and tested format of email.
-          </p>
-
-          <p>
-            We are here to empower your startup, bringing you a simple way to talk to your customers and prospects, that feels like having a conversation over DMs.
-          </p>
-
-          <p>
-            Happi is designed for small teams (1-5 people), which means the product is simple, easy to get started with and more affordable.
-          </p>
-
-          <p>
-            Pete<br />Founder, Happi
-          </p>
-        </div>
-      </div>
+        </footer>
+      </blockquote>
     </div>
   </div>
-</div>
+</section>
 
 <!-- Pricing -->
 <%= render partial: "pages/partials/pricing_table" %>
