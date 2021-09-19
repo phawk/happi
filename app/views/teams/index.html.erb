@@ -1,6 +1,6 @@
 <%= tag.h2 t(".heading"), class: "mb-6 text-center text-xl lg:text-2xl font-bold text-gray-900" %>
 
-<div class="flex items-center justify-center">
+<div class="flex flex-wrap items-center justify-center">
   <% @teams.each do |team| %>
     <%= link_to team.name, change_team_path(team), method: :post, class: "-rounded -primary mb-4 button mx-2" %>
   <% end %>
