@@ -17,6 +17,12 @@ RSpec.describe Team, type: :model do
   end
   it { is_expected.to validate_inclusion_of(:subscription_status).in_array(Team::SUBSCRIPTION_STATES) }
 
+  describe "#default_from_address" do
+    it "includes company name" do
+      expect(team.default_from_address).to eq("Payhere <yo@happi.team>")
+    end
+  end
+
   describe "#emails_to_send_from" do
     context "if no custom emails exist" do
       before { team.custom_email_addresses.destroy_all }
