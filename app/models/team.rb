@@ -42,7 +42,7 @@ class Team < ApplicationRecord
   end
 
   def default_from_address
-    "#{name} <yo@happi.team>"
+    ActionMailer::Base.email_address_with_name("yo@happi.team", name)
   end
 
   def has_logo?
