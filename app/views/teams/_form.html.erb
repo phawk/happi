@@ -1,4 +1,4 @@
-<%= form_with(model: @team, class: "styled-form") do |f| %>
+<%= form_with(model: @team, class: "styled-form", data: { turbo: false }) do |f| %>
   <%= render "shared/form_errors", object: f.object %>
   <div class="mb-5">
     <%= f.label :name, t(".organisation_name") %>
