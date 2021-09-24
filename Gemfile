@@ -48,6 +48,11 @@ gem "strong_migrations"
 gem "stripe", "~> 5.38"
 gem "stripe_event"
 
+# Error/performance monitoring
+gem "sentry-ruby"
+gem "sentry-rails"
+gem "sentry-sidekiq"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
