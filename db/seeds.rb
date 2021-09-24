@@ -48,7 +48,8 @@ Message.create!(
 Message.create!(
   message_thread: alfonso_thread_1,
   sender: user,
-  content: "Hi Alfonso,<br /><br />We use Stripe to support card payments, I think they are still in beta in Mexico, if you have a Stripe account, you shouldn’t have any problems connecting it to Payhere.<br /><br />Best,<br />Pete",
+  content: "Hi Alfonso,<br /><br />We use Stripe to support card payments, I think they are still in beta in Mexico,
+    if you have a Stripe account, you shouldn’t have any problems connecting it to Payhere.<br /><br />Best,<br />Pete",
   status: "sent"
 )
 

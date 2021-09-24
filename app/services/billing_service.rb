@@ -19,7 +19,7 @@ module BillingService
         metadata: {
           happi_team_id: team.id,
         },
-      }
+      },
     })
 
     checkout_session
@@ -40,8 +40,9 @@ module BillingService
     if team.stripe_customer_id.present?
       begin
         return Stripe::Customer.retrieve(team.stripe_customer_id)
-      rescue Stripe::StripeError => e
+      rescue Stripe::StripeError
         # try to load, or fall through to create
+        Rails.logger.error("Failed to load stripe customer #{team.stripe_customer_id}")
       end
     end
 
@@ -51,7 +52,7 @@ module BillingService
       metadata: {
         happi_team_id: team.id,
         happi_user_id: user.id,
-      }
+      },
     })
 
     team.update(stripe_customer_id: cus.id)

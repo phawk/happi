@@ -1,8 +1,8 @@
 class ApplicationMailer < ActionMailer::Base
   include Roadie::Rails::Automatic
 
-  default from: 'yo@happi.team'
-  layout 'mailer'
+  default from: "yo@happi.team"
+  layout "mailer"
 
   rescue_from Postmark::InvalidMessageError do |e|
     matches = e.message.match(/addresses: ([^\s]+)/)
@@ -11,7 +11,8 @@ class ApplicationMailer < ActionMailer::Base
     Rails.logger.info("Postmark failed to send to: #{email}")
     Rails.logger.info("=" * 100)
     # User.find_by!(email: email).update(email_bounced: true)
-  rescue StandardError
+  rescue => e
+    Rails.logger.error("Postmark::InvalidMessageError #{e.message}")
   end
 
   private

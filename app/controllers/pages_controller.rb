@@ -4,10 +4,14 @@ class PagesController < ApplicationController
   before_action :set_pricing_plans, only: %i[home pricing]
   layout "marketing"
 
-  def home;end
+  def home; end
+
   def pricing; end
+
   def terms; end
+
   def privacy; end
+
   def security; end
 
   private

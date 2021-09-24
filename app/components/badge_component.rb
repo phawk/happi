@@ -2,6 +2,7 @@
 
 class BadgeComponent < ViewComponent::Base
   def initialize(style: :normal)
+    super
     @style = style
   end
 

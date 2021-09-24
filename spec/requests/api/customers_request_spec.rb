@@ -8,7 +8,7 @@ RSpec.describe Api::CustomersController, type: :request do
       post "/api/#{team.publishable_key}/customers", params: {
         first_name: "Fred",
         last_name: "Wilks",
-        email: "freddy42@hotmail.com"
+        email: "freddy42@hotmail.com",
       }
 
       expect(response).to have_http_status(:created)
@@ -20,7 +20,7 @@ RSpec.describe Api::CustomersController, type: :request do
       post "/api/#{team.publishable_key}/customers", params: {
         first_name: "Alex",
         last_name: "Shaw",
-        email: "alex.shaw09@hotmail.com"
+        email: "alex.shaw09@hotmail.com",
       }
 
       expect(response).to have_http_status(:ok)
@@ -31,7 +31,7 @@ RSpec.describe Api::CustomersController, type: :request do
     it "returns validation errors" do
       post "/api/#{team.publishable_key}/customers", params: {
         first_name: "Alex",
-        email: "alex.shaw09"
+        email: "alex.shaw09",
       }
 
       expect(response).to have_http_status(:unprocessable_entity)

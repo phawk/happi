@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.feature "Joining teams" do
+RSpec.describe "Joining teams" do
   let(:team) { teams(:payhere) }
 
-  scenario "it allows signup when user doesnt have an account" do
+  it "allows signup when user doesnt have an account" do
     visit join_team_path(code: team.invite_code)
 
     fill_in_signup_form(
@@ -19,7 +19,7 @@ RSpec.feature "Joining teams" do
     expect(page).to have_content("signed up successfully")
   end
 
-  scenario "it prompts user to join the team if they are signed in" do
+  it "prompts user to join the team if they are signed in" do
     sign_in(users(:scott))
 
     visit join_team_path(code: team.invite_code)

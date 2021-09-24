@@ -1,48 +1,46 @@
 require "rails_helper"
 
 RSpec.describe ThreadsMailbox, type: :mailbox do
-  context "successful delivery" do
-    context "when happi email address is used" do
-      context "and there is no open thread" do
-        it "creates thread and posts new message" do
-          perform_enqueued_jobs do
-            expect do
-              send_mail(to: "payhere@in.happi.team", headers: { "X-Spam-Score" => "-6.0" })
-            end.to change { MessageThread.count }.by(1)
+  context "when happi email address is used" do
+    context "when there is no open thread" do
+      it "creates thread and posts new message" do
+        perform_enqueued_jobs do
+          expect do
+            send_mail(to: "payhere@in.happi.team", headers: { "X-Spam-Score" => "-6.0" })
+          end.to change(MessageThread, :count).by(1)
 
-            last_message = Message.last
+          last_message = Message.last
 
-            expect(last_message.content.to_s).to include("What's the status?")
-            expect(last_message.sender.email).to eq("jack@jackjohnson.net")
-            expect(last_message.sender.name.full).to eq("Jack Johnson")
-            expect(last_message.spam_score).to eq(-6.0)
-          end
-        end
-
-        it "sends a notification to the team" do
-          perform_enqueued_jobs do
-            send_mail(to: "payhere@in.happi.team")
-
-            expect(last_email.subject).to eq("Payhere: New message from Jack J.")
-            expect(last_email.to).to include("petey@hey.com")
-          end
+          expect(last_message.content.to_s).to include("What's the status?")
+          expect(last_message.sender.email).to eq("jack@jackjohnson.net")
+          expect(last_message.sender.name.full).to eq("Jack Johnson")
+          expect(last_message.spam_score).to eq(-6.0)
         end
       end
 
-      context "and there is an open thread already" do
-        let(:thread) { message_threads(:payhere_alex_password_reset) }
+      it "sends a notification to the team" do
+        perform_enqueued_jobs do
+          send_mail(to: "payhere@in.happi.team")
 
-        before { thread.update!(status: "waiting") }
+          expect(last_email.subject).to eq("Payhere: New message from Jack J.")
+          expect(last_email.to).to include("petey@hey.com")
+        end
+      end
+    end
 
-        it "adds new message to the thread" do
-          perform_enqueued_jobs do
-            expect do
-              send_mail(to: "payhere@in.happi.team", from: "Alex Shaw <alex.shaw09@hotmail.com>")
-            end.to change { message_threads(:payhere_alex_password_reset).messages.count }.by(1)
-            thread.reload
+    context "when there is an open thread already" do
+      let(:thread) { message_threads(:payhere_alex_password_reset) }
 
-            expect(thread.status).to eq("open")
-          end
+      before { thread.update!(status: "waiting") }
+
+      it "adds new message to the thread" do
+        perform_enqueued_jobs do
+          expect do
+            send_mail(to: "payhere@in.happi.team", from: "Alex Shaw <alex.shaw09@hotmail.com>")
+          end.to change { message_threads(:payhere_alex_password_reset).messages.count }.by(1)
+          thread.reload
+
+          expect(thread.status).to eq("open")
         end
       end
     end
@@ -52,7 +50,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
         perform_enqueued_jobs do
           expect do
             send_mail(to: "support@payhere.co")
-          end.to change { MessageThread.count }.by(1)
+          end.to change(MessageThread, :count).by(1)
 
           last_thread = MessageThread.last
 
@@ -69,7 +67,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
         perform_enqueued_jobs do
           expect do
             send_mail(to: "payhere@in.happi.team", from: "alex.shaw09@hotmail.com")
-          end.to change { Message.count }.by(1)
+          end.to change(Message, :count).by(1)
 
           expect(delivered_emails.size).to eq(0)
         end
@@ -91,10 +89,8 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
 
   def send_mail(to:, from: "Jack Johnson <jack@jackjohnson.net>", headers: {})
     receive_inbound_email_from_mail do |mail|
-      if headers
-        headers.each do |key, val|
-          mail.header[key] = val
-        end
+      headers&.each do |key, val|
+        mail.header[key] = val
       end
       mail.to = to
       mail.from = from

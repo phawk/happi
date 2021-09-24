@@ -23,14 +23,13 @@ module Api
           end
         full_errors = message.errors.full_messages
         errors_object =
-        errors.inject({}) do |memo, err|
-          memo[err[:field]] = err[:errors].join(", ")
-          memo
-        end
+          errors.each_with_object({}) do |err, memo|
+            memo[err[:field]] = err[:errors].join(", ")
+          end
         response = {
           error: "#{message.class.name.humanize} validation failed",
           validation_errors: errors_object,
-          full_errors: full_errors
+          full_errors: full_errors,
         }
       else
         response = { error: message.to_s }
@@ -39,7 +38,7 @@ module Api
     end
 
     def halt_bad_request!(message)
-      raise ApiErrors::BadRequest.new(message)
+      raise ApiErrors::BadRequest, message
     end
   end
 end

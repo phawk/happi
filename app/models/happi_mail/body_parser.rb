@@ -27,7 +27,7 @@ module HappiMail
         # Multipart emails with attachments have multipart as first part
         parts = parts.first.parts if parts.first.multipart?
 
-        if text_part = parts.find { |part| part.text? }
+        if (text_part = parts.find(&:text?))
           self.found_text_part = true
           text_part.decoded
         else

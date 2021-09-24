@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: "user_registrations",
-    masquerades: "admin/masquerades"
+    masquerades: "admin/masquerades",
   }
 
   authenticated :user, ->(u) { u.role?(:admin) } do

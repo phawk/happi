@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :ensure_team!
   before_action :sentry_user_info, if: :user_signed_in?
-  around_action :set_time_zone, if: :current_user
+  around_action :configure_time_zone, if: :current_user
   after_action :track_page_view
 
   protected
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     ahoy.track "Page view", request.path_parameters.merge(url: request.fullpath)
   end
 
-  def set_time_zone(&block)
+  def configure_time_zone(&block)
     if current_team.present?
       time_zone = current_team.time_zone
     end
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   def ensure_team!
     return unless user_signed_in?
 
-    unless current_user.team.present?
+    if current_user.team.blank?
       redirect_to new_team_path
     end
   end

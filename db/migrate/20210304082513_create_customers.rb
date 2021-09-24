@@ -15,6 +15,6 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
     end
 
     add_index :customers, :email
-    add_index :customers, [:email, :team_id], unique: true
+    add_index :customers, %i[email team_id], unique: true
   end
 end

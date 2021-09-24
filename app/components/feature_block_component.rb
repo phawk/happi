@@ -6,6 +6,7 @@ class FeatureBlockComponent < ViewComponent::Base
   renders_one :text
 
   def initialize(title: nil, align: :left)
+    super
     @title = title
     @align = align
   end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Events::PostmarkWebhooksController, type: :request do
   let(:message) { messages(:payhere_alex_password_reset_msg_1) }
@@ -10,9 +10,9 @@ RSpec.describe Events::PostmarkWebhooksController, type: :request do
     it "marks message as delivered" do
       post "/events/postmark", params: {
         "Metadata" => {
-          "message_id" => message.id.to_s
-         },
-        "RecordType" => "Delivery"
+          "message_id" => message.id.to_s,
+        },
+        "RecordType" => "Delivery",
       }, headers: { "HTTP_AUTHORIZATION" => http_auth }
 
       message.reload
@@ -24,9 +24,9 @@ RSpec.describe Events::PostmarkWebhooksController, type: :request do
     it "marks message as bounced" do
       post "/events/postmark", params: {
         "Metadata" => {
-          "message_id" => message.id.to_s
-         },
-        "RecordType" => "Bounce"
+          "message_id" => message.id.to_s,
+        },
+        "RecordType" => "Bounce",
       }, headers: { "HTTP_AUTHORIZATION" => http_auth }
 
       message.reload

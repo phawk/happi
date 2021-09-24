@@ -88,7 +88,6 @@ RSpec.describe HappiMail::BodyParser, type: :model do
 
   it "works with multipart html / plain text" do
     raw = create_inbound_email_from_fixture("plain_text_email", status: :processing)
-    mail = raw.mail
 
     text = HappiMail::BodyParser.new(raw.mail).content
 

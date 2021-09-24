@@ -2,7 +2,7 @@ module Colourable
   extend ActiveSupport::Concern
 
   def background_color
-    sprintf("#%06x", (email.sum % (256*256*256)))
+    format("#%06x", (email.sum % (256 * 256 * 256)))
   end
 
   def text_color

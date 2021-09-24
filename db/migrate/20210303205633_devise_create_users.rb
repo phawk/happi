@@ -58,6 +58,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.references :user, foreign_key: true
     end
 
-    add_index :teams_users, [:team_id, :user_id], unique: true
+    add_index :teams_users, %i[team_id user_id], unique: true
   end
 end

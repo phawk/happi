@@ -2,7 +2,9 @@ require "rails_helper"
 
 RSpec.describe StripeWebhooks::SubscriptionUpdated do
   let(:team) { teams(:payhere) }
+
   before { StripeMock.start }
+
   after { StripeMock.stop }
 
   it "updates subscription state" do
@@ -12,7 +14,7 @@ RSpec.describe StripeWebhooks::SubscriptionUpdated do
       )
     stripe_sub = event[:data][:object]
     stripe_sub[:metadata] = {
-      "happi_team_id" => team.id
+      "happi_team_id" => team.id,
     }
 
     subject.call(event)
