@@ -2,14 +2,14 @@ require "rails_helper"
 
 RSpec.describe BadgeComponent, type: :component do
   it "renders a badge" do
-    comp = render_inline(described_class.new) { "Badger" }
+    render_inline(described_class.new) { "Badger" }
 
-    expect(comp.to_html).to include("Badger")
+    expect(rendered_component).to include("Badger")
   end
 
   it "is purple when important" do
-    comp = render_inline(described_class.new(style: :important)) { "Badger" }
+    render_inline(described_class.new(style: :important)) { "Badger" }
 
-    expect(comp.to_html).to include("purple")
+    expect(rendered_component).to include("purple")
   end
 end
