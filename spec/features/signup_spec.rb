@@ -12,8 +12,15 @@ RSpec.describe "Signing up" do
       password_confirmation: "hunter212"
     )
 
-    click_button "Get started"
+    click_on "Get started"
 
-    expect(page).to have_content("Set up your team")
+    fill_in_team_form(
+      name: "Darktrace",
+      country: "United Kingdom",
+    )
+
+    click_on "Create team"
+
+    expect(page).to have_content("You haven’t received any messages yet")
   end
 end
