@@ -1,0 +1,8 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 5432
+  database: rails_github_actions_test
+  username: rails_github_actions
+  password: postgres
