@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.feature "Signing up" do
-  scenario "it allows signup when user doesnt have an account" do
+RSpec.describe "Signing up" do
+  it "allows signup when user doesnt have an account" do
     visit new_user_registration_path
 
     fill_in_signup_form(

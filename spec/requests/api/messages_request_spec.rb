@@ -10,9 +10,9 @@ RSpec.describe Api::MessagesController, type: :request do
         expect do
           post "/api/#{team.publishable_key}/messages", params: {
             content: "Hello there, I need assistance please.",
-            customer_jwt: alex.as_jwt
+            customer_jwt: alex.as_jwt,
           }
-        end.to change { Message.count }.by(1)
+        end.to change(Message, :count).by(1)
 
         expect(response).to have_http_status(:no_content)
 
@@ -29,7 +29,7 @@ RSpec.describe Api::MessagesController, type: :request do
 
       post "/api/#{team.publishable_key}/messages", params: {
         content: "Hello there, I need assistance please.",
-        customer_jwt: jwt
+        customer_jwt: jwt,
       }
 
       expect(response).to have_http_status(:bad_request)

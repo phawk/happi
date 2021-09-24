@@ -12,7 +12,8 @@ RSpec.describe Customer, type: :model do
 
   describe ".upsert_by_jwt" do
     it "creates new customer when they don't exist" do
-      jwt = JWT.encode({ first_name: "Pedro", last_name: "Gonzalles", email: "pedro@hey.com" }, team.shared_secret, "HS512")
+      jwt = JWT.encode({ first_name: "Pedro", last_name: "Gonzalles", email: "pedro@hey.com" }, team.shared_secret,
+        "HS512")
 
       cus = Customer.upsert_by_jwt(jwt, team)
 
@@ -21,7 +22,8 @@ RSpec.describe Customer, type: :model do
     end
 
     it "updates customer when they already exist" do
-      jwt = JWT.encode({ first_name: "Alexander", last_name: "Shaw", email: "alex.shaw09@hotmail.com" }, team.shared_secret, "HS512")
+      jwt = JWT.encode({ first_name: "Alexander", last_name: "Shaw", email: "alex.shaw09@hotmail.com" },
+        team.shared_secret, "HS512")
 
       cus = Customer.upsert_by_jwt(jwt, team)
 

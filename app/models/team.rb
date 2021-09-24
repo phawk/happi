@@ -3,6 +3,7 @@ class Team < ApplicationRecord
   ACTIVE_SUBSCRIPTION_STATES = %w[trialing active past_due].freeze
 
   before_create :generated_mail_hash
+  before_destroy :unset_user_teams
 
   has_one_attached :logo
   has_secure_token :invite_code
@@ -55,7 +56,7 @@ class Team < ApplicationRecord
 
   def messages_used_this_month
     Message \
-      .where("created_at >= ?", Time.now.beginning_of_month)
+      .where("created_at >= ?", Time.zone.now.beginning_of_month)
       .where(message_thread_id: message_threads.pluck(:id))
       .count
   end
@@ -84,9 +85,8 @@ class Team < ApplicationRecord
     subscription_status.in?(ACTIVE_SUBSCRIPTION_STATES)
   end
 
-  def destroy
-    User.where(team_id: id).update_all(team_id: nil)
-    super
+  def unset_user_teams
+    User.where(team_id: id).update_all(team_id: nil) # rubocop:disable Rails/SkipsModelValidations
   end
 
   private

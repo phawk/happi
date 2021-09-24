@@ -8,7 +8,7 @@ class BillingPlan
   end
 
   def self.visible
-    all.select { |plan| plan.visible }
+    all.select(&:visible)
   end
 
   def self.paid_plans
@@ -16,7 +16,7 @@ class BillingPlan
   end
 
   def initialize(name:)
-    if !PLANS.include?(name)
+    unless PLANS.include?(name)
       raise PlanNotFound
     end
 
@@ -28,17 +28,21 @@ class BillingPlan
   end
 
   def method_missing(method_name)
-    if data[name].has_key?(method_name)
+    if data[name].key?(method_name)
       data[name][method_name]
     else
       super
     end
   end
 
+  def respond_to_missing?(method_name, include_private = false)
+    data[name].key?(method_name) || super
+  end
+
   def select_option
     [
       "#{display_name} (£#{current_price}/mo)",
-      id
+      id,
     ]
   end
 
@@ -103,7 +107,7 @@ class BillingPlan
         test_stripe_price_id: "price_1JZyzmF0UsUPXe7UrJbBVrva",
         visible: false,
         initial_subscription_state: "pending",
-      }
+      },
     }
   end
 

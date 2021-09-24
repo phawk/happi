@@ -28,7 +28,8 @@ class TeamsController < ApplicationController
 
       session.delete(:signup_plan)
 
-      AdminMailer.notification("A new team needs reviewed", "#{@team.name} just signed up for Happi and needs reviewed.").deliver_later
+      AdminMailer.notification("A new team needs reviewed",
+        "#{@team.name} just signed up for Happi and needs reviewed.").deliver_later
 
       billing_plan = BillingPlan.new(name: @team.plan)
       @team.change_plan(billing_plan)

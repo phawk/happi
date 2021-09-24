@@ -10,7 +10,9 @@ RSpec.describe ModalComponent, type: :component do
 
   context "when closeable" do
     it "renders a close link" do
-      comp = render_inline(described_class.new(title: "Hello modal", closeable: true, back_to: "/back")) { "Content..." }
+      comp = render_inline(described_class.new(title: "Hello modal", closeable: true, back_to: "/back")) do
+        "Content..."
+      end
 
       expect(comp.css("[aria-label='Close modal']")).not_to be_empty
     end

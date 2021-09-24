@@ -10,11 +10,13 @@ RSpec.describe Team, type: :model do
   it { is_expected.to have_many(:canned_responses) }
 
   it { is_expected.to validate_presence_of(:name) }
+
   it do
-    is_expected.to validate_inclusion_of(:plan).in_array(
+    expect(subject).to validate_inclusion_of(:plan).in_array(
       BillingPlan::PLANS
     )
   end
+
   it { is_expected.to validate_inclusion_of(:subscription_status).in_array(Team::SUBSCRIPTION_STATES) }
 
   describe "#default_from_address" do
@@ -24,7 +26,7 @@ RSpec.describe Team, type: :model do
   end
 
   describe "#emails_to_send_from" do
-    context "if no custom emails exist" do
+    context "when no custom emails exist" do
       before { team.custom_email_addresses.destroy_all }
 
       it "returns yo@happi.team" do
@@ -32,12 +34,12 @@ RSpec.describe Team, type: :model do
       end
     end
 
-    context "if custom emails are added and verified" do
+    context "when custom emails are added and verified" do
       it "includes them" do
         expect(team.emails_to_send_from).to eq(
           [
             "Payhere Support <support@payhere.co>",
-            "Payhere <yo@happi.team>"
+            "Payhere <yo@happi.team>",
           ]
         )
       end

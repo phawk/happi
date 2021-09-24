@@ -1,5 +1,5 @@
 class ThreadsMailbox < ApplicationMailbox
-  MATCHER = %r{(.+)@in.happi.team}
+  MATCHER = /(.+)@in.happi.team/
 
   attr_reader :message_thread, :team, :reply_to
 
@@ -46,19 +46,19 @@ class ThreadsMailbox < ApplicationMailbox
         content_type: content_type,
       )
 
-      "<action-text-attachment sgid=\"#{blob.attachable_sgid}\" content-type=\"#{content_type}\" filename=\"#{attachment.filename}\"></action-text-attachment>".html_safe
+      "<action-text-attachment sgid=\"#{blob.attachable_sgid}\" content-type=\"#{content_type}\" filename=\"#{attachment.filename}\"></action-text-attachment>".html_safe # rubocop:disable Layout/LineLength, Rails/OutputSafety
     end
   end
 
   def ensure_team!
-    if recipient = mail.recipients.find { |r| MATCHER.match?(r) }
+    if (recipient = mail.recipients.find { |r| MATCHER.match?(r) })
       Rails.logger.info("Looking for team with hash: #{recipient[MATCHER, 1]}")
 
       @team = Team.find_by(mail_hash: recipient[MATCHER, 1])
     else
       Rails.logger.info("Looking for team with custom inbound email: #{mail.recipients.to_sentence}")
 
-      if custom_email = CustomEmailAddress.matching_emails(mail.recipients)
+      if (custom_email = CustomEmailAddress.matching_emails(mail.recipients))
         @team = custom_email.team
         @reply_to = custom_email.email
       end
@@ -73,7 +73,8 @@ class ThreadsMailbox < ApplicationMailbox
       @message_thread = customer.message_threads.with_open_status.first
       @message_thread.update(status: "open")
     else
-      @message_thread = customer.message_threads.create!(team: team, subject: mail.subject, reply_to: @reply_to, status: "open")
+      @message_thread = customer.message_threads.create!(team: team, subject: mail.subject, reply_to: @reply_to,
+        status: "open")
     end
   end
 

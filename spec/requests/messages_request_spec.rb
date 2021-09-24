@@ -9,7 +9,8 @@ RSpec.describe "Messages", type: :request do
       before do
         sign_in(pete)
         perform_enqueued_jobs do
-          post message_thread_messages_path(message_thread), params: { message: { content: "Thanks for getting in touch!" } }
+          post message_thread_messages_path(message_thread),
+            params: { message: { content: "Thanks for getting in touch!" } }
         end
         message_thread.reload
       end
@@ -66,7 +67,7 @@ RSpec.describe "Messages", type: :request do
     end
 
     context "when user doesn't belong to team" do
-      let!(:scott) { sign_in(users(:scott)) }
+      before { sign_in(users(:scott)) }
 
       it "displays an error message" do
         get view_message_path(message)

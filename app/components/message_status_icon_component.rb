@@ -4,6 +4,7 @@ class MessageStatusIconComponent < ViewComponent::Base
   attr_reader :message
 
   def initialize(message:)
+    super
     @message = message
   end
 

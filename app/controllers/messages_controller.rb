@@ -51,8 +51,8 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message)
-          .permit(:content, :from_address, :internal)
-          .merge(sender: current_user)
+      .permit(:content, :from_address, :internal)
+      .merge(sender: current_user)
   end
 
   def set_thread

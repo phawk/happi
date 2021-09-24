@@ -2,7 +2,7 @@ require "json"
 
 rate_limit_html = File.read(Rails.root.join("public", "429.html"))
 
-Rack::Attack.safelist("allow RSpec") { |req| Rails.env.test? }
+Rack::Attack.safelist("allow RSpec") { |_req| Rails.env.test? }
 
 Rack::Attack.safelist("allow webhooks") do |req|
   %w[/events/postmark].include?(req.path)
@@ -33,7 +33,7 @@ Rack::Attack.throttle("api/publishable_key", limit: 20, period: 60.seconds) do |
   end
 end
 
-Rack::Attack.throttled_response = lambda do |env|
+Rack::Attack.throttled_response = lambda do |_env|
   # NB: you have access to the name and other data about the matched throttle
   #  env['rack.attack.matched'],
   #  env['rack.attack.match_type'],
@@ -42,14 +42,14 @@ Rack::Attack.throttled_response = lambda do |env|
   # DOSed the site. Rack::Attack returns 429 for throttling by default
   # [ 503, {}, ["Server Error\n"]]
   headers = {
-    "Content-Type" => "text/html", "Content-Length" => rate_limit_html.size.to_s
+    "Content-Type" => "text/html", "Content-Length" => rate_limit_html.size.to_s,
   }
   [429, headers, [rate_limit_html]]
 end
 
 ActiveSupport::Notifications.subscribe(
   "rack.attack"
-) do |name, start, finish, request_id, payload|
+) do |_name, _start, _finish, _request_id, payload|
   req = payload[:request]
   Rails.logger.info "Throttled #{
                       req.env["rack.attack.match_discriminator"]

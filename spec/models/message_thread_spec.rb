@@ -37,7 +37,7 @@ RSpec.describe MessageThread, type: :model do
       expect do
         previous_thread = thread.merge_with_previous!
         expect(previous_thread.messages.count).to eq(3)
-      end.to change { MessageThread.count }.by(-1)
+      end.to change(MessageThread, :count).by(-1)
     end
   end
 end

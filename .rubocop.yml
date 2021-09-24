@@ -1,0 +1,73 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+inherit_gem:
+  rubocop-shopify: rubocop.yml
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0.0
+  Exclude:
+  - 'db/schema.rb'
+  - 'db/migrate/*.rb'
+  - 'node_modules/**/*'
+
+# Layout / Style
+Style/MethodCallWithArgsParentheses:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Layout/LineLength:
+  Exclude:
+  - 'config/routes.rb'
+  - 'config/initializers/devise.rb'
+Style/SymbolArray:
+  EnforcedStyle: percent
+Style/WordArray:
+  EnforcedStyle: percent
+
+# Rails
+Rails/FilePath:
+  EnforcedStyle: arguments
+Rails/TimeZone:
+  Exclude:
+  - 'app/services/stripe_webhooks/**/*.rb'
+Rails/HasAndBelongsToMany:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+  - 'app/models/beta_signup.rb'
+
+# RSpec
+RSpec/HookArgument:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/EmptyExampleGroup:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 20
+RSpec/MultipleExpectations:
+  Max: 8
+RSpec/DescribedClass:
+  Enabled: false
+RSpec/AnyInstance:
+  Enabled: false
+RSpec/DescribeClass:
+  Enabled: false
+RSpec/FilePath:
+  Exclude:
+  - 'spec/requests/**/*.rb'
+Style/ModuleFunction:
+  EnforcedStyle: module_function

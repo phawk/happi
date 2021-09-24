@@ -31,7 +31,7 @@ class TeamInvitesController < ApplicationController
   def ensure_available_seat
     unless @team.has_available_seat?
       flash[:alert] = "Your team has no available seats, contact support to request more."
-      return redirect_to root_url
+      redirect_to root_url
     end
   end
 
