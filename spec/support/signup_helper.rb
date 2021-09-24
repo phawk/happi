@@ -7,6 +7,15 @@ module SignupHelper
     fill_in "user[password_confirmation]", with: args[:password]
     check "user[terms_and_conditions]"
   end
+
+  def fill_in_team_form(args)
+    expect(page).to have_content("Set up your team")
+
+    fill_in "team[name]", with: args[:name]
+    select(args[:country], from: "team[country_code]")
+    select(args[:time_zone], from: "team[time_zone]") if args[:time_zone].present?
+    select(args[:plan], from: "team[plan]") if args[:plan].present?
+  end
 end
 
 RSpec.configure { |config| config.include SignupHelper, type: :feature }
