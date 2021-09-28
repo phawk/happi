@@ -24,6 +24,7 @@ as well as a link to its edit page.
   </h1>
 
   <div>
+    <%= link_to "Sync customer", admin_user_sync_path(page.resource), method: :post, class: "button" %>
     <%= link_to "Login as", masquerade_path(page.resource), class: "button" %>
     <%= link_to(
       t("administrate.actions.edit_resource", name: page.page_title),

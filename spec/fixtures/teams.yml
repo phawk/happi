@@ -1,3 +1,15 @@
+happi:
+  id: 5
+  name: Happi
+  mail_hash: "support"
+  invite_code: <%= SecureRandom.base58(24) %>
+  shared_secret: <%= SecureRandom.base58(24) %>
+  publishable_key: <%= SecureRandom.base58(24) %>
+  verified_at: 2021-09-27
+  subscription_status: active
+  available_seats: 3
+  users: pete
+
 payhere:
   name: Payhere
   mail_hash: "payhere"
@@ -18,3 +30,13 @@ nine:
   verified_at: 2021-05-03
   subscription_status: active
   users: scott
+
+core_fx:
+  name: CoreFX
+  mail_hash: "core-fx-123"
+  invite_code: <%= SecureRandom.base58(24) %>
+  shared_secret: <%= SecureRandom.base58(24) %>
+  publishable_key: <%= SecureRandom.base58(24) %>
+  verified_at: 2021-09-01
+  subscription_status: trialing
+  users: janine
