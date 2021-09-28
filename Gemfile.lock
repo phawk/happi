@@ -127,6 +127,8 @@ GEM
     crass (1.0.6)
     css_parser (1.9.0)
       addressable
+    cssbundling-rails (0.2.3)
+      railties (>= 6.0.0)
     dante (0.2.0)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
@@ -448,6 +450,7 @@ DEPENDENCIES
   capybara
   chroma
   country_select
+  cssbundling-rails
   devise
   devise_masquerade
   dotenv-rails
