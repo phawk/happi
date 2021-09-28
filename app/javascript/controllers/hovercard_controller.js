@@ -1,4 +1,4 @@
-import { Controller } from "stimulus";
+import Controller from "./application_controller";
 
 export default class extends Controller {
   static targets = ["card"];
