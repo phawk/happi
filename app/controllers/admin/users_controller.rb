@@ -1,5 +1,12 @@
 module Admin
   class UsersController < Admin::ApplicationController
+    def sync
+      user = User.find(params[:user_id])
+      customer = SyncUserToHappi.sync(user)
+      # Set current team to Happi before redirect
+      current_user.update(team: customer.team)
+      redirect_to customer
+    end
     # Overwrite any of the RESTful controller actions to implement custom behavior
     # For example, you may want to send an email after a foo is updated.
     #

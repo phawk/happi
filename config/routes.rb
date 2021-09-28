@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :teams
-    resources :users
+    resources :users do
+      post :sync
+    end
     resources :custom_email_addresses
     resources :beta_signups
 

@@ -11,3 +11,9 @@ scott:
   last_name: Wylie
   encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>
   team: nine
+janine:
+  email: janine@example.org
+  first_name: Janine
+  last_name: Morrison
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>
+  team: core_fx
