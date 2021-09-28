@@ -77,6 +77,7 @@ jobs:
           PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          HAPPI_TEAM_ID: 5
         run: bundle exec rspec
       - name: Rubocop
         env:
