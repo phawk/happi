@@ -8,7 +8,7 @@ RSpec.describe "Admin masquerading as other users" do
     visit admin_users_path
     click_on "janine@example.org"
     click_on "Login as"
-    expect(current_path).to eq("/threads")
+    expect(page).to have_current_path("/threads")
     expect(page).to have_content "Hey Janine M."
   end
 end
