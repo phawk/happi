@@ -17,7 +17,7 @@ RSpec.describe "Customers" do
     expect(page).to have_content("Customer saved.")
   end
 
-  it "can start a new thread manually", :js do
+  it "can start a new thread manually" do
     visit customer_path(customers(:payhere_alex))
 
     click_on "New thread"
@@ -25,9 +25,7 @@ RSpec.describe "Customers" do
     click_on "Start thread"
     expect(page).to have_content("Welcome to Happi")
 
-    accept_confirm do
-      click_on "Archive this thread"
-    end
+    click_on "Archive this thread"
 
     expect(page).to have_content("Thread archived")
   end
