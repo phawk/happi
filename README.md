@@ -15,6 +15,17 @@ $ stripe listen --forward-to localhost:3000/events/stripe --events customer.subs
 
 After listening for webhooks, add the signing secret to the array in `config/initializers/stripe.rb`.
 
+## Testing
+
+```sh
+# Run rubocop for style violations
+bin/rubocop
+# Run specs
+bin/rspec
+# Run specs and generate code coverage report
+COVERAGE=1 bundle exec rspec
+```
+
 ## Deployments
 
 Happi is hosted on Heroku and uses Heroku Postgres as the primary data store. Deploys happen automatically when you push to the `main` branch.
