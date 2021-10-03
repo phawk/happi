@@ -24,7 +24,8 @@ RSpec.describe "Teams", type: :request do
         }
 
         expect(response).to redirect_to(dashboard_path)
-        expect(delivered_emails.size).to eq(1)
+        expect(delivered_emails.size).to eq(2)
+        expect(delivered_emails.first.subject).to eq("Welcome aboard Polywork!")
         expect(last_email.subject).to eq("Admin alert: A new team needs reviewed")
         expect(Team.last.plan).to eq("free")
         expect(Team.last.available_seats).to eq(1)

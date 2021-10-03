@@ -26,6 +26,9 @@ class TeamsController < ApplicationController
     if @team.save
       @team.add_user(current_user, set_active_team: true)
 
+      # Insert welcome email...
+      TeamMailer.welcome(@team).deliver_later
+
       session.delete(:signup_plan)
 
       AdminMailer.notification("A new team needs reviewed",
