@@ -1,6 +1,20 @@
 require "rails_helper"
 
 RSpec.describe TeamMailer, type: :mailer do
+  describe "welcome" do
+    let(:team) { teams(:payhere) }
+    let(:mail) { described_class.welcome(team) }
+
+    it "renders the headers" do
+      expect(mail.subject).to eq("Welcome aboard Payhere!")
+      expect(mail.to).to match_array(team.users.pluck(:email))
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to include("Thanks for signing up!")
+    end
+  end
+
   describe "new_message" do
     let(:team) { teams(:payhere) }
     let(:message) { messages(:payhere_alex_stripe_msg_1) }

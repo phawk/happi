@@ -1,4 +1,13 @@
 class TeamMailer < ApplicationMailer
+  def welcome(team)
+    @team = team
+    @team.users.find_each do |user|
+      @user = user
+      email = user.email
+      mail to: email, subject: t(".subject", team: @team.name)
+    end
+  end
+
   def new_message(message)
     @message = message
     @thread = message.message_thread
