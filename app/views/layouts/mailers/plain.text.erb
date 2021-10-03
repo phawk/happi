@@ -1,0 +1,6 @@
+<%= yield %>
+<% unless @team.whitelabel? %>
+--
+<%= @team.name %> uses happi.team to talk to their customers.
+https://happi.team/
+<% end %>
