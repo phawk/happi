@@ -47,6 +47,7 @@ gem "strong_migrations"
 gem "stripe", "~> 5.38"
 gem "stripe_event"
 gem "attr_json"
+gem "recaptcha"
 
 # Error/performance monitoring
 gem "sentry-ruby"
