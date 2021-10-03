@@ -1,5 +1,7 @@
 en:
   team_mailer:
+    welcome:
+      subject: "Welcome aboard %{team}!"
     new_message:
       subject: "%{team}: New message from %{from_name}"
       heading: "New message for %{team}"

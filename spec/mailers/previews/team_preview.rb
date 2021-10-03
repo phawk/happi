@@ -1,4 +1,8 @@
 class TeamPreview < ActionMailer::Preview
+  def welcome
+    TeamMailer.welcome(Team.first)
+  end
+
   def new_message
     TeamMailer.new_message(Message.first)
   end
