@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_15_144015) do
+ActiveRecord::Schema.define(version: 2021_10_03_155759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(version: 2021_09_15_144015) do
     t.string "stripe_customer_id"
     t.string "stripe_subscription_id"
     t.string "subscription_status", default: "pending", null: false
+    t.jsonb "json_attributes", default: {}, null: false
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
     t.index ["publishable_key"], name: "index_teams_on_publishable_key", unique: true
