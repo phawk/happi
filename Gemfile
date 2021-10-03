@@ -46,6 +46,7 @@ gem "rack-attack"
 gem "strong_migrations"
 gem "stripe", "~> 5.38"
 gem "stripe_event"
+gem "attr_json"
 
 # Error/performance monitoring
 gem "sentry-ruby"

@@ -1,0 +1,10 @@
+<h1 class="align-center"><%= @team.name %> has been verified!</h1>
+
+
+<p class="align-center">
+  You can now send replies to messages.
+</p>
+
+<p class="body-action"><%= link_to "Go to dashboard", dashboard_url, class: "f-fallback button button--primary" %></p>
+
+<%= render "shared/mailer_happi_sig" %>

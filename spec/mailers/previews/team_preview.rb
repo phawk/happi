@@ -3,6 +3,10 @@ class TeamPreview < ActionMailer::Preview
     TeamMailer.new_message(Message.first)
   end
 
+  def verified
+    TeamMailer.verified(Team.first)
+  end
+
   def not_found
     TeamMailer.not_found(Customer.first)
   end

@@ -1,9 +1,13 @@
 class Team < ApplicationRecord
+  include AttrJson::Record
+
   SUBSCRIPTION_STATES = %w[pending incomplete incomplete_expired trialing active past_due canceled unpaid].freeze
   ACTIVE_SUBSCRIPTION_STATES = %w[trialing active past_due].freeze
 
   before_create :generated_mail_hash
   before_destroy :unset_user_teams
+
+  attr_json :sent_verified_email, :boolean
 
   has_one_attached :logo
   has_secure_token :invite_code
