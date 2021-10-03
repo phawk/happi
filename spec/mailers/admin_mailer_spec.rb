@@ -6,7 +6,7 @@ RSpec.describe AdminMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("Admin alert: New beta signup")
-      expect(mail.to).to eq(["petey@hey.com"])
+      expect(mail.to).to match_array(User.admins.pluck(:email))
       expect(mail.from).to eq(["yo@happi.team"])
     end
 

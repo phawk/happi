@@ -1,14 +1,14 @@
 payhere_alex_password_reset_msg_1_content:
   record: payhere_alex_password_reset_msg_1 (Message)
   name: content
-  body: <div>Hello, world.</div>
+  body: <div>Hello Alex, I have reset your password, please try logging in again now.</div>
 
 payhere_alex_stripe_msg_1_content:
   record: payhere_alex_stripe_msg_1 (Message)
   name: content
-  body: <div>Hello, world.</div>
+  body: <div>I need to reset my stripe connection, can you help?</div>
 
 payhere_alex_stripe_msg_2_content:
   record: payhere_alex_stripe_msg_2 (Message)
   name: content
-  body: <div>Hello, world.</div>
+  body: <div>No probs, your Stripe account has been disconnected, you can now connect a new one!</div>
