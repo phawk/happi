@@ -3,7 +3,9 @@
     "tab.activeBorder": "#fff1cc",
     "statusBar.background": "#ffe299",
     "statusBar.foreground": "#15202b",
-    "statusBarItem.hoverBackground": "#ffd366"
+    "statusBarItem.hoverBackground": "#ffd366",
+    "statusBarItem.remoteBackground": "#ffe299",
+    "statusBarItem.remoteForeground": "#15202b"
   },
   "peacock.color": "FFE299"
 }
