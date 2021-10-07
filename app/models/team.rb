@@ -19,7 +19,7 @@ class Team < ApplicationRecord
   has_many :canned_responses, dependent: :destroy
 
   validates :name, presence: true
-  validates :mail_hash, presence: true, uniqueness: true
+  validates :mail_hash, email_name: true, presence: true, uniqueness: true
   validates :plan, inclusion: { in: BillingPlan::PLANS }
   validates :subscription_status, presence: true, inclusion: { in: SUBSCRIPTION_STATES }
 
