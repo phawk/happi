@@ -18,6 +18,7 @@ RSpec.describe "Teams", type: :request do
         post "/teams", params: {
           team: {
             name: "Polywork",
+            mail_hash: "polywork",
             time_zone: "Eastern Time (US & Canada)",
             country_code: "US",
           },
@@ -27,6 +28,7 @@ RSpec.describe "Teams", type: :request do
         expect(delivered_emails.size).to eq(2)
         expect(delivered_emails.first.subject).to eq("Welcome aboard Polywork!")
         expect(last_email.subject).to eq("Admin alert: A new team needs reviewed")
+        expect(Team.last.default_mailbox).to eq("polywork@prioritysupport.net")
         expect(Team.last.plan).to eq("free")
         expect(Team.last.available_seats).to eq(1)
         expect(Team.last.messages_limit).to eq(100)
@@ -43,6 +45,7 @@ RSpec.describe "Teams", type: :request do
         post "/teams", params: {
           team: {
             name: "Polywork",
+            mail_hash: "polywork",
             time_zone: "Eastern Time (US & Canada)",
             country_code: "US",
             plan: "basic",

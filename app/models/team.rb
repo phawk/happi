@@ -4,7 +4,6 @@ class Team < ApplicationRecord
   SUBSCRIPTION_STATES = %w[pending incomplete incomplete_expired trialing active past_due canceled unpaid].freeze
   ACTIVE_SUBSCRIPTION_STATES = %w[trialing active past_due].freeze
 
-  before_create :generated_mail_hash
   before_destroy :unset_user_teams
 
   attr_json :sent_verified_email, :boolean
@@ -20,6 +19,7 @@ class Team < ApplicationRecord
   has_many :canned_responses, dependent: :destroy
 
   validates :name, presence: true
+  validates :mail_hash, presence: true, uniqueness: true
   validates :plan, inclusion: { in: BillingPlan::PLANS }
   validates :subscription_status, presence: true, inclusion: { in: SUBSCRIPTION_STATES }
 

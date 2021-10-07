@@ -79,7 +79,7 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :time_zone, :country_code)
+    params.require(:team).permit(:name, :mail_hash, :time_zone, :country_code)
   end
 
   def logo_upload_params

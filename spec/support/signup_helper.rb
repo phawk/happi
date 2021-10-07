@@ -12,6 +12,7 @@ module SignupHelper
     expect(page).to have_content("Set up your team")
 
     fill_in "team[name]", with: args[:name]
+    fill_in "team[mail_hash]", with: args[:mail_hash]
     select(args[:country], from: "team[country_code]")
     select(args[:time_zone], from: "team[time_zone]") if args[:time_zone].present?
     select(args[:plan], from: "team[plan]") if args[:plan].present?

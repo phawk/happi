@@ -2,6 +2,7 @@ en:
   activerecord:
     attributes:
       team:
+        mail_hash: Mailbox
         country_code: Country
       customer:
         country_code: Country
