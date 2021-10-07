@@ -21,7 +21,7 @@ RSpec.describe Team, type: :model do
 
   describe "#default_from_address" do
     it "includes company name" do
-      expect(team.default_from_address).to eq("Payhere <yo@happi.team>")
+      expect(team.default_from_address).to eq("Payhere <payhere@prioritysupport.net>")
     end
   end
 
@@ -29,8 +29,8 @@ RSpec.describe Team, type: :model do
     context "when no custom emails exist" do
       before { team.custom_email_addresses.destroy_all }
 
-      it "returns yo@happi.team" do
-        expect(team.emails_to_send_from).to eq(["Payhere <yo@happi.team>"])
+      it "returns payhere@prioritysupport.net" do
+        expect(team.emails_to_send_from).to eq(["Payhere <payhere@prioritysupport.net>"])
       end
     end
 
@@ -39,7 +39,7 @@ RSpec.describe Team, type: :model do
         expect(team.emails_to_send_from).to eq(
           [
             "Payhere Support <support@payhere.co>",
-            "Payhere <yo@happi.team>",
+            "Payhere <payhere@prioritysupport.net>",
           ]
         )
       end

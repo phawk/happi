@@ -6,7 +6,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       it "creates thread and posts new message" do
         perform_enqueued_jobs do
           expect do
-            send_mail(to: "payhere@in.happi.team", headers: { "X-Spam-Score" => "-6.0" })
+            send_mail(to: "payhere@prioritysupport.net", headers: { "X-Spam-Score" => "-6.0" })
           end.to change(MessageThread, :count).by(1)
 
           last_message = Message.last
@@ -20,7 +20,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
 
       it "sends a notification to the team" do
         perform_enqueued_jobs do
-          send_mail(to: "payhere@in.happi.team")
+          send_mail(to: "payhere@prioritysupport.net")
 
           expect(last_email.subject).to eq("Payhere: New message from Jack J.")
           expect(last_email.to).to include("petey@hey.com")
@@ -36,26 +36,11 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       it "adds new message to the thread" do
         perform_enqueued_jobs do
           expect do
-            send_mail(to: "payhere@in.happi.team", from: "Alex Shaw <alex.shaw09@hotmail.com>")
+            send_mail(to: "payhere@prioritysupport.net", from: "Alex Shaw <alex.shaw09@hotmail.com>")
           end.to change { message_threads(:payhere_alex_password_reset).messages.count }.by(1)
           thread.reload
 
           expect(thread.status).to eq("open")
-        end
-      end
-    end
-
-    context "when a custom email address is used" do
-      it "creates a thread and message" do
-        perform_enqueued_jobs do
-          expect do
-            send_mail(to: "support@payhere.co")
-          end.to change(MessageThread, :count).by(1)
-
-          last_thread = MessageThread.last
-
-          expect(last_thread.messages.count).to eq(1)
-          expect(last_thread.reply_to).to eq("support@payhere.co")
         end
       end
     end
@@ -66,7 +51,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       it "creates a message but doesn't send notification" do
         perform_enqueued_jobs do
           expect do
-            send_mail(to: "payhere@in.happi.team", from: "alex.shaw09@hotmail.com")
+            send_mail(to: "payhere@prioritysupport.net", from: "alex.shaw09@hotmail.com")
           end.to change(Message, :count).by(1)
 
           expect(delivered_emails.size).to eq(0)
@@ -75,10 +60,25 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
     end
   end
 
+  context "when a custom email address is used" do
+    it "creates a thread and message" do
+      perform_enqueued_jobs do
+        expect do
+          send_mail(to: "support@payhere.co")
+        end.to change(MessageThread, :count).by(1)
+
+        last_thread = MessageThread.last
+
+        expect(last_thread.messages.count).to eq(1)
+        expect(last_thread.reply_to).to eq("support@payhere.co")
+      end
+    end
+  end
+
   context "when team not found" do
     it "bounces and emails the sender" do
       perform_enqueued_jobs do
-        send_mail(to: "bad@in.happi.team")
+        send_mail(to: "bad@prioritysupport.net")
 
         expect(delivered_emails.size).to eq(1)
         expect(last_email.to.first).to eq("jack@jackjohnson.net")

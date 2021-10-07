@@ -1,5 +1,5 @@
 class ThreadsMailbox < ApplicationMailbox
-  MATCHER = /(.+)@in.happi.team/
+  MATCHER = /(.+)@prioritysupport.net/
 
   attr_reader :message_thread, :team, :reply_to
 

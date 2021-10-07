@@ -16,6 +16,6 @@ module ApplicationHelper
   end
 
   def support_email_address
-    "support@in.happi.team"
+    "support@happi.team"
   end
 end
