@@ -5,6 +5,14 @@
     <%= f.text_field :name %>
   </div>
   <div class="mb-5">
+    <%= f.label :mail_hash %>
+    <div class="flex items-center">
+      <%= f.text_field :mail_hash %>
+      <span class="ml-1 font-medium">@prioritysupport.net</span>
+    </div>
+    <span class="text-sm mt-1">You can add a custom domain later</span>
+  </div>
+  <div class="mb-5">
     <%= f.label :country_code %>
     <%= f.country_select :country_code, {}, class: "w-full" %>
   </div>

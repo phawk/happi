@@ -16,6 +16,7 @@ RSpec.describe "Signing up" do
 
     fill_in_team_form(
       name: "Darktrace",
+      mail_hash: "darktrace",
       country: "United Kingdom",
     )
 

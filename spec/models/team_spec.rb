@@ -10,6 +10,8 @@ RSpec.describe Team, type: :model do
   it { is_expected.to have_many(:canned_responses) }
 
   it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:mail_hash) }
+  it { is_expected.to validate_uniqueness_of(:mail_hash) }
 
   it do
     expect(subject).to validate_inclusion_of(:plan).in_array(
