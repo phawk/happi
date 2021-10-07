@@ -10,4 +10,8 @@ class DevisePreview < ActionMailer::Preview
   def password_change
     Devise::Mailer.password_change(User.first, {})
   end
+
+  def confirmation_instructions
+    Devise::Mailer.confirmation_instructions(User.first, "abc123")
+  end
 end
