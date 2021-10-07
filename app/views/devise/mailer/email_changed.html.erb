@@ -1,9 +1,9 @@
 <p>Hey <%= @resource.first_name %>!</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
-  <p>We're contacting you to notify you that your email is being changed to <strong><%= @resource.unconfirmed_email %></strong>.</p>
+  <p>Just letting you know that your email is being changed to <strong><%= @resource.unconfirmed_email %></strong> 👌</p>
 <% else %>
-  <p>We're contacting you to notify you that your email has been changed to <strong><%= @resource.email %></strong>.</p>
+  <p>Just letting you know that your email has been changed to <strong><%= @resource.email %></strong> 👌</p>
 <% end %>
 
 <%= render "shared/mailer_happi_sig" %>
