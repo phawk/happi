@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
+  # Used for devise confirmations and edit profile
+  def user_root_path
+    dashboard_path
+  end
+
   def current_team
     current_user.team
   end
