@@ -2,7 +2,7 @@
   <%= f.rich_text_area :content %>
 
   <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4">
-    <% if current_team.can_send_messages? %>
+    <% if current_user.can_send_messages? %>
       <%= f.submit t(".button"), class: "button -primary sm:mr-3" %>
     <% else %>
       <button type="button" class="button -primary opacity-25 cursor-not-allowed sm:mr-3" disabled>
@@ -27,6 +27,9 @@
     </div>
   <% end %>
 
+  <% unless current_user.confirmed? %>
+    <%= render "shared/unconfirmed_email" %>
+  <% end %>
   <% unless current_team.subscription_active? %>
     <%= render "shared/subscription_required" %>
   <% end %>

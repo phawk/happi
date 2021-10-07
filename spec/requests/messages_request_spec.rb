@@ -36,6 +36,18 @@ RSpec.describe "Messages", type: :request do
       end
     end
 
+    context "when user hasn’t verified their email address" do
+      it "returns an error" do
+        pete.update!(confirmed_at: nil, confirmation_sent_at: 1.hour.ago, created_at: 1.hour.ago)
+        sign_in(pete)
+        post message_thread_messages_path(message_thread), params: { message: { content: "Hello..." } }
+
+        expect(response).to redirect_to(message_thread_path(message_thread))
+        follow_redirect!
+        expect(response.body).to include("Message failed to send")
+      end
+    end
+
     context "when params are invalid" do
       it "returns an error" do
         sign_in(pete)

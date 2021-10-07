@@ -14,6 +14,7 @@ class UserDashboard < Administrate::BaseDashboard
     first_name: Field::String,
     last_name: Field::String,
     email: Field::String,
+    unconfirmed_email: Field::String,
     reset_password_token: Field::String,
     reset_password_sent_at: Field::DateTime,
     remember_created_at: Field::DateTime,
@@ -24,6 +25,8 @@ class UserDashboard < Administrate::BaseDashboard
     last_sign_in_ip: Field::String,
     role: Field::String,
     metadata: Field::String.with_options(searchable: false),
+    confirmed_at: Field::DateTime,
+    confirmation_sent_at: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -38,6 +41,7 @@ class UserDashboard < Administrate::BaseDashboard
     email
     team
     role
+    confirmed_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,6 +51,7 @@ class UserDashboard < Administrate::BaseDashboard
     first_name
     last_name
     email
+    unconfirmed_email
     role
     team
     sign_in_count
@@ -54,6 +59,8 @@ class UserDashboard < Administrate::BaseDashboard
     last_sign_in_at
     current_sign_in_ip
     last_sign_in_ip
+    confirmed_at
+    confirmation_sent_at
     created_at
     updated_at
     teams
@@ -67,6 +74,7 @@ class UserDashboard < Administrate::BaseDashboard
     last_name
     email
     role
+    confirmed_at
   ].freeze
 
   # COLLECTION_FILTERS
