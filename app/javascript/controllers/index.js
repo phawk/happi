@@ -24,5 +24,8 @@ application.register("message-composer", MessageComposerController)
 import NavigationSelectController from "./navigation_select_controller"
 application.register("navigation-select", NavigationSelectController)
 
+import SlugifyController from "./slugify_controller"
+application.register("slugify", SlugifyController)
+
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)

@@ -1,13 +1,13 @@
-<%= form_with(model: @team, class: "styled-form", data: { turbo: false }) do |f| %>
+<%= form_with(model: @team, class: "styled-form", data: { turbo: false, controller: "slugify" }) do |f| %>
   <%= render "shared/form_errors", object: f.object %>
   <div class="mb-5">
     <%= f.label :name, t(".organisation_name") %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, data: { action: "slugify#change" } %>
   </div>
   <div class="mb-5">
     <%= f.label :mail_hash %>
     <div class="flex items-center">
-      <%= f.text_field :mail_hash %>
+      <%= f.text_field :mail_hash, data: { slugify_target: "slugField" } %>
       <span class="ml-1 font-medium">@prioritysupport.net</span>
     </div>
     <span class="text-sm mt-1">You can add a custom domain later</span>
