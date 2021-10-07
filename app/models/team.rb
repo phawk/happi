@@ -39,7 +39,7 @@ class Team < ApplicationRecord
   end
 
   def default_mailbox
-    "#{mail_hash}@in.happi.team"
+    "#{mail_hash}@prioritysupport.net"
   end
 
   def emails_to_send_from
@@ -47,7 +47,7 @@ class Team < ApplicationRecord
   end
 
   def default_from_address
-    ActionMailer::Base.email_address_with_name("yo@happi.team", name)
+    ActionMailer::Base.email_address_with_name(default_mailbox, name)
   end
 
   def has_logo?

@@ -8,7 +8,7 @@ RSpec.describe CustomerMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.subject).to eq(message.message_thread.subject)
       expect(mail.to).to eq([message.message_thread.customer.email])
-      expect(mail.from).to eq(["yo@happi.team"])
+      expect(mail.from).to eq(["payhere@prioritysupport.net"])
     end
 
     it "renders the body" do
