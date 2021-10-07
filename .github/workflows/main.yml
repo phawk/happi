@@ -32,7 +32,6 @@ jobs:
       POSTGRES_DB: rails_github_actions_test
       POSTGRES_USER: rails_github_actions
       POSTGRES_PASSWORD: postgres
-      PGPORT: ${{ job.services.postgres.ports[5432] }}
       RAILS_ENV: test
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
