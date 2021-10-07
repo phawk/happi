@@ -1,15 +1,17 @@
-<h2>Resend confirmation instructions</h2>
+<h2 class="mb-6 text-center text-xl lg:text-2xl font-bold text-gray-900">
+  Resend confirmation instructions
+</h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "styled-form" }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <div>
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+  <div class="mt-4 mb-2">
+    <%= f.submit "Resend confirmation email", class: "button -primary -lg w-full" %>
   </div>
 <% end %>
 
