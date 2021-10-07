@@ -23,6 +23,5 @@ RSpec.describe "Signing up" do
     click_on "Create team"
 
     expect(page).to have_content("You haven’t received any messages yet")
-    expect(page).not_to have_content("You can’t send outbound emails until")
   end
 end
