@@ -5,15 +5,18 @@ pete:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'hunter212') %>
   team: payhere
   role: superadmin
+  confirmed_at: 2021-03-20
 scott:
   email: scott@payhere.co
   first_name: Scott
   last_name: Wylie
   encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>
   team: nine
+  confirmed_at: 2021-03-20
 janine:
   email: janine@example.org
   first_name: Janine
   last_name: Morrison
   encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>
   team: core_fx
+  confirmed_at: 2021-03-20

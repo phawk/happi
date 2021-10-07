@@ -7,8 +7,8 @@ class User < ApplicationRecord
   attr_accessor :terms_and_conditions
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :trackable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :trackable, :confirmable,
     :recoverable, :rememberable, :validatable, :masqueradable
 
   has_person_name
@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   def avatar?
     avatar.attached?
+  end
+
+  def can_send_messages?
+    confirmed? && team&.can_send_messages?
   end
 
   def role?(base_role)

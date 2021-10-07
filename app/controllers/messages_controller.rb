@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    unless current_team.can_send_messages?
+    unless current_user.can_send_messages?
       return redirect_to @message_thread, alert: "Message failed to send"
     end
 
