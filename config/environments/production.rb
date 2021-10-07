@@ -30,7 +30,7 @@ Rails.application.configure do
     "Cache-Control" => "public, max-age=31557600",
     "Access-Control-Allow-Headers" => "Origin",
     "Access-Control-Allow-Origin" => "*",
-    "Access-Control-Request-Method" => "GET"
+    "Access-Control-Request-Method" => "GET",
   }
 
   # Compress CSS using a preprocessor.
@@ -130,7 +130,8 @@ Rails.application.configure do
   # URLs
   routes.default_url_options = { host: "happi.team", protocol: "https" }
   config.action_controller.default_url_options = {
-    host: "happi.team", protocol: "https",
+    host: "happi.team",
+    protocol: "https",
   }
 
   # Inbound address:
