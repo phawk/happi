@@ -59,7 +59,7 @@ RSpec/EmptyExampleGroup:
 RSpec/ExampleLength:
   Max: 20
 RSpec/MultipleExpectations:
-  Max: 8
+  Max: 10
 RSpec/DescribedClass:
   Enabled: false
 RSpec/AnyInstance:
