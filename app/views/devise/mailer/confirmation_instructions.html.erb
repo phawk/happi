@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<p>Hey <%= @resource.first_name %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>👇 Confirm your email using this link</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to "Verify my email", confirmation_url(@resource, confirmation_token: @token), class: "f-fallback button button--primary" %></p>
+
+<p><em>You can’t send outbound messages until your account is confirmed.</em></p>
+
+<%= render "shared/mailer_happi_sig" %>
