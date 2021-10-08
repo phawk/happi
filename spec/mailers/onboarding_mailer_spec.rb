@@ -37,4 +37,14 @@ RSpec.describe OnboardingMailer, type: :mailer do
       expect(mail.from).to eq(["yo@happi.team"])
     end
   end
+
+  describe "everything_else" do
+    let(:mail) { OnboardingMailer.everything_else(user, team) }
+
+    it "renders the headers" do
+      expect(mail.subject).to eq("The last onboarding email...")
+      expect(mail.to).to eq(["payhere@prioritysupport.net"])
+      expect(mail.from).to eq(["yo@happi.team"])
+    end
+  end
 end

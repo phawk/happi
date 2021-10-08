@@ -11,6 +11,10 @@ class OnboardingPreview < ActionMailer::Preview
     OnboardingMailer.canned_responses(user, team)
   end
 
+  def everything_else
+    OnboardingMailer.everything_else(user, team)
+  end
+
   private
 
   def user

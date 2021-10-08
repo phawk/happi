@@ -8,6 +8,7 @@ module OnboardingEmailsService
     # OnboardingMailer.invite_team(user, team).deliver_later if plan.available_seats > 1
     OnboardingMailer.customise_template(user, team).deliver_later(wait: 5.minutes)
     OnboardingMailer.canned_responses(user, team).deliver_later(wait: 1.day)
+    OnboardingMailer.everything_else(user, team).deliver_later(wait: 2.days)
   end
 
   def create_happi_customer(team)

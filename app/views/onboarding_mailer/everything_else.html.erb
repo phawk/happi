@@ -1,0 +1,31 @@
+<p>
+  Sorry for torturing you with emails <%= @user.first_name %>. This is the last one!
+</p>
+
+<% if @plan.present? && @plan.available_seats > 0 %>
+<p>
+  <strong>Invite team members</strong><br />
+  If you haven’t already, you can <%= link_to "invite the rest of your team to Happi", team_settings_url %> and collaborat on all your customer engagement.
+</p>
+<% end %>
+
+<p>
+  <strong>Custom email addresses</strong><br />
+  You can use your own email address to receive email into Happi, for this you just need to configure it to forward all emails to <%= @team.default_mailbox %>, we also have <%= link_to "further instructions available", documentation_custom_email_address_url %>.
+</p>
+
+<p>
+  <strong>Support widget</strong><br />
+  We have a support widget you can embed onto your website. It allows your customers to message you without leaving your site. We have a guide on <%= link_to "how to install it", documentation_widget_installation_url %> available.<br />
+  <%= image_tag "onboarding/widget-example.png", alt: "Widget example", style: "max-width: 100%; width: 300px;" %>
+</p>
+
+<p>
+  <strong>Getting help</strong><br />
+  If you have any questions, feedback or anything else, please reply to this email and let me know!
+</p>
+
+<p>
+  Thank you,<br />
+  Pete, Founder @ Happi
+</p>
