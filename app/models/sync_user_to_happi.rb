@@ -3,7 +3,8 @@ module SyncUserToHappi
 
   def sync(user)
     happi = RootTeam.load
-    customer = Customer.where(email: user.email).first_or_initialize
+    team = user.team || user.teams.first
+    customer = Customer.where(email: team.default_mailbox).first_or_initialize
     customer.update!(
       team: happi,
       first_name: user.first_name,

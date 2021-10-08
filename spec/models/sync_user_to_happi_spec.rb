@@ -7,7 +7,7 @@ RSpec.describe SyncUserToHappi, type: :modal do
 
       expect(customer.team.name).to eq("Happi")
       expect(customer.name).to eq("Janine Morrison")
-      expect(customer.email).to eq("janine@example.org")
+      expect(customer.email).to eq("core-fx-123@prioritysupport.net")
       expect(customer.company).to eq("CoreFX")
     end.to change(Customer, :count).by(1)
   end
