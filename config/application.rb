@@ -34,6 +34,9 @@ module Happi
 
     # Set Active::Job backend
     config.active_job.queue_adapter = :sidekiq
+    config.active_storage.queues.analysis = :default
+    config.active_storage.queues.purge = :default
+    config.active_storage.queues.mirror = :default
 
     config.generators do |g|
       g.skip_routes true
