@@ -4,7 +4,8 @@ class OnboardingPreview < ActionMailer::Preview
     OnboardingMailer.welcome(user, user.team)
   end
 
-  # def custom_domains
-  #   OnboardingMailer.custom_domains
-  # end
+  def customise_template
+    user = User.first
+    OnboardingMailer.customise_template(user, user.team)
+  end
 end

@@ -7,7 +7,9 @@ class OnboardingMailer < ApplicationMailer
     mail to: team.default_mailbox, subject: "Welcome aboard #{team.name}!"
   end
 
-  # def custom_domains
-  #   mail to: team.default_mailbox, subject: ""
-  # end
+  def customise_template(user, team)
+    @user = user
+    @team = team
+    mail to: team.default_mailbox, subject: "Customise your template"
+  end
 end
