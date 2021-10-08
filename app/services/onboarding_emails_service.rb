@@ -2,9 +2,11 @@ module OnboardingEmailsService
   module_function
 
   def queue_emails_for(user, team)
+    # plan = BillingPlan.new(name: team.plan)
     create_happi_customer(team)
     OnboardingMailer.welcome(user, team).deliver_later
-    # UserMailer.welcome_email(@user).deliver_later(wait: 1.hour)
+    # OnboardingMailer.invite_team(user, team).deliver_later if plan.available_seats > 1
+    OnboardingMailer.customise_template(user, team).deliver_later(wait: 5.minutes)
   end
 
   def create_happi_customer(team)
