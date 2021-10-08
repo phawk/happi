@@ -1,5 +1,5 @@
 class OnboardingMailer < ApplicationMailer
-  layout "mailers/text_only"
+  layout "mailers/simple"
 
   def welcome(user, team)
     @user = user
