@@ -25,7 +25,7 @@ RSpec.describe "Teams", type: :request do
         }
 
         expect(response).to redirect_to(dashboard_path)
-        expect(delivered_emails.size).to eq(3)
+        expect(delivered_emails.size).to eq(4)
         expect(delivered_emails.first.subject).to eq("Welcome aboard Polywork!")
         expect(last_email.subject).to eq("Admin alert: A new team signed up")
         expect(Team.last.default_mailbox).to eq("polywork@prioritysupport.net")

@@ -1,11 +1,23 @@
 class OnboardingPreview < ActionMailer::Preview
   def welcome
-    user = User.first
-    OnboardingMailer.welcome(user, user.team)
+    OnboardingMailer.welcome(user, team)
   end
 
   def customise_template
-    user = User.first
-    OnboardingMailer.customise_template(user, user.team)
+    OnboardingMailer.customise_template(user, team)
+  end
+
+  def canned_responses
+    OnboardingMailer.canned_responses(user, team)
+  end
+
+  private
+
+  def user
+    User.first
+  end
+
+  def team
+    user.team
   end
 end

@@ -26,9 +26,15 @@ RSpec.describe OnboardingMailer, type: :mailer do
       expect(mail.to).to eq(["payhere@prioritysupport.net"])
       expect(mail.from).to eq(["yo@happi.team"])
     end
+  end
 
-    it "renders the body" do
-      expect(mail.body.encoded).to match("")
+  describe "canned_responses" do
+    let(:mail) { OnboardingMailer.canned_responses(user, team) }
+
+    it "renders the headers" do
+      expect(mail.subject).to eq("Save time with canned responses")
+      expect(mail.to).to eq(["payhere@prioritysupport.net"])
+      expect(mail.from).to eq(["yo@happi.team"])
     end
   end
 end
