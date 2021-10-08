@@ -14,5 +14,15 @@ RSpec.describe OnboardingEmailsService do
       expect(delivered_emails.first.subject).to eq("Welcome aboard Payhere!")
       expect(delivered_emails.first.to.first).to eq(team.default_mailbox)
     end
+
+    it "creates a yo@happi.team customer in their account with the logo" do
+      expect do
+        described_class.queue_emails_for(user, team)
+      end.to change { team.customers.count }.by 1
+      happi = team.customers.last
+      expect(happi.name).to eq("Happi Support")
+      expect(happi.email).to eq("yo@happi.team")
+      expect(happi.avatar?).to be(true)
+    end
   end
 end
