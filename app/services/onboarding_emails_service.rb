@@ -15,8 +15,8 @@ module OnboardingEmailsService
     )
     customer.avatar.attach(
       io: File.open(icon_path),
-      filename: 'happi-icon.png',
-      content_type: 'image/png',
+      filename: "happi-icon.png",
+      content_type: "image/png",
       identify: false
     )
   end
