@@ -10,10 +10,12 @@ RSpec.describe OnboardingEmailsService do
         described_class.queue_emails_for(user, team)
       end
 
-      expect(delivered_emails.size).to eq(3)
+      expect(delivered_emails.size).to eq(4)
+
       welcome_email = delivered_emails.first
       add_logo_email = delivered_emails[1]
       canned_email = delivered_emails[2]
+      everything_else_email = delivered_emails[3]
 
       expect(welcome_email.subject).to eq("Welcome aboard Payhere!")
       expect(welcome_email.to.first).to eq(team.default_mailbox)
@@ -23,6 +25,9 @@ RSpec.describe OnboardingEmailsService do
 
       expect(canned_email.subject).to eq("Save time with canned responses")
       expect(canned_email.to.first).to eq(team.default_mailbox)
+
+      expect(everything_else_email.subject).to eq("The last onboarding email...")
+      expect(everything_else_email.to.first).to eq(team.default_mailbox)
     end
 
     it "creates a yo@happi.team customer in their account with the logo" do
