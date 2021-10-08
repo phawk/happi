@@ -2,7 +2,7 @@ module SyncUserToHappi
   module_function
 
   def sync(user)
-    happi = Team.find(ENV.fetch("HAPPI_TEAM_ID"))
+    happi = RootTeam.load
     customer = Customer.where(email: user.email).first_or_initialize
     customer.update!(
       team: happi,
