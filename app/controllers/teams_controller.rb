@@ -29,8 +29,7 @@ class TeamsController < ApplicationController
     if @team.save
       @team.add_user(current_user, set_active_team: true)
 
-      # Insert welcome email...
-      TeamMailer.welcome(@team).deliver_later
+      OnboardingEmailsService.queue_emails_for(current_user, @team)
 
       session.delete(:signup_plan)
 
