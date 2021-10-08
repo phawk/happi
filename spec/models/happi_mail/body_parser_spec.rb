@@ -52,17 +52,10 @@ RSpec.describe HappiMail::BodyParser, type: :model do
   end
 
   it "works for HTML only emails" do
-    mail = create_inbound_email_from_mail do |mail|
-      mail.to "David Heinemeier Hansson <david@loudthinking.com>"
-      mail.from "Bilbo Baggins <bilbo@bagend.com>"
-      mail.subject "Come down to the Shire!"
+    mail = create_inbound_email_from_fixture("html_only_email", status: :processing)
 
-      mail.html_part do |part|
-        part.body "<h1>Please join us for a party at Bag End</h1>"
-      end
-    end
-
-    expect(HappiMail::BodyParser.new(mail.mail).content).to include("Please join us for a party at Bag End")
+    body = HappiMail::BodyParser.new(mail.mail).content
+    expect(body).to include("Thanks for signing up.")
   end
 
   it "adds line breaks to plain text" do
