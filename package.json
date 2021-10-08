@@ -1,6 +1,9 @@
 {
   "name": "happi",
   "private": true,
+  "engines": {
+    "node": "~> 12.16"
+  },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.0",
     "@hotwired/turbo-rails": "^7.0.1",
