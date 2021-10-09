@@ -15,10 +15,10 @@ class PagesController < ApplicationController
   def security; end
 
   def changelog
-    if params[:preview] && current_user&.role?(:admin)
-      @changelog = Changelog.ordered
+    @changelog = if params[:preview] && current_user&.role?(:admin)
+      Changelog.ordered
     else
-      @changelog = Changelog.published.ordered
+      Changelog.published.ordered
     end
   end
 
