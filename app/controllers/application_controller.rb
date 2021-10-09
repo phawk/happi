@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def feature_enabled?(feature_name)
+    Feature.enabled?(feature_name, current_user)
+  end
+  helper_method :feature_enabled?
+
   def track_page_view
     return unless request.get?
 
