@@ -12,3 +12,8 @@ payhere_alex_stripe_msg_2_content:
   record: payhere_alex_stripe_msg_2 (Message)
   name: content
   body: <div>No probs, your Stripe account has been disconnected, you can now connect a new one!</div>
+
+changelog_one_content:
+  record: changelog_one (Changelog)
+  name: content
+  body: <div>Happi MVP is live! Yeo!</div>

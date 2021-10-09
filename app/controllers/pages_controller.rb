@@ -14,6 +14,14 @@ class PagesController < ApplicationController
 
   def security; end
 
+  def changelog
+    @changelog = if params[:preview] && current_user&.role?(:admin)
+      Changelog.ordered
+    else
+      Changelog.published.ordered
+    end
+  end
+
   private
 
   def set_pricing_plans

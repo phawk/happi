@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
     resources :custom_email_addresses
     resources :beta_signups
+    resources :changelogs
 
     root to: "teams#index"
   end
@@ -75,6 +76,7 @@ Rails.application.routes.draw do
   get "/terms", to: "pages#terms"
   get "/privacy", to: "pages#privacy"
   get "/security", to: "pages#security"
+  get "/changelog", to: "pages#changelog"
 
   namespace :documentation, path: "/docs" do
     get "forwarding_mail", to: "general#forwarding_mail", as: :forwarding_mail
