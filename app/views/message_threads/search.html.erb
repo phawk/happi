@@ -5,9 +5,9 @@
 <% @results.each do |result| %>
   <div class="mb-8">
     <%= render result.thread %>
-    <div class="divide-y divide-gray-200">
+    <div class="space-y-6">
       <% result.messages.each do |message| %>
-        <%= link_to message_thread_path(result.thread, anchor: dom_id(message)), class: "block hover:text-gray-900 hover:bg-gray-50 max-w-2xl ml-16 py-6" do %>
+        <%= link_to message_thread_path(result.thread, anchor: dom_id(message)), class: "block text-sm sm:text-base p-4 sm:px-6 bg-gray-50 shadow-sm rounded-xl hover:text-gray-900 hover:bg-gray-100 max-w-2xl sm:ml-16" do %>
           <%= highlight(simple_format(message.content.to_plain_text), @query, highlighter: '<mark class="bg-yellow-100 rounded-md px-1 text-gray-800">\1</mark>') %>
         <% end %>
       <% end %>
