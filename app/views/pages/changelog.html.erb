@@ -1,0 +1,28 @@
+<div class="max-w-7xl mx-auto py-16 px-4 bg-white sm:px-6 lg:px-8">
+  <h1 class="mb-6 text-purple-500 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">Changelog</h1>
+
+  <p class="text-lg sm:text-2xl max-w-xl">We’re always hard at work improving Happi, check back here to find out what’s new.</p>
+
+  <div class="mt-10 md:mt-16 lg:mt-24">
+    <% @changelog.each do |changelog| %>
+      <div class="border-t border-gray-200 py-12 mb-10 xl:mb-16 md:grid md:items-start md:grid-cols-3 lg:grid-cols-4">
+        <span class="block mb-5 text-lg text-gray-400 font-medium">
+          <% if changelog.released.present? %>
+            <%= changelog.released.strftime("%B %e, %Y") %>
+          <% else %>
+            Draft release
+          <% end %>
+        </span>
+
+        <div class="md:col-span-2 lg:col-span-3 prose-lg changelog-content">
+          <% if changelog.embed.present? %>
+            <div class="mb-8 lg:mb-10">
+              <%== changelog.embed %>
+            </div>
+          <% end %>
+          <%= changelog.content %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

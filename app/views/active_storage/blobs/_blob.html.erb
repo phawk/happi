@@ -1,14 +1,20 @@
-<figure class="file-attachment-tag -<%= blob.representable? ? "preview" : "file" %> -<%= blob.filename.extension %>">
-<!--<figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">-->
+<% if params[:action] == "changelog" %>
   <% if blob.representable? %>
-    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: "attachment-image-preview" %>
+    <%= image_tag blob.representation(resize_to_fill: local_assigns[:in_gallery] ? [ 400, 400 ] : [ 1824, 1000 ]), class: "changelog-image rounded-3xl" %>
   <% end %>
-
-  <figcaption class="attachment__caption">
-    <% if caption = blob.try(:caption) %>
-      <%= caption %>
+<% else %>
+  <figure class="file-attachment-tag -<%= blob.representable? ? "preview" : "file" %> -<%= blob.filename.extension %>">
+  <!--<figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">-->
+    <% if blob.representable? %>
+      <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: "attachment-image-preview" %>
     <% end %>
-    <span class="attachment__name"><%= link_to blob.filename, rails_blob_url(blob) %></span>
-    <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
-  </figcaption>
-</figure>
+
+    <figcaption class="attachment__caption">
+      <% if caption = blob.try(:caption) %>
+        <%= caption %>
+      <% end %>
+      <span class="attachment__name"><%= link_to blob.filename, rails_blob_url(blob) %></span>
+      <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
+    </figcaption>
+  </figure>
+<% end %>
