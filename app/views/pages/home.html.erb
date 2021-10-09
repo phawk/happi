@@ -8,15 +8,16 @@
     </div>
     <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
       <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-        <span class="block text-white">Better customer engagement</span>
-        <span class="block text-purple-200">for startups</span>
+        <span class="leading-tight sm:block text-white">Simple customer support</span>
+        <span class="leading-tight sm:block text-purple-200">for small teams.</span>
       </h1>
-      <p class="mt-6 max-w-lg mx-auto text-center text-xl text-purple-200 sm:max-w-3xl">
-        Customer support should be about talking to people, not ticket numbers.
+      <p class="mt-6 max-w-lg mx-auto text-center text-xl md:text-2xl text-purple-200 sm:max-w-3xl">
+        Save time and engage with all your customer emails in a single app.
       </p>
       <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-        <div class="space-y-4 sm:space-y-0 sm:mx-auto">
-          <%= link_to "Get started free", pricing_path, class: "flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-purple-700 bg-white hover:bg-purple-50 sm:px-8" %>
+        <div class="space-y-4 sm:mx-auto flex flex-col items-center">
+          <%= link_to "Get started free", pricing_path, class: "flex items-center justify-center px-4 py-3 border border-transparent text-base md:text-lg lg:text-xl font-medium rounded-md shadow-sm text-purple-700 bg-white hover:bg-purple-50 sm:px-8" %>
+          <span class="block opacity-80 text-white">No credit card required</span>
         </div>
       </div>
     </div>
@@ -31,7 +32,7 @@
       <%= image_tag "marketing/features/easy.png", alt: "Happi is easy to use!" %>
     <% end %>
     <%= c.text do %>
-      <p class="lg:text-lg">The customer support space has normally been occupied with boring enterprisey tools, focussed on ticket numbers, the complex routing of requests to different teams. Happi is simple and feels like having a conversation over DMs.</p>
+      <p class="lg:text-lg">Happi is simple and feels like having a conversation over DMs. You’ll be up and running in minutes!</p>
     <% end %>
   <% end %>
 
@@ -58,7 +59,7 @@
       <%= image_tag "marketing/features/team.png", alt: "Happi allows multiple team members" %>
     <% end %>
     <%= c.text do %>
-      <p class="lg:text-lg">Every message from your customers is stored in a single, secure system. Any member of your team can see the full conversation history with customers and work together to provide exceptional customer support.</p>
+      <p class="lg:text-lg">Every conversation is stored in a single, secure app. Any member of your team can see the full history with customers and work together to provide exceptional support.</p>
     <% end %>
   <% end %>
 </div>
@@ -70,19 +71,6 @@
     <p class="mt-4 text-lg text-gray-500">Happi was built for small teams just like yours, we don’t lock features behind expensive upgrades.</p>
   </div>
   <dl class="mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8">
-    <div class="relative">
-      <dt>
-        <!-- Heroicon name: outline/check -->
-        <svg class="absolute h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
-        <p class="ml-9 text-lg leading-6 font-medium text-gray-900">Custom domains</p>
-      </dt>
-      <dd class="mt-2 ml-9 text-base text-gray-500">
-        Use your own (support@myapp.com) domain to send/receive messages from.
-      </dd>
-    </div>
-
     <div class="relative">
       <dt>
         <!-- Heroicon name: outline/check -->
@@ -119,6 +107,19 @@
       </dt>
       <dd class="mt-2 ml-9 text-base text-gray-500">
         Upload your logo and customise your email templates.
+      </dd>
+    </div>
+
+    <div class="relative">
+      <dt>
+        <!-- Heroicon name: outline/check -->
+        <svg class="absolute h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <p class="ml-9 text-lg leading-6 font-medium text-gray-900">Custom domains</p>
+      </dt>
+      <dd class="mt-2 ml-9 text-base text-gray-500">
+        Use your own (support@myapp.com) domain to send/receive messages from.
       </dd>
     </div>
 
