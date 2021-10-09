@@ -8,6 +8,12 @@ class MessageThreadsController < ApplicationController
       :messages).most_recent.limit(50).to_a
   end
 
+  def search
+    @query = params[:query]
+    messages = current_team.messages.with_rich_text_content.includes(:message_thread).search(@query)
+    @results = GroupedSearchResults.new(messages).grouped
+  end
+
   def show
     @customer = @message_thread.customer
     @messages = @message_thread.messages.with_rich_text_content_and_embeds.order(:created_at)

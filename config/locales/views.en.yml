@@ -7,8 +7,6 @@ en:
       page_title: Threads
       new_heading: Open threads
       old_heading: Previously seen
-      add_new: New thread
-      search: Search threads
       no_open_threads: No open threads
       no_open_threads_message: You have dealt with all of your messages, good job!
       no_messages: You haven’t received any messages yet

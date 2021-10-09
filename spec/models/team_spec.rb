@@ -121,4 +121,14 @@ RSpec.describe Team, type: :model do
       expect(team.can_send_messages?).to be(false)
     end
   end
+
+  describe "#messages" do
+    it "returns the teams messages" do
+      expect(team.messages).to match_array([
+        messages(:payhere_alex_password_reset_msg_1),
+        messages(:payhere_alex_stripe_msg_1),
+        messages(:payhere_alex_stripe_msg_2),
+      ])
+    end
+  end
 end

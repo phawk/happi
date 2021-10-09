@@ -1,0 +1,7 @@
+<div class="flex flex-col sm:flex-row sm:items-center mb-8">
+  <%= tag.h1 heading, class: "uppercase tracking-wider font-semibold text-gray-500 flex-auto" %>
+
+  <%= form_with(url: search_message_threads_path, method: :get, class: "styled-form mt-3 sm:mt-0") do |f| %>
+    <%= f.search_field :query, value: local_assigns[:query], placeholder: "Search messages", class: "rounded" %>
+  <% end %>
+</div>

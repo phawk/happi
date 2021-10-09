@@ -1,0 +1,24 @@
+<% meta title: "Searching messages" %>
+
+<%= render partial: "message_threads/top_nav", locals: { heading: "Searching ‘#{@query}’", query: @query } %>
+
+<% @results.each do |result| %>
+  <div class="mb-8">
+    <%= render result.thread %>
+    <div class="divide-y divide-gray-200">
+      <% result.messages.each do |message| %>
+        <%= link_to message_thread_path(result.thread, anchor: dom_id(message)), class: "block hover:text-gray-900 hover:bg-gray-50 max-w-2xl ml-16 py-6" do %>
+          <%= highlight(simple_format(message.content.to_plain_text), @query, highlighter: '<mark class="bg-yellow-100 rounded-md px-1 text-gray-800">\1</mark>') %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @results.empty? %>
+  <%= render(EmptyMessageComponent.new(title: "No results")) do %>
+    <p class="text-lg">
+      We couldnt find any messages matching your search.
+    </p>
+  <% end %>
+<% end %>
