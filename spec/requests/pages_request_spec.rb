@@ -12,6 +12,7 @@ RSpec.describe "Pages", type: :request do
     it "returns http success" do
       get "/changelog"
       expect(response).to have_http_status(:success)
+      expect(response.body).to include("Happi MVP is live! Yeo!")
     end
   end
 end
