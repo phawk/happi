@@ -24,7 +24,11 @@ class Team < ApplicationRecord
   validates :subscription_status, presence: true, inclusion: { in: SUBSCRIPTION_STATES }
 
   def allowed_threads
-    message_threads.where.not(customer_id: customers.blocked.pluck(:id))
+    message_threads.where.not(customer_id: customers.blocked.select(:id))
+  end
+
+  def messages
+    Message.where(message_thread_id: allowed_threads.select(:id))
   end
 
   def add_user(user, set_active_team: false)

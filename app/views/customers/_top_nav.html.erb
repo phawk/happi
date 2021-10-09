@@ -4,6 +4,6 @@
   <%= link_to "Manually add", new_customer_path, class: "my-3 sm:my-0 sm:mr-3 flex-shrink-0 button -rounded" %>
 
   <%= form_with(url: search_customers_path, method: :get, class: "styled-form") do |f| %>
-    <%= f.search_field :query, placeholder: "Search customers", class: "rounded" %>
+    <%= f.search_field :query, value: local_assigns[:query], placeholder: "Search customers", class: "rounded" %>
   <% end %>
 </div>

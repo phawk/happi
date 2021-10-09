@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     post "unblock", on: :member
   end
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
+    get :search, on: :collection
     post :merge_with_previous, on: :member
     resources :messages, only: %i[new create] do
       get :hovercard, on: :member

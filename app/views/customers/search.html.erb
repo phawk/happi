@@ -1,6 +1,6 @@
-<% meta title: "Search customers" %>
+<% meta title: "Searching customers" %>
 
-<%= render partial: "customers/top_nav", locals: { heading: "Searching ‘#{@query}’" } %>
+<%= render partial: "customers/top_nav", locals: { heading: "Searching ‘#{@query}’", query: @query } %>
 
 <%= render partial: "customers/link", collection: @customers, as: :customer, locals: { class: "mb-4" } %>
 
