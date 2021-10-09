@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class EmptyMessageComponent < ViewComponent::Base
-  def initialize(title:, body:)
+  attr_reader :title, :body
+
+  def initialize(title:, body: nil)
     super
     @title = title
     @body = body

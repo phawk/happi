@@ -20,6 +20,8 @@ gem "redis", "~> 4.0"
 gem "ahoy_matey"
 # Business intelligence dashboards
 gem "blazer"
+# Full text search
+gem "pg_search"
 
 # Use Active Storage variant
 gem "image_processing", "~> 1.2"

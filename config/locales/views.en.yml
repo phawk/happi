@@ -45,12 +45,6 @@ en:
       switched_to: "Switched to %{team}"
       no_access: "You don’t have access to this team"
   customers:
-    index:
-      heading: All customers
-      add_new: Manually add
-      search: Search customers
-      no_customers: You don’t have any customers yet
-      getting_started_guide_html: 'Follow our <a href="/docs" target="_blank" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
     show:
       edit: Edit customer
       threads: Threads

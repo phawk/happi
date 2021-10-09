@@ -5,6 +5,11 @@ class CustomersController < ApplicationController
     @customers = current_team.customers.order(:last_name)
   end
 
+  def search
+    @query = params[:query]
+    @customers = current_team.customers.search(@query)
+  end
+
   def show
     @message_threads = @customer.message_threads.includes(:customer, :user, :messages).most_recent.limit(50).to_a
   end
