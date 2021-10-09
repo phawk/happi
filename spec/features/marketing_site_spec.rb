@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Marketing site" do
   it "loads without errors" do
     visit root_path
-    expect(page).to have_content "Better customer engagement for startups"
+    expect(page).to have_content "Simple customer support"
 
     click_on "Get started free"
     expect(page).to have_content "Choose your plan"
