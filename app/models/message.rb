@@ -1,14 +1,21 @@
 class Message < ApplicationRecord
   STATUS = %w[received pending delivered bounced].freeze
+  include PgSearch::Model
 
   after_create_commit { broadcast_append_to(turbo_channel, target: "messages") }
   after_update_commit { broadcast_replace_to(turbo_channel) }
   after_destroy_commit { broadcast_remove_to(turbo_channel) }
 
+  has_rich_text :content
+
+  pg_search_scope :search,
+    associated_against: {
+      rich_text_content: [:body],
+    },
+    using: { tsearch: { prefix: true, dictionary: "english" } }
+
   belongs_to :message_thread, touch: true
   belongs_to :sender, polymorphic: true
-
-  has_rich_text :content
 
   validates :content, presence: true, if: :user?
 
