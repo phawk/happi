@@ -11,15 +11,15 @@ RSpec.describe Feature, type: :model do
 
     context "when a feature flag depends on user" do
       it "is enabled for admins" do
-        expect(Feature.enabled?(:changelog, admin_user)).to be(true)
+        expect(Feature.enabled?(:admin_area, admin_user)).to be(true)
       end
 
       it "is disabled for standard users" do
-        expect(Feature.enabled?(:changelog, standard_user)).to be(false)
+        expect(Feature.enabled?(:admin_area, standard_user)).to be(false)
       end
 
       it "is disabled for logged out users" do
-        expect(Feature.enabled?(:changelog)).to be(false)
+        expect(Feature.enabled?(:admin_area)).to be(false)
       end
     end
   end
