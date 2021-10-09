@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "components/button";
+@import "components/changelog-content";
 @import "components/styled-form";
 @import "components/turbo-progress-bar";
 @import "components/trix-content";
