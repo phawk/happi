@@ -9,7 +9,7 @@
       <nav class="hidden sm:flex ml-8 space-x-6">
         <%= link_to "Features", root_path, class: "font-medium text-lg text-gray-500 hover:text-gray-700" %>
         <%= link_to "Pricing", pricing_path, class: "font-medium text-lg text-gray-500 hover:text-gray-700" %>
-        <% if current_user&.role?(:admin) %>
+        <% if Feature.enabled?(:changelog, current_user) %>
           <%= link_to "Changelog", changelog_path, class: "font-medium text-lg text-gray-500 hover:text-gray-700" %>
         <% end %>
       </nav>
@@ -59,7 +59,7 @@
         <div class="grid grid-cols-2 gap-4">
           <%= link_to "Features", root_path, class: "font-medium text-base text-gray-500 hover:text-gray-700" %>
           <%= link_to "Pricing", pricing_path, class: "font-medium text-base text-gray-500 hover:text-gray-700" %>
-          <% if current_user&.role?(:admin) %>
+          <% if Feature.enabled?(:changelog, current_user) %>
             <%= link_to "Changelog", changelog_path, class: "font-medium text-base text-gray-500 hover:text-gray-700" %>
           <% end %>
           <%= link_to "Help center", documentation_root_path, class: "font-medium text-base text-gray-500 hover:text-gray-700" %>
