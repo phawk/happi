@@ -1,0 +1,17 @@
+.changelog-content .trix-content {
+  h1 {
+    @apply text-gray-700 font-bold text-3xl;
+  }
+
+  ul {
+    list-style: square;
+
+    > li {
+      padding-left: .6rem;
+    }
+  }
+
+  .changelog-image {
+    margin-top: 0;
+  }
+}

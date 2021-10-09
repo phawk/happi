@@ -14,6 +14,10 @@ class PagesController < ApplicationController
 
   def security; end
 
+  def changelog
+    @changelog = Changelog.ordered
+  end
+
   private
 
   def set_pricing_plans
