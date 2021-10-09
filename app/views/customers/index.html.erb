@@ -1,17 +1,13 @@
 <% meta title: t(".heading") %>
 
-<div class="flex flex-col sm:flex-row sm:items-center mb-8">
-  <%= tag.h1 t(".heading"), class: "uppercase tracking-wider font-semibold text-gray-500 flex-auto" %>
-
-  <%= link_to t(".add_new"), new_customer_path, class: "my-3 sm:my-0 sm:mr-3 flex-shrink-0 button -rounded" %>
-
-  <%= form_with(url: "/", class: "styled-form") do |f| %>
-    <%= f.search_field :query, placeholder: t(".search"), class: "rounded" %>
-  <% end %>
-</div>
+<%= render partial: "customers/top_nav", locals: { heading: "All customers" } %>
 
 <%= render partial: "customers/link", collection: @customers, as: :customer, locals: { class: "mb-4" } %>
 
 <% if @customers.empty? %>
-  <%= render(EmptyMessageComponent.new(title: t(".no_customers"), body: t(".getting_started_guide_html"))) %>
+  <%= render(EmptyMessageComponent.new(
+    title: "You don’t have any customers yet"
+  )) do %>
+    Follow our <%= link_to "Getting started guide", documentation_root_path, class: "text-purple-500 underline", target: :_blank %> to set up your inbound mailbox or web widget.
+  <% end %>
 <% end %>

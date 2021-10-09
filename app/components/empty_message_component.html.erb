@@ -1,6 +1,10 @@
 <div class="mt-28 mb-20 flex items-center justify-center">
   <div class="max-w-md text-center">
-    <h3 class="text-xl text-gray-700 font-semibold mb-4"><%= @title %></h3>
-    <p class="text-lg"><%= @body %></p>
+    <h3 class="text-xl text-gray-700 font-semibold mb-4"><%= title %></h3>
+    <% if body.present? %>
+      <p class="text-lg"><%= body %></p>
+    <% else %>
+      <%= content %>
+    <% end %>
   </div>
 </div>

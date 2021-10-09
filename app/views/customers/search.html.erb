@@ -1,0 +1,13 @@
+<% meta title: "Search customers" %>
+
+<%= render partial: "customers/top_nav", locals: { heading: "Searching ‘#{@query}’" } %>
+
+<%= render partial: "customers/link", collection: @customers, as: :customer, locals: { class: "mb-4" } %>
+
+<% if @customers.empty? %>
+  <%= render(EmptyMessageComponent.new(title: "No results")) do %>
+    <p class="text-lg">
+      We couldnt find any customers matching your search.
+    </p>
+  <% end %>
+<% end %>
