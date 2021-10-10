@@ -10,7 +10,7 @@ Sentry.init do |config|
   config.traces_sampler = lambda do |_context|
     true
   end
-  config.enabled_environments = %i[production]
+  config.enabled_environments = %w[production]
   config.excluded_exceptions += %w[
     ActionController::RoutingError
     ActiveRecord::RecordNotFound

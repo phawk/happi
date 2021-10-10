@@ -2,7 +2,7 @@
   Resend confirmation instructions
 </h2>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "styled-form" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "styled-form", data: { turbo: false } }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div>
