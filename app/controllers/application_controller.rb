@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 
   def track_page_view
     return unless request.get?
+    return if current_user&.role?(:admin)
 
     ahoy.track "Page view", request.path_parameters.merge(url: request.fullpath)
   end
