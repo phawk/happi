@@ -1,6 +1,6 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <div class="fixed z-50 top-6 left-1/2 transform -translate-x-1/2 px-4 min-w-full md:min-w-0" data-controller="flash">
+    <div class="fixed z-50 top-6 left-1/2 transform -translate-x-1/2 px-4 min-w-full md:min-w-0" data-controller="flash" data-turbo-cache="false">
       <div class="max-w-full md:whitespace-nowrap flex rounded-full py-4 px-6 items-center <%= %w[alert error].include?(name.to_s) ? 'bg-pink-100 text-pink-800' : 'bg-blue-100 text-blue-800' %>">
         <%= content_tag :div, msg, :id => "flash_#{name}", class: "flex-grow" %>
         <span class="ml-5 cursor-pointer flex-shrink-0" data-action="click->flash#dismiss">
