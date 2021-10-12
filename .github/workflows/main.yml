@@ -26,7 +26,7 @@ jobs:
         options: --entrypoint redis-server
 
     env:
-      HAPPI_TEAM_ID: 5
+      HAPPI_TEAM_ID: 4
       RAILS_ENV: test
       PGHOST: localhost
       POSTGRES_DB: rails_github_actions_test
