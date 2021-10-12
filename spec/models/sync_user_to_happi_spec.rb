@@ -19,4 +19,17 @@ RSpec.describe SyncUserToHappi, type: :modal do
       described_class.sync(users(:janine))
     end.not_to change(Customer, :count)
   end
+
+  it "creates a new customer if they exist on a different team" do
+    other_team = teams(:nine)
+    existing_customer = other_team.customers.create(
+      email: "core-fx-123@prioritysupport.net",
+      first_name: "Janine"
+    )
+
+    expect do
+      new_customer = described_class.sync(users(:janine))
+      expect(new_customer).not_to eq(existing_customer)
+    end.to change(Customer, :count).by(1)
+  end
 end
