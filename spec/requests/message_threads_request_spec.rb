@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "MessageThreads", type: :request do
   before { sign_in(users(:pete)) }
 
-  describe "GET /message_threads/search?query=" do
+  describe "GET /threads/search?query=" do
     it "searches messages" do
       search_query = "Stripe account has been disconnected"
       message = messages(:payhere_alex_stripe_msg_2)
@@ -21,7 +21,7 @@ RSpec.describe "MessageThreads", type: :request do
     end
   end
 
-  describe "POST /message_threads/:id/merge_with_previous" do
+  describe "POST /threads/:id/merge_with_previous" do
     let(:thread) { message_threads(:payhere_alex_password_reset) }
     let(:previous_thread) { message_threads(:payhere_alex_stripe) }
 
@@ -39,6 +39,35 @@ RSpec.describe "MessageThreads", type: :request do
       expect(response).to redirect_to(message_thread_path(previous_thread))
       follow_redirect!
       expect(response.body).to include("No previous threads found")
+    end
+  end
+
+  describe "GET /threads/new" do
+    it "returns http success" do
+      get new_message_thread_path, params: { customer_id: customers(:payhere_alex).id }
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "POST /threads" do
+    let(:message_thread) { MessageThread.last }
+
+    before do
+      post message_threads_path, params: {
+        message_thread: {
+          customer_id: customers(:payhere_alex).id,
+          subject: "Welcome",
+          reply_to: "support@payhere.co",
+        },
+      }
+    end
+
+    it "creates a new thread" do
+      expect(response).to redirect_to(message_thread)
+    end
+
+    it "sets the reply_to correctly" do
+      expect(message_thread.reply_to).to eq("support@payhere.co")
     end
   end
 end

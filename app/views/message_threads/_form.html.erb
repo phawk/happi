@@ -18,6 +18,11 @@
     <%= f.text_field :subject %>
   </div>
 
+  <div class="mb-4">
+    <%= f.label :reply_to %>
+    <%= f.select :reply_to, options_for_select(current_team.emails_to_send_from) %>
+  </div>
+
   <div class="mt-6">
     <%= f.submit t(".button"), class: "button -primary" %>
     <%= link_to t(".cancel"), @customer, class: "button ml-3" %>

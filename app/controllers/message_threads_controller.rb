@@ -69,7 +69,7 @@ class MessageThreadsController < ApplicationController
   end
 
   def create_params
-    params.require(:message_thread).permit(:customer_id, :subject)
+    params.require(:message_thread).permit(:customer_id, :subject, :reply_to)
   end
 
   def update_params
