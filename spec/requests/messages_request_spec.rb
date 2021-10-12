@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Messages", type: :request do
   describe "POST /messages" do
     let(:pete) { users(:pete) }
-    let(:message_thread) { message_threads(:payhere_alex_password_reset) }
+    let(:message_thread) { message_threads(:acme_alex_password_reset) }
 
     context "when params are valid" do
       before do
@@ -32,7 +32,7 @@ RSpec.describe "Messages", type: :request do
         expect(delivered_emails.size).to eq(1)
         expect(last_email.subject).to eq(message_thread.subject)
         expect(last_email.to).to eq([message_thread.customer.email])
-        expect(last_email.reply_to).to eq(["support@payhere.co"])
+        expect(last_email.reply_to).to eq(["support@acme.com"])
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe "Messages", type: :request do
   end
 
   describe "GET /view_message/:id" do
-    let(:message) { messages(:payhere_alex_stripe_msg_1) }
+    let(:message) { messages(:acme_alex_stripe_msg_1) }
 
     context "when user belongs to team" do
       let!(:pete) { sign_in(users(:pete)) }
@@ -73,7 +73,7 @@ RSpec.describe "Messages", type: :request do
 
         follow_redirect!
 
-        expect(response.body).to include("Switched to Payhere")
+        expect(response.body).to include("Switched to ACME Corp")
         expect(response.body).to include(message.content.to_s)
       end
     end

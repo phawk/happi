@@ -1,14 +1,14 @@
-payhere_alex_password_reset_msg_1:
-  message_thread: payhere_alex_password_reset
+acme_alex_password_reset_msg_1:
+  message_thread: acme_alex_password_reset
   sender: pete (User)
   status: pending
 
-payhere_alex_stripe_msg_1:
-  message_thread: payhere_alex_stripe
-  sender: payhere_alex (Customer)
+acme_alex_stripe_msg_1:
+  message_thread: acme_alex_stripe
+  sender: acme_alex (Customer)
   status: received
 
-payhere_alex_stripe_msg_2:
-  message_thread: payhere_alex_stripe
+acme_alex_stripe_msg_2:
+  message_thread: acme_alex_stripe
   sender: pete (User)
   status: delivered

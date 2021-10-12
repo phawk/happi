@@ -2,13 +2,13 @@ require "rails_helper"
 
 RSpec.describe CustomerMailer, type: :mailer do
   describe "new_reply" do
-    let(:message) { messages(:payhere_alex_stripe_msg_2) }
+    let(:message) { messages(:acme_alex_stripe_msg_2) }
     let(:mail) { CustomerMailer.new_reply(message) }
 
     it "renders the headers" do
       expect(mail.subject).to eq(message.message_thread.subject)
       expect(mail.to).to eq([message.message_thread.customer.email])
-      expect(mail.from).to eq(["payhere@prioritysupport.net"])
+      expect(mail.from).to eq(["acme@prioritysupport.net"])
     end
 
     it "renders the body" do

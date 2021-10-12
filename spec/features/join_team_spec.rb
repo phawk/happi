@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Joining teams" do
-  let(:team) { teams(:payhere) }
+  let(:team) { teams(:acme) }
 
   it "allows signup when user doesnt have an account" do
     visit join_team_path(code: team.invite_code)
@@ -26,6 +26,6 @@ RSpec.describe "Joining teams" do
 
     click_button "Join team"
 
-    expect(page).to have_content("You are now a member of Payhere")
+    expect(page).to have_content("You are now a member of ACME Corp")
   end
 end

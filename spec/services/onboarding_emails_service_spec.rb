@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe OnboardingEmailsService do
   describe "#queue_emails_for(team)" do
     let(:user) { users(:pete) }
-    let(:team) { teams(:payhere) }
+    let(:team) { teams(:acme) }
 
     it "queues onboarding emails to be delivered to their @prioritysupport.net address" do
       perform_enqueued_jobs do
@@ -17,7 +17,7 @@ RSpec.describe OnboardingEmailsService do
       canned_email = delivered_emails[2]
       everything_else_email = delivered_emails[3]
 
-      expect(welcome_email.subject).to eq("Welcome aboard Payhere!")
+      expect(welcome_email.subject).to eq("Welcome aboard ACME Corp!")
       expect(welcome_email.to.first).to eq(team.default_mailbox)
 
       expect(add_logo_email.subject).to eq("Customise your template")

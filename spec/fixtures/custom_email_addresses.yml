@@ -1,8 +1,8 @@
-payhere_support:
-  from_name: Payhere Support
-  email: support@payhere.co
-  team: payhere
+acme_support:
+  from_name: ACME Support
+  email: support@acme.com
+  team: acme
   confirmed_at: 2021-01-01
-payhere_unconfirmed:
-  email: unconfirmed@payhere.co
-  team: payhere
+acme_unconfirmed:
+  email: unconfirmed@acme.com
+  team: acme

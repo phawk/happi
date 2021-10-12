@@ -7,7 +7,7 @@ RSpec.describe "Teams" do
 
   it "allows switching between teams" do
     visit dashboard_path
-    expect(page).to have_content "Payhere"
+    expect(page).to have_content "ACME Corp"
     click_on "change"
 
     within ".rounded-3xl" do
@@ -15,6 +15,6 @@ RSpec.describe "Teams" do
     end
 
     expect(page).to have_content "Happi"
-    expect(page).not_to have_content "Payhere"
+    expect(page).not_to have_content "ACME Corp"
   end
 end

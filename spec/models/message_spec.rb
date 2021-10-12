@@ -7,7 +7,7 @@ RSpec.describe Message, type: :model do
   describe ".search" do
     it "searches message content" do
       results = described_class.search("Stripe account has been disconnected")
-      expect(results).to contain_exactly(messages(:payhere_alex_stripe_msg_2))
+      expect(results).to contain_exactly(messages(:acme_alex_stripe_msg_2))
     end
 
     it "returns empty when there are no results" do

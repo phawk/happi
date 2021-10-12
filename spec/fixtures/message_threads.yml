@@ -1,14 +1,14 @@
-payhere_alex_password_reset:
-  team: payhere
-  customer: payhere_alex
+acme_alex_password_reset:
+  team: acme
+  customer: acme_alex
   subject: Help resetting my password
   status: open
-  reply_to: support@payhere.co
+  reply_to: support@acme.com
   created_at: 2021-04-21
-payhere_alex_stripe:
-  team: payhere
-  customer: payhere_alex
+acme_alex_stripe:
+  team: acme
+  customer: acme_alex
   subject: Connected wrong stripe
   status: closed
-  reply_to: support@payhere.co
+  reply_to: support@acme.com
   created_at: 2021-04-19

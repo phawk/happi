@@ -14,12 +14,12 @@ RSpec.describe "Message thread", type: :feature do
       click_on "New thread"
 
       fill_in "Subject", with: "Welcome aboard"
-      select "Payhere Support <support@payhere.co>", from: "Reply to"
+      select "ACME Support <support@acme.com>", from: "Reply to"
 
       click_on "Start thread"
 
       expect(page).to have_content "Thread settings"
-      expect(page).to have_content("Receiving emails from\nPayhere Support <support@payhere.co>")
+      expect(page).to have_content("Receiving emails from\nACME Support <support@acme.com>")
     end
   end
 end

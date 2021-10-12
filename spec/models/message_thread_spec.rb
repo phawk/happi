@@ -11,18 +11,18 @@ RSpec.describe MessageThread, type: :model do
 
   describe "#reply_to_address" do
     it "returns reply_to if set" do
-      thread = MessageThread.new(team: teams(:payhere), reply_to: "support@payhere.co")
-      expect(thread.reply_to_address).to eq("support@payhere.co")
+      thread = MessageThread.new(team: teams(:acme), reply_to: "support@acme.com")
+      expect(thread.reply_to_address).to eq("support@acme.com")
     end
 
     it "returns default mailbox for team if reply_to is empty" do
-      thread = MessageThread.new(team: teams(:payhere), reply_to: nil)
-      expect(thread.reply_to_address).to eq("payhere@prioritysupport.net")
+      thread = MessageThread.new(team: teams(:acme), reply_to: nil)
+      expect(thread.reply_to_address).to eq("acme@prioritysupport.net")
     end
   end
 
   describe "#previous_threads" do
-    let(:thread) { message_threads(:payhere_alex_password_reset) }
+    let(:thread) { message_threads(:acme_alex_password_reset) }
 
     it "looks for previous threads from the same customer" do
       expect(thread.previous_threads.count).to eq(1)
@@ -31,7 +31,7 @@ RSpec.describe MessageThread, type: :model do
   end
 
   describe "#merge_with_previous!" do
-    let(:thread) { message_threads(:payhere_alex_password_reset) }
+    let(:thread) { message_threads(:acme_alex_password_reset) }
 
     it "merges thread into the previous thread" do
       expect do

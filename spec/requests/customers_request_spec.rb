@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Customers", type: :request do
-  let(:alex) { customers(:payhere_alex) }
+  let(:alex) { customers(:acme_alex) }
 
   before { sign_in(users(:pete)) }
 

@@ -1,5 +1,5 @@
 happi:
-  id: 5
+  id: 4
   name: Happi
   mail_hash: "happi"
   invite_code: <%= SecureRandom.base58(24) %>
@@ -10,9 +10,9 @@ happi:
   available_seats: 3
   users: pete
 
-payhere:
-  name: Payhere
-  mail_hash: "payhere"
+acme:
+  name: ACME Corp
+  mail_hash: "acme"
   invite_code: <%= SecureRandom.base58(24) %>
   shared_secret: <%= SecureRandom.base58(24) %>
   publishable_key: <%= SecureRandom.base58(24) %>

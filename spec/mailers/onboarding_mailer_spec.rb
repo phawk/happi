@@ -2,14 +2,14 @@ require "rails_helper"
 
 RSpec.describe OnboardingMailer, type: :mailer do
   let(:user) { users(:pete) }
-  let(:team) { teams(:payhere) }
+  let(:team) { teams(:acme) }
 
   describe "welcome" do
     let(:mail) { OnboardingMailer.welcome(user, team) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Welcome aboard Payhere!")
-      expect(mail.to).to eq(["payhere@prioritysupport.net"])
+      expect(mail.subject).to eq("Welcome aboard ACME Corp!")
+      expect(mail.to).to eq(["acme@prioritysupport.net"])
       expect(mail.from).to eq(["yo@happi.team"])
     end
 
@@ -23,7 +23,7 @@ RSpec.describe OnboardingMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("Customise your template")
-      expect(mail.to).to eq(["payhere@prioritysupport.net"])
+      expect(mail.to).to eq(["acme@prioritysupport.net"])
       expect(mail.from).to eq(["yo@happi.team"])
     end
   end
@@ -33,7 +33,7 @@ RSpec.describe OnboardingMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("Save time with canned responses")
-      expect(mail.to).to eq(["payhere@prioritysupport.net"])
+      expect(mail.to).to eq(["acme@prioritysupport.net"])
       expect(mail.from).to eq(["yo@happi.team"])
     end
   end
@@ -43,7 +43,7 @@ RSpec.describe OnboardingMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("The last onboarding email...")
-      expect(mail.to).to eq(["payhere@prioritysupport.net"])
+      expect(mail.to).to eq(["acme@prioritysupport.net"])
       expect(mail.from).to eq(["yo@happi.team"])
     end
   end

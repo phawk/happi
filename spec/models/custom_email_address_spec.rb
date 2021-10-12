@@ -8,12 +8,12 @@ RSpec.describe CustomEmailAddress, type: :model do
 
   describe ".matching_emails" do
     it "returns the first matching team for provided list of recipients" do
-      email = CustomEmailAddress.matching_emails(["support@payhere.co"])
-      expect(email.team.name).to eq("Payhere")
+      email = CustomEmailAddress.matching_emails(["support@acme.com"])
+      expect(email.team.name).to eq("ACME Corp")
     end
 
     it "ignores unconfirmed custom emails" do
-      email = CustomEmailAddress.matching_emails(["unconfirmed@payhere.co"])
+      email = CustomEmailAddress.matching_emails(["unconfirmed@acme.com"])
       expect(email).to be_nil
     end
 

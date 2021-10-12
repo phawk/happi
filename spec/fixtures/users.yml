@@ -3,11 +3,11 @@ pete:
   first_name: Pete
   last_name: Hawkins
   encrypted_password: <%= Devise::Encryptor.digest(User, 'hunter212') %>
-  team: payhere
+  team: acme
   role: superadmin
   confirmed_at: 2021-03-20
 scott:
-  email: scott@payhere.co
+  email: scott@nine.com
   first_name: Scott
   last_name: Wylie
   encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>

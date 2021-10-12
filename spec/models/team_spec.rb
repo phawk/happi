@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Team, type: :model do
-  let(:team) { teams(:payhere) }
+  let(:team) { teams(:acme) }
 
   it { is_expected.to have_and_belong_to_many(:users) }
   it { is_expected.to have_many(:customers) }
@@ -12,10 +12,10 @@ RSpec.describe Team, type: :model do
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:mail_hash) }
   it { is_expected.to validate_uniqueness_of(:mail_hash) }
-  it { is_expected.to allow_value("payhere-llc").for(:mail_hash) }
-  it { is_expected.to allow_value("payhere.llc").for(:mail_hash) }
-  it { is_expected.to allow_value("payhere_llc").for(:mail_hash) }
-  it { is_expected.not_to allow_value("payhere llc").for(:mail_hash) }
+  it { is_expected.to allow_value("acme-llc").for(:mail_hash) }
+  it { is_expected.to allow_value("acme.llc").for(:mail_hash) }
+  it { is_expected.to allow_value("acme_llc").for(:mail_hash) }
+  it { is_expected.not_to allow_value("acme llc").for(:mail_hash) }
 
   it do
     expect(subject).to validate_inclusion_of(:plan).in_array(
@@ -27,7 +27,7 @@ RSpec.describe Team, type: :model do
 
   describe "#default_from_address" do
     it "includes company name" do
-      expect(team.default_from_address).to eq("Payhere <payhere@prioritysupport.net>")
+      expect(team.default_from_address).to eq("ACME Corp <acme@prioritysupport.net>")
     end
   end
 
@@ -35,8 +35,8 @@ RSpec.describe Team, type: :model do
     context "when no custom emails exist" do
       before { team.custom_email_addresses.destroy_all }
 
-      it "returns payhere@prioritysupport.net" do
-        expect(team.emails_to_send_from).to eq(["Payhere <payhere@prioritysupport.net>"])
+      it "returns acme@prioritysupport.net" do
+        expect(team.emails_to_send_from).to eq(["ACME Corp <acme@prioritysupport.net>"])
       end
     end
 
@@ -44,8 +44,8 @@ RSpec.describe Team, type: :model do
       it "includes them" do
         expect(team.emails_to_send_from).to eq(
           [
-            "Payhere Support <support@payhere.co>",
-            "Payhere <payhere@prioritysupport.net>",
+            "ACME Support <support@acme.com>",
+            "ACME Corp <acme@prioritysupport.net>",
           ]
         )
       end
@@ -125,9 +125,9 @@ RSpec.describe Team, type: :model do
   describe "#messages" do
     it "returns the teams messages" do
       expect(team.messages).to match_array([
-        messages(:payhere_alex_password_reset_msg_1),
-        messages(:payhere_alex_stripe_msg_1),
-        messages(:payhere_alex_stripe_msg_2),
+        messages(:acme_alex_password_reset_msg_1),
+        messages(:acme_alex_stripe_msg_1),
+        messages(:acme_alex_stripe_msg_2),
       ])
     end
   end

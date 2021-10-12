@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Api::CustomersController, type: :request do
-  let(:team) { teams(:payhere) }
+  let(:team) { teams(:acme) }
 
   describe "POST /api/:key/customers" do
     it "creates new customers" do

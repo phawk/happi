@@ -6,7 +6,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       it "creates thread and posts new message" do
         perform_enqueued_jobs do
           expect do
-            send_mail(to: "payhere@prioritysupport.net", headers: { "X-Spam-Score" => "-6.0" })
+            send_mail(to: "acme@prioritysupport.net", headers: { "X-Spam-Score" => "-6.0" })
           end.to change(MessageThread, :count).by(1)
 
           last_message = Message.last
@@ -20,24 +20,24 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
 
       it "sends a notification to the team" do
         perform_enqueued_jobs do
-          send_mail(to: "payhere@prioritysupport.net")
+          send_mail(to: "acme@prioritysupport.net")
 
-          expect(last_email.subject).to eq("Payhere: New message from Jack J.")
+          expect(last_email.subject).to eq("ACME Corp: New message from Jack J.")
           expect(last_email.to).to include("petey@hey.com")
         end
       end
     end
 
     context "when there is an open thread already" do
-      let(:thread) { message_threads(:payhere_alex_password_reset) }
+      let(:thread) { message_threads(:acme_alex_password_reset) }
 
       before { thread.update!(status: "waiting") }
 
       it "adds new message to the thread" do
         perform_enqueued_jobs do
           expect do
-            send_mail(to: "payhere@prioritysupport.net", from: "Alex Shaw <alex.shaw09@hotmail.com>")
-          end.to change { message_threads(:payhere_alex_password_reset).messages.count }.by(1)
+            send_mail(to: "acme@prioritysupport.net", from: "Alex Shaw <alex.shaw09@hotmail.com>")
+          end.to change { message_threads(:acme_alex_password_reset).messages.count }.by(1)
           thread.reload
 
           expect(thread.status).to eq("open")
@@ -46,12 +46,12 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
     end
 
     context "when the customer is marked as blocked" do
-      before { customers(:payhere_alex).update(blocked: true) }
+      before { customers(:acme_alex).update(blocked: true) }
 
       it "creates a message but doesn't send notification" do
         perform_enqueued_jobs do
           expect do
-            send_mail(to: "payhere@prioritysupport.net", from: "alex.shaw09@hotmail.com")
+            send_mail(to: "acme@prioritysupport.net", from: "alex.shaw09@hotmail.com")
           end.to change(Message, :count).by(1)
 
           expect(delivered_emails.size).to eq(0)
@@ -64,13 +64,13 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
     it "creates a thread and message" do
       perform_enqueued_jobs do
         expect do
-          send_mail(to: "support@payhere.co")
+          send_mail(to: "support@acme.com")
         end.to change(MessageThread, :count).by(1)
 
         last_thread = MessageThread.last
 
         expect(last_thread.messages.count).to eq(1)
-        expect(last_thread.reply_to).to eq("support@payhere.co")
+        expect(last_thread.reply_to).to eq("support@acme.com")
       end
     end
   end

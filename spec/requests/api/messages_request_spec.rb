@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Api::MessagesController, type: :request do
-  let(:team) { teams(:payhere) }
-  let(:alex) { customers(:payhere_alex) }
+  let(:team) { teams(:acme) }
+  let(:alex) { customers(:acme_alex) }
 
   describe "POST /api/:key/messages" do
     it "creates a new message when customer JWT is valid" do

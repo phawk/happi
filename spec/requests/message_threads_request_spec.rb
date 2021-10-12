@@ -6,7 +6,7 @@ RSpec.describe "MessageThreads", type: :request do
   describe "GET /threads/search?query=" do
     it "searches messages" do
       search_query = "Stripe account has been disconnected"
-      message = messages(:payhere_alex_stripe_msg_2)
+      message = messages(:acme_alex_stripe_msg_2)
       message_link = message_thread_path(message.message_thread, anchor: "message_#{message.id}")
 
       get search_message_threads_path(query: search_query)
@@ -22,8 +22,8 @@ RSpec.describe "MessageThreads", type: :request do
   end
 
   describe "POST /threads/:id/merge_with_previous" do
-    let(:thread) { message_threads(:payhere_alex_password_reset) }
-    let(:previous_thread) { message_threads(:payhere_alex_stripe) }
+    let(:thread) { message_threads(:acme_alex_password_reset) }
+    let(:previous_thread) { message_threads(:acme_alex_stripe) }
 
     it "merges two threads into one" do
       post merge_with_previous_message_thread_path(thread)
@@ -44,7 +44,7 @@ RSpec.describe "MessageThreads", type: :request do
 
   describe "GET /threads/new" do
     it "returns http success" do
-      get new_message_thread_path, params: { customer_id: customers(:payhere_alex).id }
+      get new_message_thread_path, params: { customer_id: customers(:acme_alex).id }
       expect(response).to have_http_status(:success)
     end
   end
@@ -55,9 +55,9 @@ RSpec.describe "MessageThreads", type: :request do
     before do
       post message_threads_path, params: {
         message_thread: {
-          customer_id: customers(:payhere_alex).id,
+          customer_id: customers(:acme_alex).id,
           subject: "Welcome",
-          reply_to: "support@payhere.co",
+          reply_to: "support@acme.com",
         },
       }
     end
@@ -67,7 +67,7 @@ RSpec.describe "MessageThreads", type: :request do
     end
 
     it "sets the reply_to correctly" do
-      expect(message_thread.reply_to).to eq("support@payhere.co")
+      expect(message_thread.reply_to).to eq("support@acme.com")
     end
   end
 end

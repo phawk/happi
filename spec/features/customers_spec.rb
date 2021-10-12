@@ -22,7 +22,7 @@ RSpec.describe "Customers" do
   end
 
   it "can be edited" do
-    visit customer_path(customers(:payhere_alex))
+    visit customer_path(customers(:acme_alex))
     click_on "Edit customer"
     fill_in "Name", with: ""
     click_on "Save changes"
@@ -34,7 +34,7 @@ RSpec.describe "Customers" do
   end
 
   it "can start a new thread manually" do
-    visit customer_path(customers(:payhere_alex))
+    visit customer_path(customers(:acme_alex))
 
     click_on "New thread"
     fill_in "Subject", with: "Welcome to Happi"

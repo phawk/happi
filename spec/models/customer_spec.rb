@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Customer, type: :model do
-  let(:team) { teams(:payhere) }
-  let(:alex) { customers(:payhere_alex) }
+  let(:team) { teams(:acme) }
+  let(:alex) { customers(:acme_alex) }
 
   it { is_expected.to belong_to(:team) }
   it { is_expected.to have_many(:message_threads) }
