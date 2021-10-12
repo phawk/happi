@@ -59,12 +59,12 @@ RSpec.describe HappiMail::FromParser, type: :model do
     expect(parser.name).to eq("Freddie Robertson")
   end
 
-  it "can pick up names from netlify form emails" do
-    record = create_inbound_email_from_fixture("netlify_form_no_name", status: :processing)
+  it "works for happi messages" do
+    record = create_inbound_email_from_fixture("email_from_happi", status: :processing)
 
     parser = HappiMail::FromParser.new(record.mail)
 
-    expect(parser.email_address).to eq("pseudo.akhil@gmail.com")
-    expect(parser.name).to eq("John K")
+    expect(parser.email_address).to eq("happi@prioritysupport.net")
+    expect(parser.name).to eq("Pete Hawkins")
   end
 end

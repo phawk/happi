@@ -1,0 +1,175 @@
+Return-Path: <pm_bounces@pm-bounces.happi.team>
+Received: by p-pm-inbound01a-aws-useast1a.inbound.postmarkapp.com (Postfix, from userid 996)
+	id 758E2404DE3; Tue, 12 Oct 2021 08:17:32 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+	p-pm-inbound01a-aws-useast1a
+X-Spam-Status: No
+X-Spam-Score: -4.9
+X-Spam-Tests: DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,HTML_MESSAGE,
+	MIME_HTML_MOSTLY,RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+	SPF_HELO_PASS,SPF_PASS
+Received-SPF: pass (pm-bounces.happi.team: Sender is authorized to use 'pm_bounces@pm-bounces.happi.team' in 'mfrom' identity (mechanism 'include:spf.mtasv.net' matched)) receiver=p-pm-inbound01a-aws-useast1a; identity=mailfrom; envelope-from="pm_bounces@pm-bounces.happi.team"; helo=sc-ord-mta122.mtasv.net; client-ip=50.31.156.122
+Received: from sc-ord-mta122.mtasv.net (sc-ord-mta122.mtasv.net [50.31.156.122])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by p-pm-inbound01a-aws-useast1a.inbound.postmarkapp.com (Postfix) with ESMTPS id 39AE0404CA0
+	for <happi@prioritysupport.net>; Tue, 12 Oct 2021 08:17:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=pm; d=pm.mtasv.net;
+ h=From:Date:Subject:Reply-To:To:Message-Id:MIME-Version:Content-Type;
+ bh=ogxcN6enjxTmhqWlPy5OZW3Xg+w=;
+ b=s4vSL/To4nwti0t4l9+y20TsAclTSG7tS0sWpZm0w38dn7NMHYvpO8R08mj8PpT1FrI1OHzz9TPo
+   E/EV2dqwqnOkRZUTKcpmRwdH5UzD3QSu9aChJEts6HK1Jp6XV588kHTVs8VloAiTzmUjLd7AnHWf
+   PWfkDDzNcYSNk5sG+sw=
+Received: by sc-ord-mta122.mtasv.net id hcl29o27tk4j for <happi@prioritysupport.net>; Tue, 12 Oct 2021 04:17:31 -0400 (envelope-from <pm_bounces@pm-bounces.happi.team>)
+X-PM-IP: 50.31.156.122
+X-IADB-IP: 50.31.156.122
+X-IADB-IP-REVERSE: 122.156.31.50
+From: Pete Hawkins <pete@happi.team>
+Date: Tue, 12 Oct 2021 08:17:31 +0000
+Subject: Welcome
+Reply-To: happi@prioritysupport.net
+To: happi@prioritysupport.net
+Message-Id: <6165449b7e082_4bc5c918f8@1a005ae1-2d3d-40e6-b614-322dbaf45e25.mail>
+Feedback-ID: s6359095-_:s6359095:a48285:postmark
+X-Complaints-To: abuse@postmarkapp.com
+X-PM-Message-Id: 247e95d0-ae07-412c-9729-8621b7d9404b
+X-PM-RCPT: |bTB8NDgyODV8NjM1OTA5NXxoYXBwaUBwcmlvcml0eXN1cHBvcnQubmV0|
+X-PM-Message-Options: v1;9Hcc_PIAriBnYBOfaIwCcyIPcaJJ4QcTBG0Vjf0upsJdIV2Yh7Xri084L3YWDZZPyTfhBsomDxBir05eq4QXtO5IzbgK8uSjuZJNoUSJB5z8xwP-lTDKqDTLxpwxttMl
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary=mk3-95c4d5569d38462abee9aced49df6f1e; charset=UTF-8
+
+--mk3-95c4d5569d38462abee9aced49df6f1e
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Nine,=C2=A0
+
+This is a test email.
+
+Pete
+
+
+--mk3-95c4d5569d38462abee9aced49df6f1e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:/=
+/www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"color-scheme:lig=
+ht dark;supported-color-schemes:light dark">
+  <head>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-s=
+cale=3D1.0">
+    <meta name=3D"x-apple-disable-message-reformatting">
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3D=
+UTF-8">
+    <meta name=3D"color-scheme" content=3D"light dark">
+    <meta name=3D"supported-color-schemes" content=3D"light dark">
+    <title></title>
+   =20
+    <!--[if mso]>
+    <style type=3D"text/css">
+      .f-fallback  {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  <![endif]-->
+  <style>@media only screen and (max-width: 500px) {
+.button{width:100% !important;text-align:center !important}
+}
+@media only screen and (max-width: 600px) {
+.email-body_inner{width:100% !important}
+.content-cell{padding:25px}
+}
+@media (prefers-color-scheme: dark) {
+body{background-color:#333333 !important;color:#FFF !important}
+.email-body{background-color:#333333 !important;color:#FFF !important}
+.email-body_inner{background-color:#333333 !important;color:#FFF !impo=
+rtant}
+.email-content{background-color:#333333 !important;color:#FFF !importa=
+nt}
+.email-wrapper{background-color:#333333 !important;color:#FFF !importa=
+nt}
+.email-masthead{background-color:#333333 !important;color:#FFF !import=
+ant}
+.email-footer{background-color:#333333 !important;color:#FFF !importan=
+t}
+p{color:#FFF !important}
+ul{color:#FFF !important}
+ol{color:#FFF !important}
+blockquote{color:#FFF !important}
+h1{color:#FFF !important}
+h2{color:#FFF !important}
+h3{color:#FFF !important}
+span{color:#FFF !important}
+.purchase_item{color:#FFF !important}
+.attributes_content{background-color:#222 !important}
+.discount{background-color:#222 !important}
+.email-masthead_name{text-shadow:none !important}
+}</style></head>
+  <body style=3D'height:100%;margin:0;-webkit-text-size-adjust:none;fo=
+nt-family:"Inter", Helvetica, Arial, sans-serif;line-height:1.6;backgr=
+ound-color:#FFF;color:#51545E;width:100% !important'>
+    <table class=3D"email-wrapper" width=3D"100%" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation" style=3D"width:100%;margin:0;pad=
+ding:0;-premailer-width:100%;-premailer-cellpadding:0;-premailer-cells=
+pacing:0;background-color:#FFF">
+      <tr>
+        <td align=3D"center" style=3D'word-break:break-word;font-famil=
+y:"Inter", Helvetica, Arial, sans-serif;line-height:1.6;font-size:18px=
+'>
+          <table class=3D"email-content" width=3D"100%" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;margin=
+:0;padding:0;-premailer-width:100%;-premailer-cellpadding:0;-premailer=
+-cellspacing:0">
+            <!-- Email Body -->
+            <tr>
+              <td class=3D"email-body" width=3D"700" cellpadding=3D"0"=
+ cellspacing=3D"0" style=3D'word-break:break-word;font-family:"Inter",=
+ Helvetica, Arial, sans-serif;line-height:1.6;font-size:18px;width:100=
+%;margin:0;padding:0;-premailer-width:100%;-premailer-cellpadding:0;-p=
+remailer-cellspacing:0'>
+                <table class=3D"email-body_inner" align=3D"center" wid=
+th=3D"700" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" s=
+tyle=3D"max-width:700px;margin:0 auto;padding:0;-premailer-width:700px=
+;-premailer-cellpadding:0;-premailer-cellspacing:0;background-color:#F=
+FFFFF">
+                  <!-- Body content -->
+                  <tr>
+                    <td class=3D"content-cell" style=3D'word-break:bre=
+ak-word;font-family:"Inter", Helvetica, Arial, sans-serif;line-height:=
+1.6;font-size:18px;padding:45px'>
+                      <div class=3D"f-fallback">
+                        <div class=3D"trix-content">
+  <div>Hi Nine,=C2=A0<br><br>This is a test email.<br><br>Pete</div>
+</div>
+
+
+                      </div>
+
+                      <div class=3D"email-footer" style=3D"padding-top=
+:30px">
+                          <img class=3D"email-footer-logo" src=3D"http=
+s://happi.team/rails/active_storage/representations/redirect/eyJfcmFpb=
+HMiOnsibWVzc2FnZSI6IkJBaHBlQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn1=
+9--4409cb5f78e4b9cc22e49f296ac6091ca5df366e/eyJfcmFpbHMiOnsibWVzc2FnZS=
+I6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFY=
+UmJCMmtDV0FKcGFRPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ=3D=3D--=
+fbd33eec3ea642cd634dc1920489c0dacc9d8976/Logo%20PNG.png" style=3D"max-=
+width:100%;max-height:50px">
+
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+--mk3-95c4d5569d38462abee9aced49df6f1e--

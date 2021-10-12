@@ -15,10 +15,10 @@ module HappiMail
     end
 
     def name
-      if from_string.match?(EMBEDDED_EMAIL_MATCHER)
-        from_string.sub(EMBEDDED_EMAIL_MATCHER, "").strip
+      if (first_from = from_strings.find { |from| from.match?(EMBEDDED_EMAIL_MATCHER) })
+        first_from.sub(EMBEDDED_EMAIL_MATCHER, "").strip
       else
-        attempt_name_from_body.presence || DEFAULT_FROM_NAME
+        DEFAULT_FROM_NAME
       end
     rescue
       DEFAULT_FROM_NAME
@@ -36,20 +36,12 @@ module HappiMail
       end
     end
 
-    def attempt_name_from_body
-      text_content = BodyParser.new(mail).text_content
-      first_name = ""
-      last_name = ""
-
-      if (first_matches = text_content.scan(/First name:[\s\n](\w+)/)&.flatten)
-        first_name = first_matches.first
-      end
-
-      if (last_matches = text_content.scan(/Last name:[\s\n](\w+)/)&.flatten)
-        last_name = last_matches.first
-      end
-
-      "#{first_name} #{last_name}".strip
+    def from_strings
+      strs = []
+      strs << mail.header["Reply-To"].value if mail.header["Reply-To"]
+      strs << mail.header["X-Original-From"].value if mail.header["X-Original-From"]
+      strs << mail.header["From"].value if mail.header["From"]
+      strs
     end
   end
 end

@@ -1,7 +1,7 @@
 happi:
   id: 5
   name: Happi
-  mail_hash: "support"
+  mail_hash: "happi"
   invite_code: <%= SecureRandom.base58(24) %>
   shared_secret: <%= SecureRandom.base58(24) %>
   publishable_key: <%= SecureRandom.base58(24) %>
