@@ -1,6 +1,20 @@
 import ApplicationController from "./application_controller";
 import { useMutation } from "stimulus-use";
 
+/*
+ * Usage
+ * =====
+ *
+ * add data-controller="display-empty" to common ancestor
+ *
+ * Classes:
+ * data-display-empty-hide-class="hidden"
+ *
+ * Targets:
+ * data-display-empty-target="emptyMessage"
+ * data-display-empty-target="list"
+ *
+ */
 export default class extends ApplicationController {
   static targets = ["list", "emptyMessage"];
   static classes = ["hide"];
