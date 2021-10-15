@@ -1,6 +1,6 @@
 class TeamPreview < ActionMailer::Preview
   def new_message
-    TeamMailer.new_message(Message.first)
+    TeamMailer.new_message(Message.find(480))
   end
 
   def verified
