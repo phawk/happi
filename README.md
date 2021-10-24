@@ -2,15 +2,16 @@
 
 Happi is a fresh take on customer support.
 
-Our application code is open source, available under the GNU Affero General Public License. Follow the steps below to set up Happi on your own machine.
+Our core application is open source, as we believe this gives complete transparency to our use of your data and ensures we act with privacy and security at front of mind.
 
 ## Overview
 
-Happi is built primarily using the following technologies:
-- Ruby on Rails (ruby v3.0.2)
-- Postgres database
+Happi is built using the following technologies:
+- Ruby on Rails (using ruby v3.0.2)
+- PostgreSQL database
 - Hotwire/turbo for frontend tech, bundled using esbuild
 - TailwindCSS for styling
+- Sidekiq (and redis) for background jobs
 
 ## Development
 
@@ -23,15 +24,15 @@ cp .env.sample .env
 bin/dev
 ```
 
-### Stripe webhooks locally
+#### Listening to Stripe webhooks locally
 
 Install the stripe cli and run `stripe login` first.
 
 ```sh
-$ stripe listen --forward-to localhost:3000/events/stripe --events customer.subscription.updated,customer.subscription.deleted
+stripe listen --forward-to localhost:3000/events/stripe --events customer.subscription.updated,customer.subscription.deleted
 ```
 
-After listening for webhooks, add the signing secret to the array in `config/initializers/stripe.rb`.
+After listening for webhooks, add the signing secret as `STRIPE_CLI_WEBHOOKS_SECRET` to `./.env` (you will need to restart the development server to pick up this change).
 
 ## Testing
 
@@ -56,4 +57,4 @@ Copyright (C) 2021 Darkforce Ltd (UK Company number NI682036)
 
 Happi is open-source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](./LICENSE).
 
-An exception to this, is our [support widget](https://github.com/phawk/happi-widget) which you can embed on your website. To avoid issues with AGPL, the widget is released under the MIT license.
+An exception to this, is our [Support widget](https://github.com/phawk/happi-widget) which you can embed on your website. To avoid issues with AGPL, the widget is released under the MIT license.
