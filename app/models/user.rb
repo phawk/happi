@@ -48,6 +48,6 @@ class User < ApplicationRecord
   def as_customer_jwt
     payload = attributes.slice("first_name", "last_name", "email")
 
-    JWT.encode(payload, Rails.application.credentials.happi_shared_secret, "HS512")
+    JWT.encode(payload, ENV.fetch("HAPPI_SHARED_SECRET"), "HS512")
   end
 end

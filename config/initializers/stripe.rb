@@ -3,29 +3,25 @@ require "stripe_event"
 billing_mode = ENV.fetch("BILLING_MODE", "test")
 
 Stripe.api_key = if billing_mode == "live"
-  Rails.application.credentials.stripe[:live_secret_key]
+  ENV.fetch("STRIPE_LIVE_SECRET_KEY")
 else
-  Rails.application.credentials.stripe[:test_secret_key]
+  ENV.fetch("STRIPE_TEST_SECRET_KEY")
 end
 
 StripeEvent.signing_secrets = [
-  Rails.application.credentials.stripe[:test_webhooks_secret],
-  Rails.application.credentials.stripe[:live_webhooks_secret],
-  "whsec_ZzjKbxPTxLMqxdvuPVzbdgq9661etDS8", # stripe-cli local
-]
+  ENV.fetch("STRIPE_TEST_WEBHOOKS_SECRET"),
+  ENV.fetch("STRIPE_LIVE_WEBHOOKS_SECRET"),
+  ENV["STRIPE_CLI_WEBHOOKS_SECRET"], # stripe-cli local
+].compact
 
 class EventFilter
   def call(event)
     event.api_key = if event.livemode
-      stripe_config[:live_secret_key]
+      ENV.fetch("STRIPE_LIVE_SECRET_KEY")
     else
-      stripe_config[:test_secret_key]
+      ENV.fetch("STRIPE_TEST_SECRET_KEY")
     end
     event
-  end
-
-  def stripe_config
-    Rails.application.credentials.stripe
   end
 end
 
