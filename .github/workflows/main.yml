@@ -32,7 +32,13 @@ jobs:
       POSTGRES_DB: rails_github_actions_test
       POSTGRES_USER: rails_github_actions
       POSTGRES_PASSWORD: postgres
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      GOOGLE_RECAPTCHA_KEY: ${{ secrets.GOOGLE_RECAPTCHA_KEY }}
+      GOOGLE_RECAPTCHA_SECRET: ${{ secrets.GOOGLE_RECAPTCHA_SECRET }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      STRIPE_TEST_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
+      STRIPE_TEST_WEBHOOKS_SECRET: ${{ secrets.STRIPE_TEST_WEBHOOKS_SECRET }}
+      SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
 
     steps:
       - uses: actions/checkout@v1

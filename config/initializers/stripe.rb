@@ -9,9 +9,9 @@ else
 end
 
 StripeEvent.signing_secrets = [
-  ENV.fetch("STRIPE_TEST_WEBHOOKS_SECRET"),
-  ENV.fetch("STRIPE_LIVE_WEBHOOKS_SECRET"),
-  ENV["STRIPE_CLI_WEBHOOKS_SECRET"], # stripe-cli local
+  ENV["STRIPE_TEST_WEBHOOKS_SECRET"],
+  ENV["STRIPE_LIVE_WEBHOOKS_SECRET"],
+  ENV["STRIPE_CLI_WEBHOOKS_SECRET"],
 ].compact
 
 class EventFilter
