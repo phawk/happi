@@ -1,7 +1,6 @@
 # Happi.team
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Happi is a fresh take on customer support. Our application code is open source, available under the ... license. Follow the steps below to set up Happi on your own machine.
 
 ## Development
 
@@ -30,10 +29,12 @@ COVERAGE=1 bundle exec rspec
 
 Happi is hosted on Heroku and uses Heroku Postgres as the primary data store. Deploys happen automatically when you push to the `main` branch.
 
-### Pull down production DB
+## Copyright
 
-```sh
-heroku pg:backups:capture
-heroku pg:backups:download
-pg_restore --verbose --clean --no-acl --no-owner -d happi_development latest.dump
-```
+Copyright (C) 2021 Darkforce Ltd (UK Company number NI682036)
+
+## License
+
+Happi is open-source under the GNU Affero General Public License Version 3 (AGPLv3) or any later version. You can [find it here](./LICENSE).
+
+An exception to this, is our [support widget](https://github.com/phawk/happi-widget) which you can embed on your website. To avoid issues with AGPL, the widget is released under the MIT license.
