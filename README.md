@@ -1,6 +1,8 @@
 # Happi.team
 
-Happi is a fresh take on customer support. Our application code is open source, available under the ... license. Follow the steps below to set up Happi on your own machine.
+Happi is a fresh take on customer support.
+
+Our application code is open source, available under the GNU Affero General Public License. Follow the steps below to set up Happi on your own machine.
 
 ## Overview
 
