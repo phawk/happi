@@ -2,7 +2,24 @@
 
 Happi is a fresh take on customer support. Our application code is open source, available under the ... license. Follow the steps below to set up Happi on your own machine.
 
+## Overview
+
+Happi is built primarily using the following technologies:
+- Ruby on Rails (ruby v3.0.2)
+- Postgres database
+- Hotwire/turbo for frontend tech, bundled using esbuild
+- TailwindCSS for styling
+
 ## Development
+
+```sh
+# Install JS dependencies
+yarn install
+# Copy and set your environment variables
+cp .env.sample .env
+# Run dev server
+bin/dev
+```
 
 ### Stripe webhooks locally
 
