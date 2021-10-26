@@ -2,7 +2,7 @@
   "name": "happi",
   "private": true,
   "engines": {
-    "node": "~> 12.16"
+    "node": "~> 17"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.0",
