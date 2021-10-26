@@ -67,4 +67,13 @@ RSpec.describe HappiMail::FromParser, type: :model do
     expect(parser.email_address).to eq("happi@prioritysupport.net")
     expect(parser.name).to eq("Pete Hawkins")
   end
+
+  it "supports quoted emails" do
+    record = create_inbound_email_from_fixture("pablo_email", status: :processing)
+
+    parser = HappiMail::FromParser.new(record.mail)
+
+    expect(parser.email_address).to eq("pablo@thewebappmarket.com")
+    expect(parser.name).to eq("pablo@thewebappmarket.com")
+  end
 end

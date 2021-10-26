@@ -1,0 +1,189 @@
+Return-Path: <pablo@thewebappmarket.com>
+Received: by p-pm-inbound03c-aws-useast1c.inbound.postmarkapp.com (Postfix, from userid 996)
+	id A7B92406E26; Fri, 15 Oct 2021 14:35:42 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+	p-pm-inbound03c-aws-useast1c
+X-Spam-Status: No
+X-Spam-Score: -5.1
+X-Spam-Tests: DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE
+Received-SPF: none (thewebappmarket.com: No applicable sender policy available) receiver=p-pm-inbound03c-aws-useast1c; identity=mailfrom; envelope-from="pablo@thewebappmarket.com"; helo=mx1.forwardemail.net; client-ip=138.197.213.185
+Received: from mx1.forwardemail.net (mx1.forwardemail.net [138.197.213.185])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by p-pm-inbound03c-aws-useast1c.inbound.postmarkapp.com (Postfix) with ESMTPS id 05BC94468E1
+	for <5490fe38ad4a563e5c53521a19d906e7@inbound.postmarkapp.com>; Fri, 15 Oct 2021 14:35:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1634308540; cv=none; d=forwardemail.net;
+ s=default;
+ b=WdHwkIdisr5zDjtdNaXv5zIz7DrZ5nC9C3pyeijcdWVolJAHjPaasOfDcPXW8vNRBobubws9+
+ v7NglPNJF4qruEAel/MThr6JUFeSAqfpDz0dhsjOublVG7/elPy18ODODFw4YqVx/3AhGZETldT
+ WhbOgdaEFx5kjQHrcQnDZd8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=forwardemail.net; h=Content-Type: To: Subject: Message-ID: Date: From:
+ MIME-Version; q=dns/txt; s=default; t=1634308540;
+ bh=NkeW3e6kQh9qqEm1zz2alLaEN43t60Y9OA1ijDRjSv0=;
+ b=KuCjI7sTgr4qvreghYnrIhYiIjCyU0kGuB07DNRpuIIbYhdBtI6QgunSQbhHG5tz/MMU1LyO0
+ KUlcck1rzXOMC7Xy+PKgQHuGKRi4HHek7Ezt5XKJNewI4ySmbin0ITVG/5ZJ/c0fqSdWUUITgB+
+ JCMxJtLLmFTB5/FRaVnYI3g=
+ARC-Authentication-Results: i=1; mx1.forwardemail.net;
+ dkim=pass header.i=@thewebappmarket.com header.s=default header.a=rsa-sha256 header.b=hZn7vCSx;
+ spf=none (mx1.forwardemail.net: thewebappmarket.com does not designate permitted sender hosts) smtp.mailfrom=pablo@thewebappmarket.com
+ smtp.helo=gateway36.websitewelcome.com;
+ dmarc=none header.from=thewebappmarket.com;
+ bimi=skipped (DMARC not enabled)
+Received-SPF: none (mx1.forwardemail.net: thewebappmarket.com does not designate permitted sender hosts) client-ip=192.185.200.11;
+Authentication-Results: mx1.forwardemail.net;
+ dkim=pass header.i=@thewebappmarket.com header.s=default header.a=rsa-sha256 header.b=hZn7vCSx;
+ spf=none (mx1.forwardemail.net: thewebappmarket.com does not designate permitted sender hosts) smtp.mailfrom=pablo@thewebappmarket.com
+ smtp.helo=gateway36.websitewelcome.com;
+ dmarc=none header.from=thewebappmarket.com;
+ bimi=skipped (DMARC not enabled)
+X-ForwardEmail-Sender: rfc822; pablo@thewebappmarket.com
+X-ForwardEmail-Session-ID: ldmvmpka4upfddqy
+X-ForwardEmail-Version: 8.3.0
+Received: from cm10.websitewelcome.com (cm10.websitewelcome.com [100.42.49.4])
+	by gateway36.websitewelcome.com (Postfix) with ESMTP id A51B0402C738B
+	for <support@happi.team>; Fri, 15 Oct 2021 09:34:42 -0500 (CDT)
+Received: from gator3259.hostgator.com ([198.57.247.223])
+	by cmsmtp with SMTP
+	id bOIEmSuxA6dDybOIEm45ys; Fri, 15 Oct 2021 09:34:42 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=thewebappmarket.com; s=default; h=Content-Type:To:Subject:Message-ID:Date:
+	From:MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=NkeW3e6kQh9qqEm1zz2alLaEN43t60Y9OA1ijDRjSv0=; b=hZn7vCSxLvVpXX2elDHuCJOXtF
+	PEvNCyCJUEGAWT3P/Rr+W1RAlhOnqZJK+4d3X6wBHyV5FWbMOnwGSyvUuMaqm0vhXoix9HjLofsO9
+	BsnXhPZD8ttbNap+7lmsVfwOhgQmT50WhpkUahg2FrkYgt3mCXd3C0wZZyI0lWJYHkIViS2DUdeB4
+	J8+AEv2Ml1pM/9UW1a3Zf9Z8Fw+VJ7JKvYgdCkMuKJuibsx69ZRliKRevMvhXzhapfQ/CYIOuXfxU
+	g+ZPgv8W+9bCxgPem9AlDgfsrpF9SKxWShkn2g3DN6tNwTKT1VZnoe2YalCH49dVgKE60E9ZgOoyc
+	SMpnEzIA==;
+Received: from mail-qt1-f171.google.com ([209.85.160.171]:39904)
+	by gator3259.hostgator.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.94.2)
+	(envelope-from <pablo@thewebappmarket.com>)
+	id 1mbOID-004OQ3-Vz
+	for support@happi.team; Fri, 15 Oct 2021 09:34:42 -0500
+Received: by mail-qt1-f171.google.com with SMTP id i1so8939247qtr.6
+        for <support@happi.team>; Fri, 15 Oct 2021 07:34:41 -0700 (PDT)
+X-Gm-Message-State: AOAM533JpIwIV89auEAa1lU5CA1NL2sR7vOWg/u5f5ZwIXaZx3NPsrJ1
+	YjTxvsU7UzwSp4llOhYTpS0fmDdoQ5rWyiwGjn8=
+X-Google-Smtp-Source: ABdhPJyXNWeCvlLWK7GRv8WQ6TcPMHmtKbhebZHYPOprKYiLvWYXmx058TeShlF6mAPO747iWct2yRsQGrN17hDR2aA=
+X-Received: by 2002:ac8:5559:: with SMTP id o25mr14009876qtr.126.1634308481356;
+ Fri, 15 Oct 2021 07:34:41 -0700 (PDT)
+MIME-Version: 1.0
+From: "pablo@thewebappmarket.com" <pablo@thewebappmarket.com>
+Date: Fri, 15 Oct 2021 20:04:30 +0530
+X-Gmail-Original-Message-ID: <CALMnwsU7=ih_erpbhiEwBwodykCUBkMyyY-WDRp6cDBsJOM3Zg@mail.gmail.com>
+Message-ID: <CALMnwsU7=ih_erpbhiEwBwodykCUBkMyyY-WDRp6cDBsJOM3Zg@mail.gmail.com>
+Subject: Congratulations! Your App "Happi" is Shortlisted For A Review | TheWebAppMarket
+To: happi@prioritysupport.net
+Content-Type: multipart/alternative; boundary="0000000000007c15b705ce65181a"
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator3259.hostgator.com
+X-AntiAbuse: Original Domain - happi.team
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - thewebappmarket.com
+X-BWhitelist: no
+X-Source-IP: 209.85.160.171
+X-Source-L: No
+X-Exim-ID: 1mbOID-004OQ3-Vz
+X-Source:
+X-Source-Args:
+X-Source-Dir:
+X-Source-Sender: mail-qt1-f171.google.com [209.85.160.171]:39904
+X-Source-Auth: pablo@thewebappmarket.com
+X-Email-Count: 9
+X-Source-Cap: YXJwaXQ5MTc7YXJwaXQ5MTc7Z2F0b3IzMjU5Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+
+--0000000000007c15b705ce65181a
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Team,
+
+Greetings from* TheWebAppMarket <https://thewebappmarket.com/>.*
+
+We are glad to inform you that after thorough analysis we have shortlisted
+Happi <https://happi.team/> to get a featured review on our portal *Free of
+Cost.*
+
+Speaking of which, our editorial team wants to publish a detailed
+review *explaining
+the App, its features, benefits, pricing etc.* and share it with our
+audience.
+
+Also, Once the App review is published our marketing team *will run 7 days
+paid advertisements on Facebook and Google* to target the right set of
+audience for your app at the location suggested by you. All the expenses
+will be *borne** by team TheWebAppMarket.*
+
+*Sample Review:*
+
+   - Scanoma App <https://thewebappmarket.com/scanoma-app-review/>
+   - Robicapo App
+   <https://thewebappmarket.com/rombicapo-best-puzzle-app-review/>
+   - Opkey <https://thewebappmarket.com/opkey-review/>
+   - LT Browser <https://thewebappmarket.com/lt-browser-review/>
+
+*Other Additional Benefits:*
+
+   - Social media sharing
+   - A chance to get featured in our Top X article. For Example - Click
+   here. <https://thewebappmarket.com/best-email-marketing-services/>
+   - No hidden charges involved.
+   - Homepage Coverage
+
+If you want to proceed further with it, please reply back to this email or
+contact us here.
+
+We look forward to your response and usher in a potential collaboration.
+
+--
+*Best,*
+*Pablo*
+*Business Development Manager *
+*www.thewebappmarket.com <http://www.thewebappmarket.com>*
+
+--0000000000007c15b705ce65181a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Team,=C2=A0</div><div dir=3D"ltr"><div><br>Greetin=
+gs from<b>=C2=A0<a href=3D"https://thewebappmarket.com/" target=3D"_blank">=
+TheWebAppMarket</a>.</b><br><br>We are glad to inform you that after thorou=
+gh analysis we have shortlisted=C2=A0<a href=3D"https://happi.team/">Happi<=
+/a> to get a featured review on our portal=C2=A0<b>Free of Cost.</b></div><=
+div><br>Speaking of which, our editorial team wants to publish a detailed r=
+eview=C2=A0<b>explaining the App, its features, benefits, pricing etc.</b>=
+=C2=A0and share it with our audience.<br><br>Also, Once the App review is p=
+ublished our marketing team=C2=A0<b>will run 7 days paid advertisements on =
+Facebook and Google</b>=C2=A0to target the right set of audience for your a=
+pp at the location suggested by you. All the expenses will be=C2=A0<b>borne=
+</b><b>=C2=A0by team=C2=A0TheWebAppMarket.</b><br><div><b><br></b></div><di=
+v><b>Sample Review:</b>=C2=A0</div><div><ul><li style=3D"margin-left:15px">=
+<a href=3D"https://thewebappmarket.com/scanoma-app-review/" target=3D"_blan=
+k">Scanoma App</a><br></li><li style=3D"margin-left:15px"><a href=3D"https:=
+//thewebappmarket.com/rombicapo-best-puzzle-app-review/" target=3D"_blank">=
+Robicapo App</a></li><li style=3D"margin-left:15px"><a href=3D"https://thew=
+ebappmarket.com/opkey-review/" target=3D"_blank">Opkey</a></li><li style=3D=
+"margin-left:15px"><a href=3D"https://thewebappmarket.com/lt-browser-review=
+/" target=3D"_blank">LT Browser</a>=C2=A0 =C2=A0 =C2=A0=C2=A0</li></ul></di=
+v><b style=3D"background-color:rgb(255,255,0)">Other Additional Benefits:</=
+b><br><ul><li style=3D"margin-left:15px">Social media sharing</li><li style=
+=3D"margin-left:15px">A chance to get featured in our Top X article. For Ex=
+ample -=C2=A0<a href=3D"https://thewebappmarket.com/best-email-marketing-se=
+rvices/" target=3D"_blank">Click here.</a></li><li style=3D"margin-left:15p=
+x">No hidden charges involved.</li><li style=3D"margin-left:15px">Homepage =
+Coverage</li></ul>If you want to proceed further with it, please reply back=
+ to this email or contact us here.<br><br></div><div dir=3D"ltr">We look fo=
+rward to your response and usher in a potential collaboration.</div></div><=
+div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartm=
+ail=3D"gmail_signature"><div dir=3D"ltr"><b>Best,</b><div><b>Pablo</b></div=
+><div><b>Business Development Manager=C2=A0</b></div><div><b><a href=3D"htt=
+p://www.thewebappmarket.com" target=3D"_blank">www.thewebappmarket.com</a><=
+/b></div></div></div></div>
+
+--0000000000007c15b705ce65181a--

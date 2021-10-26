@@ -1,7 +1,7 @@
 module HappiMail
   class FromParser
     DEFAULT_FROM_NAME = "Unknown".freeze
-    FROM_EMAIL_MATCHER = /[^\s<]+\@[^\s>]+/
+    FROM_EMAIL_MATCHER = /[^\s<"']+\@[^\s>"']+/
     EMBEDDED_EMAIL_MATCHER = /\<[^>]+\>/
 
     attr_reader :mail
@@ -16,7 +16,7 @@ module HappiMail
 
     def name
       if (first_from = from_strings.find { |from| from.match?(EMBEDDED_EMAIL_MATCHER) })
-        first_from.sub(EMBEDDED_EMAIL_MATCHER, "").strip
+        strip_quotes(first_from.sub(EMBEDDED_EMAIL_MATCHER, "").strip)
       else
         DEFAULT_FROM_NAME
       end
@@ -25,6 +25,10 @@ module HappiMail
     end
 
     private
+
+    def strip_quotes(str)
+      str.gsub(%r{\A["']+}, "").gsub(%r{["']+\z}, "")
+    end
 
     def from_string
       @_from_string ||= if mail.header["Reply-To"]
