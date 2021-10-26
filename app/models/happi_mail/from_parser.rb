@@ -27,7 +27,7 @@ module HappiMail
     private
 
     def strip_quotes(str)
-      str.gsub(%r{\A["']+}, "").gsub(%r{["']+\z}, "")
+      str.gsub(/\A["']+/, "").gsub(/["']+\z/, "")
     end
 
     def from_string
