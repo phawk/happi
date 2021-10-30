@@ -2,7 +2,23 @@
 
 Happi is a fresh take on customer support.
 
-Our core application is open source, as we believe this gives complete transparency to our use of your data and ensures we act with privacy and security at front of mind.
+Our core application is open source, as we believe this gives complete transparency and holds us accountable to our use of your data and ensures we act with privacy and security at front of mind.
+
+## Cloud vs. self-hosted
+
+We have a [cloud hosted version of Happi](https://happi.team), which we run and maintain, also, our code is open source, so you are free to download it yourself and self-host Happi on your own servers.
+
+The main difference between the two versions is with the self-hosted version, you have to install it, set it up and manage it on your own servers.
+
+#### Key differences
+
+        | Cloud | Self-hosted
+--------|-------|------------
+Hosting | Everything is simple, we host Happi on our servers and make sure it’s running performantly and reliably for all our customers | You have to install Happi on your own servers, make sure you have configured key components such as Postgres, Redis, Postmark etc.
+Data | We keep your data secure and encrypted within the EU. | You need to manage this yourself, however you can choose where to host and store your data.
+Support | We provide priority support for all paid plans. | You can open an issue on GitHub, however we don’t have a specific timeframe for when we will get back to you, and we might not be able to help with your issue.
+Costs | We charge you a simple monthly fee to allow you to use our hosted service. | There is no fee for using the software, however you will need to pay for servers, databases and email delivery, which adds up!
+Upgrades | Happi is always up to date, we deploy fixes, improvements and features multiple times a day. | You need to upgrade Happi yourself, this can be time consuming.
 
 ## Overview
 
