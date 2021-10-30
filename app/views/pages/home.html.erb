@@ -26,42 +26,32 @@
 <%#= image_tag "marketing/happi-dashboard.png", class: "w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5", alt: "Happi example dashboard" %>
 
 <!-- Hero Features -->
-<div class="max-w-7xl mx-auto py-16 px-4 bg-white sm:px-6 lg:px-8">
-  <%= render FeatureBlockComponent.new(title: "Easy to use", align: :left) do |c| %>
-    <%= c.image do %>
-      <%= image_tag "marketing/features/easy.png", alt: "Happi is easy to use!" %>
-    <% end %>
-    <%= c.text do %>
-      <p class="lg:text-lg">Happi is simple and feels like having a conversation over DMs. You’ll be up and running in minutes!</p>
-    <% end %>
-  <% end %>
+<div class="max-w-4xl mx-auto py-16 px-4 bg-white sm:px-6 lg:px-8 prose md:prose-xl">
+  <div>
+    <h3>
+      A fresh take on customer support 👏
+    </h3>
 
-  <%= render FeatureBlockComponent.new(title: "Less pressure than live chat", align: :right) do |c| %>
-    <%= c.image do %>
-      <%= image_tag "marketing/features/livechat.png", alt: "Live chat example" %>
-    <% end %>
-    <%= c.text do %>
-      <p class="lg:text-lg">You don’t want to put unfair expectations on your small team. As soon as customers see live chat, they expect someone to be waiting on the other side to answer them, all the time!</p>
-    <% end %>
-  <% end %>
+    <p>We believe email based support creates a more sustainable experience for small teams. Live chat systems place a lot of expectation on your team and customers get upset if you don’t respond in real-time. </p>
 
-  <%= render FeatureBlockComponent.new(title: "Embed in your website", align: :left) do |c| %>
-    <%= c.image do %>
-      <%= image_tag "marketing/features/embed.png", alt: "Embed Happi into your website" %>
-    <% end %>
-    <%= c.text do %>
-      <p class="lg:text-lg">You can use Happi’s support widget to embed directly into your website or app, making it even easier for your customers to get in touch.</p>
-    <% end %>
-  <% end %>
+    <p>Most email ticketing systems suck, so we built Happi to be a joy to use. It has just enough features to help you respond quickly and effectively, making it really snappy and easy to use.</p>
+  </div>
 
-  <%= render FeatureBlockComponent.new(title: "All in one place", align: :right) do |c| %>
-    <%= c.image do %>
-      <%= image_tag "marketing/features/team.png", alt: "Happi allows multiple team members" %>
-    <% end %>
-    <%= c.text do %>
-      <p class="lg:text-lg">Every conversation is stored in a single, secure app. Any member of your team can see the full history with customers and work together to provide exceptional support.</p>
-    <% end %>
-  <% end %>
+  <div>
+    <h3>
+      A shared inbox for your team ✉️
+    </h3>
+
+    <p>Keep everyone on the same page, every conversation is stored in a single, secure app. Any member of your team can see the full history with customers and work together to provide exceptional support.</p>
+  </div>
+
+  <div>
+    <h3>
+      Open-source 🛠
+    </h3>
+
+    <p>Happi’s core application is free, open-source software. You can run it on your own servers, or pay a small monthly fee to use our cloud based app. With either hosting method, because our codebase is public, we believe this gives complete transparency and holds us accountable to our use of your data and ensures we act with privacy and security at front of mind.</p>
+  </div>
 </div>
 
 <!-- Everything else -->
