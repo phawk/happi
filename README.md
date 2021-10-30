@@ -12,7 +12,7 @@ The main difference between the two versions is with the self-hosted version, yo
 
 #### Key differences
 
-        | Cloud | Self-hosted
+Feature | Cloud | Self-hosted
 --------|-------|------------
 Hosting | Everything is simple, we host Happi on our servers and make sure it’s running performantly and reliably for all our customers | You have to install Happi on your own servers, make sure you have configured key components such as Postgres, Redis, Postmark etc.
 Data | We keep your data secure and encrypted within the EU. | You need to manage this yourself, however you can choose where to host and store your data.
