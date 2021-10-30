@@ -69,6 +69,13 @@ class Team < ApplicationRecord
       .count
   end
 
+  def messages_sent
+    Message \
+      .where(sender_type: "User")
+      .where(message_thread_id: message_threads.pluck(:id))
+      .count
+  end
+
   def messages_limit_reached?
     messages_used_this_month >= messages_limit
   end

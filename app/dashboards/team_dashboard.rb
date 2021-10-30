@@ -29,6 +29,7 @@ class TeamDashboard < Administrate::BaseDashboard
     ),
     stripe_customer_id: Field::String,
     stripe_subscription_id: Field::String,
+    messages_sent: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -58,6 +59,7 @@ class TeamDashboard < Administrate::BaseDashboard
     available_seats
     messages_used_this_month
     messages_limit
+    messages_sent
     stripe_customer_id
     stripe_subscription_id
     users

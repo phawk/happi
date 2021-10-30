@@ -131,4 +131,10 @@ RSpec.describe Team, type: :model do
       ])
     end
   end
+
+  describe "#messages_sent" do
+    it "counts the sent messages" do
+      expect(team.messages_sent).to eq(2)
+    end
+  end
 end
