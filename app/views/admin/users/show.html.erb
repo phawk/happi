@@ -23,9 +23,13 @@ as well as a link to its edit page.
     <%= content_for(:title) %>
   </h1>
 
-  <div>
+  <div class="flex space-x-3">
     <%= link_to "Sync customer", admin_user_sync_path(page.resource), method: :post, class: "button" %>
-    <%= link_to "Login as", masquerade_path(page.resource), class: "button" %>
+    <% if page.resource.confirmed? %>
+      <%= link_to "Login as", masquerade_path(page.resource), class: "button" %>
+    <% else %>
+      <span class="bg-gray-400 text-white py-3 px-4 leading-none inline-block rounded font-bold">Login as</span>
+    <% end %>
     <%= link_to(
       t("administrate.actions.edit_resource", name: page.page_title),
       [:edit, namespace, page.resource],
