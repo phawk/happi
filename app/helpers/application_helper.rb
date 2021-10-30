@@ -18,4 +18,8 @@ module ApplicationHelper
   def support_email_address
     "support@happi.team"
   end
+
+  def source_code_url
+    "https://github.com/phawk/happi"
+  end
 end
