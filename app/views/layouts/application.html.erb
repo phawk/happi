@@ -42,7 +42,7 @@
               <%= link_to t("nav.edit_profile"), edit_user_registration_path, role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
             </div>
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-              <%= link_to t("nav.docs"), documentation_root_path, target: "_blank", role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
+              <%= link_to t("nav.docs"), documentation_url, target: "_blank", role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
             </div>
             <% if feature_enabled?(:admin_area) %>
               <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">

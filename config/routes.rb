@@ -72,22 +72,6 @@ Rails.application.routes.draw do
   get "/view_message/:id", to: "messages#view_message", as: :view_message
 
   get "/dashboard", to: "dashboard#show"
-  get "/pricing", to: "pages#pricing"
-  get "/terms", to: "pages#terms"
-  get "/privacy", to: "pages#privacy"
-  get "/security", to: "pages#security"
-  get "/changelog", to: "pages#changelog"
 
-  namespace :documentation, path: "/docs" do
-    get "forwarding_mail", to: "general#forwarding_mail", as: :forwarding_mail
-    get "custom_email_address", to: "general#custom_email_address", as: :custom_email_address
-    get "contact_forms", to: "general#contact_forms", as: :contact_forms
-
-    get "widget/installation", to: "widget#installation", as: :widget_installation
-    get "widget/prefill_data", to: "widget#prefill_data", as: :widget_prefill_data
-    get "widget/configuration", to: "widget#configuration", as: :widget_configuration
-    root to: "general#index"
-  end
-
-  root to: "pages#home"
+  root to: "dashboard#show"
 end

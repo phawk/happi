@@ -22,4 +22,16 @@ module ApplicationHelper
   def source_code_url
     "https://github.com/phawk/happi"
   end
+
+  def documentation_url
+    "https://happi.team/docs"
+  end
+
+  def terms_url
+    "https://happi.team/terms"
+  end
+
+  def privacy_url
+    "https://happi.team/privacy"
+  end
 end
