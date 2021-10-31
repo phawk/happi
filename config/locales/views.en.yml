@@ -10,7 +10,7 @@ en:
       no_open_threads: No open threads
       no_open_threads_message: You have dealt with all of your messages, good job!
       no_messages: You haven’t received any messages yet
-      getting_started_guide_html: 'Follow our <a href="/docs" target="_blank" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
+      getting_started_guide_html: 'Follow our <a href="https://happi.team/docs" target="_blank" class="text-purple-500 underline">Getting Started guide</a> to set up your inbound mailbox or web widget.'
     show:
       thread_settings: Thread settings
       unassigned: Nobody
@@ -90,7 +90,7 @@ en:
       new_button: New canned response
     widget:
       heading: Install support widget
-      install_instructions_html: 'Add the code above to your website or web app to install the support widget. <a href="/docs/widget/installation" target="_blank" class="underline">More thorough docs</a> are available to allow prefilling customer data etc.'
+      install_instructions_html: 'Add the code above to your website or web app to install the support widget. <a href="https://happi.team/docs/widget/installation" target="_blank" class="underline">More thorough docs</a> are available to allow prefilling customer data etc.'
       shared_secret: Shared secret
       secret_instructions: Used to securely generated customer data that can be passed to the widget. Keep this secure!
   canned_responses:
