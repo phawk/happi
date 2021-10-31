@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   get "/view_message/:id", to: "messages#view_message", as: :view_message
 
   get "/dashboard", to: "dashboard#show"
+  get "/auth/check", to: "auth#check"
 
   root to: "dashboard#show"
 end
