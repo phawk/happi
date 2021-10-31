@@ -128,9 +128,9 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # URLs
-  routes.default_url_options = { host: "happi.team", protocol: "https" }
+  routes.default_url_options = { host: "app.happi.team", protocol: "https" }
   config.action_controller.default_url_options = {
-    host: "happi.team",
+    host: "app.happi.team",
     protocol: "https",
   }
 
@@ -139,13 +139,14 @@ Rails.application.configure do
   config.action_mailbox.ingress = :postmark
 
   # Mailers
-  config.action_mailer.default_url_options = { host: "happi.team", protocol: "https" }
-  config.action_mailer.asset_host = "https://happi.team"
+  config.action_mailer.default_url_options = { host: "app.happi.team", protocol: "https" }
+  config.action_mailer.asset_host = "https://app.happi.team"
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = {
     api_token: ENV.fetch("POSTMARK_API_TOKEN"),
   }
 
   config.hosts << "happi.team"
+  config.hosts << "app.happi.team"
   config.hosts << "happi-live.herokuapp.com"
 end
