@@ -8,7 +8,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
   allow do
     origins "http://localhost:4567",
-      /.happi.team.co\z/,
+      /.happi.team\z/,
       /.happi.test\z/
     resource "/auth/check",
       headers: :any,
