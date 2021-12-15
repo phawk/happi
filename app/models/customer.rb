@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
   PUBLIC_FIELDS = %w[first_name last_name email company phone country_code location].freeze
   include PgSearch::Model
+  include TeamOwnable
   include Colourable
 
   pg_search_scope :search,
@@ -11,7 +12,6 @@ class Customer < ApplicationRecord
 
   has_one_attached :avatar
 
-  belongs_to :team
   has_many :message_threads, dependent: :destroy
   validates :first_name, presence: true
   validates :email, presence: true, email: true

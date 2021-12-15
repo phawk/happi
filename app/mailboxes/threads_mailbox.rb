@@ -14,7 +14,7 @@ class ThreadsMailbox < ApplicationMailbox
       spam_score: spam_score
     )
 
-    TeamMailer.new_message(message).deliver_later unless customer.blocked?
+    TeamMailer.new_message(message, team).deliver_later unless customer.blocked?
   end
 
   private
@@ -58,11 +58,13 @@ class ThreadsMailbox < ApplicationMailbox
     else
       Rails.logger.info("Looking for team with custom inbound email: #{mail.recipients.to_sentence}")
 
-      if (custom_email = CustomEmailAddress.matching_emails(mail.recipients))
+      if (custom_email = CustomEmailAddress.unscoped.matching_emails(mail.recipients))
         @team = custom_email.team
         @reply_to = custom_email.email
       end
     end
+
+    Current.team = @team
 
     bounce_with(TeamMailer.not_found(from_email)) if @team.nil?
   end

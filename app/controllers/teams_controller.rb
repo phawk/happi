@@ -28,6 +28,7 @@ class TeamsController < ApplicationController
 
     if @team.save
       @team.add_user(current_user, set_active_team: true)
+      Current.team = @team
 
       OnboardingEmailsService.queue_emails_for(current_user, @team)
 

@@ -1,5 +1,5 @@
 class CustomEmailAddress < ApplicationRecord
-  belongs_to :team
+  include TeamOwnable
   belongs_to :user, optional: true
 
   validates :email, email: true, presence: true

@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.describe SyncUserToHappi, type: :modal do
+  before { Current.team = teams(:happi) }
   it "creates a customer within Happi" do
     expect do
       customer = described_class.sync(users(:janine))
@@ -22,11 +23,13 @@ RSpec.describe SyncUserToHappi, type: :modal do
 
   it "creates a new customer if they exist on a different team" do
     other_team = teams(:nine)
-    existing_customer = other_team.customers.create(
+    Current.team = other_team
+    existing_customer = Customer.create(
       email: "core-fx-123@prioritysupport.net",
       first_name: "Janine"
     )
 
+    Current.team = teams(:happi)
     expect do
       new_customer = described_class.sync(users(:janine))
       expect(new_customer).not_to eq(existing_customer)

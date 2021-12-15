@@ -4,12 +4,19 @@ class ApplicationController < ActionController::Base
   before_action :masquerade_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_action :store_current_models!
   before_action :ensure_team!
   before_action :sentry_user_info, if: :user_signed_in?
   around_action :configure_time_zone, if: :current_user
   after_action :track_page_view
 
   protected
+
+  def store_current_models!
+    if user_signed_in?
+      Current.user = current_user
+    end
+  end
 
   def feature_enabled?(feature_name)
     Feature.enabled?(feature_name, current_user)
@@ -40,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_team
-    current_user.team
+    Current.team
   end
   helper_method :current_team
 

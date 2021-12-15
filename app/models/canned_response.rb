@@ -1,5 +1,5 @@
 class CannedResponse < ApplicationRecord
-  belongs_to :team
+  include TeamOwnable
 
   has_rich_text :content
 

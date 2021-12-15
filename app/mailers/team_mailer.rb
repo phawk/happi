@@ -1,8 +1,10 @@
 class TeamMailer < ApplicationMailer
-  def new_message(message)
+  def new_message(message, team)
+    Current.team = team
+
     @message = message
     @thread = message.message_thread
-    @team = @thread.team
+    @team = team
 
     emails = @team.users.pluck(:email)
 

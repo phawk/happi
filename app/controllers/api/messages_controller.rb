@@ -10,7 +10,7 @@ module Api
         channel: "widget"
       )
 
-      TeamMailer.new_message(message).deliver_later unless customer.blocked?
+      TeamMailer.new_message(message, current_team).deliver_later unless customer.blocked?
 
       head :no_content
     end

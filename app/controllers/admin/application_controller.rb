@@ -11,6 +11,7 @@ module Admin
 
     def authenticate_admin
       redirect_to dashboard_path, alert: "You are not an admin" unless current_user.role?(:admin)
+      Current.team = current_user.team
     end
 
     # Override this value to specify the number of elements to display at a time

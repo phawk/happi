@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe GroupedSearchResults, type: :model do
+  before { Current.team = teams(:acme) }
+
   it "groups by message thread" do
     messages = Message.with_rich_text_content.includes(:message_thread).all
     threads = described_class.new(messages).grouped

@@ -5,6 +5,8 @@ RSpec.describe OnboardingEmailsService do
     let(:user) { users(:pete) }
     let(:team) { teams(:acme) }
 
+    before { Current.user = user }
+
     it "queues onboarding emails to be delivered to their @prioritysupport.net address" do
       perform_enqueued_jobs do
         described_class.queue_emails_for(user, team)

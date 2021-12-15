@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.describe CustomEmailAddress, type: :model do
-  it { is_expected.to belong_to(:team) }
+  before { Current.team = teams(:acme) }
+
+  it { is_expected.to belong_to(:team).optional }
   it { is_expected.to belong_to(:user).optional }
 
   it { is_expected.to validate_presence_of(:email) }

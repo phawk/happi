@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe CustomerMailer, type: :mailer do
+  before { Current.team = teams(:acme) }
+
   describe "new_reply" do
     let(:message) { messages(:acme_alex_stripe_msg_2) }
     let(:mail) { CustomerMailer.new_reply(message) }

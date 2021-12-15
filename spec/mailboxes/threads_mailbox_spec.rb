@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe ThreadsMailbox, type: :mailbox do
+  before { Current.team = teams(:acme) }
+
   context "when happi email address is used" do
     context "when there is no open thread" do
       it "creates thread and posts new message" do

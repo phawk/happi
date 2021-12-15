@@ -4,7 +4,7 @@ RSpec.describe TeamMailer, type: :mailer do
   describe "new_message" do
     let(:team) { teams(:acme) }
     let(:message) { messages(:acme_alex_stripe_msg_1) }
-    let(:mail) { described_class.new_message(message) }
+    let(:mail) { described_class.new_message(message, team) }
 
     it "renders the headers" do
       expect(mail.subject).to eq("ACME Corp: New message from Alex S.")

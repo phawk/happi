@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "MessageThreads", type: :request do
-  before { sign_in(users(:pete)) }
+  before { Current.user = sign_in(users(:pete)) }
 
   describe "GET /threads/search?query=" do
     it "searches messages" do
@@ -50,7 +50,7 @@ RSpec.describe "MessageThreads", type: :request do
   end
 
   describe "POST /threads" do
-    let(:message_thread) { MessageThread.last }
+    let(:message_thread) { MessageThread.unscoped.last }
 
     before do
       post message_threads_path, params: {

@@ -4,12 +4,13 @@ class MessageThread < ApplicationRecord
   OPEN_STATUS = %w[open waiting]
   CLOSED_STATUS = %w[closed]
 
+  include TeamOwnable
+
   after_create_commit { broadcast_prepend_to(turbo_channel, target: "open_message_threads") }
   after_update_commit { broadcast_replace_to(turbo_channel) }
   after_destroy_commit { broadcast_remove_to(turbo_channel) }
 
   belongs_to :customer
-  belongs_to :team
   belongs_to :user, optional: true
   has_many :messages, dependent: :destroy
 

@@ -3,8 +3,9 @@ require "rails_helper"
 RSpec.describe Customer, type: :model do
   let(:team) { teams(:acme) }
   let(:alex) { customers(:acme_alex) }
+  before { Current.team = team }
 
-  it { is_expected.to belong_to(:team) }
+  it { is_expected.to belong_to(:team).optional }
   it { is_expected.to have_many(:message_threads) }
 
   it { is_expected.to validate_presence_of(:first_name) }
