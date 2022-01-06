@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_145714) do
+ActiveRecord::Schema.define(version: 2022_01_06_171122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: 6, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.bigint "user_id"
     t.string "name"
     t.jsonb "properties"
-    t.datetime "time"
+    t.datetime "time", precision: 6
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
     t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
@@ -99,14 +99,14 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.string "app_version"
     t.string "os_version"
     t.string "platform"
-    t.datetime "started_at"
+    t.datetime "started_at", precision: 6
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
   create_table "beta_signups", force: :cascade do |t|
     t.string "email", null: false
-    t.datetime "signed_up_at"
+    t.datetime "signed_up_at", precision: 6
     t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.bigint "query_id"
     t.text "statement"
     t.string "data_source"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: 6
     t.index ["query_id"], name: "index_blazer_audits_on_query_id"
     t.index ["user_id"], name: "index_blazer_audits_on_user_id"
   end
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.text "slack_channels"
     t.string "check_type"
     t.text "message"
-    t.datetime "last_run_at"
+    t.datetime "last_run_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_blazer_checks_on_creator_id"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.string "email", null: false
     t.bigint "team_id", null: false
     t.bigint "user_id"
-    t.datetime "confirmed_at"
+    t.datetime "confirmed_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "from_name"
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.string "phone"
     t.string "country_code"
     t.string "location"
-    t.datetime "last_contacted_at"
+    t.datetime "last_contacted_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "blocked", default: false, null: false
@@ -249,7 +249,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.string "name", null: false
     t.string "plan", default: "basic", null: false
     t.string "mail_hash", default: "", null: false
-    t.datetime "verified_at"
+    t.datetime "verified_at", precision: 6
     t.string "invite_code"
     t.boolean "whitelabel", default: false, null: false
     t.string "time_zone", default: "Eastern Time (US & Canada)", null: false
@@ -282,11 +282,11 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: 6
+    t.datetime "last_sign_in_at", precision: 6
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.bigint "team_id"
@@ -295,8 +295,8 @@ ActiveRecord::Schema.define(version: 2021_10_09_145714) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: 6
+    t.datetime "confirmation_sent_at", precision: 6
     t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
