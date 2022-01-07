@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Events::PostmarkWebhooksController, type: :request do
   let(:message) { messages(:acme_alex_password_reset_msg_1) }
   let(:http_auth) do
-    ActionController::HttpAuthentication::Basic.encode_credentials("postmark", "h4pp1t1m35")
+    ActionController::HttpAuthentication::Basic.encode_credentials("postmark", ENV.fetch("POSTMARK_WEBHOOKS_PASSWORD"))
   end
 
   describe "#create" do
