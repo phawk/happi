@@ -39,6 +39,7 @@ jobs:
       STRIPE_TEST_SECRET_KEY: ${{ secrets.STRIPE_TEST_SECRET_KEY }}
       STRIPE_TEST_WEBHOOKS_SECRET: ${{ secrets.STRIPE_TEST_WEBHOOKS_SECRET }}
       SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+      POSTMARK_WEBHOOKS_PASSWORD: "testpassword"
 
     steps:
       - uses: actions/checkout@v1
