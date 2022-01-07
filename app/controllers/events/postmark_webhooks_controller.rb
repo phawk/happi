@@ -6,7 +6,7 @@ module Events
 
     def create
       authenticate_or_request_with_http_basic do |username, password|
-        username == "postmark" && password == "h4pp1t1m35"
+        username == postmark_username && password == postmark_password
       end
 
       message_id = params.dig("Metadata", "message_id")
@@ -25,6 +25,16 @@ module Events
       else
         Rails.logger.debug { "PostmarkWebhooksController: Unhandled type: #{params["RecordType"]}" }
       end
+    end
+
+    private
+
+    def postmark_username
+      ENV.fetch("POSTMARK_INGRESS_USERNAME")
+    end
+
+    def postmark_password
+      ENV.fetch("POSTMARK_INGRESS_PASSWORD")
     end
   end
 end
