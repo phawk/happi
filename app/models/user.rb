@@ -13,7 +13,9 @@ class User < ApplicationRecord
 
   has_person_name
 
-  has_one_attached :avatar
+  has_one_attached :avatar do |blob|
+    blob.variant :thumb, resize_to_fill: [120, 120]
+  end
 
   has_many :visits, class_name: "Ahoy::Visit", dependent: :nullify
   has_and_belongs_to_many :teams
