@@ -307,7 +307,7 @@
 
                       <div class="email-footer">
                         <% if @team.has_logo? %>
-                          <%= image_tag @team.logo.variant(resize_to_fit: [600, 100]), class: "email-footer-logo" %>
+                          <%= image_tag @team.logo.variant(:small), class: "email-footer-logo" %>
                         <% end %>
 
                         <% unless @team.whitelabel? %>

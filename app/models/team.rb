@@ -8,7 +8,11 @@ class Team < ApplicationRecord
 
   attr_json :sent_verified_email, :boolean
 
-  has_one_attached :logo
+  has_one_attached :logo do |blob|
+    blob.variant :small, resize_to_fit: [600, 100]
+    blob.variant :medium, resize_to_fit: [800, 160]
+  end
+
   has_secure_token :invite_code
   has_secure_token :publishable_key
   has_secure_token :shared_secret
