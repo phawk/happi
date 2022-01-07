@@ -30,11 +30,11 @@ module Events
     private
 
     def postmark_username
-      ENV.fetch("POSTMARK_INGRESS_USERNAME")
+      "postmark"
     end
 
     def postmark_password
-      ENV.fetch("POSTMARK_INGRESS_PASSWORD")
+      ENV.fetch("POSTMARK_WEBHOOKS_PASSWORD")
     end
   end
 end
