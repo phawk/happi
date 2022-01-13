@@ -1,4 +1,4 @@
-<% if params[:action] == "changelog" %>
+<% if params && params[:action] == "changelog" %>
   <% if blob.representable? %>
     <%= image_tag blob.representation(resize_to_fill: local_assigns[:in_gallery] ? [ 400, 400 ] : [ 1824, 1000 ]), class: "changelog-image rounded-3xl" %>
   <% end %>

@@ -40,7 +40,7 @@ class ThreadsMailbox < ApplicationMailbox
   def attachments
     mail.attachments.map do |attachment|
       content_type = attachment.content_type.split(";").first
-      blob = ActiveStorage::Blob.create_after_upload!(
+      blob = ActiveStorage::Blob.create_and_upload!(
         io: StringIO.new(attachment.body.to_s),
         filename: attachment.filename,
         content_type: content_type,
