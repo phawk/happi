@@ -17,4 +17,5 @@ Sentry.init do |config|
     Stripe::CardError
     OpenSSL::SSL::SSLError
   ]
+  config.release = ENV["HEROKU_SLUG_COMMIT"]
 end
