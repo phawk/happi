@@ -3,7 +3,7 @@ class CustomEmailAddressesController < ApplicationController
     @custom_email_address = current_team.custom_email_addresses.new(custom_email_params)
 
     if @custom_email_address.save
-      TeamMailer.email_awaiting_approval(current_team,@custom_email_address.email).deliver_later
+      TeamMailer.email_awaiting_approval(current_team, @custom_email_address.email).deliver_later
 
       AdminMailer.notification(
         "Custom email needs confirmed!",

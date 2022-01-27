@@ -39,7 +39,7 @@ RSpec.describe "CustomEmailAddresses", type: :request do
       expect do
         delete "/custom_email_addresses/#{email.id}"
         expect(response).to redirect_to(emails_settings_path)
-      end.to change { CustomEmailAddress.count }.by(-1)
+      end.to change(CustomEmailAddress, :count).by(-1)
     end
   end
 end
