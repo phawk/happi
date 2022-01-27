@@ -5,12 +5,14 @@ RSpec.describe "CustomEmailAddresses", type: :request do
 
   describe "#create" do
     before do
-      post "/custom_email_addresses", params: {
-        custom_email_address: {
-          email: "help@acme.com",
-          from_name: "ACME Help",
-        },
-      }
+      perform_enqueued_jobs do
+        post "/custom_email_addresses", params: {
+          custom_email_address: {
+            email: "help@acme.com",
+            from_name: "ACME Help",
+          },
+        }
+      end
     end
 
     it "redirects back to settings" do
@@ -21,6 +23,11 @@ RSpec.describe "CustomEmailAddresses", type: :request do
       email = CustomEmailAddress.last
       expect(email.from_name).to eq("ACME Help")
       expect(email.email).to eq("help@acme.com")
+    end
+
+    it "notifies admins" do
+      expect(delivered_emails.size).to eq(1)
+      expect(last_email.subject).to eq("Admin alert: Custom email needs confirmed!")
     end
   end
 
