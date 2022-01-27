@@ -29,4 +29,19 @@ RSpec.describe TeamMailer, type: :mailer do
       expect(mail.body.encoded).to include("verified")
     end
   end
+
+  describe "email_awaiting_approval" do
+    let(:team) { teams(:acme) }
+    let(:custom_email_address) { "help@acme.com" }
+    let(:mail) { described_class.email_awaiting_approval(team, custom_email_address) }
+
+    it "renders the headers" do
+      expect(mail.subject).to eq("Your custom email is awaiting approval")
+      expect(mail.to).to match_array(team.users.pluck(:email))
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to include(custom_email_address)
+    end
+  end
 end

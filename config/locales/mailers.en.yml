@@ -12,3 +12,5 @@ en:
       subject: Your account has been verified
     not_found:
       subject: "Team doesn't exist"
+    email_awaiting_approval:
+      subject: "Your custom email is awaiting approval"

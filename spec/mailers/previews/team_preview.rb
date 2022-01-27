@@ -10,4 +10,8 @@ class TeamPreview < ActionMailer::Preview
   def not_found
     TeamMailer.not_found(Customer.first)
   end
+
+  def email_awaiting_approval
+    TeamMailer.email_awaiting_approval(Team.first, "help@acme.com")
+  end
 end

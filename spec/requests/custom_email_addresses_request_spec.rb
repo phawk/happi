@@ -25,8 +25,9 @@ RSpec.describe "CustomEmailAddresses", type: :request do
       expect(email.email).to eq("help@acme.com")
     end
 
-    it "notifies admins" do
-      expect(delivered_emails.size).to eq(1)
+    it "notifies the team and admins" do
+      expect(delivered_emails.size).to eq(2)
+      expect(delivered_emails.first.subject).to eq("Your custom email is awaiting approval")
       expect(last_email.subject).to eq("Admin alert: Custom email needs confirmed!")
     end
   end
