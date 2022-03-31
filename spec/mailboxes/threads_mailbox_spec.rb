@@ -87,7 +87,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
     end
   end
 
-  def send_mail(to:, from: "Jack Johnson <jack@jackjohnson.net>", headers: {})
+  def send_mail(to:, from: "Jack Johnson <Jack@jackjohnson.net>", headers: {})
     receive_inbound_email_from_mail do |mail|
       headers&.each do |key, val|
         mail.header[key] = val

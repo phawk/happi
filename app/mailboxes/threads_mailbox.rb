@@ -94,7 +94,7 @@ class ThreadsMailbox < ApplicationMailbox
   end
 
   def from_email
-    parsed_from.email_address
+    parsed_from.email_address&.downcase
   end
 
   def from_name
