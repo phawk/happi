@@ -31,7 +31,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 gem "devise"
 gem "devise_masquerade"
-gem "view_component", require: "view_component/engine"
+gem "view_component"
 gem "name_of_person"
 gem "chroma"
 gem "aws-sdk-s3", require: false
