@@ -50,11 +50,7 @@ gem "stripe", "~> 5.38"
 gem "stripe_event"
 gem "attr_json"
 gem "recaptcha"
-
-# Error/performance monitoring
-gem "sentry-ruby"
-gem "sentry-rails"
-gem "sentry-sidekiq"
+gem "exception_notification"
 
 # Code style guide
 gem "rubocop-rails", require: false

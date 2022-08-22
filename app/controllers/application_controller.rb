@@ -5,9 +5,21 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
   before_action :ensure_team!
-  before_action :sentry_user_info, if: :user_signed_in?
+  before_action :prepare_exception_notifier
   around_action :configure_time_zone, if: :current_user
   after_action :track_page_view
+
+  rescue_from ActionView::MissingTemplate, ActiveRecord::RecordNotFound do |exception|
+    raise exception if Rails.env.development?
+
+    halt_not_found!
+  end
+
+  rescue_from ActionController::UnknownFormat do |exception|
+    raise exception if Rails.env.development?
+
+    halt_unsupported!
+  end
 
   protected
 
@@ -67,7 +79,19 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name avatar])
   end
 
-  def sentry_user_info
-    Sentry.set_user(email: current_user.email, id: current_user.id)
+  def prepare_exception_notifier
+    return unless Rails.env.production?
+
+    request.env["exception_notifier.exception_data"] = {
+      current_user: current_user,
+    }
+  end
+
+  def halt_not_found!
+    raise ActionController::RoutingError, "Not Found"
+  end
+
+  def halt_unsupported!
+    render(text: "unsupported", status: :unsupported_media_type)
   end
 end
