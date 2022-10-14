@@ -1,6 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  APP_HOST = ENV.fetch("APP_HOST", "app.happi.team")
   # Prepare the ingress controller used to receive mail
   # config.action_mailbox.ingress = :relay
 
@@ -122,9 +123,9 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   # URLs
-  routes.default_url_options = { host: "app.happi.team", protocol: "https" }
+  routes.default_url_options = { host: APP_HOST, protocol: "https" }
   config.action_controller.default_url_options = {
-    host: "app.happi.team",
+    host: APP_HOST,
     protocol: "https",
   }
 
@@ -133,8 +134,8 @@ Rails.application.configure do
   config.action_mailbox.ingress = :postmark
 
   # Mailers
-  config.action_mailer.default_url_options = { host: "app.happi.team", protocol: "https" }
-  config.action_mailer.asset_host = "https://app.happi.team"
+  config.action_mailer.default_url_options = { host: APP_HOST, protocol: "https" }
+  config.action_mailer.asset_host = "https://#{APP_HOST}"
   config.action_mailer.delivery_method = :postmark
   config.action_mailer.postmark_settings = {
     api_token: ENV.fetch("POSTMARK_API_TOKEN"),
