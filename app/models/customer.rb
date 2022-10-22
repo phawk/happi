@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
   belongs_to :team
   has_many :message_threads, dependent: :destroy
   validates :first_name, presence: true
-  validates :email, presence: true, email: true
+  validates :email, presence: true, email: true, uniqueness: { scope: :team_id }
 
   scope :blocked, -> { where(blocked: true) }
 

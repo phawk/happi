@@ -10,6 +10,18 @@ RSpec.describe Customer, type: :model do
   it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_presence_of(:email) }
 
+  describe "validations" do
+    it "treats email as unique per team" do
+      customer = team.customers.create(
+        email: alex.email,
+        first_name: "Alex",
+        last_name: "Shaw"
+      )
+
+      expect(customer.errors[:email]).to include("has already been taken")
+    end
+  end
+
   describe ".upsert_by_jwt" do
     it "creates new customer when they don't exist" do
       jwt = JWT.encode({ first_name: "Pedro", last_name: "Gonzalles", email: "pedro@hey.com" }, team.shared_secret,
