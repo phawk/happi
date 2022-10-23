@@ -11,6 +11,20 @@ module Admin
     #   end
     # end
 
+    def verified_email
+      team = find_resource(params[:team_id])
+
+      if team.verified?
+        team.update(sent_verified_email: true)
+        TeamMailer.verified(team).deliver_later
+        flash[:notice] = "Verified email sent"
+      else
+        flash[:alert] = "This team is not verified"
+      end
+
+      redirect_to [:admin, team]
+    end
+
     # Override this method to specify custom lookup behavior.
     # This will be used to set the resource for the `show`, `edit`, and `update`
     # actions.

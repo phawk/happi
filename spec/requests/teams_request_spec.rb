@@ -33,7 +33,7 @@ RSpec.describe "Teams", type: :request do
         expect(Team.last.available_seats).to eq(1)
         expect(Team.last.messages_limit).to eq(100)
         expect(Team.last.subscription_status).to eq("trialing")
-        expect(Team.last).to be_verified
+        expect(Team.last).not_to be_verified
       end
     end
 

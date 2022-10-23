@@ -21,8 +21,7 @@ class TeamsController < ApplicationController
   def create
     @team = current_user.teams.new(
       team_params.merge(
-        plan: plan_name,
-        verified_at: Time.current
+        plan: plan_name
       )
     )
 

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :teams
+    resources :teams do
+      post :verified_email
+    end
     resources :users do
       post :sync
     end
