@@ -26,7 +26,7 @@ class SlackNotifierJob < ApplicationJob
       "From: #{message.sender.name} <#{message.sender.email}>",
       "Subject: #{message.message_thread.subject}\n",
       message.content.to_plain_text,
-      "\n<#{view_message_url(message)}|Respond on Happi>"
+      "\n<#{view_message_url(message)}|Respond on Happi>",
     ].join("\n")
   end
 end

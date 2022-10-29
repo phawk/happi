@@ -31,7 +31,7 @@ RSpec.describe SlackNotifierJob, type: :job do
       "From: Pete Hawkins <petey@hey.com>",
       "Subject: Help resetting my password\n",
       "Hello Alex, I have reset your password, please try logging in again now.",
-      "\n<http://happi.test/view_message/#{message.id}|Respond on Happi>"
+      "\n<http://happi.test/view_message/#{message.id}|Respond on Happi>",
     ].join("\n"))
   end
 end
