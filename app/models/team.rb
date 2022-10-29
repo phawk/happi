@@ -43,6 +43,14 @@ class Team < ApplicationRecord
     end
   end
 
+  def users_for_email(email_type)
+    case email_type
+    when :message_notification
+      team_users.where(message_notifications: true).users
+    else
+    end
+  end
+
   def verified?
     verified_at.present?
   end

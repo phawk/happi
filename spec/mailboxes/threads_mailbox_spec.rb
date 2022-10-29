@@ -26,6 +26,19 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
           expect(last_email.to).to include("petey@hey.com")
         end
       end
+
+      it "doesnt send notification when all users has notifications disabled" do
+        user = users(:pete)
+        team = teams(:acme)
+        team_user = TeamUser.find_by(user: user, team: team)
+        team_user.update!(message_notifications: false)
+
+        perform_enqueued_jobs do
+          send_mail(to: "acme@prioritysupport.net")
+
+          expect(delivered_emails.size).to be_zero
+        end
+      end
     end
 
     context "when there is an open thread already" do

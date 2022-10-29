@@ -14,7 +14,11 @@ class ThreadsMailbox < ApplicationMailbox
       spam_score: spam_score
     )
 
-    TeamMailer.new_message(message).deliver_later unless customer.blocked?
+    return if customer.blocked?
+
+    if @team.users_for_email(:message_notification).count.positive?
+      TeamMailer.new_message(message).deliver_later
+    end
   end
 
   private

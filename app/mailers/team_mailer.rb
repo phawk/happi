@@ -4,9 +4,11 @@ class TeamMailer < ApplicationMailer
     @thread = message.message_thread
     @team = @thread.team
 
-    emails = @team.users.pluck(:email)
+    emails = @team.users_for_email(:message_notification).pluck(:email)
 
-    mail to: emails, subject: t(".subject", team: @team.name, from_name: @message.sender.name.familiar)
+    if emails.any?
+      mail to: emails, subject: t(".subject", team: @team.name, from_name: @message.sender.name.familiar)
+    end
   end
 
   def verified(team)

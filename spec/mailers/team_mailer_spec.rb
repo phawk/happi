@@ -6,13 +6,24 @@ RSpec.describe TeamMailer, type: :mailer do
     let(:message) { messages(:acme_alex_stripe_msg_1) }
     let(:mail) { described_class.new_message(message) }
 
-    it "renders the headers" do
-      expect(mail.subject).to eq("ACME Corp: New message from Alex S.")
-      expect(mail.to).to match_array(team.users.pluck(:email))
+    context "when user has message_notifications enabled" do
+      it "renders the headers" do
+        expect(mail.subject).to eq("ACME Corp: New message from Alex S.")
+        expect(mail.to).to match_array(team.users.pluck(:email))
+      end
+
+      it "renders the body" do
+        expect(mail.body.encoded).to include("You just received a message from")
+      end
     end
 
-    it "renders the body" do
-      expect(mail.body.encoded).to include("You just received a message from")
+    context "when all users have message_notifications disabled" do
+      it "doesn't send any emails" do
+        team.team_users.update_all(message_notifications: false)
+        result = described_class.new_message(message)
+        expect(result.to).to be_nil
+        expect(result.body).to eq("")
+      end
     end
   end
 
