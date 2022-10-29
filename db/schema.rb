@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_29_101911) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_29_112107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_101911) do
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -261,6 +261,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_101911) do
     t.string "stripe_subscription_id"
     t.string "subscription_status", default: "pending", null: false
     t.jsonb "json_attributes", default: {}, null: false
+    t.string "slack_webhook_url"
+    t.string "slack_channel_name"
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
     t.index ["publishable_key"], name: "index_teams_on_publishable_key", unique: true

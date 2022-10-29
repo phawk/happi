@@ -19,6 +19,10 @@ class ThreadsMailbox < ApplicationMailbox
     if @team.users_for_email(:message_notification).count.positive?
       TeamMailer.new_message(message).deliver_later
     end
+
+    if @team.slack_integration?
+      SlackNotifierJob.perform_later(@team, message)
+    end
   end
 
   private

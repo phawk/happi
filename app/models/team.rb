@@ -121,6 +121,10 @@ class Team < ApplicationRecord
     User.where(team_id: id).update_all(team_id: nil) # rubocop:disable Rails/SkipsModelValidations
   end
 
+  def slack_integration?
+    slack_webhook_url.present? && slack_channel_name.present?
+  end
+
   private
 
   def generated_mail_hash

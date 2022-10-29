@@ -50,6 +50,7 @@ gem "stripe_event"
 gem "attr_json"
 gem "recaptcha"
 gem "exception_notification"
+gem "slack-notifier", "~> 2.4"
 
 # Code style guide
 gem "rubocop-rails", require: false
