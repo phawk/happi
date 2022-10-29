@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     post :change, on: :member
     put :logo_upload, on: :member
   end
+  resources :team_users, only: %i[update]
   resource :settings, only: %i[show update] do
     get :team
     get :emails
