@@ -36,8 +36,11 @@ class Team < ApplicationRecord
     Message.where(message_thread_id: allowed_threads.select(:id))
   end
 
-  def add_user(user, set_active_team: false)
-    users << user unless users.exists?(user.id)
+  def add_user(user, set_active_team: false, role: "member")
+    unless team_users.where(user_id: user.id).count.positive?
+      team_users.create!(user: user, role: role)
+    end
+
     if set_active_team
       user.update(team: self)
     end

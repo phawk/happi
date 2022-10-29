@@ -37,6 +37,19 @@ RSpec.describe "Teams", type: :request do
       end
     end
 
+    it "sets the creator to the 'owner' role" do
+      post "/teams", params: {
+        team: {
+          name: "Polywork",
+          mail_hash: "polywork",
+          time_zone: "Eastern Time (US & Canada)",
+          country_code: "US",
+        },
+      }
+
+      expect(Team.last.team_users.last.role).to eq("owner")
+    end
+
     context "when plan is paid" do
       it "sets pending status and redirects to checkout" do
         allow(BillingService).to receive(:create_checkout) \
