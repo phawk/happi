@@ -48,6 +48,7 @@ class Team < ApplicationRecord
     when :message_notification
       team_users.where(message_notifications: true).users
     else
+      User.none
     end
   end
 

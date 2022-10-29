@@ -71,3 +71,6 @@ RSpec/FilePath:
   - 'spec/requests/**/*.rb'
 Style/ModuleFunction:
   EnforcedStyle: module_function
+Rails/SkipsModelValidations:
+  Exclude:
+  - 'spec/**/*.rb'
