@@ -8,4 +8,8 @@ class TeamUser < ApplicationRecord
   def self.users
     User.where(id: pluck(:user_id))
   end
+
+  def owner?
+    role == "owner"
+  end
 end

@@ -7,7 +7,7 @@ class SettingsController < ApplicationController
   end
 
   def team
-    @team_members = current_team.users.to_a
+    @team_members = current_team.team_users.includes(:user).to_a
   end
 
   def canned_responses
