@@ -1,4 +1,5 @@
 class SlackNotifierJob < ApplicationJob
+  SLACK_ICON_URL = "https://pete-uploads.s3-eu-west-1.amazonaws.com/happi-slack-Icon.png".freeze
   queue_as :default
 
   def perform(team, message)
@@ -8,6 +9,7 @@ class SlackNotifierJob < ApplicationJob
       team.slack_webhook_url,
       channel: team.slack_channel_name,
       username: "happi-bot",
+      icon_url: SLACK_ICON_URL,
     )
 
     notifier.ping(format_message(message))

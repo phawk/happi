@@ -19,7 +19,8 @@ RSpec.describe SlackNotifierJob, type: :job do
     allow(Slack::Notifier).to receive(:new).with(
       "https://example.com/123",
       channel: "#support",
-      username: "happi-bot"
+      username: "happi-bot",
+      icon_url: SlackNotifierJob::SLACK_ICON_URL,
     ).and_return(fake_notifier)
 
     team.update(slack_webhook_url: "https://example.com/123", slack_channel_name: "#support")
