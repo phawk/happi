@@ -3,7 +3,8 @@ require "rails_helper"
 RSpec.describe Team, type: :model do
   let(:team) { teams(:acme) }
 
-  it { is_expected.to have_and_belong_to_many(:users) }
+  it { is_expected.to have_many(:team_users) }
+  it { is_expected.to have_many(:users) }
   it { is_expected.to have_many(:customers) }
   it { is_expected.to have_many(:message_threads) }
   it { is_expected.to have_many(:custom_email_addresses) }

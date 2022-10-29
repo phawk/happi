@@ -398,8 +398,6 @@ GEM
     stripe_event (2.3.1)
       activesupport (>= 3.1)
       stripe (>= 2.8, < 6)
-    strong_migrations (0.7.8)
-      activerecord (>= 5)
     strscan (3.0.1)
     thor (1.2.1)
     tilt (2.0.10)
@@ -477,7 +475,6 @@ DEPENDENCIES
   stripe (~> 5.38)
   stripe-ruby-mock (~> 3.0.1)
   stripe_event
-  strong_migrations
   tzinfo-data
   view_component
   web-console (>= 4.1.0)

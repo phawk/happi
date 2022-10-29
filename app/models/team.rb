@@ -16,7 +16,8 @@ class Team < ApplicationRecord
   has_secure_token :invite_code
   has_secure_token :publishable_key
   has_secure_token :shared_secret
-  has_and_belongs_to_many :users
+  has_many :team_users, dependent: :destroy
+  has_many :users, through: :team_users
   has_many :customers, dependent: :destroy
   has_many :message_threads, dependent: :destroy
   has_many :custom_email_addresses, dependent: :destroy

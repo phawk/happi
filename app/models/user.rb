@@ -18,7 +18,8 @@ class User < ApplicationRecord
   end
 
   has_many :visits, class_name: "Ahoy::Visit", dependent: :nullify
-  has_and_belongs_to_many :teams
+  has_many :team_users, dependent: :destroy
+  has_many :teams, through: :team_users
   belongs_to :team, optional: true
 
   validates :first_name, :last_name, presence: true

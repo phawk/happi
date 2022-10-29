@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_06_171122) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_10_29_101911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +18,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.integer "status", default: 0, null: false
     t.string "message_id", null: false
     t.string "message_checksum", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["message_id", "message_checksum"], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
   end
 
@@ -28,9 +27,9 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -39,7 +38,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", precision: 6, null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -52,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", precision: 6, null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -67,7 +66,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.bigint "user_id"
     t.string "name"
     t.jsonb "properties"
-    t.datetime "time", precision: 6
+    t.datetime "time", precision: nil
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
     t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
@@ -99,17 +98,17 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "app_version"
     t.string "os_version"
     t.string "platform"
-    t.datetime "started_at", precision: 6
+    t.datetime "started_at", precision: nil
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
 
   create_table "beta_signups", force: :cascade do |t|
     t.string "email", null: false
-    t.datetime "signed_up_at", precision: 6
+    t.datetime "signed_up_at", precision: nil
     t.bigint "team_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_beta_signups_on_team_id"
   end
 
@@ -118,7 +117,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.bigint "query_id"
     t.text "statement"
     t.string "data_source"
-    t.datetime "created_at", precision: 6
+    t.datetime "created_at", precision: nil
     t.index ["query_id"], name: "index_blazer_audits_on_query_id"
     t.index ["user_id"], name: "index_blazer_audits_on_user_id"
   end
@@ -132,9 +131,9 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.text "slack_channels"
     t.string "check_type"
     t.text "message"
-    t.datetime "last_run_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "last_run_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_checks_on_creator_id"
     t.index ["query_id"], name: "index_blazer_checks_on_query_id"
   end
@@ -143,8 +142,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.bigint "dashboard_id"
     t.bigint "query_id"
     t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["dashboard_id"], name: "index_blazer_dashboard_queries_on_dashboard_id"
     t.index ["query_id"], name: "index_blazer_dashboard_queries_on_query_id"
   end
@@ -152,8 +151,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
   create_table "blazer_dashboards", force: :cascade do |t|
     t.bigint "creator_id"
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_dashboards_on_creator_id"
   end
 
@@ -164,33 +163,33 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.text "statement"
     t.string "data_source"
     t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
   create_table "canned_responses", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.string "label", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_canned_responses_on_team_id"
   end
 
   create_table "changelogs", force: :cascade do |t|
     t.text "embed"
     t.date "released"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "custom_email_addresses", force: :cascade do |t|
     t.string "email", null: false
     t.bigint "team_id", null: false
     t.bigint "user_id"
-    t.datetime "confirmed_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "from_name"
     t.index ["team_id"], name: "index_custom_email_addresses_on_team_id"
     t.index ["user_id"], name: "index_custom_email_addresses_on_user_id"
@@ -205,9 +204,9 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "phone"
     t.string "country_code"
     t.string "location"
-    t.datetime "last_contacted_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "last_contacted_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "blocked", default: false, null: false
     t.index ["email", "team_id"], name: "index_customers_on_email_and_team_id", unique: true
     t.index ["email"], name: "index_customers_on_email"
@@ -220,8 +219,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "subject", default: "", null: false
     t.string "status", default: "open", null: false
     t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "reply_to"
     t.index ["customer_id"], name: "index_message_threads_on_customer_id"
     t.index ["team_id"], name: "index_message_threads_on_team_id"
@@ -237,8 +236,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.text "raw", default: "", null: false
     t.string "status", default: "pending", null: false
     t.jsonb "metadata", default: {}, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "from_address"
     t.decimal "spam_score", precision: 8, scale: 2
     t.string "channel", default: "email", null: false
@@ -249,7 +248,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "name", null: false
     t.string "plan", default: "basic", null: false
     t.string "mail_hash", default: "", null: false
-    t.datetime "verified_at", precision: 6
+    t.datetime "verified_at", precision: nil
     t.string "invite_code"
     t.boolean "whitelabel", default: false, null: false
     t.string "time_zone", default: "Eastern Time (US & Canada)", null: false
@@ -271,6 +270,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
   create_table "teams_users", force: :cascade do |t|
     t.bigint "team_id"
     t.bigint "user_id"
+    t.boolean "message_notifications", default: true, null: false
+    t.string "role", default: "member", null: false
     t.index ["team_id", "user_id"], name: "index_teams_users_on_team_id_and_user_id", unique: true
     t.index ["team_id"], name: "index_teams_users_on_team_id"
     t.index ["user_id"], name: "index_teams_users_on_user_id"
@@ -282,21 +283,21 @@ ActiveRecord::Schema.define(version: 2022_01_06_171122) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: 6
-    t.datetime "remember_created_at", precision: 6
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at", precision: 6
-    t.datetime "last_sign_in_at", precision: 6
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.bigint "team_id"
     t.string "role", default: "user", null: false
     t.jsonb "metadata", default: {}, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "confirmation_token"
-    t.datetime "confirmed_at", precision: 6
-    t.datetime "confirmation_sent_at", precision: 6
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
