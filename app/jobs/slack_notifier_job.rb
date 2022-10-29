@@ -1,5 +1,8 @@
 class SlackNotifierJob < ApplicationJob
   SLACK_ICON_URL = "https://pete-uploads.s3-eu-west-1.amazonaws.com/happi-slack-Icon.png".freeze
+
+  include Rails.application.routes.url_helpers
+
   queue_as :default
 
   def perform(team, message)
@@ -21,8 +24,9 @@ class SlackNotifierJob < ApplicationJob
     [
       "**New message**",
       "From: #{message.sender.name} <#{message.sender.email}>",
-      "Subject: #{message.message_thread.subject}",
+      "Subject: #{message.message_thread.subject}\n",
       message.content.to_plain_text,
+      "\n<#{view_message_url(message)}|Respond on Happi>"
     ].join("\n")
   end
 end

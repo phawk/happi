@@ -29,8 +29,9 @@ RSpec.describe SlackNotifierJob, type: :job do
     expect(fake_notifier.message).to eq([
       "**New message**",
       "From: Pete Hawkins <petey@hey.com>",
-      "Subject: Help resetting my password",
+      "Subject: Help resetting my password\n",
       "Hello Alex, I have reset your password, please try logging in again now.",
+      "\n<http://happi.test/view_message/#{message.id}|Respond on Happi>"
     ].join("\n"))
   end
 end
