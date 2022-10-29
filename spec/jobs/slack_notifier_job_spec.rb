@@ -16,7 +16,11 @@ RSpec.describe SlackNotifierJob, type: :job do
 
   it "sends slack messages" do
     fake_notifier = FakeNotifier.new
-    allow(Slack::Notifier).to receive(:new).with("https://example.com/123", channel: "#support", username: "happi-bot").and_return(fake_notifier)
+    allow(Slack::Notifier).to receive(:new).with(
+      "https://example.com/123",
+      channel: "#support",
+      username: "happi-bot"
+    ).and_return(fake_notifier)
 
     team.update(slack_webhook_url: "https://example.com/123", slack_channel_name: "#support")
     subject.perform(team, message)
@@ -25,7 +29,7 @@ RSpec.describe SlackNotifierJob, type: :job do
       "**New message**",
       "From: Pete Hawkins <petey@hey.com>",
       "Subject: Help resetting my password",
-      "Hello Alex, I have reset your password, please try logging in again now."
+      "Hello Alex, I have reset your password, please try logging in again now.",
     ].join("\n"))
   end
 end

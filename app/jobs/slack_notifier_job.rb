@@ -20,7 +20,7 @@ class SlackNotifierJob < ApplicationJob
       "**New message**",
       "From: #{message.sender.name} <#{message.sender.email}>",
       "Subject: #{message.message_thread.subject}",
-      message.content.to_plain_text
+      message.content.to_plain_text,
     ].join("\n")
   end
 end
