@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
 <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-<% if SiteOption.get("widget_enabled") == "YES" %>
+<% if user_signed_in? && SiteOption.get("widget_enabled") == "YES" %>
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js" type="text/javascript"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js" type="text/javascript"></script>
 <script src="https://unpkg.com/happi-widget/dist/index.js" type="text/javascript"></script>
