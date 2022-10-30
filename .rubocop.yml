@@ -74,3 +74,5 @@ Style/ModuleFunction:
 Rails/SkipsModelValidations:
   Exclude:
   - 'spec/**/*.rb'
+RSpec/MessageSpies:
+  Enabled: false

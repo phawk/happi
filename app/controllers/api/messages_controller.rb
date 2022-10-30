@@ -11,13 +11,7 @@ module Api
       )
 
       unless customer.blocked?
-        if current_team.users_for_email(:message_notification).count.positive?
-          TeamMailer.new_message(message).deliver_later
-        end
-
-        if current_team.slack_integration?
-          SlackNotifierJob.perform_later(current_team, message)
-        end
+        NotificationService.new_message(current_team, message)
       end
 
       head :no_content

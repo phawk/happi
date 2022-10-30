@@ -8,7 +8,9 @@ RSpec.describe Api::MessagesController, type: :request do
     it "creates a new message when customer JWT is valid" do
       teams(:acme).update!(slack_channel_name: "#support", slack_webhook_url: "https://example.org")
 
-      perform_enqueued_jobs(except: SlackNotifierJob) do
+      expect(NotificationService).to receive(:new_message).with(team, an_instance_of(Message))
+
+      perform_enqueued_jobs do
         expect do
           post "/api/#{team.publishable_key}/messages", params: {
             content: "Hello there, I need assistance please.",
@@ -17,14 +19,7 @@ RSpec.describe Api::MessagesController, type: :request do
         end.to change(Message, :count).by(1)
 
         expect(response).to have_http_status(:no_content)
-
-        expect(delivered_emails.size).to eq(1)
-
-        last_message = Message.last
-
-        expect(last_message.channel).to eq("widget")
-
-        expect(SlackNotifierJob).to have_been_enqueued
+        expect(Message.last.channel).to eq("widget")
       end
     end
 

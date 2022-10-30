@@ -19,33 +19,10 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       end
 
       it "sends a notification to the team" do
-        perform_enqueued_jobs do
-          send_mail(to: "acme@prioritysupport.net")
-
-          expect(last_email.subject).to eq("ACME Corp: New message from Jack J.")
-          expect(last_email.to).to include("petey@hey.com")
-        end
-      end
-
-      it "queues SlackNotifierJob if the team has slack enabled" do
-        teams(:acme).update!(slack_channel_name: "#support", slack_webhook_url: "https://example.org")
-
-        perform_enqueued_jobs(except: SlackNotifierJob) do
-          send_mail(to: "acme@prioritysupport.net")
-          expect(SlackNotifierJob).to have_been_enqueued
-        end
-      end
-
-      it "doesnt send notification when all users has notifications disabled" do
-        user = users(:pete)
-        team = teams(:acme)
-        team_user = TeamUser.find_by(user: user, team: team)
-        team_user.update!(message_notifications: false)
+        expect(NotificationService).to receive(:new_message).with(teams(:acme), an_instance_of(Message))
 
         perform_enqueued_jobs do
           send_mail(to: "acme@prioritysupport.net")
-
-          expect(delivered_emails.size).to be_zero
         end
       end
     end
