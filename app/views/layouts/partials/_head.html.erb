@@ -27,7 +27,14 @@
 document.addEventListener("DOMContentLoaded", function() {
   Happi.init({
     publishableKey: "cDeEoaAhH9ujUdavnb78x2VL",
-    customerData: "<%= current_user.as_customer_jwt %>"
+    customerData: "<%= current_user.as_customer_jwt %>",
+    subheading: "Our team usually reponds within 1-2 working days.",
+    categories: [
+      "Technical support",
+      "Billing enquiry",
+      "Other"
+    ],
+    // iconText: "Help"
   })
 })
 </script>
