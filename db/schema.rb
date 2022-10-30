@@ -244,12 +244,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_141701) do
     t.index ["message_thread_id"], name: "index_messages_on_message_thread_id"
   end
 
-  create_table "metadata", force: :cascade do |t|
+  create_table "site_options", force: :cascade do |t|
     t.string "key"
     t.text "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["key"], name: "index_metadata_on_key"
+    t.index ["key"], name: "index_site_options_on_key"
   end
 
   create_table "teams", force: :cascade do |t|

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :custom_email_addresses
     resources :beta_signups
     resources :changelogs
+    resources :site_options
 
     root to: "teams#index"
   end

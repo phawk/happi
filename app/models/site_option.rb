@@ -1,6 +1,4 @@
-class Metadata < ApplicationRecord
-  self.table_name = "metadata"
-
+class SiteOption < ApplicationRecord
   def self.get(key)
     find_by(key: key.to_s)&.value
   end
