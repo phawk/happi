@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_02_095558) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_133602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -273,6 +273,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_095558) do
     t.jsonb "json_attributes", default: {}, null: false
     t.string "slack_webhook_url"
     t.string "slack_channel_name"
+    t.string "access_level", default: "standard", null: false
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
     t.index ["publishable_key"], name: "index_teams_on_publishable_key", unique: true

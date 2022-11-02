@@ -1,6 +1,6 @@
 <div class="mb-12 lg:mb-16" id="<%= dom_id(message) %>">
   <div class="p-6 rounded-2xl overflow-x-auto <%= message.customer? ? "bg-white border-2 border-gray-20" : "bg-gray-50" %>">
-    <% if current_user.role?(:admin) %>
+    <% if message.message_thread.team.internal_access? %>
       <div class="flex items-center space-x-4 md:space-x-6 mb-6">
         <%= link_to raw_source_message_thread_message_path(@message_thread, message), target: :_blank, class: "text-sm text-gray-600 hover:underline inline-flex items-center" do %>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 mr-1.5">

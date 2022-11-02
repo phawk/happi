@@ -1,6 +1,7 @@
 class Team < ApplicationRecord
   include AttrJson::Record
 
+  ACCESS_LEVELS = %w[standard internal]
   SUBSCRIPTION_STATES = %w[pending incomplete incomplete_expired trialing active past_due canceled unpaid].freeze
   ACTIVE_SUBSCRIPTION_STATES = %w[trialing active past_due].freeze
 
@@ -27,6 +28,10 @@ class Team < ApplicationRecord
   validates :mail_hash, email_name: true, presence: true, uniqueness: true
   validates :plan, inclusion: { in: BillingPlan::PLANS }
   validates :subscription_status, presence: true, inclusion: { in: SUBSCRIPTION_STATES }
+
+  def internal_access?
+    access_level == "internal"
+  end
 
   def allowed_threads
     message_threads.where.not(customer_id: customers.blocked.select(:id))

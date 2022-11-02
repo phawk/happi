@@ -27,6 +27,9 @@ class TeamDashboard < Administrate::BaseDashboard
     subscription_status: Field::Select.with_options(
       collection: Team::SUBSCRIPTION_STATES
     ),
+    access_level: Field::Select.with_options(
+      collection: Team::ACCESS_LEVELS
+    ),
     stripe_customer_id: Field::String,
     stripe_subscription_id: Field::String,
     messages_sent: Field::Number,
@@ -64,6 +67,7 @@ class TeamDashboard < Administrate::BaseDashboard
     stripe_subscription_id
     users
     custom_email_addresses
+    access_level
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -82,6 +86,7 @@ class TeamDashboard < Administrate::BaseDashboard
     stripe_customer_id
     stripe_subscription_id
     users
+    access_level
   ].freeze
 
   # COLLECTION_FILTERS
