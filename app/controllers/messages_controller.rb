@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_thread, except: :view_message
+  before_action :set_message, only: %i[raw_source original_html]
   skip_before_action :ensure_team!, only: :view_message
 
   def new
@@ -31,6 +32,16 @@ class MessagesController < ApplicationController
     render layout: false
   end
 
+  def raw_source
+    filename = "message-#{@message.id}-source.txt"
+    headers["Content-Disposition"] = "attachment; filename=\"#{filename}\""
+    render layout: false, content_type: "text/plain"
+  end
+
+  def original_html
+    @html = ERB::Util.url_encode @message.original_html
+  end
+
   def view_message
     message = Message.find(params[:id])
     team = message.message_thread.team
@@ -57,5 +68,11 @@ class MessagesController < ApplicationController
 
   def set_thread
     @message_thread = current_team.message_threads.find(params[:message_thread_id])
+  end
+
+  def set_message
+    @message = Message.find(params[:id])
+    team = @message.message_thread.team
+    halt_not_found! if team.id != current_team.id
   end
 end

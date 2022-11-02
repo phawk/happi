@@ -56,6 +56,8 @@ Rails.application.routes.draw do
     post :merge_with_previous, on: :member
     resources :messages, only: %i[new create] do
       get :hovercard, on: :member
+      get :raw_source, on: :member
+      get :original_html, on: :member
     end
   end
   resources :teams, only: %i[index new create edit update] do

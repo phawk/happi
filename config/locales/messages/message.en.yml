@@ -1,0 +1,5 @@
+en:
+  messages:
+    message:
+      raw_source_button: Download raw source
+      original_html_button: View original HTML
