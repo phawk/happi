@@ -11,7 +11,10 @@ class ThreadsMailbox < ApplicationMailbox
       sender: customer,
       status: "received",
       content: email_content_with_attachments,
-      spam_score: spam_score
+      spam_score: spam_score,
+      raw: mail.raw_source,
+      original_html: original_html,
+      action_mailbox_id: action_mailbox_record&.id
     )
 
     return if customer.blocked?
@@ -20,6 +23,15 @@ class ThreadsMailbox < ApplicationMailbox
   end
 
   private
+
+  def action_mailbox_record
+    ActionMailbox::InboundEmail.find_by(message_id: mail.message_id)
+  end
+
+  def original_html
+    html_part = mail.all_parts.find(&:html?)
+    html_part.decoded if html_part
+  end
 
   def spam_score
     mail.header["X-Spam-Score"]&.value&.to_f

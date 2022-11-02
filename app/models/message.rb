@@ -34,4 +34,8 @@ class Message < ApplicationRecord
   def turbo_channel
     "thread_#{message_thread_id}_messages"
   end
+
+  def action_mailbox_record
+    ActionMailbox::InboundEmail.find(action_mailbox_id) if action_mailbox_id.present?
+  end
 end

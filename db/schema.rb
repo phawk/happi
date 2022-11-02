@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_141701) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_02_095558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -241,6 +241,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_141701) do
     t.string "from_address"
     t.decimal "spam_score", precision: 8, scale: 2
     t.string "channel", default: "email", null: false
+    t.text "original_html"
+    t.bigint "action_mailbox_id"
     t.index ["message_thread_id"], name: "index_messages_on_message_thread_id"
   end
 

@@ -15,6 +15,8 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
           expect(last_message.sender.email).to eq("jack@jackjohnson.net")
           expect(last_message.sender.name.full).to eq("Jack Johnson")
           expect(last_message.spam_score).to eq(-6.0)
+          expect(last_message.raw).not_to be_nil
+          expect(last_message.action_mailbox_id).not_to be_nil
         end
       end
 
@@ -70,6 +72,21 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
 
         expect(last_thread.messages.count).to eq(1)
         expect(last_thread.reply_to).to eq("support@acme.com")
+      end
+    end
+  end
+
+  context "when an HTML email is sent" do
+    it "stores the original_html" do
+      perform_enqueued_jobs do
+        expect do
+          receive_inbound_email_from_fixture("email_with_attachment")
+        end.to change(MessageThread, :count).by(1)
+
+        last_message = Message.last
+        expect(last_message.raw).not_to be_nil
+        expect(last_message.original_html).not_to be_nil
+        expect(last_message.action_mailbox_id).not_to be_nil
       end
     end
   end
