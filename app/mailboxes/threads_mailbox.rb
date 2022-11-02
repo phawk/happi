@@ -30,7 +30,7 @@ class ThreadsMailbox < ApplicationMailbox
 
   def original_html
     html_part = mail.all_parts.find(&:html?)
-    html_part.decoded if html_part
+    html_part&.decoded
   end
 
   def spam_score
