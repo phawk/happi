@@ -1,7 +1,11 @@
 <div class="mb-12 lg:mb-16" id="<%= dom_id(message) %>">
   <div class="p-6 rounded-2xl overflow-x-auto <%= message.customer? ? "bg-white border-2 border-gray-20" : "bg-gray-50" %>">
+    <div class="prose">
+      <%= message.content %>
+    </div>
+
     <% if message.message_thread.team.internal_access? %>
-      <div class="flex items-center space-x-4 md:space-x-6 mb-6">
+      <div class="flex justify-end items-center space-x-4 md:space-x-6 mt-6">
         <%= link_to raw_source_message_thread_message_path(@message_thread, message), target: :_blank, class: "text-sm text-gray-600 hover:underline inline-flex items-center" do %>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 mr-1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -22,9 +26,6 @@
         <% end %>
       </div>
     <% end %>
-    <div class="prose">
-      <%= message.content %>
-    </div>
   </div>
   <div class="mt-2 mx-3 flex items-center justify-between relative">
     <div class="flex items-center">
