@@ -31,6 +31,19 @@ RSpec.describe Customer, type: :model do
 
       expect(cus.name.familiar).to eq("Pedro G.")
       expect(cus.email).to eq("pedro@hey.com")
+      expect(cus).not_to be_blocked
+    end
+
+    it "blocks customers whose domain is blocked" do
+      team.blocked_domains.create!(domain: "hey.com")
+      jwt = JWT.encode({ first_name: "Pedro", last_name: "Gonzalles", email: "pedro@hey.com" }, team.shared_secret,
+        "HS512")
+
+      cus = Customer.upsert_by_jwt(jwt, team)
+
+      expect(cus.name.familiar).to eq("Pedro G.")
+      expect(cus.email).to eq("pedro@hey.com")
+      expect(cus).to be_blocked
     end
 
     it "updates customer when they already exist" do

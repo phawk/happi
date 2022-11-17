@@ -101,6 +101,7 @@ class ThreadsMailbox < ApplicationMailbox
 
     unless customer.persisted?
       customer.name = from_name
+      customer.blocked = @team.blocked_domains.blocked?(from_email)
       customer.save!
     end
 

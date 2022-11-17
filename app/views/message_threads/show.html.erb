@@ -71,6 +71,14 @@
         <% end %>
       <% end %>
 
+      <%= button_to blocked_domains_path, params: { email: @message_thread.customer.email }, method: :post, data: { confirm: "Are you sure?" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </svg>
+
+        <%= t(".block_domain_button") %>
+      <% end %>
+
       <%= link_to message_thread_path(@message_thread), method: :delete, data: { confirm: "Are you sure? It will be permanently deleted after 7 days" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center" do %>
         <svg class="h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

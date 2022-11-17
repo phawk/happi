@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_02_133602) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_17_215855) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -168,6 +168,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_133602) do
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
+  create_table "blocked_domains", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.string "domain", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_blocked_domains_on_team_id"
+  end
+
   create_table "canned_responses", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.string "label", null: false
@@ -320,6 +328,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_133602) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blocked_domains", "teams"
   add_foreign_key "canned_responses", "teams"
   add_foreign_key "custom_email_addresses", "teams"
   add_foreign_key "custom_email_addresses", "users"
