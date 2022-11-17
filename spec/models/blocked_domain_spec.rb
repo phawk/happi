@@ -22,6 +22,11 @@ RSpec.describe BlockedDomain, type: :model do
     it "returns false if the emails domain is NOT blocked" do
       expect(BlockedDomain.blocked?("tim@apple.com")).to be(false)
     end
+
+    it "returns false if invalid value is passed" do
+      expect(BlockedDomain.blocked?("")).to be(false)
+      expect(BlockedDomain.blocked?(nil)).to be(false)
+    end
   end
 
   describe "#block_matching_customers!" do
