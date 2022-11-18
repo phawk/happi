@@ -71,7 +71,7 @@ jobs:
         run: bundle exec rails assets:precompile
       - name: Run tests
         run: bundle exec rspec
-      - name: Rubocop
-        run: bin/rubocop
+      # - name: Rubocop
+      #   run: bin/rubocop
       # - name: Bundler Audit Action
       #   uses: andrewmcodes/bundler-audit-action@v0.1.0
