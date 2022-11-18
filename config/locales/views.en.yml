@@ -21,6 +21,7 @@ en:
       block_button: "Block this sender"
       unblock_button: "Unblock this sender"
       block_domain_button: "Block this domain"
+      domain_blocked: "Domain blocked"
     update:
       success: Changes saved
       failed: Failed to update
