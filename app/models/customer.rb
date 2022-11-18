@@ -35,7 +35,7 @@ class Customer < ApplicationRecord
       existing.update(payload.slice(*PUBLIC_FIELDS))
       existing
     else
-      team.customers.create!(payload.slice(*PUBLIC_FIELDS))
+      team.customers.create!(payload.slice(*PUBLIC_FIELDS).merge(blocked: team.blocked_domains.blocked?(payload["email"])))
     end
   rescue JWT::DecodeError
     nil

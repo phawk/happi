@@ -1,0 +1,30 @@
+<% meta title: t("settings.heading", team_name: current_team.name) %>
+
+<%= tag.h2 t("settings.heading", team_name: current_team.name), class: "mb-6 text-left text-xl lg:text-2xl font-bold text-gray-900" %>
+
+<div class="flex flex-col md:flex-row md:items-start md:justify-between">
+  <%= render partial: "nav", locals: { page: :blocked_domains } %>
+
+  <div class="w-full max-w-md mx-auto">
+    <div class="bg-gray-50 rounded-2xl p-6 mb-6">
+      <%= tag.h3 "Blocked domains", class: "text-center text-lg font-bold text-gray-800 mb-3" %>
+
+      <% @blocked_domains.each do |blocked_domain| %>
+        <div class="mb-3" data-id="<%= blocked_domain.id %>">
+          <div class="mb-1 flex items-center">
+            <span class="flex-grow text-sm">
+              <strong><%= blocked_domain.domain %></strong>
+            </span>
+            <%= link_to blocked_domain_path(blocked_domain), method: :delete, data: { confirm: "Are you sure?" }, class: "flex items-center flex-shrink-0 text-sm text-gray-500 hover:text-gray-800" do %>
+              Unblock
+              <svg class="ml-1 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

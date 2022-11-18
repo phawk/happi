@@ -19,7 +19,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = current_team.customers.new(customer_params)
+    @customer = current_team.customers.new(customer_params.merge(blocked: current_team.blocked_domains.blocked?(customer_params[:email])))
 
     if @customer.save
       redirect_to @customer, notice: "Customer saved."

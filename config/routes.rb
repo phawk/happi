@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     get :success, to: "subscriptions#success"
     post :manage, to: "subscriptions#manage"
   end
+  resources :blocked_domains, only: %i[create destroy]
   resources :canned_responses, only: %i[new create edit update destroy]
   resources :custom_email_addresses, only: %i[create destroy]
   resources :customers do
@@ -71,6 +72,7 @@ Rails.application.routes.draw do
     get :canned_responses
     get :widget
     get :billing
+    get :blocked_domains
   end
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"

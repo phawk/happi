@@ -59,6 +59,23 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
         end
       end
     end
+
+    context "when the customer's domain is blocked" do
+      before { teams(:acme).blocked_domains.create!(domain: "hotmail.com") }
+
+      it "creates a message but doesn't send notification and blocks the customer" do
+        perform_enqueued_jobs do
+          expect do
+            send_mail(to: "acme@prioritysupport.net", from: "frank@hotmail.com")
+          end.to change(Message, :count).by(1)
+
+          customer = Customer.last
+          expect(customer.email).to eq("frank@hotmail.com")
+          expect(customer).to be_blocked
+          expect(delivered_emails.size).to eq(0)
+        end
+      end
+    end
   end
 
   context "when a custom email address is used" do

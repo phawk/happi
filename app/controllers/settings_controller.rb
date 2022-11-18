@@ -23,4 +23,8 @@ class SettingsController < ApplicationController
     @messages_used = current_team.messages_used_this_month
     @messages_limit = current_team.messages_limit
   end
+
+  def blocked_domains
+    @blocked_domains = current_team.blocked_domains.order(:domain)
+  end
 end
