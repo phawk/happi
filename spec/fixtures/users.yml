@@ -20,3 +20,9 @@ janine:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>
   team: core_fx
   confirmed_at: 2021-03-20
+user_without_team:
+  email: no_team@example.org
+  first_name: No
+  last_name: Team
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'Password1!') %>
+  confirmed_at: 2021-03-20
