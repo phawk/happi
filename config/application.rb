@@ -62,5 +62,9 @@ module Happi
 
     # GZip all responses
     config.middleware.use Rack::Deflater
+
+    # View Component Previews
+    config.view_component.default_preview_layout = "component_preview"
+    config.view_component.preview_paths << "#{Rails.root}/app/components/previews"
   end
 end
