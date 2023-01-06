@@ -122,6 +122,7 @@ GEM
     chartkick (4.0.5)
     childprocess (3.0.0)
     chroma (0.2.0)
+    class_variants (0.0.6)
     concurrent-ruby (1.1.10)
     connection_pool (2.2.5)
     countries (3.1.0)
@@ -466,6 +467,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   capybara
   chroma
+  class_variants (~> 0.0.6)
   country_select
   cssbundling-rails
   devise

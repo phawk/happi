@@ -46,7 +46,7 @@
           <% if @plan.current_price.zero? %>
             <%= link_to "Upgrade plan", billing_subscriptions_path, class: "button -primary -lg w-full" %>
           <% else %>
-            <%= button_to "Manage subscription", billing_manage_path, method: :post, data: { turbo: false }, class: "button -primary -lg w-full" %>
+            <%= button_to "Manage subscription", billing_manage_path, method: :post, data: { turbo: false }, class: button_classes.render(style: :primary, full: true) %>
           <% end %>
         </div>
       <% else %>
