@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   authenticated :user, ->(u) { u.role?(:admin) } do
     mount Sidekiq::Web => "/sidekiq"
     mount Blazer::Engine, at: "blazer"
+    mount Lookbook::Engine, at: "/lookbook"
   end
 
   # Stripe webhooks
