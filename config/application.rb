@@ -65,6 +65,6 @@ module Happi
 
     # View Component Previews
     config.view_component.default_preview_layout = "component_preview"
-    config.view_component.preview_paths << "#{Rails.root}/app/components/previews"
+    config.view_component.preview_paths << "#{Rails.root}/app/component_previews"
   end
 end
