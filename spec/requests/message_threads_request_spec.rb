@@ -70,4 +70,48 @@ RSpec.describe "MessageThreads", type: :request do
       expect(message_thread.reply_to).to eq("support@acme.com")
     end
   end
+
+  describe "DELETE /threads/auto_archive" do
+    let(:thread_1) { message_threads(:acme_alex_password_reset) }
+    let(:thread_2) { message_threads(:acme_alex_stripe) }
+
+    it "archives waiting threads older than 7 days" do
+      thread_1.update!(status: "waiting", created_at: 6.days.ago)
+      thread_1.messages.order(:created_at).update_all(created_at: 6.days.ago)
+      thread_2.update!(status: "waiting", created_at: 8.days.ago)
+      thread_2.messages.order(:created_at).update_all(created_at: 8.days.ago)
+
+      delete auto_archive_message_threads_path
+
+      expect(response).to redirect_to(message_threads_path)
+      expect(thread_1.reload.status).to eq("waiting")
+      expect(thread_2.reload.status).to eq("archived")
+    end
+
+    it "archives open threads older than 45 days" do
+      thread_1.update!(status: "open", created_at: 46.days.ago)
+      thread_1.messages.order(:created_at).update_all(created_at: 46.days.ago)
+      thread_2.update!(status: "open", created_at: 44.days.ago)
+      thread_2.messages.order(:created_at).update_all(created_at: 44.days.ago)
+
+      delete auto_archive_message_threads_path
+
+      expect(response).to redirect_to(message_threads_path)
+      expect(thread_1.reload.status).to eq("archived")
+      expect(thread_2.reload.status).to eq("open")
+    end
+
+    it "archives closed threads older than 7 days" do
+      thread_1.update!(status: "closed", created_at: 6.days.ago)
+      thread_1.messages.order(:created_at).update_all(created_at: 6.days.ago)
+      thread_2.update!(status: "closed", created_at: 8.days.ago)
+      thread_2.messages.order(:created_at).update_all(created_at: 8.days.ago)
+
+      delete auto_archive_message_threads_path
+
+      expect(response).to redirect_to(message_threads_path)
+      expect(thread_1.reload.status).to eq("closed")
+      expect(thread_2.reload.status).to eq("archived")
+    end
+  end
 end

@@ -62,6 +62,32 @@ class MessageThreadsController < ApplicationController
     end
   end
 
+  def auto_archive
+    current_team.allowed_threads.with_open_status.find_each do |thread|
+      last_message = thread.messages.order(:created_at).last
+      next unless last_message
+
+      if thread.status == "open" && last_message.created_at < 45.days.ago
+        thread.archive!
+      end
+
+      if thread.status == "waiting" && last_message.created_at < 7.days.ago
+        thread.archive!
+      end
+    end
+
+    current_team.allowed_threads.without_open_status.find_each do |thread|
+      last_message = thread.messages.order(:created_at).last
+      next unless last_message
+
+      if last_message.created_at < 7.days.ago
+        thread.archive!
+      end
+    end
+
+    redirect_to message_threads_path, notice: "Auto archive complete"
+  end
+
   private
 
   def set_thread
