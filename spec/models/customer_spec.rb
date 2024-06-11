@@ -20,6 +20,13 @@ RSpec.describe Customer, type: :model do
 
       expect(customer.errors[:email]).to include("has already been taken")
     end
+
+    it "works with a single name" do
+      team.customers.create!(
+        email: "#{SecureRandom.hex(16)}@example.org",
+        name: "Unknown"
+      )
+    end
   end
 
   describe ".upsert_by_jwt" do

@@ -100,7 +100,7 @@ class ThreadsMailbox < ApplicationMailbox
     customer = Customer.where(team: team, email: from_email).first_or_initialize
 
     unless customer.persisted?
-      customer.name = from_name
+      customer.name = from_name.presence || HappiMail::FromParser::DEFAULT_FROM_NAME
       customer.blocked = @team.blocked_domains.blocked?(from_email)
       customer.save!
     end
