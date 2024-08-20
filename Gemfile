@@ -4,11 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.4"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "7.1.3.4"
+gem "rails", "7.2.0"
 # Use postgresql as the database for Active Record
 gem "pg"
 # Use Puma as the app server
-gem "puma", "~> 5.6"
+gem "puma"
 # CSS and JS bundling
 gem "cssbundling-rails"
 gem "jsbundling-rails"
