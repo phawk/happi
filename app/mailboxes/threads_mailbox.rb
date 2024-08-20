@@ -87,7 +87,8 @@ class ThreadsMailbox < ApplicationMailbox
       @message_thread = customer.message_threads.with_open_status.first
       @message_thread.update(status: "open")
     else
-      @message_thread = customer.message_threads.create!(team: team, subject: mail.subject, reply_to: @reply_to,
+      subject = mail.subject.presence || "[No Subject]"
+      @message_thread = customer.message_threads.create!(team: team, subject: subject, reply_to: @reply_to,
         status: "open")
     end
   end

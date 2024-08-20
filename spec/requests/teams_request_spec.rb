@@ -1,6 +1,6 @@
 require "rails_helper"
 
-FakeCheckoutResponse = Struct.new(:url)
+TeamsFakeCheckoutResponse = Struct.new(:url)
 
 RSpec.describe "Teams", type: :request do
   before { sign_in(users(:pete)) }
@@ -54,7 +54,7 @@ RSpec.describe "Teams", type: :request do
       it "sets pending status and redirects to checkout" do
         allow(BillingService).to receive(:create_checkout) \
           .with(any_args)
-          .and_return(FakeCheckoutResponse.new("https://checkout.fakestripe.com/123"))
+          .and_return(TeamsFakeCheckoutResponse.new("https://checkout.fakestripe.com/123"))
 
         post "/teams", params: {
           team: {

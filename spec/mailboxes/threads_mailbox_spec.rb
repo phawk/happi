@@ -108,6 +108,20 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
     end
   end
 
+  context "when an the email  has no subject" do
+    it "uses a default subject" do
+      perform_enqueued_jobs do
+        expect do
+          receive_inbound_email_from_fixture("email_without_subject")
+        end.to change(MessageThread, :count).by(1)
+
+        last_message = Message.last
+        expect(last_message.raw).not_to be_nil
+        expect(last_message.action_mailbox_id).not_to be_nil
+      end
+    end
+  end
+
   context "when team not found" do
     it "bounces and emails the sender" do
       perform_enqueued_jobs do
