@@ -68,4 +68,6 @@ Rails.application.configure do
   # URLs
   routes.default_url_options = { host: "happi.test" }
   config.action_controller.default_url_options = { host: "happi.test" }
+
+  config.active_job.queue_adapter = :test
 end

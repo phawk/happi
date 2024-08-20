@@ -194,7 +194,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jsbundling-rails (0.1.8)
       railties (>= 6.0.0)
-    json (2.5.1)
+    json (2.7.2)
     jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
@@ -281,11 +281,11 @@ GEM
     pg_search (2.3.5)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    postmark (1.21.3)
+    postmark (1.25.1)
       json
-    postmark-rails (0.20.0)
+    postmark-rails (0.22.1)
       actionmailer (>= 3.0.0)
-      postmark (~> 1.15)
+      postmark (>= 1.21.3, < 2.0)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
