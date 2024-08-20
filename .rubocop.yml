@@ -17,7 +17,7 @@ require:
 
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.0.2
+  TargetRubyVersion: 3.3.4
   Exclude:
   - 'db/schema.rb'
   - 'db/migrate/*.rb'
