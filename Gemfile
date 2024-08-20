@@ -59,7 +59,7 @@ gem "rubocop-rspec", require: false
 gem "rubocop-shopify", require: false
 
 group :development, :test do
-  gem "rspec-rails", "~> 4.0.2"
+  gem "rspec-rails"
   gem "dotenv-rails"
 end
 
@@ -85,3 +85,5 @@ end
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "matrix", "~> 0.4.2"
+
+gem "csv", "~> 3.3"
