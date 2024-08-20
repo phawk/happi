@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.xdescribe StripeWebhooks::SubscriptionDeleted do
+RSpec.describe StripeWebhooks::SubscriptionDeleted do
   let(:team) { teams(:acme) }
 
   before { StripeMock.start }

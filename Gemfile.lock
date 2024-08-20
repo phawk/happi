@@ -418,10 +418,10 @@ GEM
     stimulus-rails (0.6.0)
       rails (>= 6.0.0)
     stripe (5.38.0)
-    stripe-ruby-mock (3.0.1)
+    stripe-ruby-mock (4.0.0)
       dante (>= 0.2.0)
       multi_json (~> 1.0)
-      stripe (> 5, < 6)
+      stripe (> 5, < 12)
     stripe_event (2.3.1)
       activesupport (>= 3.1)
       stripe (>= 2.8, < 6)
@@ -506,7 +506,7 @@ DEPENDENCIES
   simplecov
   slack-notifier (~> 2.4)
   stripe (~> 5.38)
-  stripe-ruby-mock (~> 3.0.1)
+  stripe-ruby-mock (~> 4.0.0)
   stripe_event
   tzinfo-data
   view_component

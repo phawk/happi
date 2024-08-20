@@ -77,7 +77,7 @@ group :test do
   gem "shoulda-matchers", "~> 4.0", require: false
   gem "capybara"
   gem "selenium-webdriver"
-  gem "stripe-ruby-mock", "~> 3.0.1", require: "stripe_mock"
+  gem "stripe-ruby-mock", "~> 4.0.0", require: "stripe_mock"
   gem "simplecov", require: false
 end
 
