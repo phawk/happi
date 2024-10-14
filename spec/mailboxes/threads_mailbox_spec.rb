@@ -123,13 +123,11 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
   end
 
   context "when team not found" do
-    it "bounces and emails the sender" do
+    it "raises an error" do
       perform_enqueued_jobs do
-        send_mail(to: "bad@prioritysupport.net")
-
-        expect(delivered_emails.size).to eq(1)
-        expect(last_email.to.first).to eq("jack@jackjohnson.net")
-        expect(last_email.subject).to eq("Team doesn't exist")
+        expect do
+          send_mail(to: "bad@prioritysupport.net")
+        end.to raise_error(ThreadsMailbox::TeamNotFoundError)
       end
     end
   end

@@ -78,7 +78,7 @@ class ThreadsMailbox < ApplicationMailbox
       end
     end
 
-    bounce_with(TeamMailer.not_found(from_email)) if @team.nil?
+    raise(TeamNotFoundError.new("Team not found for email: #{from_email}")) if @team.nil?
   end
 
   def assign_thread
@@ -120,4 +120,6 @@ class ThreadsMailbox < ApplicationMailbox
   def parsed_from
     @_parsed_from ||= HappiMail::FromParser.new(mail)
   end
+
+  class TeamNotFoundError < StandardError; end
 end
