@@ -107,8 +107,8 @@ class MessageThreadsController < ApplicationController
   private
 
   def set_counters
-    @spam_threads_count = current_team.allowed_threads.spam(current_team).without_archived.count
-    @blocked_threads_count = current_team.blocked_threads.count
+    @spam_threads_count = current_team.allowed_threads.spam(current_team).with_open_status.count
+    @blocked_threads_count = current_team.blocked_threads.with_open_status.count
   end
 
   def set_thread
