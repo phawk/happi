@@ -38,6 +38,10 @@ class Team < ApplicationRecord
     message_threads.where.not(customer_id: customers.blocked.select(:id))
   end
 
+  def blocked_threads
+    message_threads.where(customer_id: customers.blocked.select(:id))
+  end
+
   def messages
     Message.where(message_thread_id: allowed_threads.select(:id))
   end

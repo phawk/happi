@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
     get :search, on: :collection
     get :spam, on: :collection
+    get :blocked, on: :collection
     post :merge_with_previous, on: :member
     delete :auto_archive, on: :collection
     resources :messages, only: %i[new create] do

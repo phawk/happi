@@ -2,12 +2,22 @@
 <% content_for(:container_padding, "nada") %>
 
 <% if controller.action_name == "spam" %>
-  <div class="flex justify-between items-center bg-yellow-50 border-b-2 border-yellow-100 text-yellow-900 py-4 px-5 sm:px-8 lg:px-10" role="alert">
+  <div class="flex justify-between items-center bg-yellow-50 border-b-2 border-yellow-100 text-yellow-900 py-4 px-5 sm:px-8 lg:px-10 rounded-t-3xl" role="alert">
     <div>
       <h2 class="uppercase tracking-wider font-semibold flex-auto">Spam Threads</h2>
       <p>This page shows threads identified as potential spam.</p>
     </div>
     <%= link_to "Back to all threads", message_threads_path, class: "font-medium block bg-yellow-200 hover:opacity-80 px-5 py-1.5 rounded-full" %>
+  </div>
+<% end %>
+
+<% if controller.action_name == "blocked" %>
+  <div class="flex justify-between items-center bg-pink-100 border-b-2 border-pink-200 text-pink-900 py-4 px-5 sm:px-8 lg:px-10 rounded-t-3xl" role="alert">
+    <div>
+      <h2 class="uppercase tracking-wider font-semibold flex-auto">Blocked threads</h2>
+      <p>This page shows threads blocked by your filters.</p>
+    </div>
+    <%= link_to "Back to all threads", message_threads_path, class: "font-medium block bg-pink-200 hover:opacity-80 px-5 py-1.5 rounded-full" %>
   </div>
 <% end %>
 

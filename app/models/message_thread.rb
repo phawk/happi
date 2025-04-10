@@ -15,6 +15,7 @@ class MessageThread < ApplicationRecord
 
   scope :with_open_status, -> { where(status: OPEN_STATUS) }
   scope :without_open_status, -> { where(status: CLOSED_STATUS) }
+  scope :with_closed_and_archived, -> { where.not(status: OPEN_STATUS) }
   scope :without_archived, -> { where.not(status: "archived") }
   scope :most_recent, -> { order(updated_at: :desc) }
   scope :ham, ->(team) { where("spam_score IS NULL OR spam_score <= ?", team.spam_threshold) }

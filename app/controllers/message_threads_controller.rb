@@ -1,8 +1,8 @@
 class MessageThreadsController < ApplicationController
   before_action :set_thread, only: %i[show update destroy merge_with_previous]
+  before_action :set_counters, only: %i[index spam blocked]
 
   def index
-    @spam_threads_count = current_team.message_threads.spam(current_team).count
     @open_message_threads = current_team.allowed_threads.ham(current_team).with_open_status.includes(:customer, :user,
       :messages).most_recent.to_a
     @previous_message_threads = current_team.allowed_threads.ham(current_team).without_open_status.includes(:customer, :user,
@@ -12,8 +12,15 @@ class MessageThreadsController < ApplicationController
   def spam
     @open_message_threads = current_team.allowed_threads.spam(current_team).with_open_status.includes(:customer, :user,
       :messages).most_recent.to_a
-    @previous_message_threads = current_team.allowed_threads.spam(current_team).without_open_status.includes(:customer, :user,
+    @previous_message_threads = current_team.allowed_threads.spam(current_team).with_closed_and_archived.includes(:customer, :user,
       :messages).most_recent.limit(50).to_a
+    render :index # Use the same view template as index
+  end
+
+  def blocked
+    @open_message_threads = current_team.blocked_threads.with_open_status.includes(:customer, :user,
+    :messages).most_recent.to_a
+    @previous_message_threads = current_team.blocked_threads.with_closed_and_archived.includes(:customer, :user, :messages).most_recent.limit(50).to_a
     render :index # Use the same view template as index
   end
 
@@ -98,6 +105,11 @@ class MessageThreadsController < ApplicationController
   end
 
   private
+
+  def set_counters
+    @spam_threads_count = current_team.allowed_threads.spam(current_team).without_archived.count
+    @blocked_threads_count = current_team.blocked_threads.count
+  end
 
   def set_thread
     @message_thread = current_team.message_threads.find(params[:id])

@@ -8,9 +8,17 @@
     <% unless controller.action_name == "spam" %>
       <%= link_to spam_message_threads_path, class: "flex items-center text-sm mt-3 sm:mt-0 sm:order-0 group", title: "View spam threads" do %>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 mr-1 shrink-0">
+          <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+        </svg>
+        <span class="group-hover:underline">Spam (<%= @spam_threads_count %>)</span>
+      <% end %>
+    <% end %>
+    <% unless controller.action_name == "blocked" %>
+      <%= link_to blocked_message_threads_path, class: "flex items-center text-sm mt-3 sm:mt-0 sm:order-0 group", title: "View spam threads" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 mr-1 shrink-0">
           <path fill-rule="evenodd" d="m5.965 4.904 9.131 9.131a6.5 6.5 0 0 0-9.131-9.131Zm8.07 10.192L4.904 5.965a6.5 6.5 0 0 0 9.131 9.131ZM4.343 4.343a8 8 0 1 1 11.314 11.314A8 8 0 0 1 4.343 4.343Z" clip-rule="evenodd" />
         </svg>
-        <span class="group-hover:underline">Spam threads (<%= @spam_threads_count %>)</span>
+        <span class="group-hover:underline">Blocked (<%= @blocked_threads_count %>)</span>
       <% end %>
     <% end %>
     <%= button_to auto_archive_message_threads_path, method: :delete, data: { confirm: "Are you sure?" }, class: "flex items-center text-sm mt-3 sm:mt-0 sm:order-0 group", title: "Archives open threads older than 45 days and waiting threads with no response in 7 days" do %>
