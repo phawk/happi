@@ -3,7 +3,7 @@
 
 <div>
   <div class="flex justify-between items-center p-5 sm:p-8 lg:p-10">
-    <h1 class="uppercase tracking-wider font-semibold text-gray-500 flex-auto">Knowledge Base</h1>
+    <h1 class="uppercase tracking-wider font-semibold text-gray-500 flex-auto"><%= current_team.name %> Knowledge Base</h1>
 
     <div class="ml-auto">
       <%= form_with(model: @new_file_upload, url: knowledge_base_index_path, class: "flex items-center space-x-2") do |form| %>
