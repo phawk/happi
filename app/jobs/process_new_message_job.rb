@@ -10,7 +10,7 @@ class ProcessNewMessageJob < ApplicationJob
 
     # Update message with spam score
     message.update(spam_score: spam_score)
-
+    message.message_thread.update(spam_score: spam_score) if message.message_thread.spam_score.nil?
     # Only send notifications if the message is below the team's spam threshold
     if spam_score < team.spam_threshold
       NotificationService.new_message(team, message)
