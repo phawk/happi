@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_10_160236) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_10_164258) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -243,6 +243,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_160236) do
     t.datetime "processed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "vectorized_at"
     t.index ["team_id"], name: "index_knowledge_base_file_uploads_on_team_id"
     t.index ["user_id"], name: "index_knowledge_base_file_uploads_on_user_id"
   end

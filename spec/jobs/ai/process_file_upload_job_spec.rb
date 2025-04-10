@@ -1,4 +1,5 @@
 require "rails_helper"
+require "vcr_helper"
 
 RSpec.describe Ai::ProcessFileUploadJob, type: :job do
   let(:user) { users(:pete) }
@@ -11,7 +12,7 @@ RSpec.describe Ai::ProcessFileUploadJob, type: :job do
   end
 
   describe "#perform" do
-    it "processes the file upload" do
+    it "processes the file upload", :vcr do
       subject.perform(upload)
       expect(upload.reload.summary).to include("Please accept this letter as my authority to provide Pete Hawkins (at FV) with any information")
     end

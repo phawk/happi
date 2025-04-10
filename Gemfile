@@ -79,6 +79,8 @@ group :test do
   gem "selenium-webdriver"
   gem "stripe-ruby-mock", "~> 4.0.0", require: "stripe_mock"
   gem "simplecov", require: false
+  gem "vcr", require: false
+  gem "webmock"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
