@@ -9,6 +9,7 @@ class SpamDetectAgent < ApplicationAgent
       #{message.content.to_plain_text}
 
       Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
+      Remove things like automated replies, marketing emails, survey requests, etc.
 
       #{team.spam_prompt}
 
