@@ -27,7 +27,7 @@ module Ai
         end
       end
 
-      chunks
+      add_overlap(chunks)
     end
 
     def split_paragraph(paragraph)
@@ -45,7 +45,25 @@ module Ai
       end
 
       chunks << current_chunk.strip unless current_chunk.empty?
+
       chunks
+    end
+
+    # Add overlap to each chunk by concatenating previous and following chunks
+    # without modifying the original chunks array
+
+    def add_overlap(chunks)
+      overlapped_chunks = []
+
+      chunks.each_with_index do |chunk, index|
+        previous_overlap = chunks[0...index].join(' ')[-overlap_size..-1] || ""
+        following_overlap = chunks[(index + 1)..-1].join(' ')[0...overlap_size] || ""
+
+        overlapped_chunk = "#{previous_overlap} #{chunk} #{following_overlap}".strip
+        overlapped_chunks << overlapped_chunk
+      end
+
+      overlapped_chunks
     end
   end
 end
