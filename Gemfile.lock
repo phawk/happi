@@ -106,6 +106,7 @@ GEM
       aws-sigv4 (~> 1.4)
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
+    baran (0.1.12)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.8)
@@ -204,6 +205,8 @@ GEM
     jsbundling-rails (0.1.8)
       railties (>= 6.0.0)
     json (2.7.2)
+    json-schema (4.3.1)
+      addressable (>= 2.8)
     jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
@@ -217,6 +220,13 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    langchainrb (0.19.4)
+      baran (~> 0.1.9)
+      csv
+      json-schema (~> 4)
+      matrix
+      pragmatic_segmenter (~> 0.3.0)
+      zeitwerk (~> 2.5)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -298,6 +308,7 @@ GEM
     postmark-rails (0.22.1)
       actionmailer (>= 3.0.0)
       postmark (>= 1.21.3, < 2.0)
+    pragmatic_segmenter (0.3.24)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -521,6 +532,7 @@ DEPENDENCIES
   image_processing (~> 1.12)
   jsbundling-rails
   jwt
+  langchainrb
   letter_opener_web
   lookbook
   matrix (~> 0.4.2)

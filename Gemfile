@@ -89,3 +89,5 @@ gem "matrix", "~> 0.4.2"
 gem "csv", "~> 3.3"
 
 gem "ruby-openai"
+
+gem "langchainrb"

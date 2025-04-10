@@ -1,27 +1,33 @@
 class SpamDetectAgent < ApplicationAgent
-  generate_with :openai, model: "gpt-4o-mini", instructions: "You are a spam detection agent."
-
-  def detect(message:, team:)
+  def initialize(message:, team:)
+    super(instructions: "You are a spam detection agent.")
     @message = message
     @team = team
+  end
 
-    # Call the AI provider to get the spam score using the associated view
-    # response = generate(prompt: { message: @message, team: @team })
-    prompt do |format|
-      format.text { render plain: "Something" }
-    end
+  def perform!
+    prompt = <<~PROMPT
+      Analyze the following email content:
+      #{@message.content.body.to_plain_text}
 
-    binding.irb
+      Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
 
+      Return ONLY a numerical score between 0 and 10, where 0 means it is definitely a genuine support request and 10 means it is definitely spam/unsolicited.
+    PROMPT
 
+    messages = [
+      { role: "user", content: prompt }
+    ]
 
-    # score = parse_score_from_response(response&.content)
+    response = generate!(messages)
 
-    # # Potentially handle errors from the AI call here (e.g., log if score is nil)
-    # Rails.logger.error("SpamDetectAgent failed to get score for message #{message.id}") if score.nil?
+    score = parse_score_from_response(response&.content)
 
-    # # Return score or 0.0 if parsing failed
-    # score || 0.0
+    # Potentially handle errors from the AI call here (e.g., log if score is nil)
+    Rails.logger.error("SpamDetectAgent failed to get score for message #{message.id}") if score.nil?
+
+    # Return score or 0.0 if parsing failed
+    score || 0.0
   # rescue StandardError => e
   #   # Log errors during generation
   #   Rails.logger.error("SpamDetectAgent error for message #{message.id}: #{e.message}")
