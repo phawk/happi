@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_10_101920) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_10_115319) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -221,6 +221,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_101920) do
     t.index ["team_id"], name: "index_customers_on_team_id"
   end
 
+  create_table "knowledge_base_file_uploads", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.text "summary"
+    t.datetime "processed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_knowledge_base_file_uploads_on_team_id"
+    t.index ["user_id"], name: "index_knowledge_base_file_uploads_on_user_id"
+  end
+
   create_table "message_threads", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "team_id", null: false
@@ -336,6 +347,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_101920) do
   add_foreign_key "custom_email_addresses", "teams"
   add_foreign_key "custom_email_addresses", "users"
   add_foreign_key "customers", "teams"
+  add_foreign_key "knowledge_base_file_uploads", "teams"
+  add_foreign_key "knowledge_base_file_uploads", "users"
   add_foreign_key "message_threads", "customers"
   add_foreign_key "message_threads", "teams"
   add_foreign_key "message_threads", "users"

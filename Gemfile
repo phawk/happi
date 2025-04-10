@@ -96,3 +96,5 @@ gem "langchainrb"
 gem "dry-initializer", "~> 3.1"
 gem "dry-monads"
 gem "dry-operation"
+
+gem "active_storage_validations", "~> 1.1"
