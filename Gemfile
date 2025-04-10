@@ -90,6 +90,6 @@ gem "csv", "~> 3.3"
 
 gem "ruby-openai"
 
-gem "activeagent"
+gem "activeagent", require: "active_agent"
 
 gem "jbuilder"
