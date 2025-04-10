@@ -24,7 +24,7 @@ class ReplyWriterAgent < ApplicationAgent
     prompt << "<message_thread>"
     thread.messages.order(created_at: :asc).each do |message|
       prompt << "  <message>"
-      prompt << "    <role>#{message.role}</role>"
+      prompt << "    <role>#{message.sender_type}</role>"
       prompt << "    <content>#{message.content.to_plain_text}</content>"
       prompt << "  </message>"
     end
