@@ -53,12 +53,14 @@ Rails.application.routes.draw do
     post "block", on: :member
     post "unblock", on: :member
   end
+  resources :knowledge_base, only: [:index, :create, :show, :destroy], path: "knowledge-base"
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
     get :search, on: :collection
     get :spam, on: :collection
     get :blocked, on: :collection
     post :merge_with_previous, on: :member
     delete :auto_archive, on: :collection
+    resource :generate_reply, only: :create, controller: "ai/generate_reply", as: :ai_generate_reply
     resources :messages, only: %i[new create] do
       get :hovercard, on: :member
       get :raw_source, on: :member
@@ -87,8 +89,6 @@ Rails.application.routes.draw do
 
   get "/dashboard", to: "dashboard#show"
   get "/auth/check", to: "auth#check"
-
-  resources :knowledge_base, only: [:index, :create, :show, :destroy], path: 'knowledge-base'
 
   root to: "dashboard#show"
 end

@@ -23,7 +23,10 @@
         <%= render @messages %>
       </div>
 
-      <%= render "messages/form", model: [@message_thread, Message.new] %>
+      <%= render "messages/form", model: [@message_thread, Message.new], thread: @message_thread, canned_responses: @canned_responses %>
+      <%= link_to message_thread_ai_generate_reply_path(@message_thread), data: { turbo_method: :post }, class: "text-sm text-gray-700 hover:text-gray-900 sm:mr-3" do %>
+        ⚡️ <span class="underline">Draft using AI</span>
+      <% end %>
     </div>
     <div class="mt-6 md:mt-0 bg-gray-50 rounded-2xl p-5 lg:p-8">
       <%= form_with(model: @message_thread, class: "styled-form", data: { controller: "auto-submit" }) do |f| %>

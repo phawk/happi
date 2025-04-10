@@ -8,6 +8,20 @@ class ReplyWriterAgent < ApplicationAgent
     You have access to a knowledge base of information about our business, products, and services.
 
     You will use the knowledge base to help you write a reply to the customer's last email.
+
+    Respond with some simple HTML markup to format your reply. Use the following tags:
+
+    <p>
+      Hi [Customer Name],
+    </p>
+    <p>
+      This is your reply to the customer's last email.
+    </p>
+    <p>
+      Thanks,
+      [User's First Name] - [User's company name]
+    </p>
+
   INSTRUCTIONS
 
   option :thread
@@ -16,7 +30,7 @@ class ReplyWriterAgent < ApplicationAgent
   def perform!
     prompt = []
     prompt << "<replying_user>"
-    prompt << "#{current_user.name} <#{current_user.email}>"
+    prompt << "#{current_user.name} <#{current_user.email}> - Company: #{team.name}"
     prompt << "</replying_user>"
     prompt << "<customer>"
     prompt << "#{thread.customer.name} <#{thread.customer.email}>"
