@@ -19,7 +19,7 @@ class ThreadsMailbox < ApplicationMailbox
 
     return if customer.blocked?
 
-    NotificationService.new_message(@team, message)
+    ProcessNewMessageJob.perform_later(message)
   end
 
   private
