@@ -8,13 +8,14 @@ class ApplicationAgent
   extend Dry::Initializer
   include Dry::Monads[:result]
 
+  option :team
   option :model, default: -> { DEFAULT_MODEL }
 
   def generate!(instructions:, messages:)
     assistant = Langchain::Assistant.new(
       llm: llm,
       instructions: instructions,
-      # tools: tools.map { |tool| custom_tools[tool.to_sym] }.compact,
+      tools: custom_tools.values,
       # parallel_tool_calls: parallel_tool_calls,
       # add_message_callback: -> (message) {
       #   # Rails.logger.info("agent:#{name} message callback: #{message.role} - #{message.content}")
@@ -62,5 +63,11 @@ class ApplicationAgent
       llm_options: { request_timeout: 240 },
       default_options: { temperature: DEFAULT_TEMPERATURE, chat_model: model }
     )
+  end
+
+  def custom_tools
+    {
+      knowledge_base_tool: Ai::Tools::KnowledgeBaseTool.new(agent: self, team: team)
+    }
   end
 end

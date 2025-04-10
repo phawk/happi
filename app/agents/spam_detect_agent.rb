@@ -2,7 +2,6 @@ class SpamDetectAgent < ApplicationAgent
   INSTRUCTIONS = "You are a spam detection agent."
 
   option :message
-  option :team
 
   def perform!
     prompt = <<~PROMPT
