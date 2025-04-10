@@ -1,28 +1,30 @@
+require "dry-initializer"
+require "dry/monads"
+
 class ApplicationAgent
   DEFAULT_TEMPERATURE = 0.7
+  DEFAULT_MODEL = "gpt-4o-mini"
 
-  attr_reader :model, :instructions
+  extend Dry::Initializer
+  include Dry::Monads[:result]
 
-  def initialize(instructions:, model: "gpt-4o-mini")
-    @model = model
-    @instructions = instructions
-  end
+  option :model, default: -> { DEFAULT_MODEL }
 
-  def generate!(messages)
+  def generate!(instructions:, messages:)
     assistant = Langchain::Assistant.new(
       llm: llm,
       instructions: instructions,
-      tools: tools.map { |tool| custom_tools[tool.to_sym] }.compact,
-      parallel_tool_calls: parallel_tool_calls,
-      add_message_callback: -> (message) {
-        # Rails.logger.info("agent:#{name} message callback: #{message.role} - #{message.content}")
-        task.upsert_message(
-          role: message.role,
-          content: message.content,
-          tool_calls: message.tool_calls,
-          tool_call_id: message.tool_call_id
-        )
-      }
+      # tools: tools.map { |tool| custom_tools[tool.to_sym] }.compact,
+      # parallel_tool_calls: parallel_tool_calls,
+      # add_message_callback: -> (message) {
+      #   # Rails.logger.info("agent:#{name} message callback: #{message.role} - #{message.content}")
+      #   task.upsert_message(
+      #     role: message.role,
+      #     content: message.content,
+      #     tool_calls: message.tool_calls,
+      #     tool_call_id: message.tool_call_id
+      #   )
+      # }
     )
     # do |response_chunk|
     #   # ...handle the response stream
@@ -38,7 +40,7 @@ class ApplicationAgent
     #   # print(response_chunk.inspect)
     # end
 
-    existing_messages.each do |message|
+    messages.each do |message|
       assistant.add_message(
         role: message.role,
         content: message.content,
@@ -49,17 +51,9 @@ class ApplicationAgent
 
     assistant.run(auto_tool_execution: true)
 
-    task.status_completed!
-
     assistant.messages.last
-  rescue Faraday::Error => e
-    task.status = "failed"
-    task.failed_attempts << {
-      error: e.message,
-      response: e.response && e.response[:body],
-      backtrace: e.backtrace
-    }
-    task.save!
+  # rescue Faraday::Error => e
+    # TODO: Handle errors
   end
 
   def llm

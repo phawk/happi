@@ -164,6 +164,18 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     drb (2.2.1)
+    dry-core (1.1.0)
+      concurrent-ruby (~> 1.0)
+      logger
+      zeitwerk (~> 2.6)
+    dry-initializer (3.2.0)
+    dry-monads (1.8.3)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.1)
+      zeitwerk (~> 2.6)
+    dry-operation (1.0.0)
+      dry-monads (~> 1.6)
+      zeitwerk (~> 2.6)
     email_reply_parser (0.5.10)
     errbase (0.2.2)
     erubi (1.13.0)
@@ -526,6 +538,9 @@ DEPENDENCIES
   devise
   devise_masquerade
   dotenv-rails
+  dry-initializer (~> 3.1)
+  dry-monads
+  dry-operation
   email_reply_parser
   exception_notification
   hotwire-rails

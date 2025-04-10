@@ -5,8 +5,8 @@ class ProcessNewMessageJob < ApplicationJob
     team = message.message_thread.team
 
     # Run spam detection
-    agent = SpamDetectAgent.new
-    spam_score = agent.detect(message: message, team: team)
+    agent = SpamDetectAgent.new(message: message, team: team)
+    spam_score = agent.perform!
 
     # Update message with spam score
     message.update(spam_score: spam_score)

@@ -91,3 +91,8 @@ gem "csv", "~> 3.3"
 gem "ruby-openai"
 
 gem "langchainrb"
+
+# Dry.rb
+gem "dry-initializer", "~> 3.1"
+gem "dry-monads"
+gem "dry-operation"

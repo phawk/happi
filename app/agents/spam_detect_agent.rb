@@ -1,25 +1,27 @@
 class SpamDetectAgent < ApplicationAgent
-  def initialize(message:, team:)
-    super(instructions: "You are a spam detection agent.")
-    @message = message
-    @team = team
-  end
+  INSTRUCTIONS = "You are a spam detection agent."
+
+  option :message
+  option :team
 
   def perform!
     prompt = <<~PROMPT
       Analyze the following email content:
-      #{@message.content.body.to_plain_text}
+      #{message.content.body.to_plain_text}
 
       Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
 
       Return ONLY a numerical score between 0 and 10, where 0 means it is definitely a genuine support request and 10 means it is definitely spam/unsolicited.
     PROMPT
 
-    messages = [
-      { role: "user", content: prompt }
-    ]
+    prompt_message = Ai::Agent::Message.new(
+      role: "user",
+      content: prompt
+    )
 
-    response = generate!(messages)
+    response = generate!(instructions: INSTRUCTIONS, messages: [
+      prompt_message
+    ])
 
     score = parse_score_from_response(response&.content)
 
