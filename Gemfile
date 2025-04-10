@@ -89,7 +89,3 @@ gem "matrix", "~> 0.4.2"
 gem "csv", "~> 3.3"
 
 gem "ruby-openai"
-
-gem "activeagent", github: "activeagents/activeagent", require: "active_agent"
-
-gem "jbuilder"
