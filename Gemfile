@@ -38,7 +38,7 @@ gem "chroma"
 gem "aws-sdk-s3", require: false
 gem "postmark-rails"
 gem "roadie-rails"
-gem "sidekiq"
+gem "sidekiq", "~> 7.0"
 gem "email_reply_parser"
 gem "metamagic"
 gem "country_select"
@@ -87,3 +87,5 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "matrix", "~> 0.4.2"
 
 gem "csv", "~> 3.3"
+
+gem "activeagent"
