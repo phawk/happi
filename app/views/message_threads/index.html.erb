@@ -1,6 +1,16 @@
 <% meta title: t(".page_title") %>
 <% content_for(:container_padding, "nada") %>
 
+<% if controller.action_name == "spam" %>
+  <div class="flex justify-between items-center bg-yellow-50 border-b-2 border-yellow-100 text-yellow-900 p-4" role="alert">
+    <div>
+      <p class="font-bold">Viewing Spam Threads</p>
+      <p>This page shows threads identified as potential spam.</p>
+    </div>
+    <%= link_to "Back to all threads", message_threads_path, class: "font-medium underline" %>
+  </div>
+<% end %>
+
 <div class="p-5 sm:p-8 lg:p-10">
   <%= render partial: "message_threads/top_nav", locals: { heading: t(".new_heading") } %>
 

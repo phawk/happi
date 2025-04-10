@@ -2,10 +2,19 @@ class MessageThreadsController < ApplicationController
   before_action :set_thread, only: %i[show update destroy merge_with_previous]
 
   def index
+    @spam_threads_count = current_team.message_threads.spam(current_team).count
     @open_message_threads = current_team.allowed_threads.ham(current_team).with_open_status.includes(:customer, :user,
       :messages).most_recent.to_a
     @previous_message_threads = current_team.allowed_threads.ham(current_team).without_open_status.includes(:customer, :user,
       :messages).most_recent.limit(50).to_a
+  end
+
+  def spam
+    @open_message_threads = current_team.allowed_threads.spam(current_team).with_open_status.includes(:customer, :user,
+      :messages).most_recent.to_a
+    @previous_message_threads = current_team.allowed_threads.spam(current_team).without_open_status.includes(:customer, :user,
+      :messages).most_recent.limit(50).to_a
+    render :index # Use the same view template as index
   end
 
   def search
