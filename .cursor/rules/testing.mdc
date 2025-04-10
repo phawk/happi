@@ -1,0 +1,13 @@
+---
+description: How to write and manage tests
+globs: spec/**/*._spec.rb
+alwaysApply: false
+---
+Testing
+- Write comprehensive tests using RSpec.
+- Prefer request specs rather than system tests. 
+- Follow TDD/BDD practices.
+- Use Rails fixtures or create Active Record objects for test data generation.
+- VCR is available when testing requests that use the network. 
+- Use `let` to define test data
+- Keep tests short and concise
