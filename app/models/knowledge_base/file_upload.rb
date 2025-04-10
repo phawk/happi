@@ -9,4 +9,26 @@ class KnowledgeBase::FileUpload < ApplicationRecord
   validates :file, presence: true
 
   scope :with_summary, -> { where.not(summary: nil) }
+
+  def status
+    if processed?
+      "processed"
+    elsif vectorizing?
+      "vectorizing"
+    else
+      "processing"
+    end
+  end
+
+  def processed?
+    processed_at? && vectorized_at?
+  end
+
+  def vectorizing?
+    processed_at? && !vectorized_at?
+  end
+
+  def processing?
+    !processed? && !vectorizing?
+  end
 end
