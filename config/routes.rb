@@ -88,7 +88,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#show"
   get "/auth/check", to: "auth#check"
 
-  resources :knowledge_base, only: [:index, :create], path: 'knowledge-base'
+  resources :knowledge_base, only: [:index, :create, :show, :destroy], path: 'knowledge-base'
 
   root to: "dashboard#show"
 end

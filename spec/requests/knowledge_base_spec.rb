@@ -86,4 +86,49 @@ RSpec.describe "KnowledgeBases", type: :request do
       end
     end
   end
+
+  describe "GET /knowledge-base/:id" do
+    let(:file_upload) do
+      team.file_uploads.create!(
+        user: user,
+        file: fixture_file_upload("spec/fixtures/files/test.pdf", "application/pdf")
+      )
+    end
+
+    it "returns http success and renders the show template" do
+      get knowledge_base_path(file_upload)
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include("test.pdf")
+    end
+
+    context "when file upload does not belong to the current team" do
+      let(:other_team) { teams(:nine) }
+      let(:other_file_upload) do
+        other_team.file_uploads.create!(
+          user: user,
+          file: fixture_file_upload("spec/fixtures/files/test.pdf", "application/pdf")
+        )
+      end
+
+      it "redirects to the index page with an alert" do
+        get knowledge_base_path(other_file_upload)
+        expect(response).to redirect_to(knowledge_base_index_path)
+      end
+    end
+  end
+
+  describe "DELETE /knowledge-base/:id" do
+    it "destroys the requested file upload" do
+      file_upload = team.file_uploads.create!(
+        user: user,
+        file: fixture_file_upload("spec/fixtures/files/test.pdf", "application/pdf")
+      )
+
+      expect {
+        delete knowledge_base_path(file_upload)
+
+        expect(response).to redirect_to(knowledge_base_index_path)
+      }.to change(KnowledgeBase::FileUpload, :count).by(-1)
+    end
+  end
 end
