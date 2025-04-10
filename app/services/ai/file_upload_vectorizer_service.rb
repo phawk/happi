@@ -17,7 +17,7 @@ module Ai
 
     def chunk_content
       content = @file_upload.summary
-      Ai::ContentChunkerService.new(content).call.value_or { |failure| raise failure }
+      Ai::ContentChunkerService.new(content:).call.value_or { |failure| raise failure }
     end
 
     def generate_embeddings(chunks)
