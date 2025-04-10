@@ -98,3 +98,10 @@ gem "dry-monads"
 gem "dry-operation"
 
 gem "active_storage_validations", "~> 1.1"
+
+# File processing for embeddings
+gem "pdf-reader"
+gem "docx"
+gem "power_point_pptx"
+gem "roo"
+gem "roo-xls"
