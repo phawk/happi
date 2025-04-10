@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_10_080629) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_10_101920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -230,6 +230,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_080629) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reply_to"
+    t.decimal "spam_score", precision: 10, scale: 2
     t.index ["customer_id"], name: "index_message_threads_on_customer_id"
     t.index ["team_id"], name: "index_message_threads_on_team_id"
     t.index ["user_id"], name: "index_message_threads_on_user_id"

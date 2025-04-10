@@ -5,6 +5,7 @@ class Message < ApplicationRecord
   after_create_commit { broadcast_append_to(turbo_channel, target: "messages") }
   after_update_commit { broadcast_replace_to(turbo_channel) }
   after_destroy_commit { broadcast_remove_to(turbo_channel) }
+  after_create_commit :update_thread_spam_score
 
   has_rich_text :content
 
@@ -33,6 +34,10 @@ class Message < ApplicationRecord
 
   def turbo_channel
     "thread_#{message_thread_id}_messages"
+  end
+
+  def update_thread_spam_score
+    message_thread.update(spam_score: spam_score) if message_thread.spam_score.nil?
   end
 
   def action_mailbox_record
