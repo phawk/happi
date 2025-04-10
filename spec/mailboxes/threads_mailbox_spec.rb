@@ -6,7 +6,7 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
       it "creates thread and posts new message" do
         perform_enqueued_jobs(only: ActionMailbox::RoutingJob) do
           expect do
-            send_mail(to: "acme@prioritysupport.net", headers: { "X-Spam-Score" => "-6.0" })
+            send_mail(to: "acme@prioritysupport.net")
           end.to change(MessageThread, :count).by(1)
 
           last_message = Message.last
@@ -14,7 +14,6 @@ RSpec.describe ThreadsMailbox, type: :mailbox do
           expect(last_message.content.to_s).to include("What's the status?")
           expect(last_message.sender.email).to eq("jack@jackjohnson.net")
           expect(last_message.sender.name.full).to eq("Jack Johnson")
-          expect(last_message.spam_score).to eq(-6.0)
           expect(last_message.raw).not_to be_nil
           expect(last_message.action_mailbox_id).not_to be_nil
 

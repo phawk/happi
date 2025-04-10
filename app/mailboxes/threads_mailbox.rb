@@ -11,7 +11,6 @@ class ThreadsMailbox < ApplicationMailbox
       sender: customer,
       status: "received",
       content: email_content_with_attachments,
-      spam_score: spam_score,
       raw: mail.raw_source,
       original_html: original_html,
       action_mailbox_id: action_mailbox_record&.id
@@ -31,10 +30,6 @@ class ThreadsMailbox < ApplicationMailbox
   def original_html
     html_part = mail.all_parts.find(&:html?)
     html_part&.decoded
-  end
-
-  def spam_score
-    mail.header["X-Spam-Score"]&.value&.to_f
   end
 
   def email_content_with_attachments
