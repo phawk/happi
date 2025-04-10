@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/activeagents/activeagent.git
+  revision: ecf106b48d53427d4b3048124f6a33171ff78b8c
+  specs:
+    activeagent (0.2.6.9)
+      actionpack (>= 7.2, < 9.0)
+      actionview (>= 7.2, < 9.0)
+      activejob (>= 7.2, < 9.0)
+      activemodel (>= 7.2, < 9.0)
+      activesupport (>= 7.2, < 9.0)
+      rails (>= 7.2, < 9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -45,13 +57,6 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    activeagent (0.3)
-      actionpack (>= 7.2, < 9.0)
-      actionview (>= 7.2, < 9.0)
-      activejob (>= 7.2, < 9.0)
-      activemodel (>= 7.2, < 9.0)
-      activesupport (>= 7.2, < 9.0)
-      rails (>= 7.2, < 9.0)
     activejob (7.2.0)
       activesupport (= 7.2.0)
       globalid (>= 0.3.6)
@@ -511,7 +516,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  activeagent
+  activeagent!
   administrate
   ahoy_matey
   attr_json
