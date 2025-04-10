@@ -11,6 +11,8 @@ class SpamDetectAgent < ApplicationAgent
 
       Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
 
+      #{team.spam_prompt}
+
       Return ONLY a numerical score between 0 and 10, where 0 means it is definitely a genuine support request and 10 means it is definitely spam/unsolicited.
     PROMPT
 

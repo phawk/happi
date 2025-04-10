@@ -70,13 +70,15 @@ Rails.application.routes.draw do
     put :logo_upload, on: :member
   end
   resources :team_users, only: %i[update destroy]
-  resource :settings, only: %i[show update] do
+  resource :settings, only: %i[show] do
     get :team
     get :emails
     get :canned_responses
     get :widget
     get :billing
     get :blocked_domains
+    get :spam
+    put :spam_update
   end
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"

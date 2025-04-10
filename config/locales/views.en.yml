@@ -95,6 +95,15 @@ en:
       install_instructions_html: 'Add the code above to your website or web app to install the support widget. <a href="https://happi.team/docs/widget/installation" target="_blank" class="underline">More thorough docs</a> are available to allow prefilling customer data etc.'
       shared_secret: Shared secret
       secret_instructions: Used to securely generated customer data that can be passed to the widget. Keep this secure!
+    spam:
+      page_title: "Spam Settings - %{team_name} - Happi Team"
+      heading: "Spam Settings"
+      spam_settings: "Spam Detection Settings"
+      spam_threshold_hint: "Set a score (0-10). Messages scoring above this will be considered spam. Higher means stricter filtering."
+      spam_prompt_hint: "Add custom instructions or context to improve spam detection accuracy for your specific needs."
+    spam_update:
+      update_success: Spam settings updated
+      update_failed: Failed to update spam settings
   canned_responses:
     new:
       heading: New canned response
@@ -171,3 +180,6 @@ en:
       edit:
         heading: Change your password
         button: Change my password
+  helpers:
+    submit:
+      save: Save Changes

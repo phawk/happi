@@ -56,6 +56,15 @@
     </span>
   <% end %>
 
+  <%= link_to spam_settings_path, class: local_assigns[:page] == :spam ? active_class : inactive_class do %>
+    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
+    </svg>
+    <span class="truncate">
+      Spam Settings
+    </span>
+  <% end %>
+
   <%= link_to billing_settings_path, class: local_assigns[:page] == :billing ? active_class : inactive_class do %>
     <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -73,6 +82,8 @@
     <%= content_tag(:option, "Team", value: team_settings_path, selected: local_assigns[:page] == :team) %>
     <%= content_tag(:option, "Canned responses", value: canned_responses_settings_path, selected: local_assigns[:page] == :canned_responses) %>
     <%= content_tag(:option, "Widget", value: widget_settings_path, selected: local_assigns[:page] == :widget) %>
+    <%= content_tag(:option, "Blocked domains", value: blocked_domains_settings_path, selected: local_assigns[:page] == :blocked_domains) %>
+    <%= content_tag(:option, "Spam Settings", value: spam_settings_path, selected: local_assigns[:page] == :spam) %>
     <%= content_tag(:option, "Billing", value: billing_settings_path, selected: local_assigns[:page] == :billing) %>
   </select>
 </nav>
