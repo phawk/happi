@@ -26,14 +26,16 @@ namespace :spam do
           agent = SpamDetectAgent.new(message: first_message, team: team)
 
           begin
-            spam_score = agent.perform!
+            spam_result = agent.perform!
+            if spam_result.success?
+              spam_score = spam_result.value!
+              # Update message and thread with spam score
+              first_message.update(spam_score: spam_score)
+              thread.update(spam_score: spam_score)
 
-            # Update message and thread with spam score
-            first_message.update(spam_score: spam_score)
-            thread.update(spam_score: spam_score)
-
-            updated_threads += 1
-            puts "Updated thread ##{thread.id} with spam score: #{spam_score}"
+              updated_threads += 1
+              puts "Updated thread ##{thread.id} with spam score: #{spam_score}"
+            end
 
             # Add a small delay to avoid rate limiting on the AI API
             sleep 0.5

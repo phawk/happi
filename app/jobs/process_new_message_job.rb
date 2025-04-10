@@ -6,11 +6,15 @@ class ProcessNewMessageJob < ApplicationJob
 
     # Run spam detection
     agent = SpamDetectAgent.new(message: message, team: team)
-    spam_score = agent.perform!
+    spam_result = agent.perform!
+    spam_score = 0.0
+    if spam_result.success?
+      spam_score = spam_result.value!
+      # Update message with spam score
+      message.update(spam_score: spam_score)
+      message.message_thread.update(spam_score: spam_score) if message.message_thread.spam_score.nil?
+    end
 
-    # Update message with spam score
-    message.update(spam_score: spam_score)
-    message.message_thread.update(spam_score: spam_score) if message.message_thread.spam_score.nil?
     # Only send notifications if the message is below the team's spam threshold
     if spam_score < team.spam_threshold
       NotificationService.new_message(team, message)

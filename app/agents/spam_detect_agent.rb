@@ -6,7 +6,7 @@ class SpamDetectAgent < ApplicationAgent
   def perform!
     prompt = <<~PROMPT
       Analyze the following email content:
-      #{message.content.body.to_plain_text}
+      #{message.content.to_plain_text}
 
       Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
 
@@ -27,14 +27,13 @@ class SpamDetectAgent < ApplicationAgent
     score = parse_score_from_response(response&.content)
 
     # Potentially handle errors from the AI call here (e.g., log if score is nil)
-    Rails.logger.error("SpamDetectAgent failed to get score for message #{message.id}") if score.nil?
-
-    # Return score or 0.0 if parsing failed
-    score || 0.0
-  # rescue StandardError => e
-  #   # Log errors during generation
-  #   Rails.logger.error("SpamDetectAgent error for message #{message.id}: #{e.message}")
-  #   0.0 # Return a safe default score on error
+    if score.nil?
+      Failure("SpamDetectAgent failed to get score for message #{message.id}")
+    else
+      Success(score)
+    end
+  rescue StandardError => e
+    Failure("SpamDetectAgent error for message #{message.id}: #{e.message}")
   end
 
   private

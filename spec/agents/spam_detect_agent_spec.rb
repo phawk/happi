@@ -18,7 +18,7 @@ RSpec.describe SpamDetectAgent, type: :agent do
       it "returns the parsed score as a float" do
         allow(agent).to receive(:generate!).and_return(mock_response)
 
-        expect(agent.perform!).to eq(3.5)
+        expect(agent.perform!.value!).to eq(3.5)
       end
     end
 
@@ -33,7 +33,7 @@ RSpec.describe SpamDetectAgent, type: :agent do
       it "clamps the score to 0.0" do
         allow(agent).to receive(:generate!).and_return(mock_response)
 
-        expect(agent.perform!).to eq(0.0)
+        expect(agent.perform!.value!).to eq(0.0)
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe SpamDetectAgent, type: :agent do
       it "clamps the score to 10.0" do
         allow(agent).to receive(:generate!).and_return(mock_response)
 
-        expect(agent.perform!).to eq(10.0)
+        expect(agent.perform!.value!).to eq(10.0)
       end
     end
 
@@ -60,10 +60,10 @@ RSpec.describe SpamDetectAgent, type: :agent do
         )
       end
 
-      it "logs a warning and returns 0.0" do
+      it "returns a failure" do
         allow(agent).to receive(:generate!).and_return(mock_response)
 
-        expect(agent.perform!).to eq(0.0)
+        expect(agent.perform!).to be_failure
       end
     end
 
@@ -75,10 +75,10 @@ RSpec.describe SpamDetectAgent, type: :agent do
         )
       end
 
-      it "logs a warning and returns 0.0" do
+      it "returns a failure" do
         allow(agent).to receive(:generate!).and_return(mock_response)
 
-        expect(agent.perform!).to eq(0.0)
+        expect(agent.perform!).to be_failure
       end
     end
 
@@ -90,10 +90,10 @@ RSpec.describe SpamDetectAgent, type: :agent do
         )
       end
 
-      it "logs an error and returns 0.0" do
+      it "returns a failure" do
         allow(agent).to receive(:generate!).and_return(mock_response)
 
-        expect(agent.perform!).to eq(0.0)
+        expect(agent.perform!).to be_failure
       end
     end
 
@@ -102,8 +102,8 @@ RSpec.describe SpamDetectAgent, type: :agent do
         allow(agent).to receive(:generate!).and_return(nil)
       end
 
-      it "logs an error and returns 0.0" do
-        expect(agent.perform!).to eq(0.0)
+      it "returns a failure" do
+        expect(agent.perform!).to be_failure
       end
     end
 
@@ -124,7 +124,7 @@ RSpec.describe SpamDetectAgent, type: :agent do
         # expect(Rails.logger).to have_received(:error).with(/SpamDetectAgent error.*#{error_message}/i).once
 
         # Since the rescue block IS commented out, we expect the error to propagate
-        expect { agent.perform! }.to raise_error(StandardError, error_message)
+        expect(agent.perform!).to be_failure
       end
     end
   end
