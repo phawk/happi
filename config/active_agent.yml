@@ -4,3 +4,15 @@ development:
     api_key: <%= ENV["OPENAI_API_KEY"] %>
     model: "gpt-4o-mini"
     temperature: 0.7
+test:
+  openai:
+    service: "OpenAI"
+    api_key: <%= ENV["OPENAI_API_KEY"] %>
+    model: "gpt-4o-mini"
+    temperature: 0.7
+production:
+  openai:
+    service: "OpenAI"
+    api_key: <%= ENV["OPENAI_API_KEY"] %>
+    model: "gpt-4o-mini"
+    temperature: 0.7
