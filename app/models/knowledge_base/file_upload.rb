@@ -10,6 +10,8 @@ class KnowledgeBase::FileUpload < ApplicationRecord
 
   scope :with_summary, -> { where.not(summary: nil) }
 
+  after_update_commit :broadcast_status_update
+
   def status
     if processed?
       "processed"
@@ -30,5 +32,16 @@ class KnowledgeBase::FileUpload < ApplicationRecord
 
   def processing?
     !processed? && !vectorizing?
+  end
+
+  private
+
+  def broadcast_status_update
+    html = ApplicationController.renderer.render_to_string(UploadStatusComponent.new(file_upload: self), layout: false)
+    Turbo::StreamsChannel.broadcast_replace_to(
+      "team_#{team_id}_file_uploads",
+      target: "upload-status-#{id}",
+      html: html
+    )
   end
 end

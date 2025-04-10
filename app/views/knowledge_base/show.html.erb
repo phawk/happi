@@ -1,6 +1,8 @@
 <% meta title: "KB - #{@file_upload.file&.filename}" %>
 <% content_for(:container_padding, "nada") %>
 
+<%= turbo_stream_from "team_#{current_team.id}_file_uploads" %>
+
 <div class="bg-white rounded-3xl overflow-hidden">
   <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
     <div>

@@ -8,6 +8,7 @@ module Ai
       chunks = chunk_content
       embeddings = generate_embeddings(chunks)
       store_embeddings(embeddings, chunks)
+      file_upload.update!(vectorized_at: Time.current)
       Success(embeddings)
     rescue => e
       Failure(e)
@@ -16,7 +17,7 @@ module Ai
     private
 
     def chunk_content
-      content = @file_upload.summary
+      content = file_upload.summary
       Ai::ContentChunkerService.new(content:).call.value_or { |failure| raise failure }
     end
 
@@ -26,7 +27,7 @@ module Ai
 
     def store_embeddings(embeddings, chunks)
       embeddings.each_with_index do |embedding, index|
-        @file_upload.embeddings.create!(
+        file_upload.embeddings.create!(
           user: user,
           team: team,
           content: chunks[index],

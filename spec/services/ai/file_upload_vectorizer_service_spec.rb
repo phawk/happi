@@ -24,6 +24,7 @@ RSpec.describe Ai::FileUploadVectorizerService, type: :service do
           expect(result).to be_success
           expect(result.value!).to be_an(Array)
           expect(result.value!.first).to be_an(Array)
+          expect(file_upload.reload.vectorized_at).to be_present
         end.to change(Embedding, :count).by(2)
       end
     end

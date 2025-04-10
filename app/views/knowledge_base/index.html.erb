@@ -1,6 +1,8 @@
 <% meta title: "Knowledge Base" %>
 <% content_for(:container_padding, "nada") %>
 
+<%= turbo_stream_from "team_#{current_team.id}_file_uploads" %>
+
 <div>
   <div class="flex justify-between items-center p-5 sm:p-8 lg:p-10">
     <div>
