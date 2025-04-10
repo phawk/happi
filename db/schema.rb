@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_10_115319) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_10_160236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "vector"
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -27,7 +28,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_115319) do
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -219,6 +220,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_115319) do
     t.index ["email", "team_id"], name: "index_customers_on_email_and_team_id", unique: true
     t.index ["email"], name: "index_customers_on_email"
     t.index ["team_id"], name: "index_customers_on_team_id"
+  end
+
+  create_table "embeddings", force: :cascade do |t|
+    t.string "object_type", null: false
+    t.bigint "object_id", null: false
+    t.vector "vectors", limit: 1536
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["object_type", "object_id"], name: "index_embeddings_on_object"
+    t.index ["team_id"], name: "index_embeddings_on_team_id"
+    t.index ["user_id"], name: "index_embeddings_on_user_id"
   end
 
   create_table "knowledge_base_file_uploads", force: :cascade do |t|

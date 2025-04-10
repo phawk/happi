@@ -300,6 +300,8 @@ GEM
     multipart-post (2.4.1)
     name_of_person (1.1.1)
       activesupport (>= 5.2.0)
+    neighbor (0.5.2)
+      activerecord (>= 7)
     net-http (0.6.0)
       uri
     net-imap (0.4.14)
@@ -591,6 +593,7 @@ DEPENDENCIES
   matrix (~> 0.4.2)
   metamagic
   name_of_person
+  neighbor
   pdf-reader
   pg
   pg_search
