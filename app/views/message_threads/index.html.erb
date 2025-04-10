@@ -2,12 +2,12 @@
 <% content_for(:container_padding, "nada") %>
 
 <% if controller.action_name == "spam" %>
-  <div class="flex justify-between items-center bg-yellow-50 border-b-2 border-yellow-100 text-yellow-900 p-4" role="alert">
+  <div class="flex justify-between items-center bg-yellow-50 border-b-2 border-yellow-100 text-yellow-900 py-4 px-5 sm:px-8 lg:px-10" role="alert">
     <div>
-      <p class="font-bold">Viewing Spam Threads</p>
+      <h2 class="uppercase tracking-wider font-semibold flex-auto">Spam Threads</h2>
       <p>This page shows threads identified as potential spam.</p>
     </div>
-    <%= link_to "Back to all threads", message_threads_path, class: "font-medium underline" %>
+    <%= link_to "Back to all threads", message_threads_path, class: "font-medium block bg-yellow-200 hover:opacity-80 px-5 py-1.5 rounded-full" %>
   </div>
 <% end %>
 
@@ -15,7 +15,7 @@
   <%= render partial: "message_threads/top_nav", locals: { heading: t(".new_heading") } %>
 
   <div data-controller="display-empty" data-display-empty-hide-class="hidden">
-    <%= turbo_stream_from "team_#{current_team.id}_threads" %>
+    <%= turbo_stream_from "team_#{current_team.id}_threads" unless controller.action_name == "spam" %>
     <div id="open_message_threads" data-display-empty-target="list">
       <%= render @open_message_threads %>
     </div>
