@@ -3,9 +3,9 @@ class Ai::Tools::BaseTool
 
   attr_reader :agent, :team
 
-  def initialize(agent:, team:)
+  def initialize(agent:)
     @agent = agent
-    @team = team
+    @team = agent.team
   end
 
   def start_timer!
