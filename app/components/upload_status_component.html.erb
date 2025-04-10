@@ -1,0 +1,9 @@
+<% if file_upload.processed? %>
+  <%= render(BadgeComponent.new(style: :success)) do %>
+    Processed &amp; Searchable
+  <% end %>
+<% else %>
+  <%= render(BadgeComponent.new(style: :important)) do %>
+    <%= file_upload.status.humanize %>...
+  <% end %>
+<% end %>

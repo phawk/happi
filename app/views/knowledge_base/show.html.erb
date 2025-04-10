@@ -54,15 +54,7 @@
           Status
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <% if @file_upload.processed_at? %>
-            <%= render(BadgeComponent.new(style: :success)) do %>
-              Processed on <%= @file_upload.processed_at.strftime("%B %d, %Y %H:%M") %>
-            <% end %>
-          <% else %>
-            <%= render(BadgeComponent.new(style: :important)) do %>
-              Processing
-            <% end %>
-          <% end %>
+          <%= render(UploadStatusComponent.new(file_upload: @file_upload)) %>
         </dd>
       </div>
       <% if @file_upload.processed_at? && @file_upload.summary? %>
