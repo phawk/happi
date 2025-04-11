@@ -55,7 +55,7 @@ class ReplyWriterAgent < ApplicationAgent
 
     response = generate!(instructions: INSTRUCTIONS, messages: [
       prompt_message
-    ])
+    ], tools: [:knowledge_base_tool, :previous_responses_tool])
 
     Success(response.content)
   rescue StandardError => e

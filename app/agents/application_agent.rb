@@ -11,11 +11,11 @@ class ApplicationAgent
   option :team
   option :model, default: -> { DEFAULT_MODEL }
 
-  def generate!(instructions:, messages:)
+  def generate!(instructions:, messages:, tools: [])
     assistant = Langchain::Assistant.new(
       llm: llm,
       instructions: instructions,
-      tools: custom_tools.values,
+      tools: tools.map { |tool| custom_tools[tool] },
       # parallel_tool_calls: parallel_tool_calls,
       # add_message_callback: -> (message) {
       #   # Rails.logger.info("agent:#{name} message callback: #{message.role} - #{message.content}")
