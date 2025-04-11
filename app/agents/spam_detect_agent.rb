@@ -15,7 +15,7 @@ class SpamDetectAgent < ApplicationAgent
 
       #{team.spam_prompt}
 
-      Return ONLY a numerical score between 0 and 10, where 0 means it is definitely a genuine support request and 10 means it is definitely spam/unsolicited. Don't justify your score, just return the score and NOTHING ELSE.
+      Return ONLY a numerical score between 0 and 10, where 0 means it is definitely a genuine support request and 10 means it is definitely spam/unsolicited. Just return the score and NOTHING ELSE.
     PROMPT
 
     prompt_message = Ai::Agent::Message.new(
