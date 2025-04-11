@@ -19,6 +19,8 @@ class ProcessMessageThreadReplyJob < ApplicationJob
           vectors: open_ai_embedding
         )
       end
+    else
+      Rails.logger.error("Error calculating reply statistics for thread #{message_thread.id}: #{result.failure}")
     end
   end
 end

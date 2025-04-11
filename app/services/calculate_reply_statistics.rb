@@ -40,6 +40,8 @@ class CalculateReplyStatistics < ApplicationService
 
       reply_statistic.save!
       created_reply_statistics << reply_statistic
+    rescue => e
+      Rails.logger.error("Error creating reply statistic for thread #{message_thread.id}: #{e.message}")
     end
 
     Success(created_reply_statistics)
