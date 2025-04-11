@@ -6,7 +6,9 @@ class SpamDetectAgent < ApplicationAgent
   def perform!
     prompt = <<~PROMPT
       Analyze the following email content:
-      #{message.content.to_plain_text}
+      <message>
+        #{message.content.to_plain_text}
+      </message>
 
       Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
       Remove things like automated replies, marketing emails, survey requests, etc.
