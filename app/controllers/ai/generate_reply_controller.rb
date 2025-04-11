@@ -12,7 +12,7 @@ class Ai::GenerateReplyController < ApplicationController
     if result.success?
       render turbo_stream: turbo_stream_response("success", result.value!)
     else
-      render turbo_stream: turbo_stream_response("failed", nil)
+      render turbo_stream: turbo_stream_response("failed", nil), status: :unprocessable_entity
     end
   end
 
