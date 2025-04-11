@@ -2,6 +2,14 @@ class ReplyStatistic < ApplicationRecord
   belongs_to :message_thread
   belongs_to :team
 
+  def user
+    replies_from_user.first.sender
+  end
+
+  def full_content
+    "<customer>#{customer_messages_content}</customer>\n\n<user_reply>#{user_replies_content}</user_reply>"
+  end
+
   def customer_messages_content
     messages_from_customer.map { |message| message_content_as_plain_text(message) }.join("\n\n")
   end
