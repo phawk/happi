@@ -56,6 +56,13 @@
             <%= datetime @message_thread.updated_at %>
           </span>
         </div>
+
+        <div class="mt-4">
+          <%= tag.h4 "Thread spam score", class: "block text-gray-700 font-medium text-base mb-1" %>
+          <span class="block text-sm text-gray-600">
+            <strong class="text-gray-700"><%= number_with_precision(@message_thread.spam_score, precision: 1) %></strong><span class="text-gray-500"> / 10</span>
+          </span>
+        </div>
       <% end %>
 
       <div class="mt-10 flex flex-col">
