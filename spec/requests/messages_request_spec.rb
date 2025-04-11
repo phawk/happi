@@ -8,7 +8,7 @@ RSpec.describe "Messages", type: :request do
     context "when params are valid" do
       before do
         sign_in(pete)
-        perform_enqueued_jobs do
+        perform_enqueued_jobs(only: ActionMailer::MailDeliveryJob) do
           post message_thread_messages_path(message_thread),
             params: { message: { content: "Thanks for getting in touch!" } }
         end
@@ -33,6 +33,10 @@ RSpec.describe "Messages", type: :request do
         expect(last_email.subject).to eq(message_thread.subject)
         expect(last_email.to).to eq([message_thread.customer.email])
         expect(last_email.reply_to).to eq(["support@acme.com"])
+      end
+
+      it "enqueues a job to process the message thread reply" do
+        expect(ProcessMessageThreadReplyJob).to have_been_enqueued.with(message_thread)
       end
     end
 

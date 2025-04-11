@@ -18,6 +18,7 @@ class MessagesController < ApplicationController
       unless message.internal?
         @message_thread.update(status: "waiting", user: current_user)
         CustomerMailer.new_reply(message).deliver_later
+        ProcessMessageThreadReplyJob.perform_later(@message_thread)
       end
 
       redirect_to @message_thread, notice: "Message delivered"

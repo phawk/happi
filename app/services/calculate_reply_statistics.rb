@@ -2,7 +2,7 @@ class CalculateReplyStatistics < ApplicationService
   option :message_thread
 
   def call
-    messages = message_thread.messages.order(created_at: :desc).pluck(:id, :sender_type, :created_at)
+    messages = message_thread.messages.customer_facing.order(created_at: :desc).pluck(:id, :sender_type, :created_at)
     last_customer_messages = []
     last_user_messages = []
 

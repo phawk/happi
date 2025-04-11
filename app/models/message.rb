@@ -17,6 +17,9 @@ class Message < ApplicationRecord
   belongs_to :message_thread, touch: true
   belongs_to :sender, polymorphic: true
 
+  scope :internal, -> { where(internal: true) }
+  scope :customer_facing, -> { where(internal: false) }
+
   validates :content, presence: true, if: :user?
 
   def customer?
