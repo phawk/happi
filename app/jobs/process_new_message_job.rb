@@ -16,7 +16,7 @@ class ProcessNewMessageJob < ApplicationJob
     end
 
     # Only send notifications if the message is below the team's spam threshold
-    if spam_score < team.spam_threshold
+    if message.message_thread.reload.spam_score < team.spam_threshold
       NotificationService.new_message(team, message)
     else
       Rails.logger.info("Message #{message.id} detected as spam (score: #{spam_score}), skipping notification.")
