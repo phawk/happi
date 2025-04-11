@@ -1,12 +1,12 @@
 <% if params && params[:action] == "changelog" %>
   <% if blob.representable? %>
-    <%= image_tag blob.representation(resize_to_fill: local_assigns[:in_gallery] ? [ 400, 400 ] : [ 1824, 1000 ]), class: "changelog-image rounded-3xl" %>
+    <%= image_tag blob.representation(resize_to_fill: local_assigns[:in_gallery] ? [ 400, 400 ] : [ 1824, 1000 ]), class: "changelog-image rounded-3xl" rescue nil %>
   <% end %>
 <% else %>
   <figure class="file-attachment-tag -<%= blob.representable? ? "preview" : "file" %> -<%= blob.filename.extension %>">
   <!--<figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">-->
     <% if blob.representable? %>
-      <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: "attachment-image-preview" %>
+      <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), class: "attachment-image-preview" rescue nil %>
     <% end %>
 
     <figcaption class="attachment__caption">
