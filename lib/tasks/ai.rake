@@ -18,7 +18,7 @@ namespace :ai do
     Team.find_each do |team|
       puts "Processing team #{team.name}..."
 
-      team.allowed_threads.ham.find_each do |message_thread|
+      team.allowed_threads.ham(team).find_each do |message_thread|
         puts "Processing message thread #{message_thread.id}..."
         ProcessMessageThreadReplyJob.new.perform(message_thread)
       end
