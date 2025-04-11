@@ -2,40 +2,47 @@ class CalculateReplyStatistics < ApplicationService
   option :message_thread
 
   def call
-    messages = message_thread.messages.customer_facing.order(created_at: :desc).pluck(:id, :sender_type, :created_at)
-    last_customer_messages = []
-    last_user_messages = []
+    messages = message_thread.messages.customer_facing.order(:created_at).pluck(:id, :sender_type, :created_at)
+    blocks = []
+    current_block = { customer: [], user: [] }
 
-    # Find the last block of customer messages
     messages.each do |msg|
       if msg[1] == "Customer"
-        last_customer_messages.unshift(msg)
-      elsif !last_customer_messages.empty?
-        break
+        if current_block[:user].any?
+          blocks << current_block
+          current_block = { customer: [], user: [] }
+        end
+        current_block[:customer] << msg
+      elsif msg[1] == "User"
+        current_block[:user] << msg
       end
     end
+    blocks << current_block if current_block[:user].any?
 
-    # Find the last block of user messages immediately following the last customer message
-    messages.each do |msg|
-      if msg[1] == "User"
-        last_user_messages.unshift(msg)
-      elsif !last_user_messages.empty?
-        break
+    created_reply_statistics = []
+
+    blocks.each do |block|
+      # Ensure the block is valid
+      if block[:customer].empty? || block[:user].empty?
+        next
       end
+
+      first_customer_message_id = block[:customer].first[0]
+      reply_statistic = ReplyStatistic.find_or_initialize_by(
+        team: message_thread.team,
+        message_thread: message_thread,
+        first_customer_message_id: first_customer_message_id
+      )
+
+      reply_statistic.message_ids = block[:customer].map(&:first)
+      reply_statistic.reply_ids = block[:user].map(&:first)
+      reply_statistic.time_to_reply = (block[:user].first[2] - block[:customer].last[2]).to_i
+
+      reply_statistic.save!
+      created_reply_statistics << reply_statistic
     end
 
-    time_to_reply = (last_user_messages.first[2] - last_customer_messages.last[2]).to_i
-
-    reply_statistic = ReplyStatistic.create!(
-      first_customer_message_id: last_customer_messages.last[0],
-      message_thread: message_thread,
-      message_ids: last_customer_messages.map(&:first),
-      reply_ids: last_user_messages.map(&:first),
-      team: message_thread.team,
-      time_to_reply: time_to_reply
-    )
-
-    Success(reply_statistic)
+    Success(created_reply_statistics)
   rescue => e
     Failure(e)
   end
