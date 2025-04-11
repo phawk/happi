@@ -1,5 +1,11 @@
 class SpamDetectAgent < ApplicationAgent
-  INSTRUCTIONS = "You are a spam detection agent."
+  INSTRUCTIONS = <<~INSTRUCTIONS
+    You are a spam detection agent.
+    Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
+    Spam includes unsolicited emails like automated replies (or out of office), marketing emails, survey requests, sales pitches, etc.
+
+    After making your analysis, return ONLY a numerical score between 0 and 10 (no other text or comments) – where 0 means it is definitely a genuine support request and 10 means it is definitely spam/unsolicited.
+  INSTRUCTIONS
 
   option :message
 
@@ -10,12 +16,7 @@ class SpamDetectAgent < ApplicationAgent
         #{message.content.to_plain_text}
       </message>
 
-      Determine if this email is genuine customer support request or if it is spam, unsolicited sales pitch (especially for development services), or other non-support related communication.
-      Remove things like automated replies, marketing emails, survey requests, etc.
-
       #{team.spam_prompt}
-
-      Return ONLY a numerical score between 0 and 10 (no other text or comments) – where 0 means it is definitely a genuine support request and 10 means it is definitely spam/unsolicited.
     PROMPT
 
     prompt_message = Ai::Agent::Message.new(
