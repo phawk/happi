@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_11_063112) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_11_072131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -290,6 +290,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_11_063112) do
     t.integer "time_to_reply", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "first_customer_message_id", null: false
+    t.index ["first_customer_message_id"], name: "index_reply_statistics_on_first_customer_message_id"
     t.index ["message_thread_id"], name: "index_reply_statistics_on_message_thread_id"
     t.index ["team_id"], name: "index_reply_statistics_on_team_id"
   end
@@ -382,6 +384,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_11_063112) do
   add_foreign_key "message_threads", "users"
   add_foreign_key "messages", "message_threads"
   add_foreign_key "reply_statistics", "message_threads"
+  add_foreign_key "reply_statistics", "messages", column: "first_customer_message_id"
   add_foreign_key "reply_statistics", "teams"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"

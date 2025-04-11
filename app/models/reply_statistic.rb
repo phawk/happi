@@ -1,6 +1,7 @@
 class ReplyStatistic < ApplicationRecord
   belongs_to :message_thread
   belongs_to :team
+  belongs_to :first_customer_message, class_name: "Message"
 
   def user
     replies_from_user.first.sender

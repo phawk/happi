@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe ReplyStatistic, type: :model do
   let(:reply_statistic) do
     ReplyStatistic.create!(
+      first_customer_message: messages(:acme_alex_stripe_msg_1),
       message_thread: message_threads(:acme_alex_stripe),
       message_ids: [messages(:acme_alex_stripe_msg_1).id],
       reply_ids: [messages(:acme_alex_stripe_msg_2).id],
@@ -13,6 +14,7 @@ RSpec.describe ReplyStatistic, type: :model do
 
   it { is_expected.to belong_to(:team) }
   it { is_expected.to belong_to(:message_thread) }
+  it { is_expected.to belong_to(:first_customer_message) }
 
   describe "#user" do
     it "returns the user" do

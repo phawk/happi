@@ -27,6 +27,7 @@ class CalculateReplyStatistics < ApplicationService
     time_to_reply = (last_user_messages.first[2] - last_customer_messages.last[2]).to_i
 
     reply_statistic = ReplyStatistic.create!(
+      first_customer_message_id: last_customer_messages.last[0],
       message_thread: message_thread,
       message_ids: last_customer_messages.map(&:first),
       reply_ids: last_user_messages.map(&:first),
