@@ -9,6 +9,10 @@ class ReplyWriterAgent < ApplicationAgent
 
     You will use the knowledge base to help you write a reply to the customer's last email.
 
+    You will also use the previous responses tool to help you write a reply to the customer's last email. These might be from a different customer, but it is the same business, use this as a reference to how similar messages have been answered before. If the message doesn't look similar you can ignore it.
+
+    Make sure to use both the knowledge base and the previous responses tools and analyze the results before writing your reply.
+
     Respond with some simple HTML markup to format your reply. Use the following tags:
 
     <p>
