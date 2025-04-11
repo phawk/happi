@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_10_164258) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_11_063112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -282,6 +282,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_164258) do
     t.index ["message_thread_id"], name: "index_messages_on_message_thread_id"
   end
 
+  create_table "reply_statistics", force: :cascade do |t|
+    t.bigint "message_thread_id", null: false
+    t.text "message_ids", default: [], null: false, array: true
+    t.text "reply_ids", default: [], null: false, array: true
+    t.bigint "team_id", null: false
+    t.integer "time_to_reply", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_thread_id"], name: "index_reply_statistics_on_message_thread_id"
+    t.index ["team_id"], name: "index_reply_statistics_on_team_id"
+  end
+
   create_table "site_options", force: :cascade do |t|
     t.string "key"
     t.text "value"
@@ -369,6 +381,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_10_164258) do
   add_foreign_key "message_threads", "teams"
   add_foreign_key "message_threads", "users"
   add_foreign_key "messages", "message_threads"
+  add_foreign_key "reply_statistics", "message_threads"
+  add_foreign_key "reply_statistics", "teams"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
   add_foreign_key "users", "teams"

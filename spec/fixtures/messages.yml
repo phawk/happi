@@ -7,8 +7,10 @@ acme_alex_stripe_msg_1:
   message_thread: acme_alex_stripe
   sender: acme_alex (Customer)
   status: received
+  created_at: 2021-04-19 12:00:00
 
 acme_alex_stripe_msg_2:
   message_thread: acme_alex_stripe
   sender: pete (User)
   status: delivered
+  created_at: 2021-04-19 14:03:25
