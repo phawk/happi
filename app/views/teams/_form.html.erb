@@ -26,7 +26,7 @@
     <% else%>
       <div class="mb-5">
         <%= f.label :plan %>
-        <%= f.select :plan, options_for_select(BillingPlan.all.map(&:select_option)), {}, class: "w-full" %>
+        <%= f.select :plan, options_for_select(BillingPlan.visible_paid_plans.map(&:select_option)), {}, class: "w-full" %>
       </div>
     <% end %>
   <% end %>
