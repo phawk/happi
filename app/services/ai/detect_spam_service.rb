@@ -1,6 +1,7 @@
 module Ai
   class DetectSpamService < ApplicationService
     option :message
+    option :force_thread_update, default: -> { false }
 
     def call
       # Run spam detection
@@ -12,7 +13,7 @@ module Ai
 
         # Update message with spam score
         message.update(spam_score: spam_score)
-        thread.update(spam_score: spam_score) if thread.spam_score.nil?
+        thread.update(spam_score: spam_score) if force_thread_update || thread.spam_score.nil?
 
         Success(spam_score)
       else
