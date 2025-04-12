@@ -43,6 +43,10 @@ class BillingPlan
     data[name].key?(method_name) || super
   end
 
+  def ai_autonomous_bot?
+    data[name][:ai_autonomous_bot] == true
+  end
+
   def select_option
     [
       "#{display_name} ($#{current_price}/mo)",
@@ -153,6 +157,7 @@ class BillingPlan
         test_stripe_price_id: "price_1RCyuzLkfrm0pujL1GypJMYx",
         visible: true,
         initial_subscription_state: "pending",
+        ai_autonomous_bot: true,
       },
       scale: {
         id: "scale",
@@ -170,6 +175,7 @@ class BillingPlan
         test_stripe_price_id: "price_1RCyvNLkfrm0pujL54iiM7a0",
         visible: true,
         initial_subscription_state: "pending",
+        ai_autonomous_bot: true,
       },
     }
   end
