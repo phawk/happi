@@ -1,7 +1,7 @@
 ---
-description: Business Overview: Happi.team
-globs: **/*
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
 # Happi Team: Simplifying Customer Support for Small Teams
 
@@ -48,4 +48,4 @@ Scott and his team at Payhere.co have been using Happi Team for years to manage 
 Happi Team offers a free trial with no credit card required. Explore the features and see how Happi Team can enhance your customer support operations.
 
 ## Pricing
-Visit our [pricing page](https://happi.team/pricing) to choose a plan that suits your needs.
+Visit our [pricing page](mdc:https:/happi.team/pricing) to choose a plan that suits your needs.

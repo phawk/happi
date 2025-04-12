@@ -1,0 +1,114 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Happi.team - Modern Customer Support Platform
+
+## Core Technology Stack
+- Ruby on Rails
+- PostgreSQL
+- Hotwire (Turbo & Stimulus)
+- Tailwind CSS
+- Vector Database for AI features
+
+## Key Features
+
+### 1. Collaborative Inbox
+- Shared team inbox interface
+- Email domain integration
+- Real-time collaboration tools
+- Thread-based conversation view
+- Team member presence indicators
+- Activity timeline
+
+### 2. Smart AI Features
+- AI-powered spam detection
+- Intelligent response suggestions
+- Knowledge base integration
+- Vector-based similar message search
+- Document parsing and embedding (PDF, Word)
+- Code-aware technical support assistance
+
+### 3. Website Integration
+- Embeddable JS widget
+- Customizable contact forms
+- Mobile-responsive design
+- Custom branding options
+- File attachment support
+
+### 4. Team Management
+- Role-based access control
+- Team member notifications
+- Performance analytics
+- Workload distribution
+- Activity logging
+
+### 5. Communication Tools
+- Email templates
+- Canned responses
+- Rich text editor
+- File attachments
+- Custom email domains
+- Slack integration
+
+### 6. Knowledge Management
+- Searchable knowledge base
+- Document upload system
+- AI-powered content suggestions
+- Version control
+- Access controls
+
+### 7. Analytics & Reporting
+- Response time metrics
+- Team performance stats
+- Customer satisfaction tracking
+- Spam detection accuracy
+- AI assistance usage
+
+### UI Components Needed
+- Message list view
+- Conversation thread interface
+- Team sidebar
+- Action toolbar
+- Search interface
+- Settings panels
+- Analytics dashboard
+- Knowledge base browser
+- AI assistance panel
+- Notification system
+- User profile sections
+- Admin controls
+
+### Design Requirements
+- Clean, modern interface
+- Mobile-first responsive design
+- Accessible UI components
+- Dark/light mode support
+- Loading states
+- Error handling views
+- Empty states
+- Success/failure notifications
+
+### Brand Colors
+- Primary actions
+- Secondary actions
+- Success states
+- Warning states
+- Error states
+- Info states
+- Neutral grays
+
+### Typography
+- Clear hierarchy
+- Readable message text
+- Compact information display
+- Consistent spacing
+
+### Interaction Patterns
+- Drag and drop
+- Infinite scroll
+- Real-time updates
+- Inline editing
+- Progressive loading
+- Keyboard shortcuts
