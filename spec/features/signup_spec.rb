@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Signing up" do
   it "allows signup when user doesnt have an account" do
-    visit new_user_registration_path
+    visit new_user_registration_path(plan: "free")
 
     fill_in_signup_form(
       first_name: "Joe",
