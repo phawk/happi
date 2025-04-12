@@ -33,7 +33,7 @@
               <td class="h-full py-8 px-6 align-top">
                 <div class="relative h-full table">
                   <p>
-                    <span class="text-4xl font-extrabold text-gray-900"><%= number_to_currency(plan.current_price, unit: "£", precision: 0) %></span>
+                    <span class="text-4xl font-extrabold text-gray-900"><%= number_to_currency(plan.current_price, unit: plan.symbol, precision: 0) %></span>
                     <span class="text-base font-medium text-gray-500">/mo</span>
                   </p>
                   <p class="mt-4 mb-16 text-sm text-gray-500"><%= plan.description %></p>

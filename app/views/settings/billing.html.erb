@@ -37,7 +37,7 @@
               <% if @plan.has_discount? %>
                 <span class="text-gray-400 line-through">£<%= @plan.original_price %></span>
               <% end %>
-              £<%= @plan.current_price %>
+              <%= number_to_currency(@plan.current_price, unit: @plan.symbol, precision: 0) %>
             </dd>
           </div>
         </dl>
