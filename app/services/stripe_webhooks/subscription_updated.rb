@@ -14,6 +14,13 @@ module StripeWebhooks
       end
 
       team.save!
+
+      AdminMailer.notification(
+        "Subscription updated for #{team.name}",
+        "#{team.name} on the #{team.plan} plan has been updated. New status: #{team.subscription_status}."
+      ).deliver_later
+
+      true
     end
   end
 end

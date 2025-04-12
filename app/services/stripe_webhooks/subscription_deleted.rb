@@ -7,6 +7,13 @@ module StripeWebhooks
       return if team.blank?
 
       team.update!(subscription_status: "canceled")
+
+      AdminMailer.notification(
+        "Subscription cancelled for #{team.name}",
+        "#{team.name} on the #{team.plan} plan has been cancelled."
+      ).deliver_later
+
+      true
     end
   end
 end
