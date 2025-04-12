@@ -15,6 +15,10 @@ class BillingPlan
     all.select { |plan| plan.current_price > 0 }
   end
 
+  def self.visible_paid_plans
+    visible.select { |plan| plan.current_price > 0 }
+  end
+
   def initialize(name:)
     unless PLANS.include?(name)
       raise PlanNotFound
@@ -54,6 +58,8 @@ class BillingPlan
         description: "Perfect for early-stage startups.",
         original_price: 0,
         current_price: 0,
+        currency: "USD",
+        symbol: "$",
         available_seats: 1,
         messages_limit: 100,
         custom_email_addresses: 1,
@@ -69,6 +75,8 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 10,
         current_price: 10,
+        currency: "GBP",
+        symbol: "£",
         available_seats: 1,
         messages_limit: 1_000,
         custom_email_addresses: 1,
@@ -84,6 +92,8 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 25,
         current_price: 25,
+        currency: "GBP",
+        symbol: "£",
         available_seats: 3,
         messages_limit: 3_000,
         custom_email_addresses: 3,
@@ -99,6 +109,8 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 100,
         current_price: 100,
+        currency: "GBP",
+        symbol: "£",
         available_seats: 10,
         messages_limit: 10_000,
         custom_email_addresses: 10,
@@ -114,6 +126,8 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 29,
         current_price: 29,
+        currency: "USD",
+        symbol: "$",
         available_seats: 1,
         messages_limit: 1_000,
         custom_email_addresses: 1,
@@ -129,6 +143,8 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 79,
         current_price: 79,
+        currency: "USD",
+        symbol: "$",
         available_seats: 3,
         messages_limit: 3_000,
         custom_email_addresses: 3,
@@ -144,6 +160,8 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 149,
         current_price: 149,
+        currency: "USD",
+        symbol: "$",
         available_seats: 5,
         messages_limit: 10_000,
         custom_email_addresses: 10,
