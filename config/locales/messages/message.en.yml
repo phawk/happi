@@ -3,3 +3,4 @@ en:
     message:
       raw_source_button: Download raw source
       original_html_button: View original HTML
+      spam_check_button: Spam check

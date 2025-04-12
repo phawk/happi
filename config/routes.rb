@@ -65,6 +65,8 @@ Rails.application.routes.draw do
       get :hovercard, on: :member
       get :raw_source, on: :member
       get :original_html, on: :member
+
+      resource :spam_check, only: :create, controller: "messages/spam_checks"
     end
   end
   resources :teams, only: %i[index new create edit update] do
