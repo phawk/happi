@@ -3,16 +3,14 @@ class ProcessNewMessageJob < ApplicationJob
 
   def perform(message)
     team = message.message_thread.team
-
-    # Run spam detection
-    agent = SpamDetectAgent.new(message: message, team: team)
-    spam_result = agent.perform!
     spam_score = 0.0
-    if spam_result.success?
-      spam_score = spam_result.value!
-      # Update message with spam score
-      message.update(spam_score: spam_score)
-      message.message_thread.update(spam_score: spam_score) if message.message_thread.spam_score.nil?
+
+    result = Ai::DetectSpamService.new(message: message).call
+
+    if result.success?
+      spam_score = result.value!
+    else
+      Rails.logger.error("Error detecting spam for message #{message.id}: #{result.failure}")
     end
 
     # Only send notifications if the message is below the team's spam threshold

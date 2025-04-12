@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"messages":[{"role":"system","content":[{"type":"text","text":"You
+        are a spam detection agent.\nDetermine if this email is genuine customer support
+        request or if it is spam, unsolicited sales pitch (especially for development
+        services), or other non-support related communication.\nSpam includes unsolicited
+        emails like automated replies (or out of office), marketing emails, survey
+        requests, sales pitches, etc.\n\nAfter making your analysis, return ONLY a
+        numerical score between 0 and 10 (no other text or comments) – where 0 means
+        it is definitely a genuine support request and 10 means it is definitely spam/unsolicited.\n"}]},{"role":"user","content":[{"type":"text","text":"Analyze
+        the following email content:\n\u003cmessage\u003e\n  Hello Alex, I have reset
+        your password, please try logging in again now.\n\u003c/message\u003e\n\n\n"}]}],"model":"gpt-4o-mini","temperature":0.7,"n":1}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer OPENAI_API_KEY
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 12 Apr 2025 10:52:20 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Request-ID
+      Openai-Organization:
+      - user-tx700uydvc30n1ddzxrjtp24
+      Openai-Processing-Ms:
+      - '166'
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '4000000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '3999822'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 2ms
+      X-Request-Id:
+      - req_8db8354212f44a249474d2e9e76e1a52
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=yKmwMMMcgk3bVwNJDU89bDou4YfuFRgyte._c9x5Gww-1744455140-1.0.1.1-h72OVG4TqbAJEhBSYb80Ql19Rk4kOx9itWej36FXUS0BNPx8KD0ddkCVdsitv0ZEHc1PVO8uXOBoyBekaGXTtiWN5x7HmV1xsv_yTr2nVE4;
+        path=/; expires=Sat, 12-Apr-25 11:22:20 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=58DtmHGQ2VvSPur4g_YWJjQIrqP6NNA9EdR.GUacMF4-1744455140877-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 92f22c718e1be42b-OTP
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-BLSlAkF1bJSSf9phmwbvlt53frstj",
+          "object": "chat.completion",
+          "created": 1744455140,
+          "model": "gpt-4o-mini-2024-07-18",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "0",
+                "refusal": null,
+                "annotations": []
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 149,
+            "completion_tokens": 2,
+            "total_tokens": 151,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          },
+          "service_tier": "default",
+          "system_fingerprint": "fp_64e0ac9789"
+        }
+  recorded_at: Sat, 12 Apr 2025 10:52:20 GMT
+recorded_with: VCR 6.3.1
