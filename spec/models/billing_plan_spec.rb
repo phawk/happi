@@ -8,7 +8,7 @@ RSpec.describe BillingPlan, type: :model do
     expect(plan.current_price).to eq(29)
     expect(plan.currency).to eq("USD")
     expect(plan.symbol).to eq("$")
-    expect(plan.available_seats).to eq(1)
+    expect(plan.available_seats).to eq(2)
     expect(plan.messages_limit).to eq(1000)
     expect(plan.custom_email_addresses).to eq(1)
     expect(plan.premium_support).to eq(false)
