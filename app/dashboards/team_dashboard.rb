@@ -46,6 +46,7 @@ class TeamDashboard < Administrate::BaseDashboard
     plan
     subscription_status
     verified_at
+    created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

@@ -42,6 +42,7 @@ class UserDashboard < Administrate::BaseDashboard
     team
     role
     confirmed_at
+    created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
