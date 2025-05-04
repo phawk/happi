@@ -33,8 +33,6 @@ class TeamDashboard < Administrate::BaseDashboard
     stripe_customer_id: Field::String,
     stripe_subscription_id: Field::String,
     messages_sent: Field::Number,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -48,7 +46,6 @@ class TeamDashboard < Administrate::BaseDashboard
     plan
     subscription_status
     verified_at
-    created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
