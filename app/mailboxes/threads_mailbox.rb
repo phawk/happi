@@ -73,7 +73,7 @@ class ThreadsMailbox < ApplicationMailbox
       end
     end
 
-    raise(TeamNotFoundError.new("Team not found for email: #{from_email}")) if @team.nil?
+    raise(TeamNotFoundError.new("Team not found for email. From: #{from_email} Recipients: #{mail.recipients.to_sentence}")) if @team.nil?
   end
 
   def assign_thread
