@@ -23,7 +23,7 @@ class SlackNotifierJob < ApplicationJob
   def format_message(message)
     if message.internal?
       [
-        "**New internal note**",
+        "📝 Internal note",
         "From: AI Agent",
         "Subject: #{message.message_thread.subject}\n",
         message.content.to_plain_text,
@@ -32,7 +32,7 @@ class SlackNotifierJob < ApplicationJob
     else
       from_name = ActionMailer::Base.email_address_with_name(message.sender.email, message.sender.name)
       [
-        "**New message**",
+        "✉️ New message",
         "From: #{from_name}",
         "Subject: #{message.message_thread.subject}\n",
         message.content.to_plain_text,
