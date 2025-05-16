@@ -11,7 +11,7 @@ module Api
       )
 
       unless customer.blocked?
-        NotificationService.new_message(current_team, message)
+        ProcessNewMessageJob.perform_later(message)
 
         ThreadSubjectAgent.new(
           team: current_team,

@@ -35,6 +35,8 @@ class MessageContextAgent < ApplicationAgent
       prompt_message
     ], tools: [:knowledge_base_tool, :previous_responses_tool])
 
+    message.update!(ai_context: response.content)
+
     Success(response.content)
   rescue StandardError => e
     Failure(e)

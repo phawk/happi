@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_thread, except: :view_message
-  before_action :set_message, only: %i[raw_source original_html]
+  before_action :set_message, only: %i[raw_source original_html context]
   skip_before_action :ensure_team!, only: :view_message
 
   def new
@@ -41,6 +41,9 @@ class MessagesController < ApplicationController
 
   def original_html
     @html = ERB::Util.url_encode @message.original_html
+  end
+
+  def context
   end
 
   def view_message
