@@ -17,7 +17,7 @@ class Ai::Tools::AutonomousTool < Ai::Tools::BaseTool
       internal: true
     )
 
-    TeamMailer.new_internal_note(message).deliver_later
+    NotificationService.new_internal_note(team, message)
   end
 
   def reply_to_customer(email_text:)
