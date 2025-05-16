@@ -16,6 +16,7 @@ class AutonomousAgent < ApplicationAgent
     - If you do not have enough information:
       - Decide if it is appropriate to request additional details from the customer (only do this if the customer has not already provided adequate information). If so, draft a short, polite follow-up question, addressing the customer by name.
       - If it is not appropriate to ask the customer, escalate the issue for human review. In this case, draft a brief, polite message to the customer acknowledging their request and informing them it has been escalated for further review, using the provided team name for the sign-off. Also, write an internal note summarizing what needs further investigation or attention.
+    - If the customer is just saying thanks, or let me know when it's done etc, don't reply to them.
 
     Do not make assumptions or guesses. Always be confidently humble and polite. Do not reference internal knowledge bases or previous messages directly. Keep all customer-facing messages short, clear, and to the point.
 
