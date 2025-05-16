@@ -11,6 +11,14 @@ class ApplicationAgent
   option :team
   option :model, default: -> { DEFAULT_MODEL }
 
+  def perform_async!
+    agent_args = {
+      agent_class: self.class.name,
+    }
+    agent_args = agent_args.merge(self.class.dry_initializer.attributes(self))
+    Ai::ProcessAsyncAgentJob.perform_later(**agent_args)
+  end
+
   def generate!(instructions:, messages:, tools: [])
     assistant = Langchain::Assistant.new(
       llm: llm,
