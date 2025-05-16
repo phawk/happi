@@ -1,6 +1,19 @@
 <%= render(Messages::FormComponent.new(
   message: Message.new,
   message_thread: @message_thread,
-  current_user: current_user,
-  current_team: current_team
+  can_send_messages: current_user.can_send_messages?,
+  emails_to_send_from: current_team.emails_to_send_from
 )) %>
+
+<% unless current_user.confirmed? %>
+  <%= render "shared/unconfirmed_email" %>
+<% end %>
+<% unless current_team.subscription_active? %>
+  <%= render "shared/subscription_required" %>
+<% end %>
+<% unless current_team.verified? %>
+  <%= render "shared/pending_verification" %>
+<% end %>
+<% if current_team.messages_limit_reached? %>
+  <%= render "shared/messages_limit_reached" %>
+<% end %>

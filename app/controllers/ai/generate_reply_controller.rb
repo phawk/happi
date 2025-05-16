@@ -21,15 +21,14 @@ class Ai::GenerateReplyController < ApplicationController
   def turbo_stream_response(status, message)
     turbo_stream.replace(
       "message-composer-form",
-      partial: "messages/form",
-      locals: {
-        model: [@message_thread, Message.new(content: message)],
-        thread: @message_thread,
+      html: Messages::FormComponent.new(
+        message: Message.new(content: message),
+        message_thread: @message_thread,
         ai_status: status,
-        current_user: current_user,
-        current_team: current_team,
-        canned_responses: current_team.canned_responses.order(:created_at).to_a
-      }
+        canned_responses: current_team.canned_responses.order(:created_at).to_a,
+        emails_to_send_from: current_team.emails_to_send_from,
+        can_send_messages: current_user.can_send_messages?
+      ).render_in(view_context)
     )
   end
 

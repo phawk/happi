@@ -3,9 +3,8 @@
     <%= render Messages::FormComponent.new(
       message: message,
       message_thread: message.message_thread,
-      current_user: current_user,
-      current_team: current_team,
-      draft_ai_reply: message.ai?
+      draft_ai_reply: message.ai?,
+      emails_to_send_from: message.message_thread.team.emails_to_send_from
     ) %>
   <% else %>
     <%= render Messages::ShowComponent.new(message: message) %>

@@ -33,6 +33,7 @@ en:
     merge_with_previous:
       threads_merged: Threads merged
       threads_not_merged: No previous threads found
+  messages:
     hovercard:
       status: Status
       spam_score: Spam score
