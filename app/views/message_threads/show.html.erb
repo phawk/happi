@@ -23,7 +23,14 @@
         <%= render @messages %>
       </div>
 
-      <%= render "messages/form", model: [@message_thread, Message.new], thread: @message_thread, canned_responses: @canned_responses %>
+      <%= render(Messages::FormComponent.new(
+        message: Message.new,
+        message_thread: @message_thread,
+        canned_responses: @canned_responses,
+        current_user: current_user,
+        current_team: current_team
+      )) %>
+
       <%= link_to message_thread_ai_generate_reply_path(@message_thread), data: { turbo_method: :post }, class: "text-sm text-gray-700 hover:text-gray-900 sm:mr-3" do %>
         ⚡️ <span class="underline">Draft using AI</span>
       <% end %>

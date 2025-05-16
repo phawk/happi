@@ -1,1 +1,6 @@
-<%= render "messages/form", model: [@message_thread, @message], thread: @message_thread, canned_responses: [] %>
+<%= render(Messages::FormComponent.new(
+  message: Message.new,
+  message_thread: @message_thread,
+  current_user: current_user,
+  current_team: current_team
+)) %>

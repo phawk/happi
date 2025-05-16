@@ -61,7 +61,7 @@ Rails.application.routes.draw do
     post :merge_with_previous, on: :member
     delete :auto_archive, on: :collection
     resource :generate_reply, only: :create, controller: "ai/generate_reply", as: :ai_generate_reply
-    resources :messages, only: %i[new create] do
+    resources :messages, only: %i[new create update] do
       get :hovercard, on: :member
       get :raw_source, on: :member
       get :original_html, on: :member

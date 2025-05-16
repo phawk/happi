@@ -1,0 +1,51 @@
+<%= form_with(model: [message_thread, message], class: "styled-form", html:{ id: "message-composer-form"}, data: { controller: "message-composer" }) do |f| %>
+  <% if draft_ai_reply? %>
+    <span class="block text-lg font-semibold text-gray-800 mb-2">AI agents’ draft response...</span>
+  <% end %>
+  <%= f.rich_text_area :content %>
+
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4">
+    <div class="flex items-center">
+      <% if current_user.can_send_messages? %>
+      <%= f.submit "Send Reply", class: "button -primary sm:mr-3" %>
+      <% else %>
+        <button type="button" class="button -primary opacity-25 cursor-not-allowed sm:mr-3" disabled>
+          Send Reply
+        </button>
+      <% end %>
+    </div>
+
+    <div class="mt-3 sm:mt-0 flex flex-col sm:flex-row sm:items-center">
+      <span class="text-sm font-medium mr-3">Send from</span>
+      <%= f.select :from_address, options_for_select(current_team.emails_to_send_from) %>
+    </div>
+  </div>
+
+  <% if ai_status == "failed" %>
+    <p class="text-red-500">Failed to generate AI reply, please try again.</p>
+  <% end %>
+
+  <% if canned_responses.any? %>
+    <div class="mt-6">
+      <span class="block text-gray-600 font-semibold mb-2">Prefill with canned response...</span>
+      <div class="flex flex-wrap">
+        <% canned_responses.each do |canned| %>
+          <%= tag.button canned.label, type: "button", data: { html: canned.content.to_s, action: "click->message-composer#snippet" }, class: "mr-4 mb-2 text-sm hover:underline text-gray-500 hover:text-gray-600" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% unless current_user.confirmed? %>
+    <%= render "shared/unconfirmed_email" %>
+  <% end %>
+  <% unless current_team.subscription_active? %>
+    <%= render "shared/subscription_required" %>
+  <% end %>
+  <% unless current_team.verified? %>
+    <%= render "shared/pending_verification" %>
+  <% end %>
+  <% if current_team.messages_limit_reached? %>
+    <%= render "shared/messages_limit_reached" %>
+  <% end %>
+<% end %>
