@@ -17,10 +17,19 @@ class ProcessNewMessageJob < ApplicationJob
     if message.message_thread.reload.spam_score < team.spam_threshold
       NotificationService.new_message(team, message)
 
-      MessageContextAgent.new(
-        team: team,
-        message: message
-      ).perform_async!
+      if team.internal_access?
+        result = MessageContextAgent.new(
+          team: team,
+          message: message
+        ).perform!
+
+        if result.success?
+          AutonomousAgent.new(
+            team: team,
+            message: message
+          ).perform_async!
+        end
+      end
     else
       Rails.logger.info("Message #{message.id} detected as spam (score: #{spam_score}), skipping notification.")
     end

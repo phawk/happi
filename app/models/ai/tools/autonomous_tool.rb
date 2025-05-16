@@ -10,12 +10,14 @@ class Ai::Tools::AutonomousTool < Ai::Tools::BaseTool
   end
 
   def create_internal_note(note:)
-    message_thread.messages.create!(
+    message = message_thread.messages.create!(
       sender: team,
       content: simple_format(note),
       ai_agent: true,
       internal: true
     )
+
+    TeamMailer.new_internal_note(message).deliver_later
   end
 
   def reply_to_customer(email_text:)

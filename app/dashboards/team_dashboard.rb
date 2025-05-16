@@ -33,6 +33,7 @@ class TeamDashboard < Administrate::BaseDashboard
     stripe_customer_id: Field::String,
     stripe_subscription_id: Field::String,
     messages_sent: Field::Number,
+    autonomous_replies_enabled: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -68,6 +69,7 @@ class TeamDashboard < Administrate::BaseDashboard
     users
     custom_email_addresses
     access_level
+    autonomous_replies_enabled
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -87,6 +89,7 @@ class TeamDashboard < Administrate::BaseDashboard
     stripe_subscription_id
     users
     access_level
+    autonomous_replies_enabled
   ].freeze
 
   # COLLECTION_FILTERS
