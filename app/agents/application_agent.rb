@@ -76,7 +76,8 @@ class ApplicationAgent
   def custom_tools
     {
       knowledge_base_tool: Ai::Tools::KnowledgeBaseTool.new(agent: self),
-      previous_responses_tool: Ai::Tools::PreviousResponsesTool.new(agent: self)
+      previous_responses_tool: Ai::Tools::PreviousResponsesTool.new(agent: self),
+      autonomous_tool: Ai::Tools::AutonomousTool.new(agent: self)
     }
   end
 end

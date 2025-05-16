@@ -19,14 +19,12 @@ class AutonomousAgent < ApplicationAgent
 
     Do not make assumptions or guesses. Always be confidently humble and polite. Do not reference internal knowledge bases or previous messages directly. Keep all customer-facing messages short, clear, and to the point.
 
-    [Response Format]
+    [Response Tools]
 
-    Respond with:
+    You have two tools you can use to respond with:
 
-    - Action: (“Draft Reply”, “Request Info from Customer”, or “Escalate and Notify Customer”)
-    - Reasoning: Brief explanation for your choice.
-    - Draft Message: The message to send to the customer (if applicable; address the customer by name and use the provided team name for the sign-off).
-    - Internal Note: (If escalated) Briefly state what needs to be investigated or who should handle it.
+    - create_internal_note - To create an internal note, this will escalate the issue for human review, and notify other support team members.
+    - reply_to_customer - To reply to the customer, this will create a new message in the message thread and email the customer the response. Don't include any other text in your response other than the message you're sending to the customer.
 
   INSTRUCTIONS
 
@@ -56,7 +54,7 @@ class AutonomousAgent < ApplicationAgent
 
     response = generate!(instructions: INSTRUCTIONS, messages: [
       prompt_message
-    ])
+    ], tools: [:autonomous_tool])
 
     Success(response.content)
   rescue StandardError => e

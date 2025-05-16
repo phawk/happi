@@ -30,6 +30,10 @@ class Message < ApplicationRecord
     sender_type == "User"
   end
 
+  def ai?
+    sender_type == "Team" && ai_agent?
+  end
+
   def deliver_email_via
     from_address.presence || message_thread.team.default_from_address
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_16_173910) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_16_202111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -280,6 +280,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_16_173910) do
     t.text "original_html"
     t.bigint "action_mailbox_id"
     t.text "ai_context"
+    t.boolean "draft", default: false, null: false
+    t.boolean "ai_agent", default: false, null: false
     t.index ["message_thread_id"], name: "index_messages_on_message_thread_id"
   end
 
@@ -327,6 +329,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_16_173910) do
     t.string "access_level", default: "standard", null: false
     t.text "spam_prompt"
     t.decimal "spam_threshold", precision: 10, scale: 2, default: "5.0"
+    t.boolean "autonomous_replies_enabled", default: false, null: false
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
     t.index ["publishable_key"], name: "index_teams_on_publishable_key", unique: true
