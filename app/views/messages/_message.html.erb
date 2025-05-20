@@ -6,7 +6,9 @@
       draft_ai_reply: message.ai?,
       emails_to_send_from: message.message_thread.team.emails_to_send_from
     ) %>
-    <%= button_to "Delete", message_thread_message_path(message.message_thread, message), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this message?" }, class: "button -danger" %>
+    <div class="mt-2 flex items-center sm:justify-end">
+      <%= button_to "Delete this draft", message_thread_message_path(message.message_thread, message), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this message?" }, class: "text-gray-500 hover:text-gray-800 underline text-sm" %>
+    </div>
   <% else %>
     <%= render Messages::ShowComponent.new(message: message) %>
   <% end %>
