@@ -6,7 +6,7 @@ module Messages
     def create
       @message = Message.find(params[:message_id])
 
-      result = Ai::DetectSpamService.new(message: @message, force_thread_update: true).call
+      result = Ai::DetectSpamService.new(message: @message, force_thread_update: true, model: "gpt-4o-mini").call
 
       if result.success?
         redirect_to message_thread_path(@message_thread), notice: "Spam check completed"

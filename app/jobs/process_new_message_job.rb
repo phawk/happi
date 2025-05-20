@@ -5,7 +5,7 @@ class ProcessNewMessageJob < ApplicationJob
     team = message.message_thread.team
     spam_score = 0.0
 
-    result = Ai::DetectSpamService.new(message: message).call
+    result = Ai::DetectSpamService.new(message: message, model: "gpt-4o-mini").call
 
     if result.success?
       spam_score = result.value!

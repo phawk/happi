@@ -3,7 +3,7 @@ require "dry/monads"
 
 class ApplicationAgent
   DEFAULT_TEMPERATURE = 0.7
-  DEFAULT_MODEL = "gpt-4o-mini"
+  DEFAULT_MODEL = "gpt-4.1-mini"
 
   extend Dry::Initializer
   include Dry::Monads[:result]
