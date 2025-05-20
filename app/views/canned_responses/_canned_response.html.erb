@@ -5,7 +5,7 @@
     </h4>
     <div class="text-sm">
       <%= link_to t(".edit"), edit_canned_response_path(canned_response), class: "text-purple-600 hover:underline mr-3" %>
-      <%= link_to t(".delete"), canned_response_path(canned_response), method: :delete, class: "text-pink-700 hover:underline", data: { confirm: t(".confirm_delete") } %>
+      <%= link_to t(".delete"), canned_response_path(canned_response), method: :delete, class: "text-pink-700 hover:underline", data: { turbo_confirm: t(".confirm_delete") } %>
     </div>
   </div>
 
