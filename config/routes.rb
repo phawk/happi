@@ -85,6 +85,9 @@ Rails.application.routes.draw do
     get :spam
     put :spam_update
   end
+  namespace :image_uploads do
+    resources :logo, controller: "logo", only: :show
+  end
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"
   put "/join/:code", to: "team_invites#update"

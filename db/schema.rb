@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_20_162343) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_20_171256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -254,6 +254,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_20_162343) do
     t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ip_address"
+    t.string "user_agent"
     t.index ["message_id"], name: "index_message_status_updates_on_message_id"
   end
 

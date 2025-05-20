@@ -19,7 +19,9 @@ module Events
           MessageStatusUpdate.create!(
             message: message,
             value: "open",
-            data: params.to_unsafe_h
+            data: params.to_unsafe_h,
+            ip_address: request.remote_ip,
+            user_agent: request.user_agent
           )
         end
       when "Delivery"
