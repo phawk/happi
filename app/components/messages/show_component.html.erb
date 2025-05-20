@@ -54,12 +54,18 @@
       <%= message.ai? ? "AI agent" : message.sender.name.familiar %>
     </span>
   </div>
-  <span
-    class="flex items-center text-sm font-medium capitalize text-gray-400" title="<%= message.status %>"
-    data-controller="hovercard"
-    data-hovercard-url-value="<%= hovercard_message_thread_message_path(message.message_thread, message) %>"
-    data-action="mouseenter->hovercard#show mouseleave->hovercard#hide">
-    <%= render MessageStatusIconComponent.new(message: message) unless message.internal? %>
-    <%= datetime message.created_at %>
-  </span>
+  <% if internal? %>
+    <span class="text-sm font-medium capitalize text-gray-400">
+      <%= datetime message.created_at %>
+    </span>
+  <% else %>
+    <span
+      class="flex items-center text-sm font-medium capitalize text-gray-400" title="<%= message.status %>"
+      data-controller="hovercard"
+      data-hovercard-url-value="<%= hovercard_message_thread_message_path(message.message_thread, message) %>"
+      data-action="mouseenter->hovercard#show mouseleave->hovercard#hide">
+      <%= render MessageStatusIconComponent.new(message: message) %>
+      <%= datetime message.created_at %>
+    </span>
+  <% end %>
 </div>
