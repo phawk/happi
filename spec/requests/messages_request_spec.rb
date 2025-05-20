@@ -40,7 +40,7 @@ RSpec.describe MessagesController, type: :request do
       end
     end
 
-    context "when user hasn’t verified their email address" do
+    context "when user hasn't verified their email address" do
       it "returns an error" do
         pete.update!(confirmed_at: nil, confirmation_sent_at: 1.hour.ago, created_at: 1.hour.ago)
         sign_in(pete)
@@ -128,6 +128,44 @@ RSpec.describe MessagesController, type: :request do
         expect(response).to redirect_to(message_threads_path)
         follow_redirect!
         expect(response.body).to include("You don’t have access to this team")
+      end
+    end
+  end
+
+  describe "#destroy" do
+    let(:pete) { users(:pete) }
+    let(:message_thread) { message_threads(:acme_alex_password_reset) }
+    let(:message) { messages(:acme_alex_stripe_msg_1) }
+
+    before { sign_in(pete) }
+
+    context "when message is a draft" do
+      before do
+        message.update!(draft: true)
+      end
+
+      it "deletes the message and shows success message" do
+        delete message_thread_message_path(message_thread, message)
+
+        expect(response).to redirect_to(message_thread_path(message_thread))
+        follow_redirect!
+        expect(response.body).to include("Draft message deleted")
+        expect { message.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "when message is not a draft" do
+      before do
+        message.update!(draft: false)
+      end
+
+      it "does not delete the message and shows error message" do
+        delete message_thread_message_path(message_thread, message)
+
+        expect(response).to redirect_to(message_thread_path(message_thread))
+        follow_redirect!
+        expect(response.body).to include("Only draft messages can be deleted")
+        expect { message.reload }.not_to raise_error
       end
     end
   end
