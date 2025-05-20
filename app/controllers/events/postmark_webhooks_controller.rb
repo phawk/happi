@@ -12,6 +12,16 @@ module Events
       message_id = params.dig("Metadata", "message_id")
 
       case params["RecordType"]
+      when "Open"
+        if message_id.present?
+          message = Message.find(message_id)
+          message.update(status: "opened")
+          MessageStatusUpdate.create!(
+            message: message,
+            value: "open",
+            data: params.to_unsafe_h
+          )
+        end
       when "Delivery"
         if message_id.present?
           message = Message.find(message_id)

@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  STATUS = %w[received pending delivered bounced].freeze
+  STATUS = %w[received pending delivered bounced opened].freeze
   include PgSearch::Model
 
   after_create_commit { broadcast_append_to(turbo_channel, target: "messages") }

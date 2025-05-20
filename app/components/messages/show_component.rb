@@ -2,4 +2,8 @@
 
 class Messages::ShowComponent < ApplicationComponent
   option :message
+
+  def from_customer?
+    message.customer?
+  end
 end

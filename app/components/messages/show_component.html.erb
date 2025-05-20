@@ -11,7 +11,7 @@
     <%= message.content %>
   </div>
 
-  <% unless message.internal? %>
+  <% if from_customer? %>
     <div class="flex justify-end items-center space-x-4 md:space-x-6 mt-6">
       <%= button_to message_thread_message_spam_check_path(message.message_thread, message), method: :post, class: "text-sm text-gray-600 hover:underline inline-flex items-center", form: { class: "flex items-center" } do %>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 mr-1.5">

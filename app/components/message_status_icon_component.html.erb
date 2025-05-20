@@ -4,6 +4,10 @@
   </svg>
 <% else %>
   <% case message.status %>
+  <% when "opened" %>
+    <svg class="h-4 mr-1 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill-rule="evenodd" d="M8.347 13.307a.75.75 0 0 1-1.06 0l-3.25-3.25a.75.75 0 1 1 1.06-1.06l2.72 2.72 6.97-8.957a.75.75 0 1 1 1.17.93l-7.61 9.617Zm4.58 4.58a.75.75 0 0 1-1.06 0l-3.25-3.25a.75.75 0 1 1 1.06-1.06l2.72 2.72 7.97-10.257a.75.75 0 1 1 1.17.93l-8.61 10.917Z" clip-rule="evenodd"/>
+    </svg>
   <% when "delivered" %>
     <svg class="h-4 mr-1 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" role="img" aria-label="Delivered">
       <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />

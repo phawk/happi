@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_16_202111) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_20_162343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -248,6 +248,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_16_202111) do
     t.index ["user_id"], name: "index_knowledge_base_file_uploads_on_user_id"
   end
 
+  create_table "message_status_updates", force: :cascade do |t|
+    t.bigint "message_id", null: false
+    t.string "value"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_message_status_updates_on_message_id"
+  end
+
   create_table "message_threads", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "team_id", null: false
@@ -383,6 +392,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_16_202111) do
   add_foreign_key "customers", "teams"
   add_foreign_key "knowledge_base_file_uploads", "teams"
   add_foreign_key "knowledge_base_file_uploads", "users"
+  add_foreign_key "message_status_updates", "messages"
   add_foreign_key "message_threads", "customers"
   add_foreign_key "message_threads", "teams"
   add_foreign_key "message_threads", "users"
