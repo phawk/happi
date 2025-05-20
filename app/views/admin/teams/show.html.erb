@@ -25,7 +25,7 @@ as well as a link to its edit page.
 
   <div class="flex space-x-3">
     <% if page.resource.verified? %>
-      <%= link_to "Send verified email", admin_team_verified_email_path(page.resource), method: :post, class: "button" %>
+      <%= link_to "Send verified email", admin_team_verified_email_path(page.resource), data: { turbo_method: :post }, class: "button" %>
     <% else %>
       <span class="bg-gray-400 text-white py-3 px-4 leading-none inline-block rounded font-bold">Send verified email</span>
     <% end %>

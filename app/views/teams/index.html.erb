@@ -2,7 +2,7 @@
 
 <div class="flex flex-wrap items-center justify-center">
   <% @teams.each do |team| %>
-    <%= link_to team.name, change_team_path(team), method: :post, class: "-rounded -primary mb-4 button mx-2" %>
+    <%= button_to team.name, change_team_path(team), method: :post, class: "-rounded -primary mb-4 button mx-2" %>
   <% end %>
 </div>
 
