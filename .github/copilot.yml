@@ -1,0 +1,78 @@
+name: Happi Project Rules
+description: Coding standards and best practices for the Happi project
+
+general_coding_practices:
+  - Write concise, idiomatic Ruby code following Rails conventions
+  - Use snake_case for file names, method names, and variables
+  - Use CamelCase for class and module names
+  - Follow RESTful routing conventions
+  - Use descriptive variable and method names (e.g., user_signed_in?, calculate_total)
+  - Structure files according to Rails conventions (MVC, concerns, helpers, etc.)
+  - Use Ruby 3.x features when appropriate
+  - Leverage Rails' built-in helpers and methods
+  - Use ActiveRecord effectively for database operations
+  - Follow the Ruby Style Guide
+  - Use double quotes for strings
+  - Prefix all rails commands with `bin/` like `bin/rails db:migrate`
+
+service_objects:
+  - Use service objects for complex business logic or when making controllers simple
+  - All services should inherit from ApplicationService
+  - Services should always return `Success(data)` or `Failure(MyError.new("whatever"))`
+  - Use Dry::Monads[:result] for service object results
+
+view_components:
+  - Use view components for reusable UI pieces and to encapsulate UI logic
+  - ApplicationComponent extends `Dry::Initializer`
+  - Define attributes using `option :name` or optional options with `option :name, default: -> { value }`
+
+testing:
+  - Write comprehensive tests using RSpec
+  - Prefer request specs over system tests
+  - Follow TDD/BDD practices
+  - Use Rails fixtures or create Active Record objects for test data
+  - Use VCR for testing network requests
+  - Use `let` to define test data
+  - Keep tests short and concise
+
+clean_code:
+  - Replace hard-coded values with named constants
+  - Use meaningful names that reveal purpose
+  - Each function should do exactly one thing
+  - Keep functions small and focused
+  - Extract repeated code into reusable functions
+  - Keep related code together
+  - Hide implementation details
+  - Expose clear interfaces
+  - Move nested conditionals into well-named functions
+  - Write clear commit messages
+  - Make small, focused commits
+
+tailwind_css:
+  - Use utility classes over custom CSS
+  - Group related utilities with @apply when needed
+  - Use proper responsive design utilities
+  - Use Flexbox and Grid utilities effectively
+  - Use proper font size and line height utilities
+  - Use semantic color naming
+  - Use shadcn/ui components when available
+  - Follow mobile-first approach
+  - Use proper purge configuration
+  - Minimize custom CSS
+  - Follow accessibility guidelines
+
+error_handling_and_security:
+  - Use exceptions for exceptional cases, not for control flow
+  - Implement proper error logging and user-friendly messages
+  - Use ActiveModel validations in models
+  - Handle errors gracefully in controllers
+  - Implement proper authentication and authorization
+  - Use strong parameters in controllers
+  - Protect against common web vulnerabilities (XSS, CSRF, SQL injection)
+
+performance:
+  - Use database indexing effectively
+  - Implement caching strategies (fragment caching, Russian Doll caching)
+  - Use eager loading to avoid N+1 queries
+  - Optimize database queries using includes, joins, or select
+  - Use background jobs (e.g., ActiveJob) for time-consuming tasks
