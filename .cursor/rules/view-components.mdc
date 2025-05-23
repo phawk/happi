@@ -1,0 +1,10 @@
+---
+description: View components
+globs: app/components/**/*.rb,app/components/**/*.html.erb
+alwaysApply: false
+---
+# View components
+
+Use view components to make more reusable pieces of UI and encapsulate logic in UI, their Ruby files can be used to create methods and make sure we don't litter up standard Rails view files with complex logic. 
+
+- ApplicationComponent extends `Dry::Initializer` so you can define attributes like `option :order` or optional options like: `option :extra, default: -> { false }`

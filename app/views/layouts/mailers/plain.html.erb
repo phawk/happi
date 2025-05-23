@@ -307,7 +307,11 @@
 
                       <div class="email-footer">
                         <% if @team.has_logo? %>
-                          <%= image_tag @team.logo.variant(:small), class: "email-footer-logo" %>
+                          <% if @message.present? %>
+                            <%= image_tag image_uploads_logo_url(@message.to_gid_param), class: "email-footer-logo" %>
+                          <% else %>
+                            <%= image_tag @team.logo.variant(:small), class: "email-footer-logo" %>
+                          <% end %>
                         <% end %>
 
                         <% unless @team.whitelabel? %>

@@ -1,0 +1,51 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Happi Team: Simplifying Customer Support for Small Teams
+
+## Overview
+Happi Team is a dedicated inbox solution designed to streamline customer support for small teams. By connecting your support email address or entire domain, Happi Team centralizes all customer emails into a collaborative platform, allowing multiple team members to manage and respond to inquiries efficiently.
+
+## Key Features
+
+1. **Collaborative Inbox:**
+   - Connect your support email or domain to receive all emails through Happi Team. Multiple team members can log in and respond using a single support email, ensuring timely responses with notifications via email or Slack integration.
+
+2. **Embedable JS Widget:**
+   - Easily integrate a support request widget into your website or app, providing customers with a convenient way to reach out for assistance.
+
+3. **AI Integration:**
+   - **AI Spam Agent:** Enhance spam detection beyond traditional methods like Akismet, filtering out irrelevant and cold emails more effectively.
+   - **Knowledgebase Builder:** Upload documents like PDFs to build a comprehensive knowledge base. Integrate tools like Code2.ai to make the knowledge base code-aware, providing agents with feature-specific insights.
+   - **AI Writer:** Automate the drafting of support messages based on past interactions and the knowledge base, saving time and ensuring consistency.
+   - **AI Reply Bot:** Automate responses to customer inquiries with high confidence levels, while leaving uncertain queries for human agents.
+
+4. **Move Away from Live Chat:**
+   - Designed to manage customer expectations better by focusing on email support rather than live chat, reducing the pressure to respond instantly and improving team manageability.
+
+5. **Standard Features:**
+   - Notifications for new messages
+   - File attachments
+   - Customizable email templates
+   - Custom domains for email communication
+   - Canned responses for quick replies
+   - Support widget for easy integration into websites/apps
+   - Spam protection and management
+   - Hosted FAQs page (coming soon)
+
+## Why Choose Happi Team?
+Happi Team is designed to be simple and customer-friendly, functioning more like a shared inbox than a traditional ticket system. It provides a professional and efficient way to manage customer support, with all features available without expensive upgrades.
+
+## Customer Success Story
+Scott and his team at Payhere.co have been using Happi Team for years to manage customer support. The platform has provided visibility over tickets and maintained a professional support experience.
+
+## Testimonial
+"Happi is really slick! Works great on mobile and is a much nicer way of engaging with customers compared to the enterprise tool we were using before." - Scott, Payhere
+
+## Getting Started
+Happi Team offers a free trial with no credit card required. Explore the features and see how Happi Team can enhance your customer support operations.
+
+## Pricing
+Visit our [pricing page](mdc:https:/happi.team/pricing) to choose a plan that suits your needs.

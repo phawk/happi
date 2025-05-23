@@ -12,4 +12,16 @@
     text-decoration: underline;
     color: #7C3AED;
   }
+
+  ul {
+    @apply list-disc list-inside my-4;
+  }
+
+  ol {
+    @apply list-decimal list-inside my-4;
+  }
+
+  li {
+    @apply mb-1;
+  }
 }

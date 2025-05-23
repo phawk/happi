@@ -27,4 +27,25 @@ class SettingsController < ApplicationController
   def blocked_domains
     @blocked_domains = current_team.blocked_domains.order(:domain)
   end
+
+  def spam
+    # No specific data needs to be loaded here, the form will use current_team
+  end
+
+  def spam_update
+    if current_team.update(team_params)
+      redirect_to spam_settings_path, notice: t(".update_success")
+    else
+      # Determine which settings page had the error based on submitted params?
+      # For now, just render the spam page again if it fails.
+      flash.now[:alert] = t(".update_failed")
+      render :spam # Re-render the spam form with errors
+    end
+  end
+
+  private
+
+  def team_params
+    params.require(:team).permit(:spam_threshold, :spam_prompt)
+  end
 end

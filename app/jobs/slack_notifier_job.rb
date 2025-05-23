@@ -21,12 +21,23 @@ class SlackNotifierJob < ApplicationJob
   private
 
   def format_message(message)
-    [
-      "**New message**",
-      "From: #{message.sender.name} <#{message.sender.email}>",
-      "Subject: #{message.message_thread.subject}\n",
-      message.content.to_plain_text,
-      "\n<#{view_message_url(message)}|Respond on Happi>",
-    ].join("\n")
+    if message.internal?
+      [
+        "📝 Internal note",
+        "From: AI Agent",
+        "Subject: #{message.message_thread.subject}\n",
+        message.content.to_plain_text,
+        "\n<#{view_message_url(message)}|View on Happi>",
+      ].join("\n")
+    else
+      from_name = ActionMailer::Base.email_address_with_name(message.sender.email, message.sender.name)
+      [
+        "✉️ New message",
+        "From: #{from_name}",
+        "Subject: #{message.message_thread.subject}\n",
+        message.content.to_plain_text,
+        "\n<#{view_message_url(message)}|Respond on Happi>",
+      ].join("\n")
+    end
   end
 end

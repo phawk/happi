@@ -1,14 +1,14 @@
 require "rails_helper"
 
-RSpec.describe "Messages", type: :request do
-  describe "POST /messages" do
+RSpec.describe MessagesController, type: :request do
+  describe "#create" do
     let(:pete) { users(:pete) }
     let(:message_thread) { message_threads(:acme_alex_password_reset) }
 
     context "when params are valid" do
       before do
         sign_in(pete)
-        perform_enqueued_jobs do
+        perform_enqueued_jobs(only: ActionMailer::MailDeliveryJob) do
           post message_thread_messages_path(message_thread),
             params: { message: { content: "Thanks for getting in touch!" } }
         end
@@ -34,9 +34,13 @@ RSpec.describe "Messages", type: :request do
         expect(last_email.to).to eq([message_thread.customer.email])
         expect(last_email.reply_to).to eq(["support@acme.com"])
       end
+
+      it "enqueues a job to process the message thread reply" do
+        expect(ProcessMessageThreadReplyJob).to have_been_enqueued.with(message_thread)
+      end
     end
 
-    context "when user hasn’t verified their email address" do
+    context "when user hasn't verified their email address" do
       it "returns an error" do
         pete.update!(confirmed_at: nil, confirmation_sent_at: 1.hour.ago, created_at: 1.hour.ago)
         sign_in(pete)
@@ -56,6 +60,43 @@ RSpec.describe "Messages", type: :request do
         expect(response).to redirect_to(message_thread_path(message_thread))
         follow_redirect!
         expect(response.body).to include("You must enter a message")
+      end
+    end
+  end
+
+  describe "#update" do
+    let(:pete) { users(:pete) }
+    let(:message_thread) { message_threads(:acme_alex_password_reset) }
+    let(:message) { messages(:acme_alex_stripe_msg_1) }
+
+    context "when AI has drafted a reply" do
+      before do
+        sign_in(pete)
+        message.update!(
+          ai_agent: true,
+          draft: true,
+          sender: message_thread.team
+        )
+      end
+
+      it "updates the message content removes draft and sends the message" do
+        perform_enqueued_jobs(only: ActionMailer::MailDeliveryJob) do
+          patch message_thread_message_path(message_thread, message),
+            params: { message: { content: "Thanks for getting in touch!" } }
+        end
+
+        expect(response).to redirect_to(message_thread_path(message_thread))
+        follow_redirect!
+        expect(response.body).to include("Message delivered")
+
+        expect(message.reload.content.to_plain_text).to include("Thanks for getting in touch!")
+        expect(message.draft).to be(false)
+        expect(message.ai_agent).to be(true)
+        expect(delivered_emails.size).to eq(1)
+        # expect(last_email.subject).to eq(message_thread.subject)
+        expect(last_email.to).to eq([message_thread.customer.email])
+        expect(last_email.reply_to).to eq(["support@acme.com"])
+        expect(ProcessMessageThreadReplyJob).to have_been_enqueued.with(message_thread)
       end
     end
   end
@@ -87,6 +128,44 @@ RSpec.describe "Messages", type: :request do
         expect(response).to redirect_to(message_threads_path)
         follow_redirect!
         expect(response.body).to include("You don’t have access to this team")
+      end
+    end
+  end
+
+  describe "#destroy" do
+    let(:pete) { users(:pete) }
+    let(:message_thread) { message_threads(:acme_alex_password_reset) }
+    let(:message) { messages(:acme_alex_stripe_msg_1) }
+
+    before { sign_in(pete) }
+
+    context "when message is a draft" do
+      before do
+        message.update!(draft: true)
+      end
+
+      it "deletes the message and shows success message" do
+        delete message_thread_message_path(message_thread, message)
+
+        expect(response).to redirect_to(message_thread_path(message_thread))
+        follow_redirect!
+        expect(response.body).to include("Draft message deleted")
+        expect { message.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "when message is not a draft" do
+      before do
+        message.update!(draft: false)
+      end
+
+      it "does not delete the message and shows error message" do
+        delete message_thread_message_path(message_thread, message)
+
+        expect(response).to redirect_to(message_thread_path(message_thread))
+        follow_redirect!
+        expect(response.body).to include("Only draft messages can be deleted")
+        expect { message.reload }.not_to raise_error
       end
     end
   end

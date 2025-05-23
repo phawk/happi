@@ -12,7 +12,7 @@ class CustomEmailAddress < ApplicationRecord
 
   def to_s
     if from_name.present?
-      "#{from_name} <#{email}>"
+      ActionMailer::Base.email_address_with_name(email, from_name)
     else
       email
     end

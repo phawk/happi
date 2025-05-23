@@ -9,8 +9,18 @@ module StripeWebhooks
       team.stripe_subscription_id = stripe_sub.id
       team.subscription_status = stripe_sub.status
       team.subscription_status = "canceled" if stripe_sub.cancel_at_period_end
+      if stripe_sub.status == "active" && !team.verified?
+        team.verified_at = Time.current
+      end
 
       team.save!
+
+      AdminMailer.notification(
+        "Subscription updated for #{team.name}",
+        "#{team.name} on the #{team.plan} plan has been updated. New status: #{team.subscription_status}."
+      ).deliver_later
+
+      true
     end
   end
 end

@@ -17,6 +17,22 @@ RSpec.describe HappiMail::FromParser, type: :model do
     expect(parser.name).to eq("Bilbo Baggins")
   end
 
+  it "works with empty from field" do
+    record = create_inbound_email_from_mail do |mail|
+      mail.to "ACME Corp <support@acme.com>"
+      mail.from "<us21-e874eacbeb-b2805b0d01@example.com>"
+      mail.subject "Come down to the Shire!"
+      mail.text_part do |part|
+        part.body "Please join us for a party at Bag End"
+      end
+    end
+
+    parser = HappiMail::FromParser.new(record.mail)
+
+    expect(parser.email_address).to eq("us21-e874eacbeb-b2805b0d01@example.com")
+    expect(parser.name).to eq("Unknown")
+  end
+
   it "works when only email is provided" do
     record = create_inbound_email_from_mail do |mail|
       mail.to "ACME Corp <support@acme.com>"

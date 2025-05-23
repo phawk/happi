@@ -7,6 +7,22 @@ RSpec.describe Events::PostmarkWebhooksController, type: :request do
   end
 
   describe "#create" do
+    it "tracks message opens" do
+      expect do
+        post "/events/postmark", params: {
+          "Metadata" => {
+            "message_id" => message.id.to_s,
+          },
+          "RecordType" => "Open",
+        }, headers: { "HTTP_AUTHORIZATION" => http_auth }
+
+        message.reload
+
+        expect(response).to have_http_status(:no_content)
+        expect(message.status).to eq("opened")
+      end.to change(MessageStatusUpdate, :count).by(1)
+    end
+
     it "marks message as delivered" do
       post "/events/postmark", params: {
         "Metadata" => {

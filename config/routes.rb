@@ -53,13 +53,21 @@ Rails.application.routes.draw do
     post "block", on: :member
     post "unblock", on: :member
   end
+  resources :knowledge_base, only: [:index, :create, :show, :destroy], path: "knowledge-base"
   resources :message_threads, only: %i[index show new create update destroy], path: "threads" do
     get :search, on: :collection
+    get :spam, on: :collection
+    get :blocked, on: :collection
     post :merge_with_previous, on: :member
-    resources :messages, only: %i[new create] do
+    delete :auto_archive, on: :collection
+    resource :generate_reply, only: :create, controller: "ai/generate_reply", as: :ai_generate_reply
+    resources :messages, only: %i[new create update destroy] do
       get :hovercard, on: :member
       get :raw_source, on: :member
       get :original_html, on: :member
+      get :context, on: :member
+
+      resource :spam_check, only: :create, controller: "messages/spam_checks"
     end
   end
   resources :teams, only: %i[index new create edit update] do
@@ -67,13 +75,18 @@ Rails.application.routes.draw do
     put :logo_upload, on: :member
   end
   resources :team_users, only: %i[update destroy]
-  resource :settings, only: %i[show update] do
+  resource :settings, only: %i[show] do
     get :team
     get :emails
     get :canned_responses
     get :widget
     get :billing
     get :blocked_domains
+    get :spam
+    put :spam_update
+  end
+  namespace :image_uploads do
+    resources :logo, controller: "logo", only: :show
   end
   get "/join/:code", to: "team_invites#new", as: :join_team
   post "/join/:code", to: "team_invites#create"

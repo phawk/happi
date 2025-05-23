@@ -1,0 +1,21 @@
+<% if @team.messages_limit_reached? %>
+  <div class="warning-block">
+    <strong>Warning!</strong> You have used all of your included messages this month &ndash; <%= link_to "more info", billing_settings_url %>.
+  </div>
+<% end %>
+
+<h1>New internal note for <%= @team.name %></h1>
+
+<h2>Re: <%= @thread.subject %></h2>
+
+<p>
+  New internal note from your AI agent:
+</p>
+
+<div class="attributes_content">
+  <%= @message.content %>
+</div>
+
+<p class="body-action"><%= link_to "View note", view_message_url(@message), class: "f-fallback button button--primary" %></p>
+
+<%= render "shared/mailer_happi_sig" %>

@@ -10,6 +10,8 @@ RSpec.describe Team, type: :model do
   it { is_expected.to have_many(:custom_email_addresses) }
   it { is_expected.to have_many(:canned_responses) }
   it { is_expected.to have_many(:blocked_domains) }
+  it { is_expected.to have_many(:file_uploads) }
+  it { is_expected.to have_many(:reply_statistics) }
 
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:mail_hash) }

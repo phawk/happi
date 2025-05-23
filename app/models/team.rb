@@ -24,6 +24,8 @@ class Team < ApplicationRecord
   has_many :blocked_domains, dependent: :destroy
   has_many :custom_email_addresses, dependent: :destroy
   has_many :canned_responses, dependent: :destroy
+  has_many :file_uploads, class_name: 'KnowledgeBase::FileUpload', dependent: :destroy
+  has_many :reply_statistics, dependent: :destroy
 
   validates :name, presence: true
   validates :mail_hash, email_name: true, presence: true, uniqueness: true
@@ -36,6 +38,10 @@ class Team < ApplicationRecord
 
   def allowed_threads
     message_threads.where.not(customer_id: customers.blocked.select(:id))
+  end
+
+  def blocked_threads
+    message_threads.where(customer_id: customers.blocked.select(:id))
   end
 
   def messages

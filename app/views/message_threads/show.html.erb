@@ -1,101 +1,145 @@
 <% meta title: @customer.name.familiar %>
-<%= render "customers/link", customer: @customer %>
+<% content_for(:container_padding, "nada") %>
 
-<div class="grid grid-cols-1 gap-6 lg:gap-10 md:grid-cols-3 mt-12">
-  <div class="md:col-span-2">
-    <h1 class="text-2xl font-bold text-gray-900 mb-8"><%= @message_thread.subject %></h1>
-
-    <%= turbo_stream_from "thread_#{@message_thread.id}_messages" %>
-    <div id="messages">
-      <%= render @messages %>
+<% if @message_thread.spam_score.present? && @message_thread.spam_score > current_team.spam_threshold %>
+  <div class="flex justify-between items-center bg-yellow-50 border-b-2 border-yellow-100 text-yellow-900 py-4 px-5 sm:px-8 lg:px-10 rounded-md" role="alert">
+    <div>
+      <h2 class="uppercase tracking-wider font-semibold flex-auto">Potential spam</h2>
+      <p>Spam Score: <%= number_with_precision(@message_thread.spam_score, precision: 2) %> (your threshold is set to: <%= current_team.spam_threshold %>)</p>
     </div>
-
-    <%= render "messages/form", model: [@message_thread, Message.new] %>
+    <%= link_to "Back to all spam", spam_message_threads_path, class: "font-medium block bg-yellow-200 hover:opacity-80 px-5 py-1.5 rounded-full" %>
   </div>
-  <div class="mt-6 md:mt-0 bg-gray-50 rounded-2xl p-5 lg:p-8">
-    <%= form_with(model: @message_thread, class: "styled-form", data: { controller: "auto-submit" }) do |f| %>
-      <%= tag.h3 t(".thread_settings"), class: "text-lg font-semibold text-gray-700 mb-6" %>
-      <div class="grid grid-cols-6 gap-4 items-center">
-        <%= f.label :status, class: "col-span-2" %>
-        <div class="col-span-4">
-          <%= f.select :status, options_for_select(MessageThread::ASSIGNABLE_STATUS, selected: f.object.status), {}, class: "rounded w-full", data: { action: "change->auto-submit#submit" } %>
+<% end %>
+
+<div class="p-5 sm:p-8 lg:p-10">
+  <%= render "customers/link", customer: @customer %>
+
+  <div class="grid grid-cols-1 gap-6 lg:gap-10 md:grid-cols-3 mt-12">
+    <div class="md:col-span-2">
+      <h1 class="text-2xl font-bold text-gray-900 mb-8"><%= @message_thread.subject %></h1>
+
+      <%= turbo_stream_from "thread_#{@message_thread.id}_messages" %>
+      <div id="messages">
+        <%= render @messages %>
+      </div>
+
+      <%= render(Messages::FormComponent.new(
+        message: Message.new,
+        message_thread: @message_thread,
+        canned_responses: @canned_responses,
+        can_send_messages: current_user.can_send_messages?,
+        emails_to_send_from: current_team.emails_to_send_from
+      )) %>
+
+      <% unless current_user.confirmed? %>
+        <%= render "shared/unconfirmed_email" %>
+      <% end %>
+      <% unless current_team.subscription_active? %>
+        <%= render "shared/subscription_required" %>
+      <% end %>
+      <% unless current_team.verified? %>
+        <%= render "shared/pending_verification" %>
+      <% end %>
+      <% if current_team.messages_limit_reached? %>
+        <%= render "shared/messages_limit_reached" %>
+      <% end %>
+
+      <%= link_to message_thread_ai_generate_reply_path(@message_thread), data: { turbo_method: :post }, class: "text-sm text-gray-700 hover:text-gray-900 sm:mr-3" do %>
+        ⚡️ <span class="underline">Draft using AI</span>
+      <% end %>
+    </div>
+    <div class="mt-6 md:mt-0 bg-gray-50 rounded-2xl p-5 lg:p-8">
+      <%= form_with(model: @message_thread, class: "styled-form", data: { controller: "auto-submit" }) do |f| %>
+        <%= tag.h3 t(".thread_settings"), class: "text-lg font-semibold text-gray-700 mb-6" %>
+        <div class="grid grid-cols-6 gap-4 items-center">
+          <%= f.label :status, class: "col-span-2" %>
+          <div class="col-span-4">
+            <%= f.select :status, options_for_select(MessageThread::ASSIGNABLE_STATUS, selected: f.object.status), {}, class: "rounded w-full", data: { action: "change->auto-submit#submit" } %>
+          </div>
+
+          <%= f.label :user, class: "col-span-2" %>
+          <div class="col-span-4">
+            <%= f.collection_select(:user_id, current_team.users, :id, :familiar_name, { include_blank: t(".unassigned") }, class: "rounded w-full", data: { action: "change->auto-submit#submit" }) %>
+          </div>
         </div>
 
-        <%= f.label :user, class: "col-span-2" %>
-        <div class="col-span-4">
-          <%= f.collection_select(:user_id, current_team.users, :id, :familiar_name, { include_blank: t(".unassigned") }, class: "rounded w-full", data: { action: "change->auto-submit#submit" }) %>
+        <div class="mt-6">
+          <%= tag.h4 t(".inbound_address"), class: "block text-gray-700 font-medium text-base mb-1" %>
+          <span class="block text-sm text-gray-600">
+            <%= @message_thread.reply_to_address %>
+          </span>
         </div>
+
+        <div class="mt-4">
+          <%= tag.h4 t(".last_updated"), class: "block text-gray-700 font-medium text-base mb-1" %>
+          <span class="block text-sm text-gray-600">
+            <%= datetime @message_thread.updated_at %>
+          </span>
+        </div>
+
+        <div class="mt-4">
+          <%= tag.h4 "Thread spam score", class: "block text-gray-700 font-medium text-base mb-1" %>
+          <span class="block text-sm text-gray-600">
+            <strong class="text-gray-700"><%= number_with_precision(@message_thread.spam_score, precision: 1) %></strong><span class="text-gray-500"> / 10</span>
+          </span>
+        </div>
+      <% end %>
+
+      <div class="mt-10 flex flex-col">
+        <% if @message_thread.previous_threads? %>
+          <%= link_to merge_with_previous_message_thread_path(@message_thread), data: { turbo_method: :post, turbo_confirm: "Are you sure? This cannot be undone!" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+
+            <%= t(".merge_button") %>
+          <% end %>
+        <% end %>
+
+        <% if @message_thread.customer.blocked? %>
+          <%= link_to unblock_customer_path(@message_thread.customer), data: { turbo_method: :post }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+
+            <%= t(".unblock_button") %>
+          <% end %>
+        <% else %>
+          <%= link_to block_customer_path(@message_thread.customer), data: { turbo_method: :post, turbo_confirm: "Are you sure?" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+            </svg>
+
+            <%= t(".block_button") %>
+          <% end %>
+        <% end %>
+
+        <% if current_team.blocked_domains.blocked?(@message_thread.customer.email) %>
+          <%= link_to blocked_domains_settings_path, class: "block text-sm text-gray-600 hover:underline inline-flex items-center mb-4 opacity-70" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+            </svg>
+
+            <%= t(".domain_blocked") %>
+          <% end %>
+        <% else %>
+          <%= button_to blocked_domains_path, params: { email: @message_thread.customer.email }, method: :post, data: { turbo_confirm: "Are you sure?" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+            </svg>
+
+            <%= t(".block_domain_button") %>
+          <% end %>
+        <% end %>
+
+        <%= button_to message_thread_path(@message_thread), method: :delete, data: { turbo_confirm: "Are you sure? It will be permanently deleted after 7 days" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center" do %>
+          <svg class="h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+
+          <%= t(".archive_button") %>
+        <% end %>
       </div>
-
-      <div class="mt-6">
-        <%= tag.h4 t(".inbound_address"), class: "block text-gray-700 font-medium text-base mb-1" %>
-        <span class="block text-sm text-gray-600">
-          <%= @message_thread.reply_to_address %>
-        </span>
-      </div>
-
-      <div class="mt-4">
-        <%= tag.h4 t(".last_updated"), class: "block text-gray-700 font-medium text-base mb-1" %>
-        <span class="block text-sm text-gray-600">
-          <%= datetime @message_thread.updated_at %>
-        </span>
-      </div>
-    <% end %>
-
-    <div class="mt-10 flex flex-col">
-      <% if @message_thread.previous_threads? %>
-        <%= link_to merge_with_previous_message_thread_path(@message_thread), method: :post, data: { confirm: "Are you sure? This cannot be undone!" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-          </svg>
-
-          <%= t(".merge_button") %>
-        <% end %>
-      <% end %>
-
-      <% if @message_thread.customer.blocked? %>
-        <%= link_to unblock_customer_path(@message_thread.customer), method: :post, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-
-          <%= t(".unblock_button") %>
-        <% end %>
-      <% else %>
-        <%= link_to block_customer_path(@message_thread.customer), method: :post, data: { confirm: "Are you sure?" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-          </svg>
-
-          <%= t(".block_button") %>
-        <% end %>
-      <% end %>
-
-      <% if current_team.blocked_domains.blocked?(@message_thread.customer.email) %>
-        <%= link_to blocked_domains_settings_path, class: "block text-sm text-gray-600 hover:underline inline-flex items-center mb-4 opacity-70" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-          </svg>
-
-          <%= t(".domain_blocked") %>
-        <% end %>
-      <% else %>
-        <%= button_to blocked_domains_path, params: { email: @message_thread.customer.email }, method: :post, data: { confirm: "Are you sure?" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center mb-4" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-          </svg>
-
-          <%= t(".block_domain_button") %>
-        <% end %>
-      <% end %>
-
-      <%= link_to message_thread_path(@message_thread), method: :delete, data: { confirm: "Are you sure? It will be permanently deleted after 7 days" }, class: "text-sm text-gray-600 hover:underline inline-flex items-center" do %>
-        <svg class="h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-        </svg>
-
-        <%= t(".archive_button") %>
-      <% end %>
     </div>
   </div>
 </div>

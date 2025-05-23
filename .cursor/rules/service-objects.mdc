@@ -1,0 +1,16 @@
+---
+description: How to handle service objects
+globs: app/services/**/*.rb
+alwaysApply: false
+---
+# Service objects
+
+These are used to either: 
+- Make controllers simple
+- Perform complex operations
+- Make the code more DRY (if a complex operation is needed in more than one place)
+- Making calls to external APIs
+
+Coding practices:
+- https://dry-rb.org/gems/dry-monads/1.6/result/ - Dry::Monads[:result] is included in the ApplicationService (that all services should inherit from)
+- Services should always return `Success(data)` or `Failure(MyError.new("whatever"))`.

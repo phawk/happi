@@ -1,11 +1,31 @@
 <% meta title: t(".page_title") %>
 <% content_for(:container_padding, "nada") %>
 
+<% if controller.action_name == "spam" %>
+  <div class="flex justify-between items-center bg-yellow-50 border-b-2 border-yellow-100 text-yellow-900 py-4 px-5 sm:px-8 lg:px-10 rounded-t-3xl" role="alert">
+    <div>
+      <h2 class="uppercase tracking-wider font-semibold flex-auto">Spam Threads</h2>
+      <p>This page shows threads identified as potential spam &ndash; <%= link_to "Spam settings", spam_settings_path, class: "underline" %></p>
+    </div>
+    <%= link_to "Back to all threads", message_threads_path, class: "font-medium block bg-yellow-200 hover:opacity-80 px-5 py-1.5 rounded-full" %>
+  </div>
+<% end %>
+
+<% if controller.action_name == "blocked" %>
+  <div class="flex justify-between items-center bg-pink-100 border-b-2 border-pink-200 text-pink-900 py-4 px-5 sm:px-8 lg:px-10 rounded-t-3xl" role="alert">
+    <div>
+      <h2 class="uppercase tracking-wider font-semibold flex-auto">Blocked threads</h2>
+      <p>This page shows threads blocked by your filters &ndash; <%= link_to "Blocked domains", blocked_domains_settings_path, class: "underline" %></p>
+    </div>
+    <%= link_to "Back to all threads", message_threads_path, class: "font-medium block bg-pink-200 hover:opacity-80 px-5 py-1.5 rounded-full" %>
+  </div>
+<% end %>
+
 <div class="p-5 sm:p-8 lg:p-10">
   <%= render partial: "message_threads/top_nav", locals: { heading: t(".new_heading") } %>
 
   <div data-controller="display-empty" data-display-empty-hide-class="hidden">
-    <%= turbo_stream_from "team_#{current_team.id}_threads" %>
+    <%= turbo_stream_from "team_#{current_team.id}_threads" unless controller.action_name == "spam" %>
     <div id="open_message_threads" data-display-empty-target="list">
       <%= render @open_message_threads %>
     </div>

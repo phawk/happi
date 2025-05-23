@@ -3,6 +3,10 @@ class TeamPreview < ActionMailer::Preview
     TeamMailer.new_message(Message.find(480))
   end
 
+  def new_internal_note
+    TeamMailer.new_internal_note(Message.find(480))
+  end
+
   def verified
     TeamMailer.verified(Team.first)
   end

@@ -1,0 +1,31 @@
+<% meta title: t(".page_title", team_name: current_team.name) %>
+
+<%= tag.h2 t(".heading", team_name: current_team.name), class: "mb-6 text-left text-xl lg:text-2xl font-bold text-gray-900" %>
+
+<div class="flex flex-col md:flex-row md:items-start md:justify-between">
+  <%= render partial: "nav", locals: { page: :spam } %>
+
+  <div class="w-full max-w-md mx-auto">
+    <%= form_with(model: current_team, url: spam_update_settings_path, method: :put, class: "styled-form") do |f| %>
+      <div class="bg-white rounded-2xl p-6 shadow-sm">
+        <%= tag.h3 t(".spam_settings"), class: "text-lg font-semibold text-gray-800 mb-6" %>
+
+        <div class="mb-4">
+          <%= f.label :spam_threshold, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.number_field :spam_threshold, step: 0.1, min: 0, max: 10, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+          <p class="mt-2 text-sm text-gray-500"><%= t(".spam_threshold_hint") %></p>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :spam_prompt, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_area :spam_prompt, rows: 5, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+          <p class="mt-2 text-sm text-gray-500"><%= t(".spam_prompt_hint") %></p>
+        </div>
+
+        <div class="mt-6 text-right">
+          <%= f.submit t("helpers.submit.save"), class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

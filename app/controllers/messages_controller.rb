@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_thread, except: :view_message
-  before_action :set_message, only: %i[raw_source original_html]
+  before_action :set_message, only: %i[update raw_source original_html context destroy]
   skip_before_action :ensure_team!, only: :view_message
 
   def new
@@ -18,6 +18,26 @@ class MessagesController < ApplicationController
       unless message.internal?
         @message_thread.update(status: "waiting", user: current_user)
         CustomerMailer.new_reply(message).deliver_later
+        ProcessMessageThreadReplyJob.perform_later(@message_thread)
+      end
+
+      redirect_to @message_thread, notice: "Message delivered"
+    else
+      flash[:error] = "You must enter a message"
+      redirect_to @message_thread
+    end
+  end
+
+  def update
+    unless current_user.can_send_messages?
+      return redirect_to @message_thread, alert: "Message failed to send"
+    end
+
+    if @message.update(message_params.merge(draft: false))
+      unless @message.internal?
+        @message_thread.update(status: "waiting", user: current_user)
+        CustomerMailer.new_reply(@message).deliver_later
+        ProcessMessageThreadReplyJob.perform_later(@message_thread)
       end
 
       redirect_to @message_thread, notice: "Message delivered"
@@ -40,6 +60,18 @@ class MessagesController < ApplicationController
 
   def original_html
     @html = ERB::Util.url_encode @message.original_html
+  end
+
+  def context
+  end
+
+  def destroy
+    if @message.draft?
+      @message.destroy
+      redirect_to @message_thread, notice: "Draft message deleted"
+    else
+      redirect_to @message_thread, alert: "Only draft messages can be deleted"
+    end
   end
 
   def view_message

@@ -23,7 +23,7 @@ Upgrades | Happi is always up to date, we deploy fixes, improvements and feature
 ## Overview
 
 Happi is built using the following technologies:
-- Ruby on Rails (using ruby v3.0.2)
+- Ruby on Rails (using ruby v3.3.4)
 - PostgreSQL database
 - Hotwire/turbo for frontend tech, bundled using esbuild
 - TailwindCSS for styling

@@ -22,7 +22,12 @@ Bundler.require(*Rails.groups)
 module Happi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.2
+
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -65,6 +70,6 @@ module Happi
 
     # View Component Previews
     config.view_component.default_preview_layout = "component_preview"
-    config.view_component.preview_paths << "#{Rails.root}/app/components/previews"
+    config.view_component.preview_paths << "#{Rails.root}/app/component_previews"
   end
 end

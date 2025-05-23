@@ -1,11 +1,27 @@
 class MessageThreadsController < ApplicationController
   before_action :set_thread, only: %i[show update destroy merge_with_previous]
+  before_action :set_counters, only: %i[index spam blocked]
 
   def index
-    @open_message_threads = current_team.allowed_threads.with_open_status.includes(:customer, :user,
+    @open_message_threads = current_team.allowed_threads.ham(current_team).with_open_status.includes(:customer, :user,
       :messages).most_recent.to_a
-    @previous_message_threads = current_team.allowed_threads.without_open_status.includes(:customer, :user,
+    @previous_message_threads = current_team.allowed_threads.ham(current_team).without_open_status.includes(:customer, :user,
       :messages).most_recent.limit(50).to_a
+  end
+
+  def spam
+    @open_message_threads = current_team.allowed_threads.spam(current_team).with_open_status.includes(:customer, :user,
+      :messages).most_recent.to_a
+    @previous_message_threads = current_team.allowed_threads.spam(current_team).with_closed_and_archived.includes(:customer, :user,
+      :messages).most_recent.limit(50).to_a
+    render :index # Use the same view template as index
+  end
+
+  def blocked
+    @open_message_threads = current_team.blocked_threads.with_open_status.includes(:customer, :user,
+    :messages).most_recent.to_a
+    @previous_message_threads = current_team.blocked_threads.with_closed_and_archived.includes(:customer, :user, :messages).most_recent.limit(50).to_a
+    render :index # Use the same view template as index
   end
 
   def search
@@ -62,7 +78,38 @@ class MessageThreadsController < ApplicationController
     end
   end
 
+  def auto_archive
+    current_team.allowed_threads.with_open_status.find_each do |thread|
+      last_message = thread.messages.order(:created_at).last
+      next unless last_message
+
+      if thread.status == "open" && last_message.created_at < 45.days.ago
+        thread.archive!
+      end
+
+      if thread.status == "waiting" && last_message.created_at < 7.days.ago
+        thread.archive!
+      end
+    end
+
+    current_team.allowed_threads.without_open_status.find_each do |thread|
+      last_message = thread.messages.order(:created_at).last
+      next unless last_message
+
+      if last_message.created_at < 7.days.ago
+        thread.archive!
+      end
+    end
+
+    redirect_to message_threads_path, notice: "Auto archive complete"
+  end
+
   private
+
+  def set_counters
+    @spam_threads_count = current_team.allowed_threads.spam(current_team).with_open_status.count
+    @blocked_threads_count = current_team.blocked_threads.with_open_status.count
+  end
 
   def set_thread
     @message_thread = current_team.message_threads.find(params[:id])

@@ -19,6 +19,7 @@ acme:
   verified_at: 2021-04-03
   subscription_status: active
   available_seats: 3
+  spam_threshold: 5.0
   users: pete
 
 nine:

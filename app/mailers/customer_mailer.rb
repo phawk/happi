@@ -10,6 +10,6 @@ class CustomerMailer < ApplicationMailer
     metadata["message_id"] = @message.id
 
     mail from: message.deliver_email_via, to: @customer.email, reply_to: @message_thread.reply_to_address,
-      subject: @message_thread.subject
+      subject: @message_thread.subject, track_opens: "true"
   end
 end

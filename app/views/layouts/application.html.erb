@@ -38,6 +38,7 @@
               </div>
             </div>
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <%= link_to "Knowledge Base", knowledge_base_index_path, role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
               <%= link_to t("nav.settings"), settings_path, role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
               <%= link_to t("nav.edit_profile"), edit_user_registration_path, role: "menuitem", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" %>
             </div>
@@ -50,7 +51,7 @@
               </div>
             <% end %>
             <div class="py-1">
-              <%= link_to t("nav.logout"), destroy_user_session_path, method: :delete, class: "block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900", role: "menuitem", data: { turbo: false } %>
+              <%= button_to t("nav.logout"), destroy_user_session_path, method: :delete, class: "block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900", role: "menuitem", data: { turbo: false } %>
             </div>
           </div>
         </nav>
@@ -68,5 +69,7 @@
     <%= render "shared/account_not_verified" %>
 
     <%= turbo_frame_tag "modal" %>
+
+    <div id="happi-team-widget-root" data-turbo-permanent="true"></div>
   </body>
 </html>

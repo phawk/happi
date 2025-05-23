@@ -1,0 +1,83 @@
+<% meta title: "KB - #{@file_upload.file&.filename}" %>
+<% content_for(:container_padding, "nada") %>
+
+<%= turbo_stream_from "team_#{current_team.id}_file_uploads" %>
+
+<div class="bg-white rounded-3xl overflow-hidden">
+  <div class="px-4 py-5 sm:px-6 flex justify-between items-center">
+    <div>
+      <h1 class="text-lg leading-6 font-medium text-gray-900">
+        Knowledge Base: <%= @file_upload.file.filename if @file_upload.file.attached? %>
+      </h1>
+      <p class="mt-1 max-w-2xl text-sm text-gray-500">
+        Details about the uploaded file.
+      </p>
+    </div>
+    <%= link_to "Back to Knowledge Base", knowledge_base_index_path, class: "text-indigo-600 hover:text-indigo-900" %>
+  </div>
+  <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+    <dl class="sm:divide-y sm:divide-gray-200">
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Filename
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @file_upload.file.filename if @file_upload.file.attached? %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          File type
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= render(BadgeComponent.new) do %>
+            <%= @file_upload.file&.content_type %>
+          <% end %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Uploaded by
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @file_upload.user.email %>
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Uploaded at
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= @file_upload.created_at.strftime("%B %d, %Y %H:%M") %> (<%= time_ago_in_words(@file_upload.created_at) %> ago)
+        </dd>
+      </div>
+      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          Status
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= render(UploadStatusComponent.new(file_upload: @file_upload)) %>
+        </dd>
+      </div>
+      <% if @file_upload.processed_at? && @file_upload.summary? %>
+        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Summary
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 whitespace-pre-wrap">
+            <%= @file_upload.summary %>
+          </dd>
+        </div>
+      <% elsif @file_upload.processed_at? %>
+          <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Summary
+          </dt>
+          <dd class="mt-1 text-sm text-gray-500 sm:mt-0 sm:col-span-2">
+            Summary not available.
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+</div>

@@ -10,6 +10,8 @@ class BadgeComponent < ViewComponent::Base
     case @style
     when :important
       "bg-purple-100 text-purple-800"
+    when :success
+      "bg-green-100 text-green-800"
     else
       "bg-gray-100 text-gray-600"
     end

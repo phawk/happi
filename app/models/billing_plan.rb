@@ -1,5 +1,5 @@
 class BillingPlan
-  PLANS = %w[free individual basic business].freeze
+  PLANS = %w[free individual basic business starter growth scale].freeze
 
   attr_reader :name
 
@@ -13,6 +13,10 @@ class BillingPlan
 
   def self.paid_plans
     all.select { |plan| plan.current_price > 0 }
+  end
+
+  def self.visible_paid_plans
+    visible.select { |plan| plan.current_price > 0 }
   end
 
   def initialize(name:)
@@ -39,9 +43,13 @@ class BillingPlan
     data[name].key?(method_name) || super
   end
 
+  def ai_autonomous_bot?
+    data[name][:ai_autonomous_bot] == true
+  end
+
   def select_option
     [
-      "#{display_name} (£#{current_price}/mo)",
+      "#{display_name} ($#{current_price}/mo)",
       id,
     ]
   end
@@ -54,13 +62,15 @@ class BillingPlan
         description: "Perfect for early-stage startups.",
         original_price: 0,
         current_price: 0,
+        currency: "USD",
+        symbol: "$",
         available_seats: 1,
         messages_limit: 100,
         custom_email_addresses: 1,
         premium_support: false,
         live_stripe_price_id: nil,
         test_stripe_price_id: nil,
-        visible: true,
+        visible: false,
         initial_subscription_state: "trialing",
       },
       individual: {
@@ -69,13 +79,15 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 10,
         current_price: 10,
+        currency: "GBP",
+        symbol: "£",
         available_seats: 1,
         messages_limit: 1_000,
         custom_email_addresses: 1,
         premium_support: false,
-        live_stripe_price_id: "price_1JZwXvF0UsUPXe7UNwhTuAMw",
-        test_stripe_price_id: "price_1JZyyPF0UsUPXe7U8XePod43",
-        visible: true,
+        live_stripe_price_id: "price_1NMqquLkfrm0pujLBJOGvXfj",
+        test_stripe_price_id: "price_1NMqpBLkfrm0pujL7odofgZC",
+        visible: false,
         initial_subscription_state: "pending",
       },
       basic: {
@@ -84,13 +96,15 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 25,
         current_price: 25,
+        currency: "GBP",
+        symbol: "£",
         available_seats: 3,
         messages_limit: 3_000,
         custom_email_addresses: 3,
         premium_support: true,
-        live_stripe_price_id: "price_1JZvyHF0UsUPXe7U6jDbjSMT",
-        test_stripe_price_id: "price_1JZyzYF0UsUPXe7Ul2U3fW7N",
-        visible: true,
+        live_stripe_price_id: "price_1NMqqBLkfrm0pujLT6u5D4sD",
+        test_stripe_price_id: "price_1NMqprLkfrm0pujLfSFZknRW",
+        visible: false,
         initial_subscription_state: "pending",
       },
       business: {
@@ -99,14 +113,69 @@ class BillingPlan
         description: "Billed monthly, no commitments, cancel anytime!",
         original_price: 100,
         current_price: 100,
+        currency: "GBP",
+        symbol: "£",
         available_seats: 10,
         messages_limit: 10_000,
         custom_email_addresses: 10,
         premium_support: true,
-        live_stripe_price_id: "price_1JZwYCF0UsUPXe7UqNfzclnX",
-        test_stripe_price_id: "price_1JZyzmF0UsUPXe7UrJbBVrva",
+        live_stripe_price_id: "price_1NMqqYLkfrm0pujLsfl18rUg",
+        test_stripe_price_id: "price_1NMqqWLkfrm0pujLFh6UQLhK",
         visible: false,
         initial_subscription_state: "pending",
+      },
+      starter: {
+        id: "starter",
+        display_name: "Starter",
+        description: "Billed monthly, no commitments, cancel anytime!",
+        original_price: 29,
+        current_price: 29,
+        currency: "USD",
+        symbol: "$",
+        available_seats: 2,
+        messages_limit: 1_000,
+        custom_email_addresses: 1,
+        premium_support: false,
+        live_stripe_price_id: "price_1RCyrrLkfrm0pujLGI2XYhfN",
+        test_stripe_price_id: "price_1RCyuWLkfrm0pujLStoKnnz0",
+        visible: true,
+        initial_subscription_state: "pending",
+      },
+      growth: {
+        id: "growth",
+        display_name: "Growth",
+        description: "Billed monthly, no commitments, cancel anytime!",
+        original_price: 79,
+        current_price: 79,
+        currency: "USD",
+        symbol: "$",
+        available_seats: 3,
+        messages_limit: 3_000,
+        custom_email_addresses: 4,
+        premium_support: false,
+        live_stripe_price_id: "price_1RCysYLkfrm0pujLohUkEqmn",
+        test_stripe_price_id: "price_1RCyuzLkfrm0pujL1GypJMYx",
+        visible: true,
+        initial_subscription_state: "pending",
+        ai_autonomous_bot: true,
+      },
+      scale: {
+        id: "scale",
+        display_name: "Scale",
+        description: "Billed monthly, no commitments, cancel anytime!",
+        original_price: 149,
+        current_price: 149,
+        currency: "USD",
+        symbol: "$",
+        available_seats: 6,
+        messages_limit: 10_000,
+        custom_email_addresses: 10,
+        premium_support: true,
+        live_stripe_price_id: "price_1RCyu0Lkfrm0pujLLM4kDxwu",
+        test_stripe_price_id: "price_1RCyvNLkfrm0pujL54iiM7a0",
+        visible: true,
+        initial_subscription_state: "pending",
+        ai_autonomous_bot: true,
       },
     }
   end

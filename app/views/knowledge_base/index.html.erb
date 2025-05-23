@@ -1,0 +1,76 @@
+<% meta title: "Knowledge Base" %>
+<% content_for(:container_padding, "nada") %>
+
+<%= turbo_stream_from "team_#{current_team.id}_file_uploads" %>
+
+<div>
+  <div class="flex justify-between items-center p-5 sm:p-8 lg:p-10">
+    <div>
+      <h1 class="uppercase tracking-wider font-semibold text-gray-500 flex-auto"><%= current_team.name %> Knowledge Base</h1>
+      <p class="text-sm text-gray-500 mt-2">✨ Upload files here to train our AI agents on your business</p>
+    </div>
+
+    <div class="ml-auto">
+      <%= form_with(model: @new_file_upload, url: knowledge_base_index_path, class: "flex items-center space-x-2") do |form| %>
+        <% if @new_file_upload.errors.any? %>
+          <div class="text-red-500 text-sm">
+            <%= @new_file_upload.errors.full_messages.to_sentence %>
+          </div>
+        <% end %>
+
+        <%= form.file_field :file, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" %>
+        <%= form.submit "Upload", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Filename</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uploaded By</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Uploaded At</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+          <th scope="col" class="relative px-6 py-3">
+            <span class="sr-only">Actions</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @file_uploads.each do |file_upload| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <% if file_upload.file.attached? %>
+                <%= link_to file_upload.file.filename, knowledge_base_path(file_upload), class: "text-indigo-600 hover:text-indigo-900 hover:underline" %>
+              <% else %>
+                <span class="text-gray-500 italic">File missing</span>
+              <% end %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= file_upload.user.email %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= time_ago_in_words(file_upload.created_at) %> ago
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= render(UploadStatusComponent.new(file_upload: file_upload)) %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <%= button_to knowledge_base_path(file_upload), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this file?" }, class: "text-red-600 hover:text-red-900" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @file_uploads.empty? %>
+          <tr>
+            <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">No files uploaded yet.</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

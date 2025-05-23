@@ -8,6 +8,7 @@ require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "shoulda/matchers"
 require "capybara/rspec"
+require "webmock/rspec"
 require "view_component/test_helpers"
 
 Shoulda::Matchers.configure do |config|
@@ -42,7 +43,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
   config.global_fixtures = :all
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

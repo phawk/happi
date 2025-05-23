@@ -6,11 +6,10 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.0",
-    "@hotwired/turbo-rails": "^7.0.1",
+    "@hotwired/turbo-rails": "^7.3.0",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.3",
     "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.3.6",

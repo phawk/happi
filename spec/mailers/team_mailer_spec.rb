@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe TeamMailer, type: :mailer do
-  describe "new_message" do
+  describe "#new_message" do
     let(:team) { teams(:acme) }
     let(:message) { messages(:acme_alex_stripe_msg_1) }
     let(:mail) { described_class.new_message(message) }
@@ -27,7 +27,33 @@ RSpec.describe TeamMailer, type: :mailer do
     end
   end
 
-  describe "verified" do
+  describe "#new_internal_note" do
+    let(:team) { teams(:acme) }
+    let(:message) { messages(:acme_alex_stripe_msg_1) }
+    let(:mail) { described_class.new_internal_note(message) }
+
+    context "when user has message_notifications enabled" do
+      it "renders the headers" do
+        expect(mail.subject).to eq("ACME Corp: New internal note")
+        expect(mail.to).to match_array(team.users.pluck(:email))
+      end
+
+      it "renders the body" do
+        expect(mail.body.encoded).to include("New internal note from your AI agent:")
+      end
+    end
+
+    context "when all users have message_notifications disabled" do
+      it "doesn't send any emails" do
+        team.team_users.update_all(message_notifications: false)
+        result = described_class.new_message(message)
+        expect(result.to).to be_nil
+        expect(result.body).to eq("")
+      end
+    end
+  end
+
+  describe "#verified" do
     let(:team) { teams(:acme) }
     let(:mail) { described_class.verified(team) }
 
@@ -41,7 +67,7 @@ RSpec.describe TeamMailer, type: :mailer do
     end
   end
 
-  describe "email_awaiting_approval" do
+  describe "#email_awaiting_approval" do
     let(:team) { teams(:acme) }
     let(:custom_email_address) { "help@acme.com" }
     let(:mail) { described_class.email_awaiting_approval(team, custom_email_address) }

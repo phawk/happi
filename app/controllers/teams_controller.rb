@@ -42,7 +42,7 @@ class TeamsController < ApplicationController
         redirect_to dashboard_path
       else
         checkout = create_checkout(with_plan: billing_plan)
-        redirect_to checkout.url
+        redirect_to checkout.url, allow_other_host: true
       end
     else
       render :new, status: :unprocessable_entity

@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "modal" do %>
+  <%= render ModalComponent.new(title: "AI Context", closeable: true, back_to: url_for(@message.message_thread)) do %>
+    <%= simple_format(@message.ai_context) %>
+  <% end %>
+<% end %>

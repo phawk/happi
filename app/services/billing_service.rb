@@ -16,6 +16,7 @@ module BillingService
       customer: stripe_customer.id,
       client_reference_id: team.id,
       subscription_data: {
+        # trial_period_days: 7,
         metadata: {
           happi_team_id: team.id,
         },

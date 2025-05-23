@@ -11,7 +11,6 @@ class ThreadsMailbox < ApplicationMailbox
       sender: customer,
       status: "received",
       content: email_content_with_attachments,
-      spam_score: spam_score,
       raw: mail.raw_source,
       original_html: original_html,
       action_mailbox_id: action_mailbox_record&.id
@@ -19,7 +18,7 @@ class ThreadsMailbox < ApplicationMailbox
 
     return if customer.blocked?
 
-    NotificationService.new_message(@team, message)
+    ProcessNewMessageJob.perform_later(message)
   end
 
   private
@@ -31,10 +30,6 @@ class ThreadsMailbox < ApplicationMailbox
   def original_html
     html_part = mail.all_parts.find(&:html?)
     html_part&.decoded
-  end
-
-  def spam_score
-    mail.header["X-Spam-Score"]&.value&.to_f
   end
 
   def email_content_with_attachments
@@ -78,7 +73,7 @@ class ThreadsMailbox < ApplicationMailbox
       end
     end
 
-    bounce_with(TeamMailer.not_found(from_email)) if @team.nil?
+    raise(TeamNotFoundError.new("Team not found for email. From: #{from_email} Recipients: #{mail.recipients.to_sentence}")) if @team.nil?
   end
 
   def assign_thread
@@ -87,7 +82,8 @@ class ThreadsMailbox < ApplicationMailbox
       @message_thread = customer.message_threads.with_open_status.first
       @message_thread.update(status: "open")
     else
-      @message_thread = customer.message_threads.create!(team: team, subject: mail.subject, reply_to: @reply_to,
+      subject = mail.subject.presence || "[No Subject]"
+      @message_thread = customer.message_threads.create!(team: team, subject: subject, reply_to: @reply_to,
         status: "open")
     end
   end
@@ -100,7 +96,7 @@ class ThreadsMailbox < ApplicationMailbox
     customer = Customer.where(team: team, email: from_email).first_or_initialize
 
     unless customer.persisted?
-      customer.name = from_name
+      customer.name = from_name.presence || HappiMail::FromParser::DEFAULT_FROM_NAME
       customer.blocked = @team.blocked_domains.blocked?(from_email)
       customer.save!
     end
@@ -119,4 +115,6 @@ class ThreadsMailbox < ApplicationMailbox
   def parsed_from
     @_parsed_from ||= HappiMail::FromParser.new(mail)
   end
+
+  class TeamNotFoundError < StandardError; end
 end

@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  STATUS = %w[received pending delivered bounced].freeze
+  STATUS = %w[received pending delivered bounced opened].freeze
   include PgSearch::Model
 
   after_create_commit { broadcast_append_to(turbo_channel, target: "messages") }
@@ -17,6 +17,9 @@ class Message < ApplicationRecord
   belongs_to :message_thread, touch: true
   belongs_to :sender, polymorphic: true
 
+  scope :internal, -> { where(internal: true) }
+  scope :customer_facing, -> { where(internal: false) }
+
   validates :content, presence: true, if: :user?
 
   def customer?
@@ -25,6 +28,10 @@ class Message < ApplicationRecord
 
   def user?
     sender_type == "User"
+  end
+
+  def ai?
+    sender_type == "Team" && ai_agent?
   end
 
   def deliver_email_via

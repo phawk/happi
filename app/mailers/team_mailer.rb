@@ -11,6 +11,18 @@ class TeamMailer < ApplicationMailer
     end
   end
 
+  def new_internal_note(message)
+    @message = message
+    @thread = message.message_thread
+    @team = @thread.team
+
+    emails = @team.users_for_email(:message_notification).pluck(:email)
+
+    if emails.any?
+      mail to: emails, subject: "#{@team.name}: New internal note"
+    end
+  end
+
   def verified(team)
     @team = team
 

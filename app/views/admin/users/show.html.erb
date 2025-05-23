@@ -24,7 +24,7 @@ as well as a link to its edit page.
   </h1>
 
   <div class="flex space-x-3">
-    <%= link_to "Sync customer", admin_user_sync_path(page.resource), method: :post, class: "button" %>
+    <%= button_to "Sync customer", admin_user_sync_path(page.resource), method: :post, class: "button" %>
     <% if page.resource.confirmed? %>
       <%= link_to "Login as", masquerade_path(page.resource), class: "button" %>
     <% else %>

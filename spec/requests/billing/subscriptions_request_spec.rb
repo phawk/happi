@@ -8,9 +8,9 @@ RSpec.describe Billing::SubscriptionsController, type: :request do
       get billing_subscriptions_path
 
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Individual")
-      expect(response.body).to include("Basic")
-      expect(response.body).to include("Business")
+      expect(response.body).to include("Starter")
+      expect(response.body).to include("Growth")
+      expect(response.body).to include("Scale")
     end
   end
 

@@ -33,7 +33,7 @@
               <td class="h-full py-8 px-6 align-top">
                 <div class="relative h-full table">
                   <p>
-                    <span class="text-4xl font-extrabold text-gray-900"><%= number_to_currency(plan.current_price, unit: "£", precision: 0) %></span>
+                    <span class="text-4xl font-extrabold text-gray-900"><%= number_to_currency(plan.current_price, unit: plan.symbol, precision: 0) %></span>
                     <span class="text-base font-medium text-gray-500">/mo</span>
                   </p>
                   <p class="mt-4 mb-16 text-sm text-gray-500"><%= plan.description %></p>
@@ -48,6 +48,70 @@
           </tr>
 
           <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">AI knowledge-base</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <!-- Heroicon name: solid/check -->
+                <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Included in Plan</span>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">AI Spam detection</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <!-- Heroicon name: solid/check -->
+                <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Included in Plan</span>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">AI Reply Writer</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <!-- Heroicon name: solid/check -->
+                <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span class="sr-only">Included in Plan</span>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
+            <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">AI Autonomous bot</th>
+
+            <% @plans.each do |plan| %>
+              <td class="py-5 px-6">
+                <% if plan.ai_autonomous_bot? %>
+                  <!-- Heroicon name: solid/check -->
+                  <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="sr-only">Included in Plan</span>
+                <% else %>
+                  <!-- Heroicon name: solid/minus -->
+                  <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="sr-only">Not included in plan</span>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+
+          <tr>
             <th class="py-5 px-6 text-sm font-normal text-gray-500 text-left" scope="row">Custom domains</th>
 
             <% @plans.each do |plan| %>
@@ -57,6 +121,7 @@
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
                 <span class="sr-only">Included in Plan</span>
+                <span class="text-xs text-gray-500"><%= pluralize(plan.custom_email_addresses, "address") %></span>
               </td>
             <% end %>
           </tr>

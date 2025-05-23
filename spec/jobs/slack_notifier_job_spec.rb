@@ -27,7 +27,7 @@ RSpec.describe SlackNotifierJob, type: :job do
     subject.perform(team, message)
 
     expect(fake_notifier.message).to eq([
-      "**New message**",
+      "✉️ New message",
       "From: Pete Hawkins <petey@hey.com>",
       "Subject: Help resetting my password\n",
       "Hello Alex, I have reset your password, please try logging in again now.",

@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_215855) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_20_171256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "vector"
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -221,6 +222,43 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_215855) do
     t.index ["team_id"], name: "index_customers_on_team_id"
   end
 
+  create_table "embeddings", force: :cascade do |t|
+    t.string "object_type", null: false
+    t.bigint "object_id", null: false
+    t.vector "vectors", limit: 1536
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["object_type", "object_id"], name: "index_embeddings_on_object"
+    t.index ["team_id"], name: "index_embeddings_on_team_id"
+    t.index ["user_id"], name: "index_embeddings_on_user_id"
+  end
+
+  create_table "knowledge_base_file_uploads", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.text "summary"
+    t.datetime "processed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "vectorized_at"
+    t.index ["team_id"], name: "index_knowledge_base_file_uploads_on_team_id"
+    t.index ["user_id"], name: "index_knowledge_base_file_uploads_on_user_id"
+  end
+
+  create_table "message_status_updates", force: :cascade do |t|
+    t.bigint "message_id", null: false
+    t.string "value"
+    t.json "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.index ["message_id"], name: "index_message_status_updates_on_message_id"
+  end
+
   create_table "message_threads", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "team_id", null: false
@@ -230,6 +268,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_215855) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reply_to"
+    t.decimal "spam_score", precision: 10, scale: 2
     t.index ["customer_id"], name: "index_message_threads_on_customer_id"
     t.index ["team_id"], name: "index_message_threads_on_team_id"
     t.index ["user_id"], name: "index_message_threads_on_user_id"
@@ -251,7 +290,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_215855) do
     t.string "channel", default: "email", null: false
     t.text "original_html"
     t.bigint "action_mailbox_id"
+    t.text "ai_context"
+    t.boolean "draft", default: false, null: false
+    t.boolean "ai_agent", default: false, null: false
     t.index ["message_thread_id"], name: "index_messages_on_message_thread_id"
+  end
+
+  create_table "reply_statistics", force: :cascade do |t|
+    t.bigint "message_thread_id", null: false
+    t.text "message_ids", default: [], null: false, array: true
+    t.text "reply_ids", default: [], null: false, array: true
+    t.bigint "team_id", null: false
+    t.integer "time_to_reply", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "first_customer_message_id", null: false
+    t.index ["first_customer_message_id"], name: "index_reply_statistics_on_first_customer_message_id"
+    t.index ["message_thread_id"], name: "index_reply_statistics_on_message_thread_id"
+    t.index ["team_id"], name: "index_reply_statistics_on_team_id"
   end
 
   create_table "site_options", force: :cascade do |t|
@@ -282,6 +338,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_215855) do
     t.string "slack_webhook_url"
     t.string "slack_channel_name"
     t.string "access_level", default: "standard", null: false
+    t.text "spam_prompt"
+    t.decimal "spam_threshold", precision: 10, scale: 2, default: "5.0"
+    t.boolean "autonomous_replies_enabled", default: false, null: false
     t.index ["invite_code"], name: "index_teams_on_invite_code", unique: true
     t.index ["mail_hash"], name: "index_teams_on_mail_hash", unique: true
     t.index ["publishable_key"], name: "index_teams_on_publishable_key", unique: true
@@ -333,10 +392,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_215855) do
   add_foreign_key "custom_email_addresses", "teams"
   add_foreign_key "custom_email_addresses", "users"
   add_foreign_key "customers", "teams"
+  add_foreign_key "knowledge_base_file_uploads", "teams"
+  add_foreign_key "knowledge_base_file_uploads", "users"
+  add_foreign_key "message_status_updates", "messages"
   add_foreign_key "message_threads", "customers"
   add_foreign_key "message_threads", "teams"
   add_foreign_key "message_threads", "users"
   add_foreign_key "messages", "message_threads"
+  add_foreign_key "reply_statistics", "message_threads"
+  add_foreign_key "reply_statistics", "messages", column: "first_customer_message_id"
+  add_foreign_key "reply_statistics", "teams"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
   add_foreign_key "users", "teams"

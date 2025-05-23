@@ -8,7 +8,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:11
+        image: pgvector/pgvector:pg17
         env:
           POSTGRES_USER: rails_github_actions
           POSTGRES_DB: rails_github_actions_test
@@ -40,13 +40,14 @@ jobs:
       STRIPE_TEST_WEBHOOKS_SECRET: ${{ secrets.STRIPE_TEST_WEBHOOKS_SECRET }}
       SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       POSTMARK_WEBHOOKS_PASSWORD: "testpassword"
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - uses: actions/checkout@v1
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.2
+          ruby-version: 3.3.4
           bundler-cache: true
       - name: Set up Node
         uses: actions/setup-node@v1
